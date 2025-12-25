@@ -17,22 +17,58 @@
     </script>
 
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=653621561ce419001afe751e&product=inline-share-buttons&source=platform" async="async"></script>
-<!--    <script type="text/javascript" src="https://www.trk2dkt.com/scripts/sdk/everflow.js"></script>-->
-<!--    <script type="text/javascript">-->
-<!--        EF.click({-->
-<!--            offer_id: EF.urlParameter('oid'),-->
-<!--            affiliate_id: EF.urlParameter('affid'),-->
-<!--            sub1: EF.urlParameter('sub1'),-->
-<!--            sub2: EF.urlParameter('sub2'),-->
-<!--            sub3: EF.urlParameter('sub3'),-->
-<!--            sub4: EF.urlParameter('sub4'),-->
-<!--            sub5: EF.urlParameter('sub5'),-->
-<!--            uid: EF.urlParameter('uid'),-->
-<!--            source_id: EF.urlParameter('source_id'),-->
-<!--            transaction_id: EF.urlParameter('_ef_transaction_id'),-->
-<!--        });-->
-<!--    </script>-->
+    <script>
+        function getParameterByName(name) {
+            const url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
 
+        // 监听 DOM 加载完成事件 (替代 $(document).ready)
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // 获取 URL 参数的函数 (原生 JS 写法)
+            function getParameterByName(name) {
+                var url = window.location.href;
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                var results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            // 1. 获取 domain 参数
+            var domainParam = getParameterByName('domain');
+
+            // 2. 只有当参数存在时才执行
+            if (domainParam) {
+
+                // 3. 自动补全 https:// (兼容性写法)
+                if (domainParam.indexOf('http://') !== 0 && domainParam.indexOf('https://') !== 0) {
+                    domainParam = 'https://' + domainParam;
+                }
+
+                // 拼接后缀
+                var newUrl = domainParam + '/click.php?lp=1';
+
+                // 4. 获取所有 href 等于旧链接的 <a> 标签
+                var links = document.querySelectorAll('a[href="https://bniom.top/click.php?lp=1"]');
+
+                // 5. 遍历并修改链接
+                for (var i = 0; i < links.length; i++) {
+                    links[i].href = newUrl;
+                }
+
+                // 调试信息 (可选)
+                console.log("Updated " + links.length + " links to: " + newUrl);
+            }
+        });
+    </script>
 
 </head>
 
