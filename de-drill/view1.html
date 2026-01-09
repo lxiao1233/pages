@@ -91,7 +91,7 @@
                             seconds = item.split('-')[1] || 0;
                         }
                     });
-                    initialTimeGather[index] = { days, hours, minutes, seconds};
+                    initialTimeGather[view1] = { days, hours, minutes, seconds};
                 });
                 return initialTimeGather;
             }
@@ -119,13 +119,13 @@
 
             if (timeRemaining <= 0) {
                 // Countdown abgelaufen
-                document.querySelectorAll('.days')[index].textContent = '00';
-                document.querySelectorAll('.hours')[index].textContent = '00';
-                document.querySelectorAll('.minutes')[index].textContent = '00';
-                document.querySelectorAll('.seconds')[index].textContent = '00';
+                document.querySelectorAll('.days')[view1].textContent = '00';
+                document.querySelectorAll('.hours')[view1].textContent = '00';
+                document.querySelectorAll('.minutes')[view1].textContent = '00';
+                document.querySelectorAll('.seconds')[view1].textContent = '00';
 
                 // Abschlussnachricht hinzufügen
-                document.querySelectorAll('.countdown-title-text')[index].textContent = 'Der Countdown ist abgelaufen!';
+                document.querySelectorAll('.countdown-title-text')[view1].textContent = 'Der Countdown ist abgelaufen!';
                 return;
             }
 
@@ -136,10 +136,10 @@
             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
             // Anzeige aktualisieren
-            document.querySelectorAll('.days')[index].textContent = days.toString().padStart(2, '0');
-            document.querySelectorAll('.hours')[index].textContent = hours.toString().padStart(2, '0');
-            document.querySelectorAll('.minutes')[index].textContent = minutes.toString().padStart(2, '0');
-            document.querySelectorAll('.seconds')[index].textContent = seconds.toString().padStart(2, '0');
+            document.querySelectorAll('.days')[view1].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.hours')[view1].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.minutes')[view1].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.seconds')[view1].textContent = seconds.toString().padStart(2, '0');
         }
 
         // Countdown initialisieren
@@ -150,11 +150,11 @@
                     let targetDate = calculateTargetDate(initialTime);
 
                     // Initiale Aktualisierung
-                    updateCountdown(targetDate, index);
+                    updateCountdown(targetDate, view1);
 
                     // Jede Sekunde aktualisieren
                     let countdownInterval = setInterval(() => {
-                        updateCountdown(targetDate, index);
+                        updateCountdown(targetDate, view1);
 
                         // Prüfen, ob abgelaufen
                         let now = new Date();
