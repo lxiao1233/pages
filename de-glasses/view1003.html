@@ -1,0 +1,2751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Neue Lesebrille mit deutscher optischer Innovation hilft Tausenden älteren Deutschen, wieder zu lesen</title>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({'spu_code': 'HH00628'});
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=DC-11863764"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'DC-11863764');
+    </script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-103606589-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-103606589-13');
+    </script>
+    <script src="js/common.js"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // DOM加载完成后执行的代码
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (targetBottomBtn) {
+                targetBottomBtn.classList.add('detection-ele-hidden');
+            }
+        });
+        // 滚动事件监听器
+        window.addEventListener('scroll', function () {
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (!targetBottomBtn) {
+                return;
+            }
+            checkElementInViewport('.click_to_product_page_btn', function (inViewport) {
+                if (inViewport) {
+                    targetBottomBtn.classList.add('detection-ele-hidden');
+                } else {
+                    targetBottomBtn.classList.remove('detection-ele-hidden');
+                }
+            });
+        });
+
+        // 检测视口内是否有指定选择器的元素
+        function checkElementInViewport(detectionEleSelector, callback) {
+            const elements = document.querySelectorAll(detectionEleSelector);
+            let inViewport = false;
+            elements.forEach(function (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    inViewport = true;
+                }
+            });
+            callback(inViewport);
+        }
+    </script>
+
+    <script>
+        // 从类名获取初始时间
+        function getInitialTime() {
+            const countdownElementList = document.querySelectorAll('.countdown');
+            if (countdownElementList && countdownElementList.length > 0) {
+                let initialTimeGather = [];
+                countdownElementList.forEach((countdownElement, index) => {
+                    let countdownClassList = countdownElement.classList;
+                    let days = parseInt(countdownElement.getAttribute('data-days')) || 0;
+                    let hours = parseInt(countdownElement.getAttribute('data-hours')) || 0;
+                    let minutes = parseInt(countdownElement.getAttribute('data-minutes')) || 0;
+                    let seconds = parseInt(countdownElement.getAttribute('data-seconds')) || 0;
+                    countdownClassList.forEach(item => {
+                        // 天
+                        if (item.includes('days-')) {
+                            days = item.split('-')[1] || 0;
+                        }
+
+                        // 时
+                        if (item.includes('hours-')) {
+                            hours = item.split('-')[1] || 0;
+                        }
+
+                        // 分
+                        if (item.includes('minutes-')) {
+                            minutes = item.split('-')[1] || 0;
+                        }
+
+                        // 秒
+                        if (item.includes('seconds-')) {
+                            seconds = item.split('-')[1] || 0;
+                        }
+                    });
+                    initialTimeGather[index] = {days, hours, minutes, seconds};
+                });
+                return initialTimeGather;
+            }
+            return null;
+        }
+
+        // 计算目标时间
+        function calculateTargetDate(initialTime) {
+            const now = new Date();
+            const targetDate = new Date();
+
+            // 添加天数、小时、分钟和秒数
+            targetDate.setDate(now.getDate() + parseInt(initialTime.days));
+            targetDate.setHours(now.getHours() + parseInt(initialTime.hours));
+            targetDate.setMinutes(now.getMinutes() + parseInt(initialTime.minutes));
+            targetDate.setSeconds(now.getSeconds() + parseInt(initialTime.seconds));
+
+            return targetDate;
+        }
+
+        // 更新倒计时显示
+        function updateCountdown(targetDate, index) {
+            const now = new Date();
+            const timeRemaining = targetDate - now;
+
+            if (timeRemaining <= 0) {
+                // 倒计时结束
+                document.querySelectorAll('.days')[index].textContent = '00';
+                document.querySelectorAll('.hours')[index].textContent = '00';
+                document.querySelectorAll('.minutes')[index].textContent = '00';
+                document.querySelectorAll('.seconds')[index].textContent = '00';
+
+                // 添加结束提示
+                document.querySelectorAll('.countdown-title-text')[index].textContent = '倒计时结束！';
+                return;
+            }
+
+            // 计算天、时、分、秒
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // 更新显示
+            document.querySelectorAll('.days')[index].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.hours')[index].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.minutes')[index].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.seconds')[index].textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // 初始化倒计时
+        function initCountdown() {
+            const initialTimeGather = getInitialTime();
+            if (initialTimeGather) {
+                initialTimeGather.forEach((initialTime, index) => {
+                    let targetDate = calculateTargetDate(initialTime);
+
+                    // 初始更新
+                    updateCountdown(targetDate, index);
+
+                    // 每秒更新一次
+                    let countdownInterval = setInterval(() => {
+                        updateCountdown(targetDate, index);
+
+                        // 检查是否结束
+                        let now = new Date();
+                        if (targetDate - now <= 0) {
+                            clearInterval(countdownInterval);
+                        }
+                    }, 1000);
+                })
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initCountdown);
+    </script>
+
+    <style>
+        .picture-enlarger {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .picture-enlarger:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .picture-enlarger img {
+            transition: transform 0.5s ease;
+        }
+
+        .picture-enlarger:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swipeableGather = document.querySelectorAll('.fifty_percent_off_button');
+            if (swipeableGather && swipeableGather.length > 0) {
+                swipeableGather.forEach(swipeable => {
+                    let startX, startY, endX, endY;
+
+                    swipeable.addEventListener('touchstart', function (e) {
+                        // 记录触摸开始时的位置
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
+                    });
+
+                    swipeable.addEventListener('touchend', function (e) {
+                        // 记录触摸结束时的位置
+                        endX = e.changedTouches[0].clientX;
+                        endY = e.changedTouches[0].clientY;
+
+                        // 计算横向和纵向的移动距离
+                        let deltaX = endX - startX;
+                        let deltaY = endY - startY;
+
+                        // 判断是否为左滑
+                        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) {
+                            let links = swipeable.querySelectorAll('a');
+                            if (links.length > 0) {
+                                links[0].click();
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    <style>
+        .smb-fixed {
+            position: fixed;
+            position: sticky;
+            top: 10px;
+            max-width: 258px;
+        }
+    </style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            list-style-position: initial;
+            list-style-image: initial;
+            list-style-type: none;
+        }
+
+        html, body {
+            font-family: sans-serif;
+        }
+
+        a {
+            color: rgb(53, 155, 118);
+            text-decoration-line: none;
+            text-decoration-thickness: initial;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 22px;
+            line-height: 1.6;
+            color: rgb(38, 38, 38);
+        }
+
+        #smb-page h1 {
+            font-size: 60px;
+            line-height: 63px;
+            margin-bottom: 25px;
+        }
+
+        #smb-page h3 {
+            color: rgb(53, 155, 118);
+            font-size: 34px;
+            font-weight: 400;
+            margin-top: 25px;
+            margin-right: 0px;
+            margin-bottom: 25px;
+            margin-left: 0px;
+            line-height: 1.3;
+        }
+
+        .smb-page-main {
+            max-width: 1100px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: flex;
+        }
+
+        .smb-page-left {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 740px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        .smb-left-main {
+            max-width: 100%;
+        }
+
+        #smb-page .advertisement {
+            font-size: 13px;
+            color: rgb(38, 38, 38);
+            text-align: center;
+        }
+
+        .smb-autor {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .smb-autor-img {
+            max-width: 40px;
+            max-height: 40px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            margin-right: 10px;
+        }
+
+        .smb-autor-content {
+            text-align: left;
+            border-left-width: 2px;
+            border-left-style: solid;
+            border-left-color: rgb(53, 155, 118);
+            padding-left: 20px;
+        }
+
+        .smb-autor-name {
+            color: rgb(53, 155, 118);
+            font-size: 20px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .smb-autor-date {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .smb-main-img {
+            max-width: 100%;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: initial;
+            border-right-style: initial;
+            border-bottom-style: initial;
+            border-left-style: initial;
+            border-top-color: initial;
+            border-right-color: initial;
+            border-bottom-color: initial;
+            border-left-color: initial;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: block;
+        }
+
+        .smb-click-button {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            width: 90%;
+            display: block;
+            background-color: rgb(53, 155, 118);
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-weight: 800;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            font-size: 20px;
+        }
+
+        .smb-page-right {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 300px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            position: relative;
+        }
+
+        .smb-right-main {
+            max-width: 100%;
+            display: block;
+            padding-top: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            border-top-color: rgb(237, 237, 237);
+            border-right-color: rgb(237, 237, 237);
+            border-bottom-color: rgb(237, 237, 237);
+            border-left-color: rgb(237, 237, 237);
+            border-top-width: 1px;
+            border-right-width: 1px;
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+        }
+
+        .smb-border-main {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: red;
+            border-right-color: red;
+            border-bottom-color: red;
+            border-left-color: red;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+        }
+
+        .smb-page-right p {
+            margin-bottom: 10px;
+        }
+
+        .smb-right-button {
+            margin-top: 20px;
+            display: block;
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            background-color: rgb(53, 155, 118);
+            color: white;
+            font-weight: 800;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .smb-page-footer {
+            max-width: 100%;
+            background-color: rgb(0, 0, 0);
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            margin-top: 25px;
+            box-sizing: border-box;
+        }
+
+        .smb-footer-main {
+            max-width: 1100px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            text-align: center;
+        }
+
+        .smb-footer-main p {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            margin-top: 5px;
+            margin-right: 0px;
+            margin-bottom: 5px;
+            margin-left: 0px;
+        }
+
+        .smb-footer-main a {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+        }
+
+        .smb-button-bottom {
+            bottom: 0px;
+            width: 100%;
+            top: inherit;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            position: fixed;
+            z-index: 10;
+            text-align: center;
+            display: none;
+            box-sizing: border-box;
+        }
+
+        .smb-mb-block {
+            display: none;
+        }
+
+        .smb-flex-block img {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            max-width: 257px;
+        }
+
+        .smb-flex-block center {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+
+        .smb-flex-block p {
+            margin-bottom: 0px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            display: flex;
+            opacity: 0;
+            transition-duration: 0.55s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: all;
+            z-index: -1;
+        }
+
+        .popup.is-active {
+            z-index: 2020;
+            opacity: 1;
+        }
+
+        .popup .overlay {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 999;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .popup .inner {
+            font-weight: bold;
+            padding-bottom: 0px;
+            width: 870px;
+            color: black;
+            z-index: 1000;
+            position: relative;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(242, 242, 242);
+        }
+
+        .popup .overlay-header {
+            background-color: rgb(154, 217, 79);
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: 22px;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .popup .close {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            font-size: 20px;
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            cursor: pointer;
+            color: black;
+            font-weight: 700;
+            text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+            line-height: 1;
+            background-color: rgb(223, 223, 223);
+            border-top-left-radius: 0px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .popup .inner a {
+            display: block;
+            color: black;
+        }
+
+        .popup .inner a:not(.button) {
+            color: white;
+            font-weight: normal;
+        }
+
+        .columns {
+            margin-left: -7.5px;
+            margin-right: -7.5px;
+            margin-top: -7.5px;
+        }
+
+        .columns:last-child {
+            margin-bottom: -7.5px;
+        }
+
+        .column {
+            display: block;
+            flex-basis: 0px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            padding-top: 7.5px;
+            padding-right: 7.5px;
+            padding-bottom: 7.5px;
+            padding-left: 7.5px;
+        }
+
+        .popup .inner img {
+            max-width: 100%;
+            max-height: 230px;
+        }
+
+        .popup .inner h1 {
+            font-size: 30px;
+            line-height: 35px;
+            font-weight: 900;
+            color: black;
+        }
+
+        .popup .inner p {
+            color: black;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .popup .inner .button {
+            background-color: rgb(92, 184, 92);
+            color: rgb(5, 62, 20);
+            padding-top: 20px;
+            padding-right: 30px;
+            padding-bottom: 20px;
+            padding-left: 30px;
+            font-size: 26px;
+            font-weight: 700;
+            font-family: verdana, helvetica, serif;
+            border-top-width: 3px;
+            border-right-width: 3px;
+            border-bottom-width: 3px;
+            border-left-width: 3px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(45, 113, 45);
+            border-right-color: rgb(45, 113, 45);
+            border-bottom-color: rgb(45, 113, 45);
+            border-left-color: rgb(45, 113, 45);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 10px;
+            line-height: 1.33333;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            touch-action: manipulation;
+            cursor: pointer;
+            user-select: none;
+            background-image: none;
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            border-bottom-right-radius: 60px;
+            border-bottom-left-radius: 60px;
+        }
+
+        .popup .inner .button:hover {
+            background-color: rgb(68, 157, 68);
+            color: rgb(255, 255, 255);
+        }
+
+        .popup .inner .button i {
+            margin-left: 15px;
+        }
+
+        .popup .popup-bottom-p {
+            font-size: 12.8px;
+            color: rgb(106, 106, 106);
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        .smb-comment-block {
+            display: flex;
+            align-items: center;
+        }
+
+        .smb-comment-block p {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        #ig1hyd {
+            letter-spacing: -1px;
+            text-align: center;
+        }
+
+        #ih3wsz {
+            width: 258px;
+            height: 265px;
+        }
+
+        #iexv8e {
+            width: 267px;
+            height: 275px;
+        }
+
+        .button-text:hover {
+            font-weight: 700;
+        }
+
+        #io95ri {
+            background-color: rgb(255, 251, 239);
+        }
+
+        #ib1h6l {
+            background-color: rgb(255, 245, 211);
+            background-image: none;
+            background-position-x: 0%;
+            background-position-y: 0%;
+            background-attachment: scroll;
+            background-size: auto;
+        }
+
+        #i6qkx7 {
+            font-size: 28px;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+
+        #ivsqyj {
+            font-size: 30px;
+            color: rgb(245, 5, 5);
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+
+        #iwxsee {
+            font-size: 18px;
+        }
+
+        #iempvl {
+            font-size: 20px;
+        }
+
+        #icep8c {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-weight: 400;
+        }
+
+        #ifu8zq {
+            background-color: rgb(255, 251, 239);
+        }
+
+        #iweno4 {
+            color: red;
+            font-size: 35px;
+        }
+
+        #i5uc3r {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-weight: 700;
+        }
+
+        #irm7vl {
+            color: white;
+            font-weight: 300;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: black;
+            border-right-color: black;
+            border-bottom-color: black;
+            border-left-color: black;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            background-image: url("https://d1y4tm6t3pzfj.cloudfront.net/other/images/1661845314_WC%5DPQX%2917OLIOX0O%28DVCCP9.jpg");
+            background-position-x: 0%;
+            background-position-y: 0%;
+            background-attachment: scroll;
+            background-size: cover;
+            background-color: rgb(255, 255, 255);
+        }
+
+        #ivn8ed {
+            font-size: 46px;
+        }
+
+        #i9lphu {
+            width: 258px;
+            height: 265px;
+        }
+
+        #iyojcf {
+            text-align: center;
+        }
+
+        #ik2w3b {
+            text-align: center;
+        }
+
+        #i8d9fd {
+            text-align: center;
+        }
+
+        #i1k6mf {
+            max-width: 100%;
+            float: none;
+            text-align: left;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #i8z7ck {
+            max-width: 100%;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 30px;
+            margin-left: 0px;
+        }
+
+        #ihoa5k {
+            font-size: 22px;
+            text-align: center;
+        }
+
+        #i4dhnd {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #id0sex {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #ilfwyk {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #ijh2uh {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #ickf2p {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #ifo8wy {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #i2tk0f {
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 30px;
+            padding-left: 0px;
+        }
+
+        #iqchpl {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 400px;
+        }
+
+        #it91a2 {
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(237, 242, 247);
+            border-right-color: rgb(237, 242, 247);
+            border-bottom-color: rgb(237, 242, 247);
+            border-left-color: rgb(237, 242, 247);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgba(66, 153, 225, 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            display: inline;
+            vertical-align: middle;
+            height: auto;
+            max-width: 100%;
+            margin-top: -6px;
+            color: rgb(128, 128, 128);
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+        }
+
+        #infl99 {
+            color: rgb(128, 128, 128);
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+        }
+
+        #isk56w {
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(237, 242, 247);
+            border-right-color: rgb(237, 242, 247);
+            border-bottom-color: rgb(237, 242, 247);
+            border-left-color: rgb(237, 242, 247);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgba(66, 153, 225, 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            font-weight: 600;
+            color: rgb(128, 128, 128);
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+        }
+
+        #ihlndl {
+            font-size: 20px;
+        }
+
+        #imlcha {
+            font-size: 20px;
+        }
+
+        #smb-page {
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        #iakzgi {
+            color: red;
+        }
+
+        #i8vwah {
+            color: red;
+        }
+
+        #i3v8co {
+            color: red;
+        }
+
+        @media (min-width: 769px) {
+            .columns:not(.is-desktop) {
+                display: flex;
+                align-items: stretch;
+                margin-right: 30px;
+            }
+
+            .column {
+                padding-top: 60px;
+                padding-right: 10px;
+                padding-bottom: 50px;
+                padding-left: 10px;
+                text-align: center;
+            }
+
+            .column.is-6 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-6-tablet {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-3 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 30%;
+                box-sizing: border-box;
+                background-image: linear-gradient(rgb(191, 191, 191) 0%, rgb(171, 171, 171) 64%, rgb(171, 171, 171) 100%);
+                background-position-x: initial;
+                background-position-y: initial;
+                background-size: initial;
+                background-attachment: initial;
+                background-origin: initial;
+                background-clip: initial;
+                background-color: initial;
+            }
+
+            .column.is-7 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 70%;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #smb-page h1 {
+                font-size: 32px;
+                line-height: initial;
+            }
+
+            .smb-page-main {
+                flex-direction: column;
+            }
+
+            .smb-mb-block {
+                display: block;
+            }
+
+            .popup .inner {
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                margin-left: 10px;
+                text-align: center;
+            }
+
+            .popup .inner a {
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                padding-bottom: 20px;
+            }
+
+            .popup .inner .column {
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+
+            .popup .inner img {
+                max-width: 70vw;
+                max-height: 30vh;
+            }
+
+            .popup .inner h1 {
+                font-size: 22px;
+                line-height: 25px;
+            }
+
+            .popup .inner p {
+                margin-top: 2px;
+            }
+
+            .popup .inner .button {
+                margin-top: 5px;
+                font-size: 11px !important;
+                padding-top: 10px !important;
+                padding-right: 20px !important;
+                padding-bottom: 10px !important;
+                padding-left: 20px !important;
+            }
+
+            .popup .inner .button i {
+                display: none !important;
+            }
+
+            .smb-comment-block {
+                flex-direction: column;
+            }
+
+            #iqchpl {
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #ivn8ed {
+                font-size: 34px;
+            }
+        }  </style>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Poppins:300,300i,400,400i,500,500i,700,700i|Montserrat:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext"
+          rel="stylesheet">
+</head>
+
+
+<body>
+<div id="ilywer" class="popup">
+    <div id="i3nb" class="overlay"></div>
+    <div id="i1ik" class="inner">
+        <div id="iana" class="close hide-overlay"><i class="fa fa-times"></i></div>
+        <a href="https://de3.doeurva.com/click.php?lp=1" id="io95ri">
+            <div class="columns">
+                <div id="ib1h6l" class="column is-3" 4hFbYp="ccaVnUVYhZ3qz9seVyuVSQ=="><p><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1661836914_1660206033_00.gif"/></p>
+                    <p><b><span id="i6qkx7">Lowest price at</span><br/><span id="ivsqyj">$79.99</span></b></p>
+                    <p id="iwxsee"><b id="iempvl"><span id="icep8c">Buy More Save More!</span></b></p></div>
+                <div id="ifu8zq" class="column is-7"><p id="iweno4"><b><span id="i5uc3r">Claim Your Discount!</span></b>
+                </p>
+                    <p><img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1677729366_2.gif" id="ifzxxt"/></p>
+                    <p>
+                        <button id="irm7vl" class="button has-tooltip-active has-tooltip-bottom"><span
+                                class="button-text">CLICK HERE TO SAVE NOW</span><i class="fa fa-arrow-right"></i>
+                        </button>
+                    </p>
+                    <p class="popup-bottom-p">Act now to grab yours!</p></div>
+            </div>
+        </a></div>
+</div>
+<div id="smb-page">
+    <div id="i9tf-2" class="smb-page-main">
+        <div id="isbk" class="smb-page-left">
+            <div id="ivhg" class="smb-left-main"><p id="ih77s" class="advertisement">WERBUNG</p>
+                <h1 id="inz4"><span id="ivn8ed">Neue Lesebrille mit deutscher optischer Innovation hilft Tausenden älteren Deutschen, wieder zu lesen</span>
+                </h1>
+                <div id="i8xjj" class="smb-autor"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1729485137_avatar-2.jpg.png" alt=""
+                        id="ig4wf" class="smb-autor-img"/>
+                    <div class="smb-autor-content"><span id="iiaro" class="smb-autor-name">Lars Schneider</span><span
+                            id="iq0h4" class="smb-autor-date">2. Juli 2025</span></div>
+                    <p id="iqchpl"><img src="https://www.trendingdailygadget.com/flexvision/static/picture/likeicon.png"
+                                        alt="Facebook like icon" id="it91a2"
+                                        class="like-img inline -mt-6px lazyload"/><span id="infl99"> </span><span
+                            id="isk56w" class="font-600">102.500</span><br/></p></div>
+                <div></div>
+                <p></p>
+                <section id="iqg4x"><a href="https://de3.doeurva.com/click.php?lp=1" id="iie04t"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323512_1.jpg" alt="" id="i1a396"
+                        class="smb-main-img"/></a><a href="https://de3.doeurva.com/click.php?lp=1" id="iift95"></a>
+                    <p id="irwioh"></p>
+                    <p id="i1tdrk">Mein Opa war ein pensionierter Lehrer, und Zeitungen und Bücher zu lesen war seine
+                        liebste Beschäftigung. Er konnte stundenlang lesen – manchmal 3, sogar 5 Stunden am Tag. <b>Eines
+                            Tages beschwerte er sich,</b> dass der Text in der Zeitung zu klein sei, was ihm das Lesen
+                        erschwerte.<br/></p>
+                    <p id="iv43jc">Also beschloss ich, ihm ein Tablet zu kaufen, da er damit die Schriftgröße nach
+                        Belieben einstellen konnte – doch das führte nur dazu, dass seine Augen durch die
+                        Bildschirmnutzung <b>angestrengt und müde</b> wurden.</p>
+                    <p id="ijexfe" gziIYw="ix+8h5DYozxybw7lmwKgwA==">Besorgt konsultierte ich einen erfahrenen
+                        Augenarzt, der mir erklärte, dass Altersweitsichtigkeit eine natürliche Alterserscheinung ist,
+                        die das Sehen in der Nähe beeinträchtigt. Er empfahl eine spezielle Lesebrille für
+                        Altersweitsichtige, wie die <a href="https://de3.doeurva.com/click.php?lp=1" id="itp96s">Coeurva OptiReaders Pro</a>.</p>
+                    <p id="i45tyl">Also besorgte ich ihm ein Paar. Eines Tages, beim gemeinsamen Mittagessen, bemerkte
+                        ich, dass er die Brille immer noch trug – obwohl seine morgendliche Lesestunde längst vorbei
+                        war. Neugierig fragte ich ihn, wie er sich fühlte und ob seine Augen entspannter seien.<br/></p>
+                    <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323518_2.jpg" alt="" id="i4dhnd"
+                         class="smb-main-img"/>
+                    <p id="ir75vb">Er grinste schelmisch und sagte: „Ach du meine Güte, ich habe total vergessen, dass
+                        ich die Brille noch aufhabe! Die ist wie Magie! Ich kann meine Bücher lesen, die Zeitung
+                        verschlingen und sogar das Tablet problemlos bedienen. Haha, ich bin total verliebt in
+                        sie!“<br/></p>
+                    <p id="iehuxf"><b id="ioo6c">Er erzählte mir auch, dass meine Oma versehentlich auf die Brille
+                        getreten ist – doch weder die Brille noch sein Sehvermögen wurden beschädigt.</b><br/></p>
+                    <p id="iofc61" A9elj4="r8CT7L/OjE9IaHw4fI+1FA==">Mit einem breiten Grinsen warf meine Oma scherzhaft
+                        ein: „Dein Opa hat mich fast vergessen! Er ist nur noch mit seinen Leseabenteuern beschäftigt.
+                        Diese Lesebrille ist ein echter Unruhestifter!“<br/></p>
+                    <p id="i4c23x">Jetzt kann mein Opa wieder problemlos lesen und in neue Welten eintauchen. Diese
+                        Brille hat Glück und Liebe in unser Zuhause gebracht. Danke, <a href="https://de3.doeurva.com/click.php?lp=1" id="ibo7cf">Coeurva</a>!
+                    </p>
+                    <h3 id="irmta"><b id="ilxpuy">Lernen Sie diese magische Lesebrille kennen!</b></h3><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718331863_HH00529-presell-0613-KN-11.gif"
+                            alt="" id="id0sex" class="smb-main-img"/>
+                    <p id="i3cxk2">Sie heißen <a href="https://de3.doeurva.com/click.php?lp=1" id="izgn4j">Coeurva OptiReaders Pro</a> – ein Wunder, wie Sie es
+                        noch nie erlebt haben!</p>
+                    <p id="ifhfcb"><a href="https://de3.doeurva.com/click.php?lp=1" id="io01ss">Coeurva </a>übertrifft alle Erwartungen. Ja, es ist
+                        intelligentes Zoom! <b>Diese intelligenten Zoombrillen haben Gleitsichtgläser, die sanft
+                            zwischen verschiedenen Sehstärken übergehen.</b> Keine störenden Linien oder Bildsprünge
+                        mehr.</p>
+                    <p id="i6zw5a"><b>Man kann sie tragen und den Blick ganz natürlich von oben nach unten schweifen
+                        lassen – Dinge in verschiedenen Entfernungen erkennt man mühelos.</b> Es ist, als hätte man eine
+                        geheime Superkraft auf der Nase!</p>
+                    <p id="ivckrh">Man muss die Brille nicht mehr abnehmen, um zwischen Nah- und Fernsicht zu
+                        wechseln.<br/></p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750324246_1727252403_4_compressed.gif"
+                            id="i1k6mf" class="smb-main-img"/>
+                    <p id="imyxyu">Sie bietet ein größeres Sichtfeld und erweitert Ihre Sehweite.</p>
+                    <p id="ik0teg">Kein ständiges Auf- und Absetzen mehr, keine visuelle Ermüdung. <a href="https://de3.doeurva.com/click.php?lp=1"
+                                                                                                      id="i3rv0j">Coeurva </a>sorgt
+                        für ein angenehmeres und entspannteres Tragegefühl.</p>
+                    <p id="ifeyg8"><b id="i44blo">Doch das ist noch nicht alles! Diese Brille bietet zudem
+                        fortschrittlichen UV-Schutz, der Ihre Augen vor schädlicher UV-Strahlung schützt – ob drinnen
+                        oder draußen.</b><br/></p>
+                    <p id="immcog">Die Gläser von <a href="https://de3.doeurva.com/click.php?lp=1" id="iib7dc">Coeurva </a>sind speziell beschichtet, um UVA-
+                        und UVB-Strahlen zu blockieren. So wird die Augenbelastung reduziert und langfristige Schäden
+                        durch Sonnenlicht minimiert.</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323730_4.jpg" alt="" id="ilfwyk"
+                            class="smb-main-img"/>
+                    <p id="iiyddb">Kein Zusammenkneifen der Augen oder Blenden mehr – nur klare, bequeme Sicht und
+                        ganztägiger Schutz, wohin Sie auch gehen.<br/></p>
+                    <p id="iiig89">Ihre Augen fühlen sich jederzeit angenehm an, ohne von grellem Sonnenlicht gestört zu
+                        werden.<br/></p>
+                    <p id="idivjx">Jetzt wird’s spannend: Experten sagen, dass Altersweitsichtigkeit ein völlig normaler
+                        Vorgang ist, der ganz natürlich ab etwa dem 45. Lebensjahr einsetzt. Aber hey – wenn Sie bereits
+                        davon betroffen sind, wird es höchste Zeit, die magische Welt der Lesebrillen für
+                        Altersweitsichtige zu entdecken!</p>
+                    <p id="ipmljh">Also machen Sie sich bereit, die Kraft der Coeurva OptiReaders Pro zu entfesseln. Sie
+                        werden Sie in eine Welt klarer Sicht entführen und Ihre Leseabenteuer mit Freude erfüllen.
+                        Verpassen Sie nicht diese außergewöhnliche Reise!</p>
+                    <h3 id="ixzb27"><b id="ij1n2a">Warum vergisst Opa ständig seine Brille?</b></h3><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1727252449_66.gif" alt="" id="ijh2uh"
+                            class="smb-main-img"/>
+                    <p id="ixav09">Ganz einfach – dank Yomodys genialer Erfindung: <b>hochfeste, ultraleichte
+                        Materialien, wie sie auch in der Luft- und Raumfahrt verwendet werden!</b> Hier trifft
+                        traditionelle Brillenmacherkunst auf modernste Technologie – für eine wirklich beeindruckende
+                        Lesebrille.<br/></p>
+                    <p id="i1fmy9">Und raten Sie mal – <b>sie wiegen nur 17 Gramm</b>. Man kann sie stundenlang tragen
+                        und vergisst dabei völlig, dass man überhaupt eine Brille aufhat. Es ist wie Magie – nur besser!
+                    </p>
+                    <p id="isi54l">Sie zu tragen fühlt sich an, als hätte man eine Brille für die Raumfahrt auf!<br/>
+                    </p>
+                    <p id="ihghfj">Außerdem sind sie so leicht, <b>dass sie weder Abdrücke im Gesicht noch Druckstellen
+                        hinter den Ohren hinterlassen</b>. <i>Und die Haltbarkeit? Die ist der Wahnsinn! Diese Dinger
+                        halten so einiges aus – man könnte sie fast als Schild im Schwertkampf verwenden (was wir
+                        allerdings nicht empfehlen).</i></p>
+                    <p id="ipby19">Aber vergessen wir nicht das Wichtigste: <b>Diese Brille verbessert tatsächlich seine
+                        Sicht.</b> Also freuen Sie sich schon auf den lustigen Anblick, wie Opa vergisst, dass er
+                        überhaupt eine Brille trägt – während er das Wunder klaren Sehens erlebt. Eine echte
+                        Win-win-Situation!</p>
+                    <p></p></section>
+                <section id="iwptl"><h3 id="i9xcr"><b id="ilbmai">Revolutionieren Sie Ihr Leseerlebnis</b></h3><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1727252477_100.jpg" alt="" id="i8t6wj"
+                        class="smb-main-img"/>
+                    <p id="i303by"></p>
+                    <p id="icoesu" class="MsoNormal"></p>
+                    <p></p>
+                    <p id="i7etfj"></p>
+                    <p class="MsoNormal"><span lang="EN-US"><b id="iz37b2"><a href="https://de3.doeurva.com/click.php?lp=1" id="ite2xg">Coeurva</a> bietet ein weiteres bahnbrechendes Feature: Blaulicht-Filtertechnologie. Sie reflektiert und absorbiert schädliches blaues Licht, blockiert sichtbares, hochenergetisches Blaulicht und eliminiert 100 % der gefährlichen Strahlung.</b><o:p></o:p></span>
+                    </p>
+                    <p></p>
+                    <p id="ib577q">Erleben Sie ein revolutionäres Leseabenteuer mit dieser innovativen
+                        Zwei-Fokus-Technologie. <b>Wechseln Sie mühelos zwischen Büchern und Ihren Lieblingswebseiten –
+                            mit kristallklarer Sicht</b>. Es ist, als hätten Sie zwei Brillen in einer!</p>
+                    <p id="iwam22"><i id="iwtjth">In der heutigen Zeit nutzen immer mehr ältere Deutsche elektronische
+                        Geräte – und das jedes Jahr mehr. Um die Augengesundheit zu schützen, ist das Tragen von
+                        Blaulichtfilter-Brillen für viele Menschen – unabhängig vom Alter – zur Notwendigkeit
+                        geworden!</i></p><img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323605_7.gif"
+                                              alt="" id="ickf2p" class="smb-main-img"/>
+                    <p id="if9j2f">Egal, ob Sie ein technikaffiner Bücherwurm oder ein klassischer Seitenumblätterer
+                        sind – diese magischen Lesebrillen unterstützen Sie sowohl in der digitalen als auch in der
+                        analogen Welt.<br/></p>
+                    <p id="ihd3zr"><i id="ifs5wh">Machen Sie sich bereit, in Geschichten einzutauchen und neue Welten zu
+                        entdecken – mit dem Selbstvertrauen eines furchtlosen literarischen Entdeckers! Freuen Sie sich
+                        darauf, Aufmerksamkeit zu erregen, Neugier zu wecken und die pure Freude am Eintauchen in die
+                        Welt der Worte zu genießen. </i></p>
+                    <p id="i1pm2f">Werfen wir außerdem einen Blick auf den Vergleich zwischen Gleitsicht-Lesebrillen und
+                        herkömmlichen Lesebrillen:</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1751606217_1.jpg" alt="" id="ifo8wy"
+                            class="smb-main-img"/>
+                    <p id="i85wvz">Gleitsichtgläser bieten ein nahtloses und natürliches Seherlebnis, da sie sanfte <b>Übergänge
+                        zwischen Nah-, Zwischen- und Fernsicht ermöglichen</b>.</p>
+                    <p id="irm3dg">Im Gegensatz zu herkömmlichen Lesebrillen, die eine sichtbare Trennlinie und einen
+                        abrupten Fokuswechsel haben, entfällt bei Gleitsichtgläsern das ständige Wechseln der Brillen –
+                        ideal für Lesen, Computernutzung und Fernsicht in einem.</p>
+                    <p id="ijew7f">Gleitsichtgläser verfügen zudem über <b>lichtadaptive (phototrope) Technologie</b>,
+                        die sie im Freien abdunkeln lässt, während sie in Innenräumen klar bleiben – für noch mehr
+                        Komfort.</p>
+                    <h3 id="i9z0aa"><b id="ia77te">Und noch mehr Gründe, sie zu lieben!</b></h3>
+                    <p id="i3rgeh"><b id="il1wdi-2" draggable="true">✅ </b><b>Präzise Vergrößerung:</b> Bietet eine
+                        Sehstärke von +1,00 bis +4,00 – perfekt für den täglichen Bedarf.<br/></p>
+                    <p id="ij657d"><span id="il1wdi">✅ Besonders nützlich für <b>Menschen mit Altersweitsichtigkeit.</b></span>
+                    </p>
+                    <p id="i0gxtq"><span id="iqnfxw">✅ <b>Leichtes und flexibles Gestell:</b> Passt sich dem Gesicht an, ohne Druck auf die Nase auszuüben.</span>
+                    </p>
+                    <p id="idyhor"><b id="i28gwm">✅ </b><b>Hochwertiges Scharnier</b><b>:</b> Robuste Konstruktion
+                        minimiert das Bruchrisiko.<br/></p>
+                    <p id="ixxjvm"><b>✅ </b><b>Ultraleichte HD-Harzgläser:</b> Besonders dünn und ideal für
+                        Altersweitsichtige.<br/></p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323620_6.jpg" alt="" id="i2tk0f"
+                            class="smb-main-img"/>
+                    <p id="ij2iqm"><b>✅ </b><b>Strapazierfähiger Memory-Rahmen:</b> Bruch- und rutschfest – für
+                        dauerhaft angenehmen Sitz.</p>
+                    <p id="iqnm1v"><b id="izhi9k">✅ </b><b>Bequeme Silikon-Nasenpads:</b> Sorgen für rutschfesten Halt
+                        und zusätzlichen Komfort.</p>
+                    <p id="ikb9nv"><b id="iyx30l">✅ </b><b>Eingelassene Schrauben:</b> Halten alle Bauteile fest an
+                        ihrem Platz.<br/></p>
+                    <p id="iaz1l9"><b id="if4fvb">✅ </b><b>Verschleißfestes und stoßsicheres Design:</b> Für extra lange
+                        Lebensdauer.<br/></p>
+                    <p id="i5qosi"><b id="irwx16">✅ </b><b>Kratzfeste Struktur:</b> Bleibt dauerhaft klar und gepflegt.
+                    </p>
+                    <p id="ife3xi"><b>✅ </b><b>Wasser- und ölabweisend:</b> Zusätzlicher Schutz vor alltäglichen
+                        Einflüssen.</p>
+                    <p id="ixqu52"><b>✅ </b><b>Augenschutz bei wechselnden Lichtverhältnissen:</b> Schützt die Augen in
+                        jeder Umgebung.</p>
+                    <p id="ir56hq"><b>✅ </b><b>Vielseitig einsetzbar:</b> Perfekt für den täglichen Gebrauch in jeder
+                        Lebenslage.</p><a href="https://de3.doeurva.com/click.php?lp=1"></a><a href="https://de3.doeurva.com/click.php?lp=1"></a></section>
+                <section id="izetzy"><h3></h3>
+                    <p id="ijy5xh" sYDYVZ="hvRARiUIg59Qf2Yw2426+A=="></p>
+                    <p class="MsoNormal"></p>
+                    <p></p><a href="https://de3.doeurva.com/click.php?lp=1"></a><a href="https://de3.doeurva.com/click.php?lp=1"></a></section>
+                <section id="ihp85d"><h3></h3>
+                    <p id="i2hyqa"></p>
+                    <p class="MsoNormal"></p>
+                    <p></p><a href="https://de3.doeurva.com/click.php?lp=1"></a><a href="https://de3.doeurva.com/click.php?lp=1"></a></section>
+                <section id="iccq7l"><h3></h3>
+                    <p id="izz5s5"></p>
+                    <p class="MsoNormal"></p>
+                    <p></p><a href="https://de3.doeurva.com/click.php?lp=1"></a><a href="https://de3.doeurva.com/click.php?lp=1"></a></section>
+                <section id="ivola"><p id="i97q9i"></p>
+                    <div id="i8j0b2"></div>
+                    <p></p><a href="https://de3.doeurva.com/click.php?lp=1"></a>
+                    <p id="ipfgll" UrRgOw="L+oGuel1ctFoTlWa4bK3Zw=="></p>
+                    <p></p>
+                    <p></p>
+                    <p id="iag8is"></p>
+                    <div id="i3klbt"></div>
+                    <p></p>
+                    <p></p><strong></strong>
+                    <p></p><a href="https://de3.doeurva.com/click.php?lp=1"></a></section>
+                <section></section>
+                <section id="icsilb"><h3 id="i71shr"><b id="ij165r">Begeisterte Stimmen aus ganz Deutschland:</b></h3>
+                    <div id="iovcbm" class="smb-comment-block"><p id="iv468u"><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323628_%E8%AF%84%E8%AE%BA%E5%9B%BE1.jpg"
+                            caption="false" width="100%" id="ih3wsz"/></p>
+                        <p id="iyojcf">„Ich hatte schon immer schlechte Augen und unzählige Brillen ausprobiert – bis
+                            ich endlich Coeurva entdeckt habe. Die Brille kam pünktlich und war sicher verpackt. Sie ist
+                            stabil, sieht gut aus und trägt sich sehr angenehm. Ich kann sie jedem
+                            weiterempfehlen.“<br/>– Sabine M.</p></div>
+                    <div id="irm7gd" class="smb-comment-block" imyFwS="Y2KjI5EX2UqZ0uQU/X0ZtQ=="><p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323633_%E8%AF%84%E8%AE%BA%E5%9B%BE2.jpg"
+                            caption="false" width="100%" id="i9lphu"/></p>
+                        <p id="ik2w3b">„Erstaunlich gute Brille für den Preis. Ich kann damit problemlos am PC arbeiten
+                            und selbst kleinste Schriften mit dem unteren Teil lesen – ohne Brillenwechsel! Das war bei
+                            normalen Lesebrillen ein Problem. Der Rahmen passt perfekt, ist stabil und sieht gut
+                            aus.“<br/>– Thomas K.</p></div>
+                    <div id="ihmrkq" class="smb-comment-block"><p id="ixtn8t"><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323638_%E8%AF%84%E8%AE%BA%E5%9B%BE3.jpg"
+                            caption="false" width="100%" id="iexv8e"/></p>
+                        <p id="i8d9fd">„Ich war anfangs sehr skeptisch, aber diese Brille ist einfach genial. Ich hätte
+                            nie gedacht, dass ich all meine Lieblingsbeschäftigungen ohne ständigen Brillenwechsel
+                            genießen kann. Ob Lesen, Arbeiten am Computer oder einfach nur die Aussicht – alles ist
+                            kristallklar!“<br/>– Anna L.</p></div>
+                </section>
+                <section id="iqja3h"><h3 id="iaq3qj"><b id="iei79f">Wer liebt es nicht, Geld zu sparen?</b></h3>
+                    <p id="ivsahy">Gehen Sie in ein beliebiges Optikergeschäft, und Sie werden von den Preisschildern
+                        schicker Brillen regelrecht geschockt sein. Im Ernst – sie kosten ein Vermögen, fast wie Ihre
+                        gesamte Rente! Das ist ein echter Schlag für den Geldbeutel.<br/></p>
+                    <p id="i1w7ta">Aber keine Sorge, mein Freund! <a href="https://de3.doeurva.com/click.php?lp=1" id="ic06et">Coeurva OptiReaders Pro</a>
+                        macht Ihre Welt klar und lebendig – <b>und das, ohne Ihr Konto zu plündern</b>. Diese Brille ist
+                        preiswert und gleichzeitig leistungsstark. Wer sagt denn, dass man viel ausgeben muss, um vollen
+                        Genuss zu erleben?</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1727252574_6666.jpg" id="i8z7ck"/>
+                    <p id="ie8atw">Also, worauf warten Sie noch? Tauchen Sie ein in eine Welt klarer Sicht und lassen
+                        Sie sich vom Zauber der <a href="https://de3.doeurva.com/click.php?lp=1" id="izkxwy">Coeurva OptiReaders Pro</a> die Freude am Lesen
+                        zurückbringen.</p><b id="ibaxiu"></b>
+                    <p id="is853l">Für nur <span id="iakzgi"><b id="itptah">39,99 €</b></span> erhalten <b>Sie diese
+                        intelligenten Gleitsichtbrillen mit phototroper Technologie und Blaulichtfilter</b>. Das ist das
+                        Angebot des Jahres!</p>
+                    <p id="insr3f"><u><a href="https://de3.doeurva.com/click.php?lp=1" id="iqmc81">Hier klicken, um sich ein reduziertes Paar Coeurva
+                        OptiReaders Pro zu sichern (solange der Vorrat reicht) >></a></u></p>
+                    <p id="ir1052">Je eher Sie sich diese Brille holen, desto früher genießen Sie ein neues
+                        Leseerlebnis. Warten Sie nicht länger – <a href="https://de3.doeurva.com/click.php?lp=1" id="il434p">Coeurva OptiReaders Pro</a> bringt
+                        Sie in eine Welt voller literarischer Freude.</p>
+                    <div l48poR="GFg4VsXKWwollDJnBXK+UA=="></div>
+                    <p></p>
+                    <p id="i7job6" iAVNsQ="xaPu8dUujIjDDaMLtWeX9A=="></p>
+                    <div></div>
+                    <p></p>
+                    <div id="iphfks"></div>
+                    <p id="ixyl3l"></p>
+                    <div></div>
+                    <p wcvZGf="WrcGNOfNIP0DydNx5UYJFA=="></p></section>
+                <section>
+                    <div id="ifit01" class="smb-border-main">
+                        <section id="i08v99" class="bdg-sect"><p id="iv1mer" class="paragraph"><b>*Update:</b> Das
+                            Unternehmen bietet derzeit einen Sonderverkauf an. Wenn Sie <a href="https://de3.doeurva.com/click.php?lp=1" id="icrccg">Coeurva
+                                OptiReaders Pro</a> noch heute online über die offizielle Website kaufen, erhalten Sie
+                            <b id="i8vwah">50 % Rabatt</b>.<br/></p></section>
+                    </div>
+                    <a href="https://de3.doeurva.com/click.php?lp=1" id="iux5fi" class="smb-click-button">JETZT RABATTE & VERFÜGBARKEIT
+                        PRÜFEN →</a></section>
+            </div>
+        </div>
+        <div id="i5ej4m" class="smb-page-right">
+            <div id="smb-fixed-flag"></div>
+            <div id="iflo2k" class="smb-right-main">
+                <h2 id="ihoa5k"><a href="https://de3.doeurva.com/click.php?lp=1" id="ihlndl">Coeurva OptiReaders Pro<br/></a>
+                    <div id="imlcha">Jetzt <span id="i3v8co">50 % Rabatt</span> sichern</div>
+                </h2>
+                <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323505_%E6%B5%AE%E7%AA%97%E5%9B%BE.jpg"
+                     alt="" id="i6njoh" class="smb-main-img"/>
+                <p id="ig1hyd"><a href="https://de3.doeurva.com/click.php?lp=1" id="ibfksy">Kristallklare Sicht – ganz ohne teures Rezept</a></p><a
+                    href="https://de3.doeurva.com/click.php?lp=1" id="i8lbvk" class="smb-right-button">VERFÜGBARKEIT PRÜFEN →</a></div>
+        </div>
+    </div>
+    <div id="smb-flag-none"></div>
+    <div id="i2nizf" class="smb-button-bottom smb-mb-block"><a href="https://de3.doeurva.com/click.php?lp=1" id="ik0oru"
+                                                               class="smb-right-button">VERFÜGBARKEIT PRÜFEN → </a>
+    </div>
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main"><p>Copyright © 2024</p>
+            <p></p>
+            <p>URHEBERRECHT Dies ist eine Anzeige und kein tatsächlicher Nachrichtenartikel, Blog oder eine
+                Verbraucherschutzmeldung. MARKETINGOFFENLEGUNG: Diese Website ist ein Marktplatz. Sie sollten daher
+                wissen, dass der Eigentümer eine finanzielle Verbindung zu den auf der Website beworbenen Produkten und
+                Dienstleistungen hat. Der Eigentümer erhält eine Zahlung, wenn eine qualifizierte Weiterleitung erfolgt.
+                Dies ist jedoch der gesamte Umfang der Beziehung. WERBEOFFENLEGUNG: Diese Website sowie die darauf
+                genannten Produkte und Dienstleistungen dienen als Werbemarktplatz. Diese Website ist eine Anzeige und
+                keine journalistische Veröffentlichung. Alle auf dieser Website verwendeten Fotografien von Personen
+                zeigen Modelle. Der Eigentümer dieser Website sowie der beworbenen Produkte und Dienstleistungen bietet
+                lediglich eine Plattform, über die Verbraucher Informationen einholen und vergleichen können.</p>
+            <p>HAFTUNGSAUSSCHLUSS FÜR GESUNDHEIT: Die Informationen auf dieser Website sind weder dazu gedacht noch
+                implizieren sie eine professionelle medizinische Beratung, Diagnose oder Behandlung von Krankheiten oder
+                Beschwerden. Wir übernehmen keine Verantwortung für die Genauigkeit der auf dieser Website enthaltenen
+                oder zugänglichen Informationen, und diese Informationen können ohne vorherige Ankündigung geändert
+                werden.</p>
+            <p kiLCK3="yIbnNc2JTiS/HMBwuQo/FA==">Nehmen Sie niemals Änderungen an Ihrer Medikation, Ihrem Tagesablauf,
+                Ihrer Ernährung, Ihrem Schlafplan oder Ihrem Training vor, ohne zuvor Ihren Arzt oder andere
+                medizinische Fachkräfte zu konsultieren. IGNORIEREN SIE NIEMALS PROFESSIONELLE MEDIZINISCHE BERATUNG
+                ODER VERZÖGERN SIE DIE INANSPRUCHNAHME EINER MEDIZINISCHEN BEHANDLUNG AUFGRUND VON INFORMATIONEN, DIE
+                SIE AUF DIESER WEBSITE GELESEN ODER ABGERUFEN HABEN.</p>
+            <p><a rel="nofollow" href="/template-common/de/contact-us/" target="_blank" class="privacy-link">Impressum &
+                Kontakt</a></p>
+            <p><a rel="nofollow" href="/template-common/de/privacy-policy/" target="_blank" class="privacy-link">Datenschutzerklärung</a>
+            </p>
+            <p><a rel="nofollow" href="/template-common/de/terms-of-service/" target="_blank" class="privacy-link">Nutzungsbedingungen</a>
+            </p></div>
+    </footer>
+</div>
+</body>
+<script>
+    function click_popup_articles(href) {
+        var need_url_params = ["site", "site_id", "title", "platform", "campaign_id", "campaign_item_id", "thumbnail", "campaign_name", "utm_campaign", "utm_medium"];
+        var paramSeparator = href.includes('?') ? '&' : '?';
+        const orderedParams = need_url_params
+            .filter(function (param) {
+                return getQueryString(param);
+            })
+            .map(function (param) {
+                return param + "=" + getQueryString(param);
+            });
+        if (orderedParams.length) {
+            return href + paramSeparator + orderedParams.join('&');
+        } else {
+            return href;
+        }
+    }
+</script>
+
+<script src="js/smb-scroll.js"></script>
+<script src="js/view1/sticky-top.js"></script>
+</html>
