@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Az új olvasószemüveg német optikai innovációval ezreknek segít az idősek közül újra olvasni</title>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({'spu_code': 'HH00628'});
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=DC-11863764"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'DC-11863764');
+    </script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-103606589-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-103606589-13');
+    </script>
+    <script src="js/common.js"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // DOM加载完成后执行的代码
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (targetBottomBtn) {
+                targetBottomBtn.classList.add('detection-ele-hidden');
+            }
+        });
+        // 滚动事件监听器
+        window.addEventListener('scroll', function () {
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (!targetBottomBtn) {
+                return;
+            }
+            checkElementInViewport('.click_to_product_page_btn', function (inViewport) {
+                if (inViewport) {
+                    targetBottomBtn.classList.add('detection-ele-hidden');
+                } else {
+                    targetBottomBtn.classList.remove('detection-ele-hidden');
+                }
+            });
+        });
+
+        // 检测视口内是否有指定选择器的元素
+        function checkElementInViewport(detectionEleSelector, callback) {
+            const elements = document.querySelectorAll(detectionEleSelector);
+            let inViewport = false;
+            elements.forEach(function (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    inViewport = true;
+                }
+            });
+            callback(inViewport);
+        }
+    </script>
+
+    <script>
+        // 从类名获取初始时间
+        function getInitialTime() {
+            const countdownElementList = document.querySelectorAll('.countdown');
+            if (countdownElementList && countdownElementList.length > 0) {
+                let initialTimeGather = [];
+                countdownElementList.forEach((countdownElement, index) => {
+                    let countdownClassList = countdownElement.classList;
+                    let days = parseInt(countdownElement.getAttribute('data-days')) || 0;
+                    let hours = parseInt(countdownElement.getAttribute('data-hours')) || 0;
+                    let minutes = parseInt(countdownElement.getAttribute('data-minutes')) || 0;
+                    let seconds = parseInt(countdownElement.getAttribute('data-seconds')) || 0;
+                    countdownClassList.forEach(item => {
+                        // 天
+                        if (item.includes('days-')) {
+                            days = item.split('-')[1] || 0;
+                        }
+
+                        // 时
+                        if (item.includes('hours-')) {
+                            hours = item.split('-')[1] || 0;
+                        }
+
+                        // 分
+                        if (item.includes('minutes-')) {
+                            minutes = item.split('-')[1] || 0;
+                        }
+
+                        // 秒
+                        if (item.includes('seconds-')) {
+                            seconds = item.split('-')[1] || 0;
+                        }
+                    });
+                    initialTimeGather[index] = {days, hours, minutes, seconds};
+                });
+                return initialTimeGather;
+            }
+            return null;
+        }
+
+        // 计算目标时间
+        function calculateTargetDate(initialTime) {
+            const now = new Date();
+            const targetDate = new Date();
+
+            // 添加天数、小时、分钟和秒数
+            targetDate.setDate(now.getDate() + parseInt(initialTime.days));
+            targetDate.setHours(now.getHours() + parseInt(initialTime.hours));
+            targetDate.setMinutes(now.getMinutes() + parseInt(initialTime.minutes));
+            targetDate.setSeconds(now.getSeconds() + parseInt(initialTime.seconds));
+
+            return targetDate;
+        }
+
+        // 更新倒计时显示
+        function updateCountdown(targetDate, index) {
+            const now = new Date();
+            const timeRemaining = targetDate - now;
+
+            if (timeRemaining <= 0) {
+                // 倒计时结束
+                document.querySelectorAll('.days')[index].textContent = '00';
+                document.querySelectorAll('.hours')[index].textContent = '00';
+                document.querySelectorAll('.minutes')[index].textContent = '00';
+                document.querySelectorAll('.seconds')[index].textContent = '00';
+
+                // 添加结束提示
+                document.querySelectorAll('.countdown-title-text')[index].textContent = 'Véget ért a visszaszámlálás!';
+                return;
+            }
+
+            // 计算天、时、分、秒
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // 更新显示
+            document.querySelectorAll('.days')[index].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.hours')[index].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.minutes')[index].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.seconds')[index].textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // 初始化倒计时
+        function initCountdown() {
+            const initialTimeGather = getInitialTime();
+            if (initialTimeGather) {
+                initialTimeGather.forEach((initialTime, index) => {
+                    let targetDate = calculateTargetDate(initialTime);
+
+                    // 初始更新
+                    updateCountdown(targetDate, index);
+
+                    // 每秒更新一次
+                    let countdownInterval = setInterval(() => {
+                        updateCountdown(targetDate, index);
+
+                        // 检查是否结束
+                        let now = new Date();
+                        if (targetDate - now <= 0) {
+                            clearInterval(countdownInterval);
+                        }
+                    }, 1000);
+                })
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initCountdown);
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 获取 URL 参数的辅助函数
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+
+            // 1. 获取 domain 参数
+            var binomDomain = getUrlParameter('domain');
+            // console.log('domainParam:', binomDomain); // 调试用
+
+            // 2. 如果存在 domain 参数，则更新链接
+            if (binomDomain) {
+                // 清理协议头 (http/https)，防止重复拼接
+                binomDomain = binomDomain.replace(/^https?:\/\//, '');
+
+                // 构造新的完整链接 (强制 HTTPS)
+                var newUrl = 'https://' + binomDomain + '/click.php?lp=1';
+
+                // 3. 找到页面上所有 href 包含 "click.php" 的链接
+                // (包括那些 href="click.php?lp=1" 的链接)
+                var links = document.querySelectorAll('a[href*="click.php"]');
+
+                // 4. 批量替换
+                for (var i = 0; i < links.length; i++) {
+                    links[i].href = newUrl;
+                }
+                console.log("Updated " + links.length + " links to: " + newUrl);
+            } else {
+                // 如果没有 domain 参数，保持默认链接不动
+                console.log("No domain parameter found, keeping default links.");
+            }
+        });
+    </script>
+
+    <style>
+        .picture-enlarger {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .picture-enlarger:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .picture-enlarger img {
+            transition: transform 0.5s ease;
+        }
+
+        .picture-enlarger:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swipeableGather = document.querySelectorAll('.fifty_percent_off_button');
+            if (swipeableGather && swipeableGather.length > 0) {
+                swipeableGather.forEach(swipeable => {
+                    let startX, startY, endX, endY;
+
+                    swipeable.addEventListener('touchstart', function (e) {
+                        // 记录触摸开始时的位置
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
+                    });
+
+                    swipeable.addEventListener('touchend', function (e) {
+                        // 记录触摸结束时的位置
+                        endX = e.changedTouches[0].clientX;
+                        endY = e.changedTouches[0].clientY;
+
+                        // 计算横向和纵向的移动距离
+                        let deltaX = endX - startX;
+                        let deltaY = endY - startY;
+
+                        // 判断是否为左滑
+                        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) {
+                            let links = swipeable.querySelectorAll('a');
+                            if (links.length > 0) {
+                                links[0].click();
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    <style>
+        .smb-fixed {
+            position: fixed;
+            position: sticky;
+            top: 10px;
+            max-width: 258px;
+        }
+    </style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            list-style-position: initial;
+            list-style-image: initial;
+            list-style-type: none;
+        }
+
+        html, body {
+            font-family: sans-serif;
+        }
+
+        a {
+            color: rgb(53, 155, 118);
+            text-decoration-line: none;
+            text-decoration-thickness: initial;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 22px;
+            line-height: 1.6;
+            color: rgb(38, 38, 38);
+        }
+
+        #smb-page h1 {
+            font-size: 60px;
+            line-height: 63px;
+            margin-bottom: 25px;
+        }
+
+        #smb-page h3 {
+            color: rgb(53, 155, 118);
+            font-size: 34px;
+            font-weight: 400;
+            margin-top: 25px;
+            margin-right: 0px;
+            margin-bottom: 25px;
+            margin-left: 0px;
+            line-height: 1.3;
+        }
+
+        .smb-page-main {
+            max-width: 1100px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: flex;
+        }
+
+        .smb-page-left {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 740px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        .smb-left-main {
+            max-width: 100%;
+        }
+
+        #smb-page .advertisement {
+            font-size: 13px;
+            color: rgb(38, 38, 38);
+            text-align: center;
+        }
+
+        .smb-autor {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .smb-autor-img {
+            max-width: 40px;
+            max-height: 40px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            margin-right: 10px;
+        }
+
+        .smb-autor-content {
+            text-align: left;
+            border-left-width: 2px;
+            border-left-style: solid;
+            border-left-color: rgb(53, 155, 118);
+            padding-left: 20px;
+        }
+
+        .smb-autor-name {
+            color: rgb(53, 155, 118);
+            font-size: 20px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .smb-autor-date {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .smb-main-img {
+            max-width: 100%;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: initial;
+            border-right-style: initial;
+            border-bottom-style: initial;
+            border-left-style: initial;
+            border-top-color: initial;
+            border-right-color: initial;
+            border-bottom-color: initial;
+            border-left-color: initial;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: block;
+        }
+
+        .smb-click-button {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            width: 90%;
+            display: block;
+            background-color: rgb(53, 155, 118);
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-weight: 800;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            font-size: 20px;
+        }
+
+        .smb-page-right {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 300px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            position: relative;
+        }
+
+        .smb-right-main {
+            max-width: 100%;
+            display: block;
+            padding-top: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            border-top-color: rgb(237, 237, 237);
+            border-right-color: rgb(237, 237, 237);
+            border-bottom-color: rgb(237, 237, 237);
+            border-left-color: rgb(237, 237, 237);
+            border-top-width: 1px;
+            border-right-width: 1px;
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+        }
+
+        .smb-border-main {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: red;
+            border-right-color: red;
+            border-bottom-color: red;
+            border-left-color: red;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+        }
+
+        .smb-page-right p {
+            margin-bottom: 10px;
+        }
+
+        .smb-right-button {
+            margin-top: 20px;
+            display: block;
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            background-color: rgb(53, 155, 118);
+            color: white;
+            font-weight: 800;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .smb-page-footer {
+            max-width: 100%;
+            background-color: rgb(0, 0, 0);
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            margin-top: 25px;
+            box-sizing: border-box;
+        }
+
+        .smb-footer-main {
+            max-width: 1100px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            text-align: center;
+        }
+
+        .smb-footer-main p {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            margin-top: 5px;
+            margin-right: 0px;
+            margin-bottom: 5px;
+            margin-left: 0px;
+        }
+
+        .smb-footer-main a {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+        }
+
+        .smb-button-bottom {
+            bottom: 0px;
+            width: 100%;
+            top: inherit;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            position: fixed;
+            z-index: 10;
+            text-align: center;
+            display: none;
+            box-sizing: border-box;
+        }
+
+        .smb-mb-block {
+            display: none;
+        }
+
+        .smb-flex-block img {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            max-width: 257px;
+        }
+
+        .smb-flex-block center {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+
+        .smb-flex-block p {
+            margin-bottom: 0px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            display: flex;
+            opacity: 0;
+            transition-duration: 0.55s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: all;
+            z-index: -1;
+        }
+
+        .popup.is-active {
+            z-index: 2020;
+            opacity: 1;
+        }
+
+        .popup .overlay {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 999;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .popup .inner {
+            font-weight: bold;
+            padding-bottom: 0px;
+            width: 870px;
+            color: black;
+            z-index: 1000;
+            position: relative;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(242, 242, 242);
+        }
+
+        .popup .overlay-header {
+            background-color: rgb(154, 217, 79);
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: 22px;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .popup .close {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            font-size: 20px;
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            cursor: pointer;
+            color: black;
+            font-weight: 700;
+            text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+            line-height: 1;
+            background-color: rgb(223, 223, 223);
+            border-top-left-radius: 0px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .popup .inner a {
+            display: block;
+            color: black;
+        }
+
+        .popup .inner a:not(.button) {
+            color: white;
+            font-weight: normal;
+        }
+
+        .columns {
+            margin-left: -7.5px;
+            margin-right: -7.5px;
+            margin-top: -7.5px;
+        }
+
+        .columns:last-child {
+            margin-bottom: -7.5px;
+        }
+
+        .column {
+            display: block;
+            flex-basis: 0px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            padding-top: 7.5px;
+            padding-right: 7.5px;
+            padding-bottom: 7.5px;
+            padding-left: 7.5px;
+        }
+
+        .popup .inner img {
+            max-width: 100%;
+            max-height: 230px;
+        }
+
+        .popup .inner h1 {
+            font-size: 30px;
+            line-height: 35px;
+            font-weight: 900;
+            color: black;
+        }
+
+        .popup .inner p {
+            color: black;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .popup .inner .button {
+            background-color: rgb(92, 184, 92);
+            color: rgb(5, 62, 20);
+            padding-top: 20px;
+            padding-right: 30px;
+            padding-bottom: 20px;
+            padding-left: 30px;
+            font-size: 26px;
+            font-weight: 700;
+            font-family: verdana, helvetica, serif;
+            border-top-width: 3px;
+            border-right-width: 3px;
+            border-bottom-width: 3px;
+            border-left-width: 3px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(45, 113, 45);
+            border-right-color: rgb(45, 113, 45);
+            border-bottom-color: rgb(45, 113, 45);
+            border-left-color: rgb(45, 113, 45);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 10px;
+            line-height: 1.33333;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            touch-action: manipulation;
+            cursor: pointer;
+            user-select: none;
+            background-image: none;
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            border-bottom-right-radius: 60px;
+            border-bottom-left-radius: 60px;
+        }
+
+        .popup .inner .button:hover {
+            background-color: rgb(68, 157, 68);
+            color: rgb(255, 255, 255);
+        }
+
+        .popup .inner .button i {
+            margin-left: 15px;
+        }
+
+        .popup .popup-bottom-p {
+            font-size: 12.8px;
+            color: rgb(106, 106, 106);
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        .smb-comment-block {
+            display: flex;
+            align-items: center;
+        }
+
+        .smb-comment-block p {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        #ig1hyd {
+            letter-spacing: -1px;
+            text-align: center;
+        }
+
+        #ih3wsz {
+            width: 258px;
+            height: 265px;
+        }
+
+        #iexv8e {
+            width: 267px;
+            height: 275px;
+        }
+
+        .button-text:hover {
+            font-weight: 700;
+        }
+
+        #io95ri {
+            background-color: rgb(255, 251, 239);
+        }
+
+        #ib1h6l {
+            background-color: rgb(255, 245, 211);
+            background-image: none;
+            background-position-x: 0%;
+            background-position-y: 0%;
+            background-attachment: scroll;
+            background-size: auto;
+        }
+
+        #i6qkx7 {
+            font-size: 28px;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+
+        #ivsqyj {
+            font-size: 30px;
+            color: rgb(245, 5, 5);
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+
+        #iwxsee {
+            font-size: 18px;
+        }
+
+        #iempvl {
+            font-size: 20px;
+        }
+
+        #icep8c {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-weight: 400;
+        }
+
+        #ifu8zq {
+            background-color: rgb(255, 251, 239);
+        }
+
+        #iweno4 {
+            color: red;
+            font-size: 35px;
+        }
+
+        #i5uc3r {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-weight: 700;
+        }
+
+        #irm7vl {
+            color: white;
+            font-weight: 300;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: black;
+            border-right-color: black;
+            border-bottom-color: black;
+            border-left-color: black;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            background-image: url("https://d1y4tm6t3pzfj.cloudfront.net/other/images/1661845314_WC%5DPQX%2917OLIOX0O%28DVCCP9.jpg");
+            background-position-x: 0%;
+            background-position-y: 0%;
+            background-attachment: scroll;
+            background-size: cover;
+            background-color: rgb(255, 255, 255);
+        }
+
+        #ivn8ed {
+            font-size: 46px;
+        }
+
+        #i9lphu {
+            width: 258px;
+            height: 265px;
+        }
+
+        #iyojcf {
+            text-align: center;
+        }
+
+        #ik2w3b {
+            text-align: center;
+        }
+
+        #i8d9fd {
+            text-align: center;
+        }
+
+        #i1k6mf {
+            max-width: 100%;
+            float: none;
+            text-align: left;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #i8z7ck {
+            max-width: 100%;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 30px;
+            margin-left: 0px;
+        }
+
+        #ihoa5k {
+            font-size: 22px;
+            text-align: center;
+        }
+
+        #i4dhnd {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #id0sex {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #ilfwyk {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #ijh2uh {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #ickf2p {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #ifo8wy {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 30px;
+            margin-left: auto;
+        }
+
+        #i2tk0f {
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 30px;
+            padding-left: 0px;
+        }
+
+        #iqchpl {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 400px;
+        }
+
+        #it91a2 {
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(237, 242, 247);
+            border-right-color: rgb(237, 242, 247);
+            border-bottom-color: rgb(237, 242, 247);
+            border-left-color: rgb(237, 242, 247);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgba(66, 153, 225, 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            display: inline;
+            vertical-align: middle;
+            height: auto;
+            max-width: 100%;
+            margin-top: -6px;
+            color: rgb(128, 128, 128);
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+        }
+
+        #infl99 {
+            color: rgb(128, 128, 128);
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+        }
+
+        #isk56w {
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(237, 242, 247);
+            border-right-color: rgb(237, 242, 247);
+            border-bottom-color: rgb(237, 242, 247);
+            border-left-color: rgb(237, 242, 247);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgba(66, 153, 225, 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            font-weight: 600;
+            color: rgb(128, 128, 128);
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+        }
+
+        #ihlndl {
+            font-size: 20px;
+        }
+
+        #imlcha {
+            font-size: 20px;
+        }
+
+        #smb-page {
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        #iakzgi {
+            color: red;
+        }
+
+        #i8vwah {
+            color: red;
+        }
+
+        #i3v8co {
+            color: red;
+        }
+
+        @media (min-width: 769px) {
+            .columns:not(.is-desktop) {
+                display: flex;
+                align-items: stretch;
+                margin-right: 30px;
+            }
+
+            .column {
+                padding-top: 60px;
+                padding-right: 10px;
+                padding-bottom: 50px;
+                padding-left: 10px;
+                text-align: center;
+            }
+
+            .column.is-6 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-6-tablet {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-3 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 30%;
+                box-sizing: border-box;
+                background-image: linear-gradient(rgb(191, 191, 191) 0%, rgb(171, 171, 171) 64%, rgb(171, 171, 171) 100%);
+                background-position-x: initial;
+                background-position-y: initial;
+                background-size: initial;
+                background-attachment: initial;
+                background-origin: initial;
+                background-clip: initial;
+                background-color: initial;
+            }
+
+            .column.is-7 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 70%;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #smb-page h1 {
+                font-size: 32px;
+                line-height: initial;
+            }
+
+            .smb-page-main {
+                flex-direction: column;
+            }
+
+            .smb-mb-block {
+                display: block;
+            }
+
+            .popup .inner {
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                margin-left: 10px;
+                text-align: center;
+            }
+
+            .popup .inner a {
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                padding-bottom: 20px;
+            }
+
+            .popup .inner .column {
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+
+            .popup .inner img {
+                max-width: 70vw;
+                max-height: 30vh;
+            }
+
+            .popup .inner h1 {
+                font-size: 22px;
+                line-height: 25px;
+            }
+
+            .popup .inner p {
+                margin-top: 2px;
+            }
+
+            .popup .inner .button {
+                margin-top: 5px;
+                font-size: 11px !important;
+                padding-top: 10px !important;
+                padding-right: 20px !important;
+                padding-bottom: 10px !important;
+                padding-left: 20px !important;
+            }
+
+            .popup .inner .button i {
+                display: none !important;
+            }
+
+            .smb-comment-block {
+                flex-direction: column;
+            }
+
+            #iqchpl {
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #ivn8ed {
+                font-size: 34px;
+            }
+        }  </style>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Poppins:300,300i,400,400i,500,500i,700,700i|Montserrat:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext"
+          rel="stylesheet">
+</head>
+
+
+<body>
+<div id="ilywer" class="popup">
+    <div id="i3nb" class="overlay"></div>
+    <div id="i1ik" class="inner">
+        <div id="iana" class="close hide-overlay"><i class="fa fa-times"></i></div>
+        <a href="click.php?lp=1" id="io95ri">
+            <div class="columns">
+                <div id="ib1h6l" class="column is-3" 4hFbYp="ccaVnUVYhZ3qz9seVyuVSQ=="><p><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1661836914_1660206033_00.gif"/></p>
+                    <p><b><span id="i6qkx7">Legalacsonyabb ár</span><br/><span id="ivsqyj">79.99$</span></b></p>
+                    <p id="iwxsee"><b id="iempvl"><span id="icep8c">Vásároljon többet, spóroljon többet!</span></b></p></div>
+                <div id="ifu8zq" class="column is-7"><p id="iweno4"><b><span id="i5uc3r">Kérje a kedvezményt!</span></b>
+                </p>
+                    <p><img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1677729366_2.gif" id="ifzxxt"/></p>
+                    <p>
+                        <button id="irm7vl" class="button has-tooltip-active has-tooltip-bottom"><span
+                                class="button-text">KATTINTSON IDE A MEGTAKARÍTÁSHOZ MOST</span><i class="fa fa-arrow-right"></i>
+                        </button>
+                    </p>
+                    <p class="popup-bottom-p">Cselekedjen most, hogy megszerezze!</p></div>
+            </div>
+        </a></div>
+</div>
+<div id="smb-page">
+    <div id="i9tf-2" class="smb-page-main">
+        <div id="isbk" class="smb-page-left">
+            <div id="ivhg" class="smb-left-main"><p id="ih77s" class="advertisement">HIRDETÉS</p>
+                <h1 id="inz4"><span id="ivn8ed">Az új olvasószemüveg német optikai innovációval ezreknek segít az idősek közül újra olvasni</span>
+                </h1>
+                <div id="i8xjj" class="smb-autor"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1729485137_avatar-2.jpg.png" alt=""
+                        id="ig4wf" class="smb-autor-img"/>
+                    <div class="smb-autor-content"><span id="iiaro" class="smb-autor-name">Lars Schneider</span><span
+                            id="iq0h4" class="smb-autor-date">2025. július 2.</span></div>
+                    <p id="iqchpl"><img src="https://www.trendingdailygadget.com/flexvision/static/picture/likeicon.png"
+                                        alt="Facebook like icon" id="it91a2"
+                                        class="like-img inline -mt-6px lazyload"/><span id="infl99"> </span><span
+                            id="isk56w" class="font-600">102 500</span><br/></p></div>
+                <div></div>
+                <p></p>
+                <section id="iqg4x"><a href="click.php?lp=1" id="iie04t"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323512_1.jpg" alt="" id="i1a396"
+                        class="smb-main-img"/></a><a href="click.php?lp=1" id="iift95"></a>
+                    <p id="irwioh"></p>
+                    <p id="i1tdrk">A nagyapám nyugdíjas tanár volt, és az újságok és könyvek olvasása volt a kedvenc időtöltése. Képes volt órákig olvasni – néha napi 3, vagy akár 5 órát is. <b>Egy nap panaszkodott,</b> hogy az újság szövege túl kicsi, ami megnehezíti az olvasást.<br/></p>
+                    <p id="iv43jc">Ezért úgy döntöttem, veszek neki egy tabletet, mivel azon tetszőlegesen állítható a betűméret – de ez csak <b>megerőltette és fárasztotta a szemét</b> a képernyő használatától.</p>
+                    <p id="ijexfe" gziIYw="ix+8h5DYozxybw7lmwKgwA==">Aggódva konzultáltam egy tapasztalt szemorvossal, aki elmagyarázta nekem, hogy a presbiópia (öregszeműség) az öregedés természetes tünete, amely befolyásolja a közeli látást. Speciális olvasószemüveget ajánlott presbiópiás emberek számára, mint például a <a href="click.php?lp=1" id="itp96s">Hoeura OptiReaders Pro</a>.</p>
+                    <p id="i45tyl">Így szereztem neki egy párat. Egy nap, közös ebédünk során észrevettem, hogy még mindig rajta van a szemüveg – annak ellenére, hogy a reggeli olvasási ideje már rég elmúlt. Kíváncsiságból megkérdeztem tőle, hogyan érzi magát, és hogy a szemei kipihentebbek-e.<br/></p>
+                    <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323518_2.jpg" alt="" id="i4dhnd"
+                         class="smb-main-img"/>
+                    <p id="ir75vb">Huncutul elmosolyodott, és azt mondta: „Ó, Istenem, teljesen elfelejtettem, hogy még mindig rajtam van a szemüveg! Ez olyan, mint a varázslat! Tudok könyveket olvasni, falni az újságokat, és még a tabletet is gond nélkül kezelni. Haha, teljesen beleszerettem!”<br/></p>
+                    <p id="iehuxf"><b id="ioo6c">Azt is elmondta, hogy a nagymama véletlenül rálépett a szemüvegre – de sem a szemüvegnek, sem a látásának nem esett baja.</b><br/></p>
+                    <p id="iofc61" A9elj4="r8CT7L/OjE9IaHw4fI+1FA==">Széles mosollyal a nagymama viccelődött: „A nagyapád már majdnem elfelejtett engem! Csak az olvasási kalandjaival van elfoglalva. Ez az olvasószemüveg igazi bajkeverő!”<br/></p>
+                    <p id="i4c23x">Most a nagypapa újra gond nélkül tud olvasni és új világokban elmerülni. Ez a szemüveg boldogságot és szeretetet hozott az otthonunkba. Köszönöm, <a href="click.php?lp=1" id="ibo7cf">Hoeura</a>!
+                    </p>
+                    <h3 id="irmta"><b id="ilxpuy">Ismerje meg ezeket a varázslatos olvasószemüvegeket!</b></h3><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718331863_HH00529-presell-0613-KN-11.gif"
+                            alt="" id="id0sex" class="smb-main-img"/>
+                    <p id="i3cxk2">A nevük <a href="click.php?lp=1" id="izgn4j">Hoeura OptiReaders Pro</a> – egy csoda, amilyet még nem látott!</p>
+                    <p id="ifhfcb">A <a href="click.php?lp=1" id="io01ss">Hoeura </a>felülmúl minden várakozást. Igen, ez az intelligens zoom! <b>Ezek az intelligens zoom szemüvegek progresszív lencsékkel rendelkeznek, amelyek zökkenőmentesen váltanak a különböző látáserősségek között.</b> Nincs több zavaró vonal vagy képugrás.</p>
+                    <p id="i6zw5a"><b>Viselheti őket, és természetesen mozgathatja a tekintetét fentről lefelé – erőfeszítés nélkül felismerve a tárgyakat különböző távolságokban.</b> Olyan, mintha titkos szupererő lenne az orrán!</p>
+                    <p id="ivckrh">Nem kell többé levennie a szemüveget, hogy váltson a közeli és a távoli látás között.<br/></p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750324246_1727252403_4_compressed.gif"
+                            id="i1k6mf" class="smb-main-img"/>
+                    <p id="imyxyu">Nagyobb látómezőt kínálnak és kiterjesztik a látótávolságot.</p>
+                    <p id="ik0teg">Vége az állandó fel- és levételnek, vége a szemfáradtságnak. A <a href="click.php?lp=1"
+                                                                                                     id="i3rv0j">Hoeura </a>kellemesebb és nyugodtabb viselési érzést biztosít.</p>
+                    <p id="ifeyg8"><b id="i44blo">De ez még nem minden! Ez a szemüveg fejlett UV-védelmet is kínál, védve a szemét a káros UV-sugárzástól – beltéren és kültéren egyaránt.</b><br/></p>
+                    <p id="immcog">A <a href="click.php?lp=1" id="iib7dc">Hoeura </a>lencsék speciális bevonattal rendelkeznek, amely blokkolja az UVA és UVB sugarakat. Ez csökkenti a szem fáradtságát és minimalizálja a napfény okozta hosszú távú károsodást.</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323730_4.jpg" alt="" id="ilfwyk"
+                            class="smb-main-img"/>
+                    <p id="iiyddb">Nincs hunyorgás vagy vakítás – csak tiszta, kényelmes látás és egész napos védelem, bárhol is legyen.<br/></p>
+                    <p id="iiig89">A szemei kényelmesen érzik magukat minden pillanatban, anélkül, hogy az éles napfény zavarná őket.<br/></p>
+                    <p id="idivjx">Most válik érdekessé: a szakértők szerint a presbiópia (öregszeműség) egy teljesen normális folyamat, amely természetesen 45 éves kor körül kezdődik. De hé – ha már érinti Önt, itt az ideje felfedezni a presbiópiás olvasószemüvegek varázslatos világát!</p>
+                    <p id="ipmljh">Tehát készüljön fel a Hoeura OptiReaders Pro erejének felszabadítására. Elviszi Önt a tiszta látás világába, és örömmel tölti meg olvasási kalandjait. Ne hagyja ki ezt a rendkívüli utazást!</p>
+                    <h3 id="ixzb27"><b id="ij1n2a">Miért felejti el a nagypapa folyton a szemüvegét?</b></h3><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1727252449_66.gif" alt="" id="ijh2uh"
+                            class="smb-main-img"/>
+                    <p id="ixav09">Ez egyszerű – a Yomoda zseniális találmányának köszönhetően: <b>tartós, ultrakönnyű anyagok, mint amilyeneket a repülésben és az űrhajózásban használnak!</b> Itt a hagyományos optikai kézművesség találkozik a legmodernebb technológiával – igazán lenyűgöző olvasószemüveget alkotva.<br/></p>
+                    <p id="i1fmy9">És képzelje – <b>mindössze 17 grammot nyomnak</b>. Órákig viselheti őket, és teljesen elfelejtheti, hogy szemüveg van Önön. Olyan, mint a varázslat – csak jobb!
+                    </p>
+                    <p id="isi54l">Viselésük olyan érzés, mintha űrszemüveget viselne!<br/>
+                    </p>
+                    <p id="ihghfj">Ráadásul olyan könnyűek, <b>hogy nem hagynak nyomot az arcon vagy nyomáspontokat a fül mögött</b>. <i>És a tartósság? Ez őrület! Ezek a dolgok igazán sokat kibírnak – szinte pajzsként használhatná őket egy kardharcban (amit azért nem ajánlunk).</i></p>
+                    <p id="ipby19">De ne feledkezzünk meg a legfontosabbról: <b>Ez a szemüveg valóban javítja a látását.</b> Élvezze hát a látványt, ahogy a nagypapa elfelejti, hogy egyáltalán szemüveget visel – miközben átéli a tiszta látás csodáját. Egy igazi nyertes helyzet!</p>
+                    <p></p></section>
+                <section id="iwptl"><h3 id="i9xcr"><b id="ilbmai">Forradalmasítsa az olvasási élményt</b></h3><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1727252477_100.jpg" alt="" id="i8t6wj"
+                        class="smb-main-img"/>
+                    <p id="i303by"></p>
+                    <p id="icoesu" class="MsoNormal"></p>
+                    <p></p>
+                    <p id="i7etfj"></p>
+                    <p class="MsoNormal"><span lang="EN-US"><b id="iz37b2">A <a href="click.php?lp=1" id="ite2xg">Hoeura</a> egy újabb áttörést jelentő funkciót kínál: kékfényszűrő technológiát. Visszaveri és elnyeli a káros kék fényt, blokkolja a látható, nagy energiájú kék fényt, és kiszűri a veszélyes sugárzás 100%-át.</b><o:p></o:p></span>
+                    </p>
+                    <p></p>
+                    <p id="ib577q">Élje át a forradalmi kalandot az olvasásban ezzel az innovatív bifokális technológiával. <b>Váltson erőfeszítés nélkül a könyvek és kedvenc weboldalai között – kristálytiszta látással</b>. Olyan, mintha két szemüveg lenne egyben!</p>
+                    <p id="iwam22"><i id="iwtjth">Napjainkban egyre több idős ember használ elektronikus eszközöket – és ez a szám évről évre nő. A szem egészségének védelme érdekében a kékfényszűrős szemüveg viselése sok ember számára elengedhetetlenné vált – életkortól függetlenül!</i></p><img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323605_7.gif"
+                                                                                                                                                                                                                                                                                                         alt="" id="ickf2p" class="smb-main-img"/>
+                    <p id="if9j2f">Függetlenül attól, hogy technológiai könyvmoly vagy hagyományos, lapozgató típus – ez a varázslatos olvasószemüveg támogatja Önt mind a digitális, mind az analóg világban.<br/></p>
+                    <p id="ihd3zr"><i id="ifs5wh">Készüljön fel a történetekben való elmerülésre és új világok felfedezésére – egy rettenthetetlen irodalmi felfedező magabiztosságával! Élvezze a figyelem felkeltését, a kíváncsiság felkeltését és a szavak világában való elmerülés tiszta örömét. </i></p>
+                    <p id="i1pm2f">Vessünk egy pillantást a progresszív olvasószemüvegek és a hagyományos olvasószemüvegek összehasonlítására is:</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1751606217_1.jpg" alt="" id="ifo8wy"
+                            class="smb-main-img"/>
+                    <p id="i85wvz">A progresszív lencsék zökkenőmentes és természetes vizuális élményt nyújtanak, mivel lehetővé teszik a lágy <b>átmeneteket a közeli, a köztes és a távoli látás között</b>.</p>
+                    <p id="irm3dg">A hagyományos olvasószemüvegekkel ellentétben, amelyeknek látható elválasztó vonala és hirtelen fókuszváltása van, a progresszív lencsék kiküszöbölik a szemüveg folyamatos cseréjének szükségességét – ideálisak olvasáshoz, számítógép-használathoz és távolra látáshoz egyben.</p>
+                    <p id="ijew7f">A progresszív lencsék <b>fényadaptációs (fotokróm) technológiával</b> is rendelkeznek, amely miatt a szabadban besötétednek, beltéren pedig világosak maradnak – a még nagyobb kényelem érdekében.</p>
+                    <h3 id="i9z0aa"><b id="ia77te">És még több ok, amiért szeretni fogja őket!</b></h3>
+                    <p id="i3rgeh"><b id="il1wdi-2" draggable="true">✅ </b><b>Precíz nagyítás:</b> +1,00-tól +4,00-ig terjedő erősséget kínál – ideális a mindennapi igényekhez.<br/></p>
+                    <p id="ij657d"><span id="il1wdi">✅ Különösen hasznos a <b>presbiópiában (öregszeműségben) szenvedőknek.</b></span>
+                    </p>
+                    <p id="i0gxtq"><span id="iqnfxw">✅ <b>Könnyű és rugalmas keretek:</b> Illeszkednek az archoz anélkül, hogy nyomnák az orrot.</span>
+                    </p>
+                    <p id="idyhor"><b id="i28gwm">✅ </b><b>Kiváló minőségű zsanérok</b><b>:</b> A robusztus kialakítás minimalizálja a törés kockázatát.<br/></p>
+                    <p id="ixxjvm"><b>✅ </b><b>Ultrakönnyű HD gyanta lencsék:</b> Rendkívül vékonyak és ideálisak presbiópiás emberek számára.<br/></p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323620_6.jpg" alt="" id="i2tk0f"
+                            class="smb-main-img"/>
+                    <p id="ij2iqm"><b>✅ </b><b>Tartós, alakmemóriás keretek:</b> Törésálló és csúszásmentes – a tartós viselési kényelemért.</p>
+                    <p id="iqnm1v"><b id="izhi9k">✅ </b><b>Kényelmes szilikon orrpárnák:</b> Csúszásmentes illeszkedést és extra kényelmet biztosítanak.</p>
+                    <p id="ikb9nv"><b id="iyx30l">✅ </b><b>Süllyesztett csavarok:</b> Minden elemet a helyén tartanak.<br/></p>
+                    <p id="iaz1l9"><b id="if4fvb">✅ </b><b>Kopás- és ütésálló kialakítás:</b> A rendkívül hosszú élettartamért.<br/></p>
+                    <p id="i5qosi"><b id="irwx16">✅ </b><b>Karcálló szerkezet:</b> Tartósan tiszta és ápolt marad.
+                    </p>
+                    <p id="ife3xi"><b>✅ </b><b>Víz- és olajálló:</b> Extra védelem a mindennapi tényezők ellen.</p>
+                    <p id="ixqu52"><b>✅ </b><b>Szemvédelem változó fényviszonyok mellett:</b> Védi a szemet bármilyen környezetben.</p>
+                    <p id="ir56hq"><b>✅ </b><b>Sokoldalú felhasználás:</b> Ideális mindennapi használatra bármilyen élethelyzetben.</p><a href="click.php?lp=1"></a><a href="click.php?lp=1"></a></section>
+                <section id="izetzy"><h3></h3>
+                    <p id="ijy5xh" sYDYVZ="hvRARiUIg59Qf2Yw2426+A=="></p>
+                    <p class="MsoNormal"></p>
+                    <p></p><a href="click.php?lp=1"></a><a href="click.php?lp=1"></a></section>
+                <section id="ihp85d"><h3></h3>
+                    <p id="i2hyqa"></p>
+                    <p class="MsoNormal"></p>
+                    <p></p><a href="click.php?lp=1"></a><a href="click.php?lp=1"></a></section>
+                <section id="iccq7l"><h3></h3>
+                    <p id="izz5s5"></p>
+                    <p class="MsoNormal"></p>
+                    <p></p><a href="click.php?lp=1"></a><a href="click.php?lp=1"></a></section>
+                <section id="ivola"><p id="i97q9i"></p>
+                    <div id="i8j0b2"></div>
+                    <p></p><a href="click.php?lp=1"></a>
+                    <p id="ipfgll" UrRgOw="L+oGuel1ctFoTlWa4bK3Zw=="></p>
+                    <p></p>
+                    <p></p>
+                    <p id="iag8is"></p>
+                    <div id="i3klbt"></div>
+                    <p></p>
+                    <p></p><strong></strong>
+                    <p></p><a href="click.php?lp=1"></a></section>
+                <section></section>
+                <section id="icsilb"><h3 id="i71shr"><b id="ij165r">Lelkes vélemények Németország minden tájáról:</b></h3>
+                    <div id="iovcbm" class="smb-comment-block"><p id="iv468u"><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323628_%E8%AF%84%E8%AE%BA%E5%9B%BE1.jpg"
+                            caption="false" width="100%" id="ih3wsz"/></p>
+                        <p id="iyojcf">„Mindig is gyenge volt a látásom, és számtalan szemüveget kipróbáltam – amíg végül fel nem fedeztem a Coeurvát. A szemüveg időben megérkezett, és biztonságosan be volt csomagolva. Stabil, jól néz ki és nagyon kényelmes viselni. Mindenkinek csak ajánlani tudom.”<br/>– Sabine M.</p></div>
+                    <div id="irm7gd" class="smb-comment-block" imyFwS="Y2KjI5EX2UqZ0uQU/X0ZtQ=="><p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323633_%E8%AF%84%E8%AE%BA%E5%9B%BE2.jpg"
+                            caption="false" width="100%" id="i9lphu"/></p>
+                        <p id="ik2w3b">„Meglepően jó szemüveg ezen az áron. Gond nélkül tudok benne dolgozni a számítógépnél, és az alsó résszel még a legkisebb betűket is el tudom olvasni – szemüvegcsere nélkül! Ez probléma volt a hagyományos olvasószemüvegeknél. A keret tökéletesen illeszkedik, stabil és jól néz ki.”<br/>– Thomas K.</p></div>
+                    <div id="ihmrkq" class="smb-comment-block"><p id="ixtn8t"><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323638_%E8%AF%84%E8%AE%BA%E5%9B%BE3.jpg"
+                            caption="false" width="100%" id="iexv8e"/></p>
+                        <p id="i8d9fd">„Kezdetben nagyon szkeptikus voltam, de ez a szemüveg egyszerűen zseniális. Soha nem gondoltam volna, hogy élvezhetem az összes kedvenc tevékenységemet a szemüveg folyamatos cserélgetése nélkül. Olvasás, számítógépes munka vagy csak a kilátás élvezete – minden kristálytiszta!”<br/>– Anna L.</p></div>
+                </section>
+                <section id="iqja3h"><h3 id="iaq3qj"><b id="iei79f">Ki ne szeretne pénzt spórolni?</b></h3>
+                    <p id="ivsahy">Menjen el bármelyik optikushoz, és sokkot fog kapni a divatos szemüvegek áraitól. Komolyan – egy vagyonba kerülnek, majdnem annyiba, mint az egész nyugdíja! Ez igazi csapás a pénztárcára.<br/></p>
+                    <p id="i1w7ta">De ne aggódjon, barátom! A <a href="click.php?lp=1" id="ic06et">Hoeura OptiReaders Pro</a>
+                        világossá és élénkké teszi a világát – <b>méghozzá anélkül, hogy tönkretenné a bankszámláját</b>. Ez a szemüveg megfizethető, ugyanakkor hatékony. Ki mondta, hogy sokat kell költeni ahhoz, hogy teljes mértékben élvezhesse az életet?</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1727252574_6666.jpg" id="i8z7ck"/>
+                    <p id="ie8atw">Tehát mire vár? Merüljön el a tiszta látás világában, és hagyja, hogy a <a href="click.php?lp=1" id="izkxwy">Hoeura OptiReaders Pro</a> varázsa visszaadja az olvasás örömét.</p><b id="ibaxiu"></b>
+                    <p id="is853l">Mindössze <span id="iakzgi"><b id="itptah">39,99 €</b></span>-ért megkapja <b>ezt az intelligens progresszív szemüveget fotokróm technológiával és kékfényszűrővel</b>. Ez az év ajánlata!</p>
+                    <p id="insr3f"><u><a href="click.php?lp=1" id="iqmc81">Kattintson ide a kedvezményes Hoeura OptiReaders Pro megrendeléséhez (a készlet erejéig) >></a></u></p>
+                    <p id="ir1052">Minél hamarabb szerzi be ezt a szemüveget, annál hamarabb élvezheti az új olvasási élményt. Ne várjon tovább – a <a href="click.php?lp=1" id="il434p">Hoeura OptiReaders Pro</a> elviszi Önt az irodalmi örömökkel teli világba.</p>
+                    <div l48poR="GFg4VsXKWwollDJnBXK+UA=="></div>
+                    <p></p>
+                    <p id="i7job6" iAVNsQ="xaPu8dUujIjDDaMLtWeX9A=="></p>
+                    <div></div>
+                    <p></p>
+                    <div id="iphfks"></div>
+                    <p id="ixyl3l"></p>
+                    <div></div>
+                    <p wcvZGf="WrcGNOfNIP0DydNx5UYJFA=="></p></section>
+                <section>
+                    <div id="ifit01" class="smb-border-main">
+                        <section id="i08v99" class="bdg-sect"><p id="iv1mer" class="paragraph"><b>*Frissítés:</b> A cég jelenleg különleges kiárusítást tart. Ha ma online vásárolja meg a <a href="click.php?lp=1" id="icrccg">Hoeura OptiReaders Pro</a> szemüveget a hivatalos weboldalon keresztül, <b id="i8vwah">50% kedvezményt</b> kap.<br/></p></section>
+                    </div>
+                    <a href="click.php?lp=1" id="iux5fi" class="smb-click-button">ELLENŐRIZZE A KEDVEZMÉNYEKET ÉS AZ ELÉRHETŐSÉGET MOST →</a></section>
+            </div>
+        </div>
+        <div id="i5ej4m" class="smb-page-right">
+            <div id="smb-fixed-flag"></div>
+            <div id="iflo2k" class="smb-right-main">
+                <h2 id="ihoa5k"><a href="click.php?lp=1" id="ihlndl">Hoeura OptiReaders Pro<br/></a>
+                    <div id="imlcha">Szerezzen <span id="i3v8co">50% kedvezményt</span> most</div>
+                </h2>
+                <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323505_%E6%B5%AE%E7%AA%97%E5%9B%BE.jpg"
+                     alt="" id="i6njoh" class="smb-main-img"/>
+                <p id="ig1hyd"><a href="click.php?lp=1" id="ibfksy">Kristálytiszta látás – drága recept nélkül</a></p><a
+                    href="click.php?lp=1" id="i8lbvk" class="smb-right-button">ELÉRHETŐSÉG ELLENŐRZÉSE →</a></div>
+        </div>
+    </div>
+    <div id="smb-flag-none"></div>
+    <div id="i2nizf" class="smb-button-bottom smb-mb-block"><a href="click.php?lp=1" id="ik0oru"
+                                                               class="smb-right-button">ELÉRHETŐSÉG ELLENŐRZÉSE → </a>
+    </div>
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main"><p>Szerzői jog © 2024</p>
+            <p></p>
+            <p>SZERZŐI JOG Ez egy hirdetés, nem pedig egy tényleges hírcikk, blog vagy fogyasztóvédelmi értesítés. MARKETING KÖZZÉTÉTEL: Ez a weboldal egy piactér. Tudnia kell, hogy a tulajdonos pénzügyi kapcsolatban áll az oldalon hirdetett termékekkel és szolgáltatásokkal. A tulajdonos fizetést kap, ha minősített ajánlás történik. Ez azonban a kapcsolat teljes terjedelme. HIRDETÉSI KÖZZÉTÉTEL: Ez a weboldal és a rajta említett termékek és szolgáltatások hirdetési piactérként szolgálnak. Ez az oldal reklám, nem pedig újságírói publikáció. Az oldalon használt személyek fényképei modelleket ábrázolnak. A weboldal és a hirdetett termékek és szolgáltatások tulajdonosa kizárólag olyan platformot kínál, ahol a fogyasztók információkat szerezhetnek és összehasonlíthatják az ajánlatokat.</p>
+            <p>EGÉSZSÉGÜGYI FELELŐSSÉGKIZÁRÁS: Az ezen az oldalon található információk nem helyettesítik a szakmai orvosi tanácsot, diagnózist, illetve betegségek vagy panaszok kezelését. Nem vállalunk felelősséget a weboldalon található vagy azon keresztül elérhető információk pontosságáért, és ezek az információk előzetes értesítés nélkül változhatnak.</p>
+            <p kiLCK3="yIbnNc2JTiS/HMBwuQo/FA==">Soha ne változtasson gyógyszeres kezelésén, napi rutinján, étrendjén, alvási rendjén vagy edzéstervén anélkül, hogy először konzultálna orvosával vagy más egészségügyi szakemberrel. SOHA NE HAGYJA FIGYELMEN KÍVÜL A SZAKMAI ORVOSI TANÁCSOT, ÉS NE KÉSLEKEDJEN ORVOSI SEGÍTSÉGET KÉRNI A WEBOLDALON OLVASOTT VAGY MEGSZERZETT INFORMÁCIÓK MIATT.</p>
+            <p><a rel="nofollow" href="../common/contact.html" target="_blank" class="privacy-link">Jogi nyilatkozat és Kapcsolat</a></p>
+            <p><a rel="nofollow" href="../common/policy.html" target="_blank" class="privacy-link">Adatvédelmi irányelvek</a>
+            </p>
+            <p><a rel="nofollow" href="../common/regulamin.html" target="_blank" class="privacy-link">Felhasználási feltételek</a>
+            </p></div>
+    </footer>
+</div>
+</body>
+<script>
+    function click_popup_articles(href) {
+        var need_url_params = ["site", "site_id", "title", "platform", "campaign_id", "campaign_item_id", "thumbnail", "campaign_name", "utm_campaign", "utm_medium"];
+        var paramSeparator = href.includes('?') ? '&' : '?';
+        const orderedParams = need_url_params
+            .filter(function (param) {
+                return getQueryString(param);
+            })
+            .map(function (param) {
+                return param + "=" + getQueryString(param);
+            });
+        if (orderedParams.length) {
+            return href + paramSeparator + orderedParams.join('&');
+        } else {
+            return href;
+        }
+    }
+</script>
+
+<script src="js/smb-scroll.js"></script>
+<script src="js/view1/sticky-top.js"></script>
+</html>
