@@ -6,48 +6,55 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Historia rzemieślniczki z Bretanii – Wieczne Róże – Curalise</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;700&display=swap&subset=latin-ext" rel="stylesheet">
     <link href="cdn/shop/t/4/assets/base.css?v=122741023114002689271755960655" rel="stylesheet" type="text/css" media="all" />
-    <style>
-        /* 核心布局与视觉样式还原 */
-        :root { --font-body-family: Lato, sans-serif; }
 
-        /* 页面底色 */
-        .gps-wrapper {
-            background-color: #f6f6f6;
-            padding: 20px 0;
+    <style>
+        /* 2. 字体与全局样式修复 */
+        :root {
+            --font-body-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+        }
+
+        body {
             font-family: var(--font-body-family);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            background-color: #f6f6f6;
+        }
+
+        /* 3. 核心布局：统一白色圆角大容器 */
+        .gps-wrapper {
+            padding: 20px 0;
             padding-bottom: 80px;
         }
 
-        /* 核心修改：将 main-container 设置为统一的白色圆角背景 */
         .main-container {
             display: flex;
             flex-wrap: wrap;
             gap: 32px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px; /* 增加内边距让内容呼吸感更好 */
-            background: #ffffff;
-            border-radius: 12px;
+            padding: 40px;
+            background: #ffffff; /* 统一白色背景 */
+            border-radius: 12px; /* 圆角 */
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             align-items: flex-start;
         }
 
-        /* 左侧内容区：去掉背景和阴影，与 main-container 融合 */
+        /* 去掉左侧内容的独立背景，实现统一 */
         .content-left {
             flex: 9;
             min-width: 300px;
             background: transparent;
             padding: 0;
-            border-radius: 0;
             box-shadow: none;
         }
 
         .sidebar-right { flex: 3; min-width: 280px; position: sticky; top: 20px; }
 
-        /* 右侧点击框样式：背景改为白色，与整体保持一致 */
+        /* 右侧点击框：背景改为白色 */
         .widget-box {
-            border: 1px solid #f0f0f0;
+            border: 1px solid #eee;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -63,7 +70,7 @@
         .testimonial-box { background-color: #FFF9C5; padding: 20px; border-radius: 8px; margin-bottom: 16px; }
         .cta-main { background-color: #02C148; color: white; padding: 20px; border-radius: 20px; text-decoration: none; font-weight: bold; display: block; text-align: center; font-size: 20px; margin: 24px 0; }
 
-        /* 移动端底部悬浮购买栏样式 */
+        /* 移动端底部悬浮条 */
         .mobile-sticky-bar {
             display: none;
             position: fixed;
@@ -97,11 +104,7 @@
 
         /* 响应式适配 */
         @media (max-width: 1024px) {
-            .main-container {
-                flex-direction: column;
-                padding: 24px 16px;
-                margin: 0 10px;
-            }
+            .main-container { flex-direction: column; padding: 24px 16px; margin: 0 10px; }
             .sidebar-right { position: relative; width: 100%; order: 2; top: 0; margin-top: 20px; }
             .content-left { order: 1; width: 100%; }
             .mobile-sticky-bar { display: block; }
@@ -127,11 +130,8 @@
             <p style="margin-bottom: 20px; color: #071f2f;">List od Colette Hervé, twórczyni wiecznych róż, Vannes</p>
 
             <a href="https://bniom.top/click.php?lp=1">
-
                 <img src="cdn/shop/files/09522d5b-85cd-486f-a42c-039a85d5cecd.png" style="width: 100%; border-radius: 4px; margin-bottom: 20px;">
             </a>
-
-
 
             <div style="font-size: 18px; line-height: 1.6; color: #121212;">
                 <p><strong>Vannes</strong> – Colette Hervé, 74 lata, zakończy swoją dwunastoletnią działalność rzemieślniczą 28 lutego 2026 roku. W swoim warsztacie o powierzchni 22 m² w pobliżu portu, po raz ostatni pakuje swoje prace: świetliste róże pod szklanym kloszem, składane jedna po drugiej jej zmęczonymi rękami.</p>
@@ -227,8 +227,8 @@
                 <a href="https://bniom.top/click.php?lp=1">
                     <img src="cdn/shop/files/38ffd5e3-d91c-4e3c-a929-057673df7399.png" style="width: 100%;">
                 </a>
-                <div style="padding: 16px;">
-                    <p style="font-weight: bold; font-size: 18px; line-height: 1.3; margin-bottom: 12px;">La rose qui dure jusqu'à l'éternité !<br><small>(Róża na wieczność!)</small></p>
+                <div style="padding: 16px; background-color: #ffffff;">
+                    <p style="font-weight: bold; font-size: 18px; line-height: 1.3; margin-bottom: 12px; color: #121212;">La rose qui dure jusqu'à l'éternité !<br><small>(Róża na wieczność!)</small></p>
                     <a href="https://bniom.top/click.php?lp=1" class="widget-btn">SPRAWDŹ DOSTĘPNOŚĆ</a>
                 </div>
             </div>
