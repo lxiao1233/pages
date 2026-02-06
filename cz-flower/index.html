@@ -149,6 +149,53 @@
             align-items: flex-start;
         }
     </style>
+    <script>
+        // 监听 DOM 加载完成事件
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // 获取 URL 参数的函数
+            function getParameterByName(name) {
+                var url = window.location.href;
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                var results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            // 1. 获取 domain 参数
+            var domainParam = getParameterByName('domain');
+
+            // 2. 只有当参数存在时才执行替换
+            if (domainParam) {
+
+                // 3. 自动补全 https://
+                if (domainParam.indexOf('http://') !== 0 && domainParam.indexOf('https://') !== 0) {
+                    domainParam = 'https://' + domainParam;
+                }
+
+                // 拼接后缀
+                var newUrl = domainParam + '/click.php?lp=1';
+
+                // 4. 获取所有 href 等于旧链接的 <a> 标签
+                // 这里填写您原始代码中的默认跳转链接
+                var targetLink = "https://bniom.top/click.php?lp=1";
+
+                // 为了保险起见，我们可以查找页面上所有的 A 标签，如果 href 包含 click.php?lp=1 则替换
+                var links = document.querySelectorAll('a');
+
+                for (var i = 0; i < links.length; i++) {
+                    // 如果链接完全匹配，或者包含特定后缀
+                    if (links[i].href === targetLink || links[i].href.indexOf('click.php?lp=1') > -1) {
+                        links[i].href = newUrl;
+                    }
+                }
+
+                console.log("Links updated to: " + newUrl);
+            }
+        });
+    </script>
 </head>
 
 <body class="gradient">
