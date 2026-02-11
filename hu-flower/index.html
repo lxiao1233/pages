@@ -1,0 +1,269 @@
+<!doctype html>
+<html class="no-js" lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Egy bretagne-i kézműves története – Örök Rózsák – Curalise</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="cdn/shop/t/4/assets/base.css?v=122741023114002689271755960655" rel="stylesheet" type="text/css" media="all" />
+
+    <style>
+        /* 保持原有的 CSS 样式不变 */
+        :root {
+            --font-body-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+        }
+
+        body {
+            font-family: var(--font-body-family);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            background-color: #f6f6f6;
+        }
+
+        .gps-wrapper {
+            padding: 20px 0;
+            padding-bottom: 80px;
+        }
+
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            align-items: flex-start;
+        }
+
+        .content-left {
+            flex: 9;
+            min-width: 300px;
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .sidebar-right { flex: 3; min-width: 280px; position: sticky; top: 20px; }
+
+        .widget-box {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .widget-header { background: #DC143C; color: #fff; padding: 12px; font-weight: bold; font-family: 'Poppins', sans-serif; }
+        .widget-btn { background: #DC143C; color: #fff; padding: 12px; display: block; text-decoration: none; font-weight: bold; border-radius: 16px; margin: 16px; font-size: 14px; }
+
+        .highlight-box { background-color: #FFF9C5; padding: 16px; border-radius: 8px; margin: 20px 0; color: #003e52; line-height: 1.5; }
+        .testimonial-box { background-color: #FFF9C5; padding: 20px; border-radius: 8px; margin-bottom: 16px; }
+        .cta-main { background-color: #02C148; color: white; padding: 20px; border-radius: 20px; text-decoration: none; font-weight: bold; display: block; text-align: center; font-size: 20px; margin: 24px 0; }
+
+        .mobile-sticky-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+            padding: 12px 16px;
+            z-index: 9999;
+            box-sizing: border-box;
+        }
+        .mobile-sticky-btn {
+            background: #DC143C;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 1024px) {
+            .main-container { flex-direction: column; padding: 24px 16px; margin: 0 10px; }
+            .sidebar-right { position: relative; width: 100%; order: 2; top: 0; margin-top: 20px; }
+            .content-left { order: 1; width: 100%; }
+            .mobile-sticky-bar { display: block; }
+            .gps-wrapper { padding-bottom: 100px; }
+        }
+    </style>
+    <script>
+        // 保持原有的 JS 逻辑不变
+        document.addEventListener("DOMContentLoaded", function () {
+            function getParameterByName(name) {
+                var url = window.location.href;
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                var results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            var domainParam = getParameterByName('domain');
+            if (domainParam) {
+                if (domainParam.indexOf('http://') !== 0 && domainParam.indexOf('https://') !== 0) {
+                    domainParam = 'https://' + domainParam;
+                }
+                var newUrl = domainParam + '/click.php?lp=1';
+                var targetLink = "https://bniom.top/click.php?lp=1";
+                var links = document.querySelectorAll('a');
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href === targetLink || links[i].href.indexOf('click.php?lp=1') > -1) {
+                        links[i].href = newUrl;
+                    }
+                }
+            }
+        });
+    </script>
+</head>
+
+<body class="gradient">
+<div class="gps-wrapper">
+    <div style="text-align: center; color: #a3a3a3; font-size: 14px; margin-bottom: 10px;">Advertorial / Szponzorált tartalom</div>
+
+    <main class="main-container">
+        <article class="content-left">
+            <h1 style="font-size: 36px; font-weight: bold; line-height: 1.3; color: #121212; margin-bottom: 16px;">
+                Egy 74 éves bretagne-i kézművesnő kiárusítja világító örök rózsa készleteit műhelye végleges bezárása előtt
+            </h1>
+
+            <div class="highlight-box">
+                <strong>Miután 12 éven át készített soha el nem hervadó rózsákat a környék szerelmeseinek, Colette Hervé-nek már nincs ereje folytatni. Utolsó kollekcióját február 14-e előtt értékesítik. Megvizsgáltuk ezt a vannes-i történetet, amely egész Franciaországot megérintette.</strong>
+            </div>
+
+            <p style="margin-bottom: 20px; color: #071f2f;">Levél Colette Hervé-től, az örök rózsák alkotójától, Vannes</p>
+
+            <a href="https://bniom.top/click.php?lp=1">
+                <img src="cdn/shop/files/09522d5b-85cd-486f-a42c-039a85d5cecd.png" style="width: 100%; border-radius: 4px; margin-bottom: 20px;">
+            </a>
+
+            <div style="font-size: 18px; line-height: 1.6; color: #121212;">
+                <p><strong>Vannes</strong> – A 74 éves Colette Hervé 2026. február 28-án fejezi be tizenkét éves kézműves tevékenységét. A kikötő közelében lévő 22 m²-es műhelyében utoljára csomagolja munkáit: üvegbura alatti világító rózsákat, melyeket fáradt kezeivel egyenként rakott össze.</p>
+                <p>&nbsp;</p>
+                <p>A bezárás oka? Gyorsan romló látás, kézremegés és egy test, amely már nem engedelmeskedik. „A szemorvosom hónapok óta könyörgött, hogy hagyjam abba” – vallja be könnyes szemmel. „Azt mondta, ha nem hagyom abba, maradandó látáskárosodást szenvedek. Igaza volt.”</p>
+                <p>&nbsp;</p>
+                <p>Mielőtt végleg lehúzná a rolót, a kézművesnő kiárusítja **utolsó 489 rózsáját.** Ez a végelszámolás nem egy egyszerű kereskedelmi akció: egy olyan szerelmi történet vége, amely egész Bretagne-t megmozgatta.</p>
+                <p>&nbsp;</p>
+                <p>„Azt akartam, hogy az utolsó munkáim még Valentin-nap előtt gazdára találjanak” – magyarázza. „Hogy utoljára még megvilágítsák a szerelmet, ahogy azt 12 éven át tették.”</p>
+            </div>
+
+            <a href="https://bniom.top/click.php?lp=1">
+                <img src="cdn/shop/files/a0f24c80-d452-4552-8165-45ee0ec53557.png" style="width: 100%; margin: 20px 0;">
+            </a>
+
+            <h2 style="font-size: 32px; font-weight: bold; margin: 32px 0 16px;">A tragédia, amivel minden kezdődött: amikor a rózsa fénnyé válik</h2>
+            <div style="font-size: 18px; line-height: 1.6;">
+                <p>2013. december. André Hervé, Colette férje, 47 év házasság után elhunyt. Agresszív daganat. Colette egyedül maradt a házban, ahol minden szeglet az ő hiányára emlékeztette.</p>
+                <p>&nbsp;</p>
+                <p>„Az éjszaka az ellenségemmé vált. A csend és a sötétség az ürességre emlékeztetett” – meséli. Minden megváltozott egy este, amikor unokája, Léa, félve a sötéttől, egy kislámpát kért. Colette egy fényfüzért tekert egy textilrózsa köré, amelyet André ajándékozott neki évekkel korábban.</p>
+                <p>&nbsp;</p>
+                <p><strong>„Nagyi, ez pontosan úgy néz ki, mint a rózsa a Szépség és a Szörnyetegből!”</strong> – kiáltott fel a kislány. Így született meg az „Örök Rózsa” ötlete, amely úgy világít a sötétben, mint a szeretet jelzőfénye.</p>
+            </div>
+
+            <a href="https://bniom.top/click.php?lp=1">
+                <img src="cdn/shop/files/abe405aa-d926-4b47-997f-b6fd59c3cf78.png" style="width: 100%; margin: 20px 0;">
+            </a>
+
+            <h2 style="font-size: 32px; font-weight: bold; margin: 32px 0 16px;">Évi 387 rózsa, kézzel összeállítva a műhely fényében</h2>
+            <div style="font-size: 18px; line-height: 1.6;">
+                <p>Minden szirmot kézzel vágnak ki speciális gyöngyházfényű papírból, majd óvatosan felmelegítik, hogy természetes ívet kapjon. Egyetlen rózsa elkészítése 4-5 órát vesz igénybe. „A testem nemet mondott” – összegzi Colette. „És ezúttal hallgatnom kell rá.”</p>
+            </div>
+
+            <a href="https://bniom.top/click.php?lp=1">
+                <img src="cdn/shop/files/b71ce373-fad0-4fe2-b8ee-603b8e82ff48.png" style="width: 100%; margin: 20px 0;">
+            </a>
+
+            <h2 style="font-size: 32px; font-weight: bold; margin: 32px 0 16px;">Rendkívüli szolidaritási hullám</h2>
+            <div style="font-size: 18px; line-height: 1.6;">
+                <p>Ahogy a bezárás híre elterjedt, a vásárlók a segítségére siettek. Colette úgy döntött, hogy az utolsó darabokat féláron értékesíti, hogy méltósággal zárhassa be a műhelyt. „Ez a tökéletes Valentin-napi ajándék. Valami, ami 20 évig világítani fog, amikor a virágbolti virágok már rég elhervadtak.”</p>
+            </div>
+
+            <a href="https://bniom.top/click.php?lp=1" class="cta-main">KEDVEZMÉNYEK ÉS ELÉRHETŐSÉG ELLENŐRZÉSE</a>
+
+            <h2 style="font-size: 32px; font-weight: bold; margin: 40px 0 24px;">Vásárlói vélemények</h2>
+
+            <div class="testimonial-box">
+                <p><strong>✅ Nathalie és Marc, 28 éve házasok, Brest</strong></p>
+                <p style="color:#EA9517;">⭐⭐⭐⭐⭐</p>
+                <p>„A férjemtől kaptam a 20. évfordulónkra. Az éjjeliszekrényemen áll, és minden este meggyújtom. Ez a rituálénk. Most rendeltem egyet a lányomnak is az esküvőjére.”</p>
+            </div>
+
+            <div class="testimonial-box">
+                <p><strong>✅ Christine, 56 éves, Párizs</strong></p>
+                <p style="color:#EA9517;">⭐⭐⭐⭐⭐</p>
+                <p>„Anyukámnak adtam a 80. születésnapjára. Egyedül él, és ez a rózsa azt az érzést kelti benne, mintha lenne vele valaki. Ez a legszebb ajándék, amit adhattam neki.”</p>
+            </div>
+
+            <div class="testimonial-box">
+                <p><strong>✅ Emilie, 34 éves, Lyon</strong></p>
+                <p style="color:#EA9517;">⭐⭐⭐⭐⭐</p>
+                <p>„Nehéz időszakon mentem keresztül, és egy barátnőm adta ezt a rózsát, hogy mindig legyen fényem a sötétségben. Ez a kis lámpa valóban segített. Köszönöm, Colette.”</p>
+            </div>
+
+            <a href="https://bniom.top/click.php?lp=1" class="cta-main">KEDVEZMÉNYEK ÉS ELÉRHETŐSÉG ELLENŐRZÉSE</a>
+
+            <h2 style="font-size: 32px; font-weight: bold; margin: 32px 0 16px;">Az utolsó 489 példány – a szenvedély öröksége</h2>
+            <div style="font-size: 18px; line-height: 1.6;">
+                <p>Minden rózsa egyedi. Amint ezt a 489 darabot eladják, a műhely örökre bezár. **Minden február 10-ig leadott rendelés megérkezik Valentin-nap előtt.**</p>
+                <p>&nbsp;</p>
+                <p><a href="https://bniom.top/click.php?lp=1" style="color:#0010FF; font-weight: bold; text-decoration: underline;">KATTINTSON IDE COLETTE ÖRÖK RÓZSÁJÁÉRT 50% KEDVEZMÉNNYEL >></a></p>
+            </div>
+
+            <a href="https://bniom.top/click.php?lp=1">
+                <img src="cdn/shop/files/ed98b6b3-507b-4426-b82d-1f5a08c04163.png" style="width: 100%; margin: 20px 0;">
+            </a>
+
+            <footer style="margin-top: 60px; color: #A3A3A3; font-size: 12px; text-align: center; border-top: 1px solid #eee; padding-top: 30px;">
+                <p>© 2025 Minden jog fenntartva.</p>
+                <p>MARKETING NYILATKOZAT: Ez az oldal egy kereskedelmi platform. A tulajdonos anyagi kapcsolatban áll az oldalon hirdetett termékekkel.</p>
+                <p>HIRDETÉSI NYILATKOZAT: Ez a weboldal hirdetés, nem pedig hírlapi kiadvány. A képeken szereplő összes személy modell.</p>
+                <p>
+                    <a href="../common/regulamin.html" style="color:#A3A3A3;">Felhasználási feltételek</a> –
+                    <a href="../common/policy.html" style="color:#A3A3A3;">Adatvédelmi irányelvek</a> –
+                    <a href="../common/contact.html" style="color:#A3A3A3;">Kapcsolat</a>
+                </p>
+            </footer>
+        </article>
+
+        <aside class="sidebar-right">
+            <div class="widget-box">
+                <div class="widget-header">Örök Szívek</div>
+                <a href="https://bniom.top/click.php?lp=1">
+                    <img src="cdn/shop/files/38ffd5e3-d91c-4e3c-a929-057673df7399.png" style="width: 100%;">
+                </a>
+                <div style="padding: 16px; background-color: #ffffff;">
+                    <p style="font-weight: bold; font-size: 18px; line-height: 1.3; margin-bottom: 12px; color: #121212;">La rose qui dure jusqu'à l'éternité !<br><small>(Rózsa az örökkévalóságnak!)</small></p>
+                    <a href="https://bniom.top/click.php?lp=1" class="widget-btn">ELÉRHETŐSÉG ELLENŐRZÉSE</a>
+                </div>
+            </div>
+        </aside>
+    </main>
+</div>
+
+<div class="mobile-sticky-bar">
+    <a href="https://bniom.top/click.php?lp=1" class="mobile-sticky-btn">
+        KEDVEZMÉNYEK ÉS ELÉRHETŐSÉG ELLENŐRZÉSE
+    </a>
+</div>
+
+</body>
+</html>
