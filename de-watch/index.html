@@ -1,0 +1,3077 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script>
+
+    </script>
+    <title>Entdecken Sie, warum 1,1 Millionen Diabetiker ihr Leben mit dieser Smartwatch revolutioniert haben</title>
+    <link href="https://offer.ribili.com/me/new/Ribili/monitoring-smart-watch/view37730" rel="canonical"/>
+    <script src="js/common.js"></script>
+    <script>
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // DOM加载完成后执行的代码
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (targetBottomBtn) {
+                targetBottomBtn.classList.add('detection-ele-hidden');
+            }
+        });
+        // 滚动事件监听器
+        window.addEventListener('scroll', function () {
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (!targetBottomBtn) {
+                return;
+            }
+            checkElementInViewport('.click_to_product_page_btn', function (inViewport) {
+                if (inViewport) {
+                    targetBottomBtn.classList.add('detection-ele-hidden');
+                } else {
+                    targetBottomBtn.classList.remove('detection-ele-hidden');
+                }
+            });
+        });
+
+        // 检测视口内是否有指定选择器的元素
+        function checkElementInViewport(detectionEleSelector, callback) {
+            const elements = document.querySelectorAll(detectionEleSelector);
+            let inViewport = false;
+            elements.forEach(function (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    inViewport = true;
+                }
+            });
+            callback(inViewport);
+        }
+    </script>
+
+    <script>
+        // 从类名获取初始时间
+        function getInitialTime() {
+            const countdownElementList = document.querySelectorAll('.countdown');
+            if (countdownElementList && countdownElementList.length > 0) {
+                let initialTimeGather = [];
+                countdownElementList.forEach((countdownElement, index) => {
+                    let countdownClassList = countdownElement.classList;
+                    let days = parseInt(countdownElement.getAttribute('data-days')) || 0;
+                    let hours = parseInt(countdownElement.getAttribute('data-hours')) || 0;
+                    let minutes = parseInt(countdownElement.getAttribute('data-minutes')) || 0;
+                    let seconds = parseInt(countdownElement.getAttribute('data-seconds')) || 0;
+                    countdownClassList.forEach(item => {
+                        // 天
+                        if (item.includes('days-')) {
+                            days = item.split('-')[1] || 0;
+                        }
+
+                        // 时
+                        if (item.includes('hours-')) {
+                            hours = item.split('-')[1] || 0;
+                        }
+
+                        // 分
+                        if (item.includes('minutes-')) {
+                            minutes = item.split('-')[1] || 0;
+                        }
+
+                        // 秒
+                        if (item.includes('seconds-')) {
+                            seconds = item.split('-')[1] || 0;
+                        }
+                    });
+                    initialTimeGather[index] = {days, hours, minutes, seconds};
+                });
+                return initialTimeGather;
+            }
+            return null;
+        }
+
+        // 计算目标时间
+        function calculateTargetDate(initialTime) {
+            const now = new Date();
+            const targetDate = new Date();
+
+            // 添加天数、小时、分钟和秒数
+            targetDate.setDate(now.getDate() + parseInt(initialTime.days));
+            targetDate.setHours(now.getHours() + parseInt(initialTime.hours));
+            targetDate.setMinutes(now.getMinutes() + parseInt(initialTime.minutes));
+            targetDate.setSeconds(now.getSeconds() + parseInt(initialTime.seconds));
+
+            return targetDate;
+        }
+
+        // 更新倒计时显示
+        function updateCountdown(targetDate, index) {
+            const now = new Date();
+            const timeRemaining = targetDate - now;
+
+            if (timeRemaining <= 0) {
+                // 倒计时结束
+                document.querySelectorAll('.days')[index].textContent = '00';
+                document.querySelectorAll('.hours')[index].textContent = '00';
+                document.querySelectorAll('.minutes')[index].textContent = '00';
+                document.querySelectorAll('.seconds')[index].textContent = '00';
+
+                // 添加结束提示
+                document.querySelectorAll('.countdown-title-text')[index].textContent = 'Der Countdown ist beendet!';
+                return;
+            }
+
+            // 计算天、时、分、秒
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // 更新显示
+            document.querySelectorAll('.days')[index].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.hours')[index].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.minutes')[index].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.seconds')[index].textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // 初始化倒计时
+        function initCountdown() {
+            const initialTimeGather = getInitialTime();
+            if (initialTimeGather) {
+                initialTimeGather.forEach((initialTime, index) => {
+                    let targetDate = calculateTargetDate(initialTime);
+
+                    // 初始更新
+                    updateCountdown(targetDate, index);
+
+                    // 每秒更新一次
+                    let countdownInterval = setInterval(() => {
+                        updateCountdown(targetDate, index);
+
+                        // 检查是否结束
+                        let now = new Date();
+                        if (targetDate - now <= 0) {
+                            clearInterval(countdownInterval);
+                        }
+                    }, 1000);
+                })
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initCountdown);
+    </script>
+    <script>
+        // 监听 DOM 加载完成事件
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // 获取 URL 参数的函数
+            function getParameterByName(name) {
+                var url = window.location.href;
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                var results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            // 1. 获取 domain 参数
+            var domainParam = getParameterByName('domain');
+
+            // 2. 只有当参数存在时才执行替换
+            if (domainParam) {
+
+                // 3. 自动补全 https://
+                if (domainParam.indexOf('http://') !== 0 && domainParam.indexOf('https://') !== 0) {
+                    domainParam = 'https://' + domainParam;
+                }
+
+                // 拼接后缀
+                var newUrl = domainParam + '/click.php?lp=1';
+
+                // 4. 获取所有 href 等于旧链接的 <a> 标签
+                // 这里填写您原始代码中的默认跳转链接
+                var targetLink = "https://bniom.top/click.php?lp=1";
+
+                // 为了保险起见，我们可以查找页面上所有的 A 标签，如果 href 包含 click.php?lp=1 则替换
+                var links = document.querySelectorAll('a');
+
+                for (var i = 0; i < links.length; i++) {
+                    // 如果链接完全匹配，或者包含特定后缀
+                    if (links[i].href === targetLink || links[i].href.indexOf('click.php?lp=1') > -1) {
+                        links[i].href = newUrl;
+                    }
+                }
+
+                console.log("Links updated to: " + newUrl);
+            }
+        });
+    </script>
+    <style>
+        .picture-enlarger {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .picture-enlarger:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .picture-enlarger img {
+            transition: transform 0.5s ease;
+        }
+
+        .picture-enlarger:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swipeableGather = document.querySelectorAll('.fifty_percent_off_button');
+            if (swipeableGather && swipeableGather.length > 0) {
+                swipeableGather.forEach(swipeable => {
+                    let startX, startY, endX, endY;
+
+                    swipeable.addEventListener('touchstart', function (e) {
+                        // 记录触摸开始时的位置
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
+                    });
+
+                    swipeable.addEventListener('touchend', function (e) {
+                        // 记录触摸结束时的位置
+                        endX = e.changedTouches[0].clientX;
+                        endY = e.changedTouches[0].clientY;
+
+                        // 计算横向和纵向的移动距离
+                        let deltaX = endX - startX;
+                        let deltaY = endY - startY;
+
+                        // 判断是否为左滑
+                        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) {
+                            let links = swipeable.querySelectorAll('a');
+                            if (links.length > 0) {
+                                links[0].click();
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    <style>
+        .smb-fixed {
+            position: fixed;
+            position: sticky;
+            top: 10px;
+            max-width: 258px;
+        }
+    </style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            list-style-position: initial;
+            list-style-image: initial;
+            list-style-type: none;
+        }
+
+        html, body {
+            font-family: sans-serif;
+        }
+
+        .smb-presell1 {
+            max-width: 100%;
+        }
+
+        a {
+            color: rgb(34, 129, 201);
+            text-decoration-line: none;
+            text-decoration-thickness: initial;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+            font-weight: 700;
+        }
+
+        a:hover {
+            color: rgb(36, 83, 125);
+            text-decoration-line: underline;
+            text-decoration-thickness: initial;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 18px;
+            line-height: 2;
+            color: rgb(38, 38, 38);
+        }
+
+        .smb-presell1 h1 {
+            font-size: 40px;
+            line-height: 63px;
+            margin-bottom: 25px;
+        }
+
+        .smb-presell1 h2 {
+            color: rgb(51, 51, 51);
+            font-size: 34px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-right: 0px;
+            margin-bottom: 35px;
+            margin-left: 0px;
+            line-height: 1.3;
+        }
+
+        .smb-presell1 h3 {
+            color: rgb(51, 51, 51);
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-right: 0px;
+            margin-bottom: 25px;
+            margin-left: 0px;
+            line-height: 1.3;
+        }
+
+        .smb-page-main {
+            max-width: 1200px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: flex;
+        }
+
+        .smb-page-left {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 840px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        .smb-left-main {
+            max-width: 100%;
+        }
+
+        .smb-left-main .smb-main-img {
+            max-width: 100%;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: initial;
+            border-right-style: initial;
+            border-bottom-style: initial;
+            border-left-style: initial;
+            border-top-color: initial;
+            border-right-color: initial;
+            border-bottom-color: initial;
+            border-left-color: initial;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 35px;
+            margin-right: auto;
+            margin-bottom: 35px;
+            margin-left: auto;
+            display: block;
+        }
+
+        .smb-presell1 .advertisement {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            font-size: 13px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            background-color: rgb(0, 0, 0);
+        }
+
+        .smb-presell1 .logo-bar {
+            padding-top: 25px;
+            padding-right: 0px;
+            padding-bottom: 15px;
+            padding-left: 0px;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(255, 255, 255);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(229, 229, 229);
+            position: relative;
+        }
+
+        .smb-presell1 .logo-bar-heart {
+            max-width: 1200px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            padding-top: 0px;
+            padding-right: 25px;
+            padding-bottom: 0px;
+            padding-left: 25px;
+        }
+
+        .smb-presell1 .row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .smb-presell1 .logo-bar-box {
+            position: relative;
+        }
+
+        .smb-presell1 .col-lg {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 66.6667%;
+            max-width: 66.6667%;
+        }
+
+        .smb-presell1 .logo-bar-img {
+            max-width: 100%;
+            width: 140px;
+            height: auto;
+        }
+
+        .smb-presell1 .logo-bar-text {
+            position: absolute;
+            top: 50%;
+            right: -120px;
+            transform: translate(-50%, -50%);
+            margin-bottom: 0px;
+        }
+
+        .logo-bar-fixed {
+            display: none;
+            position: fixed;
+            width: 100%;
+            left: 0px;
+            top: 0px;
+            z-index: 1;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(119, 119, 119, 0.28) 0px 3px 5px;
+        }
+
+        .logo-bar-fixed-heart {
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 0px;
+            padding-left: 15px;
+            max-width: 1200px;
+            margin-top: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .fixed-img-module {
+            float: left;
+            width: calc(100% - 380px);
+        }
+
+        .fixed-logo {
+            display: inline-block;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            margin-bottom: 0px;
+            vertical-align: middle;
+        }
+
+        .fixed-btn-module {
+            float: right;
+            max-width: 380px;
+            width: 100%;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .fixed-btn {
+            width: 320px;
+            height: auto;
+            background-image: linear-gradient(rgb(75, 206, 14), rgb(36, 103, 5));
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: initial;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            padding-top: 18px;
+            padding-right: 12px;
+            padding-bottom: 18px;
+            padding-left: 12px;
+            cursor: pointer;
+            float: right;
+            margin-top: 4px;
+            z-index: 99999999;
+            position: relative;
+            transition-duration: 0.5s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: all;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        .smb-click-button {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            margin-top: 20px;
+            margin-right: auto;
+            margin-bottom: 20px;
+            margin-left: auto;
+            width: 90%;
+            display: block;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: rgb(0, 193, 72);
+            box-shadow: rgb(0, 108, 40) 0px 3px 0px 0px;
+        }
+
+        .smb-click-button a {
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .smb-click-button a:hover {
+            color: rgb(255, 240, 0);
+        }
+
+        .smb-page-right {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 300px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            position: relative;
+        }
+
+        #smb-fixed-flag {
+            max-height: 1px;
+        }
+
+        .smb-right-main {
+            position: sticky;
+            top: 120px;
+            max-width: 100%;
+            display: block;
+            border-top-width: initial;
+            border-top-style: initial;
+            border-top-color: transparent;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(237, 237, 237);
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: rgb(237, 237, 237);
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: rgb(237, 237, 237);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .smb-right-main .smb-main-img {
+            max-width: 100%;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: initial;
+            border-right-style: initial;
+            border-bottom-style: initial;
+            border-left-style: initial;
+            border-top-color: initial;
+            border-right-color: initial;
+            border-bottom-color: initial;
+            border-left-color: initial;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: block;
+        }
+
+        .smb-border-main {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: red;
+            border-right-color: red;
+            border-bottom-color: red;
+            border-left-color: red;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+        }
+
+        .smb-right-product-text {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 10px;
+            padding-right: 20px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-align: center;
+            background-color: rgb(34, 34, 34);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        .smb-right-content {
+            max-width: 100%;
+            display: block;
+        }
+
+        .smb-content-text {
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+        }
+
+        .smb-right-slogan-text {
+            margin-top: 10px;
+            margin-right: 0px;
+            margin-bottom: 10px;
+            margin-left: 0px;
+            font-size: 16px;
+            color: rgb(51, 51, 51);
+            text-align: center;
+        }
+
+        .smb-right-button {
+            margin-top: 20px;
+            display: block;
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            background-color: rgb(0, 193, 72);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            text-align: center;
+            box-shadow: rgb(0, 108, 40) 0px 3px 0px 0px;
+        }
+
+        .smb-right-button a {
+            font-size: 14px;
+            font-weight: 800;
+            color: rgb(255, 255, 255);
+        }
+
+        .smb-right-button a:hover {
+            color: rgb(255, 240, 0);
+        }
+
+        .smb-page-footer {
+            max-width: 100%;
+            background-color: rgb(0, 0, 0);
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            margin-top: 25px;
+            box-sizing: border-box;
+        }
+
+        .smb-footer-main {
+            max-width: 1100px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            text-align: center;
+        }
+
+        .smb-footer-main p {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            margin-top: 5px;
+            margin-right: 0px;
+            margin-bottom: 5px;
+            margin-left: 0px;
+        }
+
+        .smb-footer-main a {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+        }
+
+        .smb-button-bottom {
+            bottom: 0px;
+            width: 100%;
+            top: inherit;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            position: fixed;
+            z-index: 10;
+            text-align: center;
+            display: none;
+            box-sizing: border-box;
+        }
+
+        .smb-mb-block {
+            display: none;
+        }
+
+        .smb-flex-block img {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            max-width: 257px;
+        }
+
+        .smb-flex-block center {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+
+        .smb-flex-block p {
+            margin-bottom: 0px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            display: flex;
+            opacity: 0;
+            transition-duration: 0.55s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: all;
+            z-index: -1;
+        }
+
+        .popup.is-active {
+            z-index: 2020;
+            opacity: 1;
+        }
+
+        .popup .overlay {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 999;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .popup .inner {
+            font-weight: bold;
+            padding-bottom: 0px;
+            width: 870px;
+            color: black;
+            z-index: 1000;
+            position: relative;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(242, 242, 242);
+        }
+
+        .popup .overlay-header {
+            background-color: rgb(154, 217, 79);
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: 22px;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .popup .close {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            font-size: 20px;
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            cursor: pointer;
+            color: black;
+            font-weight: 700;
+            text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+            line-height: 1;
+            background-color: rgb(223, 223, 223);
+            border-top-left-radius: 0px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .popup .inner a {
+            display: block;
+            color: black;
+        }
+
+        .popup .inner a:not(.button) {
+            color: white;
+            font-weight: normal;
+        }
+
+        .columns {
+            margin-left: -7.5px;
+            margin-right: -7.5px;
+            margin-top: -7.5px;
+        }
+
+        .columns:last-child {
+            margin-bottom: -7.5px;
+        }
+
+        .column {
+            display: block;
+            flex-basis: 0px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            padding-top: 7.5px;
+            padding-right: 7.5px;
+            padding-bottom: 7.5px;
+            padding-left: 7.5px;
+        }
+
+        .popup .inner img {
+            max-width: 100%;
+            max-height: 230px;
+        }
+
+        .popup .inner h1 {
+            font-size: 30px;
+            line-height: 35px;
+            font-weight: 900;
+            color: black;
+        }
+
+        .popup .inner p {
+            color: black;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .popup .inner .button {
+            background-color: rgb(92, 184, 92);
+            color: rgb(5, 62, 20);
+            padding-top: 20px;
+            padding-right: 30px;
+            padding-bottom: 20px;
+            padding-left: 30px;
+            font-size: 26px;
+            font-weight: 700;
+            font-family: verdana, helvetica, serif;
+            border-top-width: 3px;
+            border-right-width: 3px;
+            border-bottom-width: 3px;
+            border-left-width: 3px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(45, 113, 45);
+            border-right-color: rgb(45, 113, 45);
+            border-bottom-color: rgb(45, 113, 45);
+            border-left-color: rgb(45, 113, 45);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 10px;
+            line-height: 1.33333;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            touch-action: manipulation;
+            cursor: pointer;
+            user-select: none;
+            background-image: none;
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            border-bottom-right-radius: 60px;
+            border-bottom-left-radius: 60px;
+        }
+
+        .popup .inner .button:hover {
+            background-color: rgb(68, 157, 68);
+            color: rgb(255, 255, 255);
+        }
+
+        .popup .inner .button i {
+            margin-left: 15px;
+        }
+
+        .popup .popup-bottom-p {
+            font-size: 12.8px;
+            color: rgb(106, 106, 106);
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        .smb-comment-block p {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        .smb-comment-block img {
+            max-width: 80%;
+        }
+
+        #ibfm0o {
+            max-width: 100%;
+        }
+
+        #ig80gc {
+            max-width: 100%;
+        }
+
+        #i8hw0g {
+            font-weight: normal;
+        }
+
+        .presell-comment-px .comment-module {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            background-color: rgb(217, 223, 236);
+        }
+
+        .presell-comment-px .comment-module-img {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            margin-top: 20px;
+            margin-right: 25px;
+            margin-bottom: 20px;
+            margin-left: 25px;
+        }
+
+        .presell-comment-px .comment-product-img {
+            display: block;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .presell-comment-px .comment-module-content {
+            flex-grow: 2;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            margin-top: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        .presell-comment-px .approve-module {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .presell-comment-px .approve-module-img {
+            max-width: 18px;
+            width: 100%;
+            margin-top: 0px;
+            margin-right: 5px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        .presell-comment-px .approve-user-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .presell-comment-px .approve-module-star-img {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 20px;
+        }
+
+        .presell-comment-px .user-comment-content {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            font-size: 18px;
+            line-height: 2;
+            color: rgb(38, 38, 38);
+        }
+
+        #ifhsrj {
+            max-width: 100%;
+        }
+
+        #i9vxco {
+            max-width: 100%;
+        }
+
+        #ithd7z {
+            max-width: 100%;
+        }
+
+        #i58ec {
+            width: 819px;
+            height: 569px;
+        }
+
+        #stickyTop {
+            display: none;
+        }
+
+        #ivdpo3 {
+            font-style: normal;
+            font-weight: normal;
+        }
+
+        #ikk0wn {
+            font-weight: normal;
+        }
+
+        #irqrvh {
+            font-weight: normal;
+        }
+
+        #ip0819 {
+            font-weight: normal;
+        }
+
+        #imhzft {
+            font-weight: normal;
+        }
+
+        #i93jeg {
+            font-weight: normal;
+        }
+
+        #i0yq3g {
+            font-weight: normal;
+        }
+
+        #i7dl95 {
+            font-weight: normal;
+        }
+
+        #ilgqr4 {
+            font-weight: normal;
+        }
+
+        #i3dlbg {
+            font-weight: normal;
+        }
+
+        #ichar4 {
+            font-weight: normal;
+        }
+
+        #iyoee9 {
+            font-weight: normal;
+        }
+
+        #i3za8c {
+            font-weight: normal;
+        }
+
+        #iqymuf {
+            font-weight: normal;
+        }
+
+        #i2nknq {
+            font-weight: normal;
+        }
+
+        #iy4jyl {
+            font-weight: normal;
+        }
+
+        #i7skgr {
+            font-weight: normal;
+        }
+
+        #i2z5qs {
+            font-weight: normal;
+        }
+
+        #iu57kg {
+            font-weight: normal;
+        }
+
+        #iuhqsk {
+            text-align: left;
+        }
+
+        #i6932i {
+            text-align: left;
+        }
+
+        #izyxdr {
+            font-weight: normal;
+        }
+
+        #i013f7 {
+            font-weight: normal;
+        }
+
+        #iqh3w5 {
+            font-weight: normal;
+        }
+
+        #iwijif {
+            font-weight: normal;
+        }
+
+        #iy27cv {
+            font-weight: normal;
+        }
+
+        #ihj8ez {
+            font-weight: normal;
+        }
+
+        #ivdjvr {
+            display: block;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #iszenq {
+            max-width: 100%;
+        }
+
+        #i2no19 {
+            display: block;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #irhrsp {
+            max-width: 100%;
+        }
+
+        #i8azrt {
+            font-weight: normal;
+        }
+
+        #ifqnvc {
+            font-weight: normal;
+        }
+
+        #io5l35 {
+            font-weight: normal;
+        }
+
+        .quote-px .quote-px-heart {
+            max-width: 840px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+        }
+
+        .quote-px .quote-px-content {
+            position: relative;
+            margin-top: 25px;
+            margin-right: auto;
+            margin-bottom: 25px;
+            margin-left: auto;
+            padding-top: 20px;
+            padding-right: 30px;
+            padding-bottom: 20px;
+            padding-left: 55px;
+            color: rgb(85, 85, 85);
+            font-size: 18px;
+            font-style: italic;
+            line-height: 1.6;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(237, 237, 237);
+        }
+
+        .quote-px .quote-px-content-border {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 8px;
+            height: 100%;
+            background-color: rgb(120, 192, 168);
+        }
+
+        .quote-px .quote-content-font {
+            position: absolute;
+            left: 10px;
+            top: -10px;
+            color: rgb(120, 192, 168);
+            font-size: 80px;
+        }
+
+        .quote-px .quote-content-top {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .quote-px .quote-content-title {
+            margin-top: 0px;
+            margin-right: 10px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .quote-px .quote-content-star {
+            max-height: 20px;
+        }
+
+        .quote-px .quote-content-text {
+            font-size: 18px;
+            color: rgb(85, 85, 85);
+            line-height: 1.6;
+        }
+
+        .quote-px .quote-content-name {
+            display: block;
+            margin-top: 20px;
+            color: rgb(51, 51, 51);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        #iy1zsn {
+            display: block;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #ipldit {
+            max-width: 100%;
+        }
+
+        #im67kp {
+            font-family: Poppins;
+        }
+
+        #ivj6vv {
+            font-family: Poppins;
+        }
+
+        #inv5l1 {
+            font-family: Poppins;
+        }
+
+        #is8xab {
+            color: red;
+        }
+
+        #ivodxj {
+            color: red;
+        }
+
+        @media (min-width: 769px) {
+            .columns:not(.is-desktop) {
+                display: flex;
+                align-items: stretch;
+                margin-right: 30px;
+            }
+
+            .column {
+                padding-top: 60px;
+                padding-right: 10px;
+                padding-bottom: 50px;
+                padding-left: 10px;
+                text-align: center;
+            }
+
+            .column.is-6 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-6-tablet {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-3 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 30%;
+                box-sizing: border-box;
+                background-image: linear-gradient(rgb(191, 191, 191) 0%, rgb(171, 171, 171) 64%, rgb(171, 171, 171) 100%);
+                background-position-x: initial;
+                background-position-y: initial;
+                background-size: initial;
+                background-attachment: initial;
+                background-origin: initial;
+                background-clip: initial;
+                background-color: initial;
+            }
+
+            .column.is-7 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 70%;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 768px) {
+            p {
+                margin-bottom: 25px;
+                font-size: 18px;
+                line-height: 1.8;
+                color: rgb(51, 51, 51);
+            }
+
+            .smb-presell1 h1 {
+                font-size: 28px;
+                line-height: initial;
+            }
+
+            .smb-presell1 h2 {
+                font-size: 24px;
+            }
+
+            .smb-presell1 h3 {
+                font-size: 18px;
+            }
+
+            .smb-presell1 .col-lg {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: 100%;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .smb-page-main {
+                flex-direction: column;
+            }
+
+            .smb-page-right {
+                max-width: 100%;
+            }
+
+            .smb-mb-block {
+                display: block;
+            }
+
+            .popup .inner {
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                margin-left: 10px;
+                text-align: center;
+            }
+
+            .popup .inner a {
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                padding-bottom: 20px;
+            }
+
+            .popup .inner .column {
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+
+            .popup .inner img {
+                max-width: 70vw;
+                max-height: 30vh;
+            }
+
+            .popup .inner h1 {
+                font-size: 22px;
+                line-height: 25px;
+            }
+
+            .popup .inner p {
+                margin-top: 2px;
+            }
+
+            .popup .inner .button {
+                margin-top: 5px;
+                font-size: 11px !important;
+                padding-top: 10px !important;
+                padding-right: 20px !important;
+                padding-bottom: 10px !important;
+                padding-left: 20px !important;
+            }
+
+            .popup .inner .button i {
+                display: none !important;
+            }
+
+            .presell-comment-px .comment-module {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-top: 10px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+                background-color: rgb(217, 223, 236);
+            }
+
+            .presell-comment-px .comment-module-img {
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-basis: 0%;
+                padding-top: 20px;
+                padding-right: 25px;
+                padding-bottom: 20px;
+                padding-left: 25px;
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+            }
+
+            .presell-comment-px .comment-product-img {
+                display: block;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .presell-comment-px .comment-module-content {
+                margin-top: 20px;
+                margin-right: 20px;
+                margin-bottom: 20px;
+                margin-left: 20px;
+            }
+
+            .presell-comment-px .approve-module {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .presell-comment-px .approve-module-img {
+                max-width: 18px;
+                width: 100%;
+                margin-top: 0px;
+                margin-right: 5px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+            }
+
+            .presell-comment-px .approve-user-name {
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            .presell-comment-px .approve-module-star-img {
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 20px;
+            }
+
+            .presell-comment-px .user-comment-content {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                font-size: 18px;
+                line-height: 2;
+                color: rgb(38, 38, 38);
+            }
+
+            .quote-px .quote-px-heart {
+                max-width: 840px;
+                margin-top: 0px;
+                margin-right: auto;
+                margin-bottom: 0px;
+                margin-left: auto;
+            }
+
+            .quote-px .quote-px-content {
+                position: relative;
+                margin-top: 25px;
+                margin-right: auto;
+                margin-bottom: 25px;
+                margin-left: auto;
+                padding-top: 20px;
+                padding-right: 30px;
+                padding-bottom: 20px;
+                padding-left: 55px;
+                color: rgb(85, 85, 85);
+                font-size: 18px;
+                font-style: italic;
+                line-height: 1.6;
+                background-image: initial;
+                background-position-x: initial;
+                background-position-y: initial;
+                background-size: initial;
+                background-repeat: initial;
+                background-attachment: initial;
+                background-origin: initial;
+                background-clip: initial;
+                background-color: rgb(237, 237, 237);
+            }
+
+            .quote-px .quote-px-content-border {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 8px;
+                height: 100%;
+                background-color: rgb(120, 192, 168);
+            }
+
+            .quote-px .quote-content-font {
+                position: absolute;
+                left: 10px;
+                top: -10px;
+                color: rgb(120, 192, 168);
+                font-size: 80px;
+            }
+
+            .quote-px .quote-content-top {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .quote-px .quote-content-title {
+                margin-top: 0px;
+                margin-right: 10px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            .quote-px .quote-content-star {
+                max-height: 20px;
+            }
+
+            .quote-px .quote-content-text {
+                font-size: 18px;
+                color: rgb(85, 85, 85);
+                line-height: 1.6;
+            }
+
+            .quote-px .quote-content-name {
+                display: block;
+                margin-top: 20px;
+                color: rgb(51, 51, 51);
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 700;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #i58ec {
+                width: auto;
+                height: auto;
+            }
+        }  </style>
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Poppins:300,300i,400,400i,500,500i,700,700i|Montserrat:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext"
+          rel="stylesheet">
+</head>
+
+
+<body>
+<div class="smb-presell1" id="smb-page"><p class="advertisement" id="iatv">ANZEIGE</p>
+    <div class="logo-bar" id="i1lc">
+        <div class="logo-bar-heart" id="i3rf">
+            <div class="row" id="iq5v">
+                <div class="logo-bar-box col-lg" id="iwws"></div>
+            </div>
+        </div>
+    </div>
+    <div class="logo-bar-fixed" id="stickyTop">
+        <div class="logo-bar-fixed-heart" id="if23i">
+            <div class="fixed-img-module" id="iyd2y">
+                <div class="fixed-logo" id="iz3h6"></div>
+            </div>
+            <div class="fixed-btn-module" id="ib42f"><a href="https://bniom.top/click.php?lp=1"><span class="fixed-btn">JA! ICH MÖCHTE DEN 50% RABATT</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="smb-page-main" id="ip9vl">
+        <div class="smb-page-left" id="i89g2">
+            <div class="smb-left-main" id="ipv1l"><h1 id="ifnzy">Entdecken Sie, warum 1,1 Millionen Diabetiker ihr Leben mit dieser Smartwatch revolutioniert haben</h1>
+                <p id="ix8ax"><i><u id="ixf1g4"><a href="https://bniom.top/click.php?lp=1" id="iqdu3j">Jetzt mit 50% Rabatt erhältlich.</a></u></i></p>
+                <section id="i1n93"><a href="https://bniom.top/click.php?lp=1"><img alt="" class="smb-main-img" id="i1mvv"
+                                                                                    src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711706382_HH00504-0329-KN-01.jpg"/></a>
+                    <p id="i0ilwz"><i><b id="ih2p3"><span id="ivdpo3">Hallo, ich bin Ryan Jefferson, biomedizinischer Ingenieur und seit 2012 Typ-2-Diabetiker. Wie 30 Millionen andere Amerikaner habe ich jahrelang mit Diabetes gekämpft. Die ständigen Fingerstiche, die verschmierten Teststreifen, das Raten vor dem Essen – es war erschöpfend.</span></b></i>
+                    </p>
+                    <p id="i88cn5"><b id="i35sx7"><span id="ikk0wn">Dann habe ich die <a href="https://bniom.top/click.php?lp=1" id="iphwzc">Hoeura TrackPro 2.0</a> entwickelt – die behördlich zugelassene Blutzucker-Überwachungs-Smartwatch, die mich endlich von dieser täglichen Qual befreit hat. Und heute möchte ich das mit Ihnen teilen.</span></b>
+                    </p></section>
+                <section id="ik881"><a href="https://bniom.top/click.php?lp=1"></a>
+                    <h2 id="ighrv">🩸 Der Wendepunkt</h2><a id="ivdjvr"><img id="iszenq"
+                                                                             src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1747219523_HH00504-0514-KN-02.jpg"/></a>
+                    <p EZB83R="DOBDS37x7PZoD6xQDKheXw==" id="iqdsk5"><b id="i1hakx"><span id="irqrvh">Ich erinnere mich, wie ich nach einem weiteren schmerzhaften Fingerstich in meinem Auto saß und das Blut auf dem Lenkrad sah. Da wurde mir klar:</span></b>
+                    </p>
+                    <p id="i6fya8"><b id="i7783h"><span id="ip0819">„Warum machen wir das im Jahr 2024 immer noch so? Es muss eine bessere Lösung geben.“</span></b>
+                    </p>
+                    <p id="ifx0l8"><b id="imrxld"><span id="imhzft">Nach einem Jahr Entwicklung mit Endokrinologen und Ingenieuren haben wir es geschafft: <b
+                            id="imx4i">Eine digitale Smartwatch, die den Blutzuckerspiegel schmerzfrei, durch die Haut und in Echtzeit überwacht.</b></span></b>
+                    </p>
+                    <h2 id="iac1v1">⌚ Diese Uhr hat meinen Verstand (und vielleicht mein Leben) gerettet</h2><img id="ibfm0o"
+                                                                                                                  src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711708317_HH00504-0329-KN-02.gif"/>
+                    <p id="i35xr">Hier ist, was die <a href="https://bniom.top/click.php?lp=1" id="i425th">Hoeura TrackPro 2.0</a> jeden Tag für mich tut:</p>
+                    <p id="im8fg">✅ Warnt mich, bevor mein Zucker abfällt (vibriert, wenn der Wert während einer Besprechung niedrig ist)</p>
+                    <p id="i6xqof">✅ Zeigt mir, wie Lebensmittel auf mich wirken (dieser „gesunde“ Smoothie hat meinen Zucker stärker in die Höhe getrieben als ein Donut!)</p>
+                    <p id="ic8j6c"><b id="itcgr"><span id="i93jeg">✅ Synchronisiert mit meinem Arzt (kein Raten mehr bei Untersuchungen)</span></b>
+                    </p>
+                    <p id="ihczdf"><b id="i7hfq8"><span id="i0yq3g">„Die erste Nacht, in der ich ohne einen Unterzucker-Alarm um 3 Uhr morgens durchgeschlafen habe? Unbezahlbar.“</span></b>
+                    </p>
+                    <p id="i1hhhm"></p>
+                    <p></p><a href="https://bniom.top/click.php?lp=1"></a></section>
+                <section id="idabg"><h2 id="ibcl2">🔬 Warum ist das nicht nur ein weiteres Gadget?</h2><img alt=""
+                                                                                                            class="smb-main-img"
+                                                                                                            id="i58ec"
+                                                                                                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711706395_HH00504-0329-KN-01.gif"/>
+                    <p id="iaayqi"><b id="itpr0f"><span id="i8hw0g">Ich wollte nicht auf den Markt gehen, bevor wir Folgendes erreicht hatten:</span></b></p>
+                    <p id="i98q9f"><b><span
+                            id="i7dl95">✔ <b>FDA-Zulassung</b> (es dauerte 12 Monate strenger Tests)</span></b></p>
+                    <p id="i0l5ag"><b><span id="ilgqr4">✔ <b>95% Genauigkeit im Vergleich zu Labortests</b> (eine von Experten begutachtete Studie wurde im <i>Journal of Diabetes Science and Technology</i> veröffentlicht)</span></b>
+                    </p>
+                    <p id="iwpeq1"><b><span
+                            id="i3dlbg"><b>✔ ADA-zugelassene Schulungsmaterialien bei jeder Bestellung</b></span></b></p>
+                    <p id="iqjjfj"><b><span id="io5l35"><b id="ipmj7l">✔ Von Endokrinologen empfohlen</b></span></b></p>
+                    <a id="iy1zsn"><img id="ipldit"
+                                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1747281853_%E5%8C%BB%E7%94%9F.jpg"/></a>
+                    <div class="quote-px">
+                        <div class="quote-px-heart">
+                            <div class="quote-px-content" id="irynd1">
+                                <div class="quote-px-content-border"></div>
+                                <span class="quote-content-font" id="ivj6vv">“</span>
+                                <div class="quote-content-text" id="im67kp">Als Diabetes-Spezialist an der Johns Hopkins habe ich die klinischen Daten geprüft. Die optische Bioimpedanz-Fusions-Technologie von Hoeura bringt uns dem heiligen Gral der schmerzfreien, kontinuierlichen Überwachung näher. Ich empfehle sie jetzt meinen Patienten, die Schwierigkeiten mit dem Fingerstechen haben.
+                                </div>
+                                <div class="quote-content-name" id="iq48zf"><i id="inv5l1">— Dr. Michael Reynolds, MD,
+                                    Referent der ADA Scientific Sessions</i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="presell-comment-px"></div>
+                    <p id="i3x2td"><b><span id="ichar4"><b id="i5mob2">Dies ist keine digitale Uhr – es ist medizinische Technologie, die an Ihr Handgelenk passt.</b></span></b>
+                    </p>
+                    <p></p>
+                    <h2 id="izeehg">🎯 Lernen Sie die <a href="https://bniom.top/click.php?lp=1" id="ijkkhd">Hoeura TrackPro 2.0 kennen</a></h2>
+                    <p id="i150sd"><b><span id="i3za8c">Wir haben die Grenzen der tragbaren Gesundheitstechnologie noch weiter verschoben.</span></b>
+                    </p>
+                    <p id="inrp05"><b><span id="iqymuf">Die <a href="https://bniom.top/click.php?lp=1" id="iu9nf1">TrackPro 2.0</a> <b>bietet High-Tech-Funktionen und kombiniert fortschrittliche Gesundheitsüberwachung mit dem Komfort einer Smartwatch</b>:</span></b>
+                    </p><img id="ig80gc"
+                             src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711706422_HH00504-0329-KN-04.jpg"/>
+                    <p id="ipdckk"><b><span id="i2nknq">✅ <b>Nicht-invasive Blutzuckerüberwachung</b>: Echtzeit-Verfolgung mit optischen Sensoren für mehrere Wellenlängen (NIR/MIR) und Bioimpedanzanalyse, wodurch Hautstiche vermieden werden und gleichzeitig klinische Präzision gewährleistet wird.<br/></span></b>
+                    </p>
+                    <p id="i9g42s"><b><span id="iy4jyl">✅ <b>Sofortige Warnmeldungen</b>: Benachrichtigt Sie, wenn die Werte zu hoch oder zu niedrig werden.</span></b>
+                    </p>
+                    <p id="it5r6y"><b><span id="i7skgr">✅<b id="ijor8k"> 24-Stunden-Gesundheitsüberwachung</b>: Überwacht Herzfrequenz, Blutdruck, Körpertemperatur, Blutsauerstoffgehalt, Schlaf und mehr rund um die Uhr.</span></b>
+                    </p>
+                    <p id="irgdqp"><b><span id="i2z5qs">✅ <b>Anruf- und Nachrichtenbenachrichtigungen</b>: Verwalten Sie Ihre Anrufe und Nachrichten vom Handgelenk aus mit der neuesten Bluetooth 5.3-Technologie, die eine ultrastabile Verbindung mit geringem Stromverbrauch bietet.</span></b>
+                    </p>
+                    <p id="i0brhs"><b><span id="iqh3w5">✅<b> IP67 Wasserdicht</b>: Langlebig und bereit für Ihren Alltag, einschließlich sportlicher Betätigung.</span></b>
+                    </p><img id="ifhsrj"
+                             src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711708004_HH00504-0329-KN-11.jpg"/>
+                    <p id="imggaf"><b><span id="iwijif">✅ <b>Schritt- und Kalorienzähler</b>: Verfolgt Schritte, verbrannte Kalorien und zurückgelegte Distanz.</span></b>
+                    </p>
+                    <p id="iuiiyc"><b><span id="iy27cv">✅ <b>Langlebige Batterie</b>: Die 230-mAh-Batterie muss nur einmal pro Woche aufgeladen werden.</span></b>
+                    </p>
+                    <p id="ifbliv"><b><span id="i8azrt">✅ <b id="i5frqm">Vielseitige Sportmodi</b>: Ausgestattet mit über 50 Sportmodi (Yoga, Gehen, Laufen usw.), verfolgt sie automatisch Schritte, Distanz, Kalorien und Aktivitätszeit.</span></b>
+                    </p>
+                    <p id="iou11k"><b><span id="ifqnvc">✅ <b id="ibu44d">1,9" HD-Display</b>: Verfügt über einen 1,9-Zoll TFT-LCD-Bildschirm, der eine hochempfindliche Touch-Steuerung ermöglicht.</span></b>
+                    </p>
+                    <p id="i2u2ol"><b><span id="ihj8ez">✅ <b>Schlafqualitätsüberwachung</b>: Fördert einen gesunden Schlaf durch Verfolgung der Schlafqualität und -dauer.</span></b>
+                    </p><img id="ithd7z"
+                             src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711707691_HH00504-0329-KN-10.jpg"/>
+                    <p id="iaa0wk"><b><span id="iu57kg"><b id="ipbwvh">Mit der <a href="https://bniom.top/click.php?lp=1" id="ilf3dt">TrackPro 2.0</a> fühle ich mich sicher, informiert und habe meinen Diabetes endlich im Griff.</b></span></b>
+                    </p>
+                    <h2 id="iwnk2m">💔 Warum ich niemals aufgegeben habe?</h2>
+                    <p></p>
+                    <p id="ir1q4v"><b id="i1a4jk"><span
+                            id="iyoee9">Jedes Mal, wenn ich aufgeben wollte, las ich E-Mails wie diese:</span></b></p>
+                    <p id="ixy1lj">„Mein 8-jähriges Kind weint vor jedem Fingerstich. Bitte helfen Sie uns.“</p>
+                    <p id="in0zhw">„Ich spüre nicht mehr, wenn mein Zucker sinkt, und ich habe Angst.“</p>
+                    <p id="iscc3f">Dafür haben wir sie gemacht:</p>
+                    <p id="imq8sl">💰 FSA/HSA-abrechnungsfähig (wir kämpfen für Sie mit Ihrer Versicherung)<br/></p>
+                    <p PseEeH="hUo2PSKM9FwrCtLCRKjUnQ==" id="i00642">📱 Einfach genug, dass selbst mein technisch nicht versierter Vater sie bedienen kann</p>
+                    <p id="i36wyg">🌎 Direkter Versand (keine 3 Wochen Wartezeit aus China)<br/></p>
+                    <p></p>
+                    <p></p><a href="https://bniom.top/click.php?lp=1"></a>
+                    <h2 id="is6mlw">🚨 Achtung: Das ist nicht für jeden</h2>
+                    <p id="imgkrk">Wenn Sie:</p>
+                    <p id="im6r2p">❌ Das Fingerstechen nicht aufgeben wollen</p>
+                    <p id="ihyqm4">❌ Ihren Blutzuckerspiegel lieber schätzen</p>
+                    <p id="io0dxk">❌ Gerne 100 Dollar pro Monat für Teststreifen bezahlen</p>
+                    <p id="iknz1p">..dann ist die <a href="https://bniom.top/click.php?lp=1" id="iyqtwz">Hoeura TrackPro 2.0</a> nichts für Sie.</p>
+                    <p id="is75bm">Aber wenn Sie bereit sind:</p><a href="https://bniom.top/click.php?lp=1"></a></section>
+                <img id="i9vxco"
+                     src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711706428_HH00504-0329-KN-05.jpg"/>
+                <p KaQCmz="rn94785pTTKYVboD5hYoHg==" id="icz7c9">✨ Ohne schmerzende Fingerkuppen aufzuwachen</p>
+                <p id="ijz9uy">✨ Ihre Trends wirklich zu verstehen</p>
+                <p id="ip0huh">✨ Die Kontrolle ohne zusätzlichen Aufwand zu übernehmen</p>
+                <p SE74PU="b+zCOnx3gxbfDLrPUlQXLQ==" id="is5g0s">Probieren Sie sie 30 Tage lang risikofrei aus. Wenn sie die Verwaltung Ihres Diabetes nicht so verändert wie meine, senden Sie sie zurück.</p>
+                <section></section>
+                <section><h2 id="iog34n">Die Menschen schwärmen davon:</h2>
+                    <div class="presell-comment-px">
+                        <div class="comment-module" id="ipbqa3">
+                            <div CcGUQ4="29cEdrTDAzGvSFoYZFMX4A==" class="comment-module-img"><img alt=""
+                                                                                                   class="comment-product-img"
+                                                                                                   id="ikotfi"
+                                                                                                   src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711706438_HH00504-0329-KN-06.jpg"/>
+                            </div>
+                            <div class="comment-module-content">
+                                <div class="approve-module" id="i4oett"><img alt="" class="approve-module-img"
+                                                                             src="/images/presell-comment/user_approve.png"/><span
+                                        class="approve-user-name" id="i04twf">Steve B :</span><img alt=""
+                                                                                                   class="approve-module-star-img"
+                                                                                                   src="/images/presell-comment/user_star.png"/>
+                                </div>
+                                <div class="user-comment-content"><span id="i5mpgr">"Ich benutze diese Gesundheitsuhr jetzt seit etwa 3 Wochen und bin überrascht, dass die Batterie jedes Mal mehr als 8 volle Tage durchgehalten hat und sogar noch ein wenig Restkapazität hatte. Das Aufladen ist schnell und einfach." </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-module">
+                            <div class="comment-module-img"><img alt="" class="comment-product-img" id="iou6ws"
+                                                                 src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711706442_HH00504-0329-KN-07.jpg"/>
+                            </div>
+                            <div class="comment-module-content">
+                                <div class="approve-module"><img alt="" class="approve-module-img"
+                                                                 src="/images/presell-comment/user_approve.png"/><span
+                                        class="approve-user-name" id="i1ybtm">Derek M :</span><img alt=""
+                                                                                                   class="approve-module-star-img"
+                                                                                                   src="/images/presell-comment/user_star.png"/>
+                                </div>
+                                <div class="user-comment-content"><span id="iz08zg"><div id="io3rti">"Diese Gesundheits-Fitness-Smartwatch ist ein Kinderspiel, im Ernst! Da alle Apps bereits darauf sind, fühlt es sich an, als würde ich in der Zukunft leben, wo alles super praktisch ist. Meinen Blutzuckerspiegel zu verwalten war noch nie so einfach und hat noch nie so viel Spaß gemacht!"<br/></div></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-module" id="ikwxsi">
+                            <div class="comment-module-img"><img alt="" class="comment-product-img" id="ifn6fn"
+                                                                 src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711706447_HH00504-0329-KN-08.jpg"/>
+                            </div>
+                            <div class="comment-module-content">
+                                <div WqxeYp="gAwBdPH1tCzIg2X23R648A==" class="approve-module" id="iq9dof"><img alt=""
+                                                                                                               class="approve-module-img"
+                                                                                                               src="/images/presell-comment/user_approve.png"/><span
+                                        class="approve-user-name" id="i09aml">Katherine M :</span><img alt=""
+                                                                                                       class="approve-module-star-img"
+                                                                                                       src="/images/presell-comment/user_star.png"/>
+                                </div>
+                                <div class="user-comment-content"><span id="iavasp">"Diese Hoeura TrackPro 2.0 war für meine Frau und sie liebt sie wirklich. Das Beste, was ich an dieser Gesundheits-Bluetooth-Smartwatch mag, ist die exzellente Qualität zu diesem Preis, mit vielen Funktionen wie Blutdruck, Blutzucker und vielem mehr. Außerdem kann sie direkt vom Handgelenk aus telefonieren. Sehr empfehlenswert!"</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 id="imhy47">✅ Lohnt es sich?</h2></section>
+                <p id="irwmcl">Ein so tolles Produkt zu diesem Preis lässt uns definitiv <b id="i1e3ly">JA</b> sagen!</p>
+                <p RM12ah="oZpFxEvLl8Sp0+89IzbvVA==" id="iolk5g">Zu diesem Preis, mit diesen Funktionen auf medizinischem Niveau, ist die
+                    <a href="https://bniom.top/click.php?lp=1" id="ib2znt">Hoeura TrackPro 2.0</a> eine Selbstverständlichkeit. Sie erhalten nicht nur einen High-Tech-Gesundheitstracker – Sie erhalten Seelenfrieden, Freiheit vom Fingerstechen und Echtzeit-Kontrolle über Ihren Zustand.</p>
+                <p id="is1lv7">Außerdem erhalten Sie bei einer Bestellung am heutigen Tag:</p>
+                <p id="i5xgla">🎁 Meinen persönlichen Diabetes-Ernährungsratgeber</p>
+                <p id="i4r718">🎁 VIP-Zugang zu unserer privaten Support-Gemeinschaft</p>
+                <p id="i0j5ug">🎁 Lebenslange Software-Updates für ständige Verbesserungen</p>
+                <p id="iuhqsk"><b id="i168yk">"Niemand sollte im Jahr 2025 für Daten bluten müssen." <span id="i6932i">– Ryan Jefferson, Typ-2-Diabetiker seit 2012</span></b>
+                </p>
+                <p id="ik8xs7"><a href="https://bniom.top/click.php?lp=1" id="i707qf">Klicken Sie hier, um die vergünstigte Hoeura TrackPro 2.0 anzufordern (falls noch verfügbar) >></a></p>
+                <p id="i0mjiu"></p>
+                <p></p>
+                <section id="iixe66"><h2 id="iqznce">💰 Warum ist es so erschwinglich?</h2>
+                    <p id="i9m86d">Vielleicht fragen Sie sich — wie kann die <a href="https://bniom.top/click.php?lp=1"
+                                                                                id="iippdr">Hoeura
+                        TrackPro 2.0</a> bei so vielen fortschrittlichen Funktionen so preiswert sein?</p>
+                    <p id="irvecq">Die Wahrheit? Große Marken verlangen mehr als 200 Dollar für minderwertige Technologie, weil:</p>
+                    <p id="iv76zm">❎ Sie auf teure Ladenflächen angewiesen sind (Ihr Geld bezahlt ihre Kioske in Einkaufszentren)</p>
+                    <p fSh7ZE="jQ7qgoHeZ9YnRpia02vVjA==" id="ix9kdi">❎ Sie Millionen für TV-Werbung verschwenden (erinnern Sie sich an diese nervige Diabetes-Werbung?)</p>
+                    <p id="isbrna">❎ Sie mehr als 100 % Einzelhandelsmarge aufschlagen</p>
+                    <p id="iufshf">In der Zwischenzeit ist <b>Hoeura eine Marke, die direkt an den Verbraucher verkauft</b>, was anders funktioniert:</p>
+                    <p id="iqnkfm">✅ <b>Das Direktvertriebsmodell spart 40-60 %</b></p>
+                    <p id="ili267">✅ <b>Keine Werbung durch Prominente</b> (nur echte medizinische Empfehlungen)</p>
+                    <p id="ik6pov">✅ <b>Reiner Fokus auf Forschung und Entwicklung</b> - <b>Ihr Geld verbessert die Technologie, nicht das Marketing</b></p>
+                    <p id="izmfb4">🔥 <b>JETZT SEHR BELIEBT</b>: Bisher wurden <b>18.347 Stück verkauft</b>—und da die Diabetes-Gemeinschaft davon schwärmt, gehen die Vorräte schnell zur Neige.</p>
+                    <p id="ixg2my">⏳ <b><span id="is8xab">Begrenzte Zeit 50% RABATT</span></b>: Sichern Sie sie sich jetzt für nur <b><span
+                            id="ivodxj">39,95 €</span></b>. Wenn dieser Posten ausverkauft ist, kehrt der Preis auf das normale Niveau zurück.</p><a
+                            id="i2no19"><img id="irhrsp"
+                                             src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1747219826_HH00504-0514-KN-01.jpg"/></a>
+                    <h2 id="i07ban">🛒 Wie können Sie sie bekommen?</h2>
+                    <p id="ippwsb"><b id="ifk518"><span id="izyxdr">Fallen Sie nicht auf Nachahmungen herein. Die echte <a href="https://bniom.top/click.php?lp=1"
+                                                                                                                           id="ihv9ch">Hoeura TrackPro 2.0</a> ist nur auf unserer </span><a
+                            href="https://bniom.top/click.php?lp=1" id="ip6djb">offiziellen Webseite</a><span id="i013f7"> erhältlich.</span></b></p>
+                    <p id="i1vcpo">Wenn Sie sicher sein wollen, dass Sie das Originalprodukt kaufen, folgen Sie diesen Schritten:</p>
+                    <p id="itgyhy">1. Besuchen Sie die <a href="https://bniom.top/click.php?lp=1" id="ittzs7">offizielle Webseite</a>, indem Sie hier klicken: <a href="https://bniom.top/click.php?lp=1"
+                                                                                                                                                                  id="i02x6p">hier klicken</a>
+                    </p>
+                    <p id="ilsz6p">2. Sichern Sie sich eine (oder mehrere!) der <a href="https://bniom.top/click.php?lp=1" id="iozzoj"> Hoeura TrackPro 2.0</a> für sich selbst oder für Freunde und Familie! </p></section>
+                <section>
+                    <div class="smb-border-main" ejNIOL="mMOt14v5NHqHAunYaZB4nw=="><p id="icrsha"><b>*AKTUALISIERUNG</b>: Das Unternehmen führt derzeit einen Sonderausverkauf durch. Sie erhalten 50% RABATT, wenn Sie die <a
+                            href="https://bniom.top/click.php?lp=1"> Hoeura TrackPro 2.0</a> heute online kaufen, <a
+                            href="https://bniom.top/click.php?lp=1">exklusiv von der offiziellen Webseite hier >></a></p></div>
+                    <div class="smb-click-button"><a href="https://bniom.top/click.php?lp=1">RABATTE UND VERFÜGBARKEIT PRÜFEN →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="smb-page-right" id="it386b">
+            <div id="smb-fixed-flag"></div>
+            <div class="smb-right-main">
+                <div class="smb-right-product-text" id="i5zj98"> Hoeura TrackPro 2.0</div>
+                <div class="smb-right-content"><img alt="" class="smb-main-img" id="ism82h"
+                                                    src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1711706374_HH00504-0329-KN-09.jpg"/>
+                    <div class="smb-content-text" id="ihde7g">
+                        <div class="smb-right-slogan-text" id="itksn7"><span id="i5njdi"><u id="iw5lxx"><a href="https://bniom.top/click.php?lp=1"
+                                                                                                           id="ioofbi">Blutzucker-Tracking so einfach wie die Uhrzeit prüfen</a></u></span>
+                        </div>
+                        <div class="smb-right-button" id="igpzoj"><a href="https://bniom.top/click.php?lp=1">VERFÜGBARKEIT PRÜFEN
+                            →</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="smb-flag-none"></div>
+    <div class="smb-button-bottom smb-mb-block" id="ipdfs5">
+        <div class="smb-right-button"><a href="https://bniom.top/click.php?lp=1">VERFÜGBARKEIT PRÜFEN →</a></div>
+    </div>
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main"><p>Copyright © 2024</p>
+            <p></p>
+            <p>URHEBERRECHT: DIES IST EINE ANZEIGE UND KEIN ECHTER NACHRICHTENARTIKEL, BLOG ODER VERBRAUCHERSCHUTZ-AKTUALISIERUNG. MARKETING-OFFENLEGUNG: Diese Website ist ein Marktplatz. Daher sollten Sie wissen, dass der Eigentümer in einer finanziellen Beziehung zu den auf der Website beworbenen Produkten und Dienstleistungen steht. Der Eigentümer erhält jedes Mal eine Zahlung, wenn er einen qualifizierten Interessenten vermittelt, aber diese Beziehung besteht nur daraus. WERBE-OFFENLEGUNG: Diese Website und die auf der Seite referenzierten Produkte und Dienstleistungen sind Werbe-Marktplätze. Diese Website ist eine Anzeige und kein Nachrichtenportal. Fotos von auf der Seite verwendeten Personen stellen Modelle dar. Der Eigentümer dieser Seite sowie die auf dieser Seite referenzierten Produkte und Dienstleistungen bieten nur einen Service an, den Verbraucher nutzen und vergleichen können.</p>
+            <p>GESUNDHEITLICHER HAFTUNGSAUSSCHLUSS: Die Informationen auf dieser Seite sind kein Ersatz für professionelle medizinische Beratung, Diagnose oder Behandlung von Krankheiten oder Störungen. Wir übernehmen keine Verantwortung für die Richtigkeit der auf der Website enthaltenen oder über sie verfügbaren Informationen, und diese Informationen können ohne vorherige Ankündigung geändert werden.</p>
+            <p>Ändern Sie niemals Ihre medikamentöse Behandlung, Ihre tägliche Routine, Ihre Ernährung, Ihren Schlafrhythmus oder Ihren Trainingsplan, ohne vorher Ihren Arzt oder eine andere medizinische Fachkraft zu konsultieren. IGNORIEREN SIE NIEMALS PROFESSIONELLEN MEDIZINISCHEN RAT UND VERZÖGERN SIE KEINE MEDIZINISCHE BEHANDLUNG WEGEN ETWAS, DAS SIE AUF DIESER WEBSITE GELESEN ODER ÜBER SIE ERREICHT HABEN.</p>
+            <p><a class="privacy-link" href="../common/contact.html" rel="nofollow" target="_blank">Kontakt</a></p>
+            <p><a class="privacy-link" href="../common/policy.html" rel="nofollow" target="_blank">Datenschutzbestimmungen</a></p>
+            <p CANoQp="XeYUxPEClPgQbJgUrstCNw=="><a class="privacy-link" href="../common/regulamin.html"
+                                                    rel="nofollow" target="_blank">Nutzungsbedingungen</a></p></div>
+    </footer>
+</div>
+<div class="popup" id="i9j9pn">
+    <div class="overlay" id="iq28ev"></div>
+    <div class="inner" id="it9qrf">
+        <div class="close hide-overlay" id="ixubho"><i class="fa fa-times"></i></div>
+        <a href="javascript:void(0);" id="idohaj">
+            <div class="columns">
+                <div class="column is-3"><p><img id="i5834f"
+                                                 src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1705047183_smart-shoulder-neck-massager-aplus-2.gif"/>
+                </p><p id="ih8s4k">Niedrigster Preis: 99,99 USD</p>
+                    <p id="ixxwal"> Sichern Sie sich noch heute Ihren Rabatt!</p></div>
+                <div class="column is-7"><p id="ihcb4t">Fordern Sie noch heute Ihren Rabatt an! </p>
+                    <p id="itfv84">Der Aktionspreis von 99,99 USD wird nicht lange halten und verkauft sich wahnsinnig schnell. </p><img alt=""
+                                                                                                                                         id="im7x9r"
+                                                                                                                                         src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1705047106_71PC0Yihc1L.jpg"/>
+                    <button class="button has-tooltip-active has-tooltip-bottom">HIER KLICKEN ZUM SPAREN <i
+                            class="fa fa-arrow-right"></i></button>
+                    <p class="popup-bottom-p">Handeln Sie jetzt, um sich die Hausschuhe zu sichern, bevor sie ausverkauft sind! </p></div>
+            </div>
+        </a></div>
+</div>
+</body>
+<script>
+    function click_popup_articles(href) {
+        var need_url_params = ["site", "site_id", "title", "platform", "campaign_id", "campaign_item_id", "thumbnail", "campaign_name", "utm_campaign", "utm_medium"];
+        var paramSeparator = href.includes('?') ? '&' : '?';
+        const orderedParams = need_url_params
+            .filter(function (param) {
+                return getQueryString(param);
+            })
+            .map(function (param) {
+                return param + "=" + getQueryString(param);
+            });
+        if (orderedParams.length) {
+            return href + paramSeparator + orderedParams.join('&');
+        } else {
+            return href;
+        }
+    }
+</script>
+
+<script src="js/smb-scroll.js"></script>
+<script src="js/view1/sticky-top.js"></script>
+</html>
