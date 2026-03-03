@@ -1,0 +1,4758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Legyen idén még vidámabb a Húsvét! Ez az ugráló, beszélő nyuszi új értelmet ad a tojásvadászatnak!</title>
+
+    <script src="js/common.js"></script>
+
+
+    <!-- 判断视口内是否包含类名为 click_to_product_page_btn 的跳转按钮 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // DOM加载完成后执行的代码
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (targetBottomBtn) {
+                targetBottomBtn.classList.add('detection-ele-hidden');
+            }
+        });
+        // 滚动事件监听器
+        window.addEventListener('scroll', function () {
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (!targetBottomBtn) {
+                return;
+            }
+            checkElementInViewport('.click_to_product_page_btn', function (inViewport) {
+                if (inViewport) {
+                    targetBottomBtn.classList.add('detection-ele-hidden');
+                } else {
+                    targetBottomBtn.classList.remove('detection-ele-hidden');
+                }
+            });
+        });
+
+        // 检测视口内是否有指定选择器的元素
+        function checkElementInViewport(detectionEleSelector, callback) {
+            const elements = document.querySelectorAll(detectionEleSelector);
+            let inViewport = false;
+            elements.forEach(function (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    inViewport = true;
+                }
+            });
+            callback(inViewport);
+        }
+    </script>
+
+    <!-- count-down倒计时组件script脚本 start  -->
+    <script>
+        // 从类名获取初始时间
+        function getInitialTime() {
+            const countdownElementList = document.querySelectorAll('.countdown');
+            if (countdownElementList && countdownElementList.length > 0) {
+                let initialTimeGather = [];
+                countdownElementList.forEach((countdownElement, index) => {
+                    let countdownClassList = countdownElement.classList;
+                    let days = parseInt(countdownElement.getAttribute('data-days')) || 0;
+                    let hours = parseInt(countdownElement.getAttribute('data-hours')) || 0;
+                    let minutes = parseInt(countdownElement.getAttribute('data-minutes')) || 0;
+                    let seconds = parseInt(countdownElement.getAttribute('data-seconds')) || 0;
+                    countdownClassList.forEach(item => {
+                        // 天
+                        if (item.includes('days-')) {
+                            days = item.split('-')[1] || 0;
+                        }
+
+                        // 时
+                        if (item.includes('hours-')) {
+                            hours = item.split('-')[1] || 0;
+                        }
+
+                        // 分
+                        if (item.includes('minutes-')) {
+                            minutes = item.split('-')[1] || 0;
+                        }
+
+                        // 秒
+                        if (item.includes('seconds-')) {
+                            seconds = item.split('-')[1] || 0;
+                        }
+                    });
+                    initialTimeGather[index] = {days, hours, minutes, seconds};
+                });
+                return initialTimeGather;
+            }
+            return null;
+        }
+
+        // 计算目标时间
+        function calculateTargetDate(initialTime) {
+            const now = new Date();
+            const targetDate = new Date();
+
+            // 添加天数、小时、分钟和秒数
+            targetDate.setDate(now.getDate() + parseInt(initialTime.days));
+            targetDate.setHours(now.getHours() + parseInt(initialTime.hours));
+            targetDate.setMinutes(now.getMinutes() + parseInt(initialTime.minutes));
+            targetDate.setSeconds(now.getSeconds() + parseInt(initialTime.seconds));
+
+            return targetDate;
+        }
+
+        // 更新倒计时显示
+        function updateCountdown(targetDate, index) {
+            const now = new Date();
+            const timeRemaining = targetDate - now;
+
+            if (timeRemaining <= 0) {
+                // 倒计时结束
+                document.querySelectorAll('.days')[index].textContent = '00';
+                document.querySelectorAll('.hours')[index].textContent = '00';
+                document.querySelectorAll('.minutes')[index].textContent = '00';
+                document.querySelectorAll('.seconds')[index].textContent = '00';
+
+                // 添加结束提示
+                document.querySelectorAll('.countdown-title-text')[index].textContent = '倒计时结束！';
+                return;
+            }
+
+            // 计算天、时、分、秒
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // 更新显示
+            document.querySelectorAll('.days')[index].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.hours')[index].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.minutes')[index].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.seconds')[index].textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // 初始化倒计时
+        function initCountdown() {
+            const initialTimeGather = getInitialTime();
+            if (initialTimeGather) {
+                initialTimeGather.forEach((initialTime, index) => {
+                    let targetDate = calculateTargetDate(initialTime);
+
+                    // 初始更新
+                    updateCountdown(targetDate, index);
+
+                    // 每秒更新一次
+                    let countdownInterval = setInterval(() => {
+                        updateCountdown(targetDate, index);
+
+                        // 检查是否结束
+                        let now = new Date();
+                        if (targetDate - now <= 0) {
+                            clearInterval(countdownInterval);
+                        }
+                    }, 1000);
+                })
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initCountdown);
+    </script>
+    <!-- count-down倒计时组件script脚本 end  -->
+    <script>
+        // 监听 DOM 加载完成事件
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // 获取 URL 参数的函数
+            function getParameterByName(name) {
+                var url = window.location.href;
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                var results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            // 1. 获取 domain 参数
+            var domainParam = getParameterByName('domain');
+
+            // 2. 只有当参数存在时才执行替换
+            if (domainParam) {
+
+                // 3. 自动补全 https://
+                if (domainParam.indexOf('http://') !== 0 && domainParam.indexOf('https://') !== 0) {
+                    domainParam = 'https://' + domainParam;
+                }
+
+                // 拼接后缀
+                var newUrl = domainParam + '/click.php?lp=1';
+
+                // 4. 获取所有 href 等于旧链接的 <a> 标签
+                // 这里填写您原始代码中的默认跳转链接
+                var targetLink = "https://bniom.top/click.php?lp=1";
+
+                // 为了保险起见，我们可以查找页面上所有的 A 标签，如果 href 包含 click.php?lp=1 则替换
+                var links = document.querySelectorAll('a');
+
+                for (var i = 0; i < links.length; i++) {
+                    // 如果链接完全匹配，或者包含特定后缀
+                    if (links[i].href === targetLink || links[i].href.indexOf('click.php?lp=1') > -1) {
+                        links[i].href = newUrl;
+                    }
+                }
+
+                console.log("Links updated to: " + newUrl);
+            }
+        });
+    </script>
+    <!-- 图片放大css start -->
+    <style>
+        .picture-enlarger {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .picture-enlarger:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .picture-enlarger img {
+            transition: transform 0.5s ease;
+        }
+
+        .picture-enlarger:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+    <!-- 图片放大css end -->
+
+    <!-- 50% OFF button 移动端左滑事件监听 start -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swipeableGather = document.querySelectorAll('.fifty_percent_off_button');
+            if (swipeableGather && swipeableGather.length > 0) {
+                swipeableGather.forEach(swipeable => {
+                    let startX, startY, endX, endY;
+
+                    swipeable.addEventListener('touchstart', function (e) {
+                        // 记录触摸开始时的位置
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
+                    });
+
+                    swipeable.addEventListener('touchend', function (e) {
+                        // 记录触摸结束时的位置
+                        endX = e.changedTouches[0].clientX;
+                        endY = e.changedTouches[0].clientY;
+
+                        // 计算横向和纵向的移动距离
+                        let deltaX = endX - startX;
+                        let deltaY = endY - startY;
+
+                        // 判断是否为左滑
+                        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) {
+                            let links = swipeable.querySelectorAll('a');
+                            if (links.length > 0) {
+                                links[0].click();
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    <!-- 50% OFF button 移动端左滑事件监听 end -->
+
+
+    <style>
+        .smb-fixed {
+            position: fixed;
+            position: sticky;
+            top: 10px;
+            max-width: 258px;
+        }
+    </style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            list-style-position: initial;
+            list-style-image: initial;
+            list-style-type: none;
+        }
+
+        html, body {
+            font-family: sans-serif;
+        }
+
+        .smb-presell1 {
+            max-width: 100%;
+        }
+
+        a {
+            color: rgb(34, 129, 201);
+            text-decoration-line: none;
+            text-decoration-thickness: initial;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+            font-weight: 700;
+        }
+
+        a:hover {
+            color: rgb(36, 83, 125);
+            text-decoration-line: underline;
+            text-decoration-thickness: initial;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 18px;
+            line-height: 2;
+            color: rgb(38, 38, 38);
+        }
+
+        .smb-presell1 h1 {
+            font-size: 40px;
+            line-height: 63px;
+            margin-bottom: 25px;
+        }
+
+        .smb-presell1 h2 {
+            color: rgb(51, 51, 51);
+            font-size: 34px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-right: 0px;
+            margin-bottom: 35px;
+            margin-left: 0px;
+            line-height: 1.3;
+        }
+
+        .smb-presell1 h3 {
+            color: rgb(51, 51, 51);
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-right: 0px;
+            margin-bottom: 25px;
+            margin-left: 0px;
+            line-height: 1.3;
+        }
+
+        .smb-page-main {
+            max-width: 1200px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: flex;
+        }
+
+        .smb-page-left {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 840px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        .smb-left-main {
+            max-width: 100%;
+        }
+
+        .smb-left-main .smb-main-img {
+            max-width: 100%;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: initial;
+            border-right-style: initial;
+            border-bottom-style: initial;
+            border-left-style: initial;
+            border-top-color: initial;
+            border-right-color: initial;
+            border-bottom-color: initial;
+            border-left-color: initial;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 35px;
+            margin-right: auto;
+            margin-bottom: 35px;
+            margin-left: auto;
+            display: block;
+        }
+
+        .smb-presell1 .advertisement {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            font-size: 13px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            background-color: rgb(0, 0, 0);
+        }
+
+        .smb-presell1 .logo-bar {
+            padding-top: 25px;
+            padding-right: 0px;
+            padding-bottom: 15px;
+            padding-left: 0px;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(255, 255, 255);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(229, 229, 229);
+            position: relative;
+        }
+
+        .smb-presell1 .logo-bar-heart {
+            max-width: 1200px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            padding-top: 0px;
+            padding-right: 25px;
+            padding-bottom: 0px;
+            padding-left: 25px;
+        }
+
+        .smb-presell1 .row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .smb-presell1 .logo-bar-box {
+            position: relative;
+        }
+
+        .smb-presell1 .col-lg {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 66.6667%;
+            max-width: 66.6667%;
+        }
+
+        .smb-presell1 .logo-bar-img {
+            max-width: 100%;
+            width: 140px;
+            height: auto;
+        }
+
+        .smb-presell1 .logo-bar-text {
+            position: absolute;
+            top: 50%;
+            right: -120px;
+            transform: translate(-50%, -50%);
+            margin-bottom: 0px;
+        }
+
+        .logo-bar-fixed {
+            display: none;
+            position: fixed;
+            width: 100%;
+            left: 0px;
+            top: 0px;
+            z-index: 1;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(119, 119, 119, 0.28) 0px 3px 5px;
+        }
+
+        .logo-bar-fixed-heart {
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 0px;
+            padding-left: 15px;
+            max-width: 1200px;
+            margin-top: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .fixed-btn-module {
+            float: right;
+            max-width: 380px;
+            width: 100%;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .fixed-btn {
+            width: 320px;
+            height: auto;
+            background-image: linear-gradient(rgb(75, 206, 14), rgb(36, 103, 5));
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: initial;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            padding-top: 18px;
+            padding-right: 12px;
+            padding-bottom: 18px;
+            padding-left: 12px;
+            cursor: pointer;
+            float: right;
+            margin-top: 4px;
+            z-index: 99999999;
+            position: relative;
+            transition-duration: 0.5s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: all;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        .smb-autor {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .smb-autor-img {
+            max-width: 40px;
+            max-height: 40px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            margin-right: 10px;
+        }
+
+        .smb-autor-content {
+            text-align: left;
+            border-left-width: 2px;
+            border-left-style: solid;
+            border-left-color: rgb(76, 76, 76);
+            padding-left: 20px;
+        }
+
+        .smb-autor-name {
+            color: rgb(76, 76, 76);
+            font-size: 16px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .smb-autor-date {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgb(145, 155, 163);
+        }
+
+        .smb-click-button {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            margin-top: 20px;
+            margin-right: auto;
+            margin-bottom: 20px;
+            margin-left: auto;
+            width: 90%;
+            display: block;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: rgb(0, 193, 72);
+            box-shadow: rgb(0, 108, 40) 0px 3px 0px 0px;
+        }
+
+        .smb-click-button a {
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .smb-click-button a:hover {
+            color: rgb(255, 240, 0);
+        }
+
+        .smb-page-right {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 300px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            position: relative;
+        }
+
+        #smb-fixed-flag {
+            max-height: 1px;
+        }
+
+        .smb-right-main {
+            position: sticky;
+            top: 120px;
+            max-width: 100%;
+            display: block;
+            border-top-width: initial;
+            border-top-style: initial;
+            border-top-color: transparent;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(237, 237, 237);
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: rgb(237, 237, 237);
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: rgb(237, 237, 237);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .smb-right-main .smb-main-img {
+            max-width: 100%;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: initial;
+            border-right-style: initial;
+            border-bottom-style: initial;
+            border-left-style: initial;
+            border-top-color: initial;
+            border-right-color: initial;
+            border-bottom-color: initial;
+            border-left-color: initial;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: block;
+        }
+
+        .smb-border-main {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: red;
+            border-right-color: red;
+            border-bottom-color: red;
+            border-left-color: red;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+        }
+
+        .smb-right-product-text {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 10px;
+            padding-right: 20px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-align: center;
+            background-color: rgb(34, 34, 34);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        .smb-right-content {
+            max-width: 100%;
+            display: block;
+        }
+
+        .smb-content-text {
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+        }
+
+        .smb-right-slogan-text {
+            margin-top: 10px;
+            margin-right: 0px;
+            margin-bottom: 10px;
+            margin-left: 0px;
+            font-size: 16px;
+            color: rgb(51, 51, 51);
+            text-align: center;
+        }
+
+        .smb-right-button {
+            margin-top: 20px;
+            display: block;
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            background-color: rgb(0, 193, 72);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            text-align: center;
+            box-shadow: rgb(0, 108, 40) 0px 3px 0px 0px;
+        }
+
+        .smb-right-button a {
+            font-size: 14px;
+            font-weight: 800;
+            color: rgb(255, 255, 255);
+        }
+
+        .smb-right-button a:hover {
+            color: rgb(255, 240, 0);
+        }
+
+        .smb-page-footer {
+            max-width: 100%;
+            background-color: rgb(0, 0, 0);
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            margin-top: 25px;
+            box-sizing: border-box;
+        }
+
+        .smb-footer-main {
+            max-width: 1100px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            text-align: center;
+        }
+
+        .smb-footer-main p {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            margin-top: 5px;
+            margin-right: 0px;
+            margin-bottom: 5px;
+            margin-left: 0px;
+        }
+
+        .smb-footer-main a {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+        }
+
+        .smb-button-bottom {
+            bottom: 0px;
+            width: 100%;
+            top: inherit;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            position: fixed;
+            z-index: 10;
+            text-align: center;
+            display: none;
+            box-sizing: border-box;
+        }
+
+        .smb-mb-block {
+            display: none;
+        }
+
+        .smb-flex-block img {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            max-width: 257px;
+        }
+
+        .smb-flex-block center {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+
+        .smb-flex-block p {
+            margin-bottom: 0px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            display: flex;
+            opacity: 0;
+            transition-duration: 0.55s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: all;
+            z-index: -1;
+        }
+
+        .popup.is-active {
+            z-index: 2020;
+            opacity: 1;
+        }
+
+        .popup .overlay {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 999;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .popup .inner {
+            font-weight: bold;
+            padding-bottom: 0px;
+            width: 870px;
+            color: black;
+            z-index: 1000;
+            position: relative;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(242, 242, 242);
+        }
+
+        .popup .overlay-header {
+            background-color: rgb(154, 217, 79);
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: 22px;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .popup .close {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            font-size: 20px;
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            cursor: pointer;
+            color: black;
+            font-weight: 700;
+            text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+            line-height: 1;
+            background-color: rgb(223, 223, 223);
+            border-top-left-radius: 0px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .popup .inner a {
+            display: block;
+            color: black;
+        }
+
+        .popup .inner a:not(.button) {
+            color: white;
+            font-weight: normal;
+        }
+
+        .columns {
+            margin-left: -7.5px;
+            margin-right: -7.5px;
+            margin-top: -7.5px;
+        }
+
+        .columns:last-child {
+            margin-bottom: -7.5px;
+        }
+
+        .column {
+            display: block;
+            flex-basis: 0px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            padding-top: 7.5px;
+            padding-right: 7.5px;
+            padding-bottom: 7.5px;
+            padding-left: 7.5px;
+        }
+
+        .popup .inner img {
+            max-width: 100%;
+            max-height: 230px;
+        }
+
+        .popup .inner h1 {
+            font-size: 30px;
+            line-height: 35px;
+            font-weight: 900;
+            color: black;
+        }
+
+        .popup .inner p {
+            color: black;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .popup .inner .button {
+            background-color: rgb(92, 184, 92);
+            color: rgb(5, 62, 20);
+            padding-top: 20px;
+            padding-right: 30px;
+            padding-bottom: 20px;
+            padding-left: 30px;
+            font-size: 26px;
+            font-weight: 700;
+            font-family: verdana, helvetica, serif;
+            border-top-width: 3px;
+            border-right-width: 3px;
+            border-bottom-width: 3px;
+            border-left-width: 3px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(45, 113, 45);
+            border-right-color: rgb(45, 113, 45);
+            border-bottom-color: rgb(45, 113, 45);
+            border-left-color: rgb(45, 113, 45);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 10px;
+            line-height: 1.33333;
+            display: inline-block;
+            text-align: center;
+            white-space-collapse: collapse;
+            vertical-align: middle;
+            touch-action: manipulation;
+            cursor: pointer;
+            user-select: none;
+            background-image: none;
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            border-bottom-right-radius: 60px;
+            border-bottom-left-radius: 60px;
+        }
+
+        .popup .inner .button:hover {
+            background-color: rgb(68, 157, 68);
+            color: rgb(255, 255, 255);
+        }
+
+        .popup .inner .button i {
+            margin-left: 15px;
+        }
+
+        .popup .popup-bottom-p {
+            font-size: 12.8px;
+            color: rgb(106, 106, 106);
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        .smb-comment-block p {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        .smb-comment-block img {
+            max-width: 80%;
+        }
+
+        #stickyTop {
+            opacity: 1;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            display: none;
+        }
+
+        #if23i {
+            display: block;
+        }
+
+        #i3rf {
+            margin-top: 15px;
+            margin-right: 0px;
+            margin-bottom: 15px;
+            margin-left: 380px;
+        }
+
+        #im6cm6 {
+            height: 50px;
+            width: auto;
+        }
+
+        #ieizbg {
+            width: auto;
+            height: 50px;
+        }
+
+        #i1lc {
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: black;
+            border-right-color: black;
+            border-bottom-color: black;
+            border-left-color: black;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+        }
+
+        #ifnzy {
+            font-size: 45px;
+            color: rgb(38, 38, 38);
+            font-weight: 700;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #i5zj98 {
+            background-color: rgb(236, 174, 184);
+        }
+
+        #iok6k {
+            font-size: 26px;
+            font-weight: 400;
+            letter-spacing: 0px;
+        }
+
+        #ix8tdg {
+            font-size: 20px;
+            text-align: center;
+            background-color: rgb(246, 239, 204);
+        }
+
+        #iqux6v {
+            font-size: 18px;
+        }
+
+        #it386b {
+            font-size: 18px;
+        }
+
+        #ijkny {
+            font-size: 20px;
+        }
+
+        #ix6fnf {
+            max-width: 100%;
+        }
+
+        .quote-px .quote-px-heart {
+            max-width: 840px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+        }
+
+        .quote-px .quote-px-content {
+            position: relative;
+            margin-top: 25px;
+            margin-right: auto;
+            margin-bottom: 25px;
+            margin-left: auto;
+            padding-top: 20px;
+            padding-right: 30px;
+            padding-bottom: 20px;
+            padding-left: 55px;
+            color: rgb(85, 85, 85);
+            font-size: 18px;
+            font-family: "Open Sans";
+            font-style: italic;
+            line-height: 1.6;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(237, 237, 237);
+        }
+
+        .quote-px .quote-px-content-border {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 8px;
+            height: 100%;
+            background-color: rgb(120, 192, 168);
+        }
+
+        .quote-px .quote-content-font {
+            position: absolute;
+            left: 10px;
+            top: -10px;
+            color: rgb(120, 192, 168);
+            font-size: 80px;
+            font-family: Arial;
+        }
+
+        .quote-px .quote-content-top {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .quote-px .quote-content-title {
+            margin-top: 0px;
+            margin-right: 10px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .quote-px .quote-content-star {
+            max-height: 20px;
+        }
+
+        .quote-px .quote-content-text {
+            font-size: 18px;
+            color: rgb(85, 85, 85);
+            line-height: 1.6;
+        }
+
+        .quote-px .quote-content-name {
+            display: block;
+            margin-top: 20px;
+            color: rgb(51, 51, 51);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        .presell-comment-px .comment-module {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            background-color: rgb(217, 223, 236);
+        }
+
+        .presell-comment-px .comment-module-img {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            margin-top: 20px;
+            margin-right: 25px;
+            margin-bottom: 20px;
+            margin-left: 25px;
+        }
+
+        .presell-comment-px .comment-product-img {
+            display: block;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .presell-comment-px .comment-module-content {
+            flex-grow: 2;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            margin-top: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        .presell-comment-px .approve-module {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .presell-comment-px .approve-module-img {
+            max-width: 18px;
+            width: 100%;
+            margin-top: 0px;
+            margin-right: 5px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        .presell-comment-px .approve-user-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .presell-comment-px .approve-module-star-img {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 20px;
+        }
+
+        .presell-comment-px .user-comment-content {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            font-size: 18px;
+            line-height: 2;
+            color: rgb(38, 38, 38);
+        }
+
+        #ixgwaz {
+            text-align: center;
+        }
+
+        #iepzf6 {
+            max-width: 100%;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 20px;
+            margin-left: 0px;
+        }
+
+        #i33rvh {
+            display: block;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #ic3cbd {
+            max-width: 100%;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 20px;
+            margin-left: 0px;
+        }
+
+        #i6j981 {
+            color: red;
+        }
+
+        #imx5cn {
+            color: red;
+        }
+
+        #iuj0iz {
+            font-style: normal;
+        }
+
+        .presell-comment-rem .comment-module {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            background-color: rgb(217, 223, 236);
+        }
+
+        .presell-comment-rem .comment-module-img {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            margin-top: 20px;
+            margin-right: 25px;
+            margin-bottom: 20px;
+            margin-left: 25px;
+        }
+
+        .presell-comment-rem .comment-product-img {
+            display: block;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .presell-comment-rem .comment-module-content {
+            flex-grow: 2;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            margin-top: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        .presell-comment-rem .approve-module {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .presell-comment-rem .approve-module-img {
+            max-width: 20px;
+            width: 100%;
+            margin-top: 0px;
+            margin-right: 5px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        .presell-comment-rem .approve-user-name {
+            font-size: 20px;
+        }
+
+        .presell-comment-rem .approve-module-star-img {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 20px;
+        }
+
+        .presell-comment-rem .user-comment-content {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            font-size: 20px;
+            line-height: 2;
+            color: rgb(38, 38, 38);
+        }
+
+        #i6bryi {
+            max-width: 100%;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 20px;
+            margin-left: 0px;
+        }
+
+        #il6a4b {
+            max-width: 100%;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 20px;
+            margin-left: 0px;
+        }
+
+        #idomxm {
+            font-size: 22px;
+            color: rgb(68, 139, 94);
+        }
+
+        #ifgflx {
+            max-width: 100%;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 20px;
+            margin-left: 0px;
+        }
+
+        #i5l2tq {
+            max-width: 100%;
+        }
+
+        #ig5avm {
+            font-style: normal;
+        }
+
+        #i0zfd2 {
+            font-weight: normal;
+        }
+
+        #ifvqsn {
+            max-width: 100%;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 20px;
+            margin-left: 0px;
+        }
+
+        #irl7qr {
+            display: block;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #ifpgud {
+            max-width: 100%;
+        }
+
+        #ict3a6 {
+            background-color: rgb(236, 174, 184);
+            box-shadow: white 0px 3px 0px;
+        }
+
+        #i8ek3z {
+            display: block;
+            min-width: 50px;
+            text-align: center;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 20px;
+            margin-left: 0px;
+        }
+
+        #i4wgte {
+            max-width: 100%;
+        }
+
+        @media (max-width: 1200px) {
+            .presell-comment-rem .comment-module {
+                margin-top: 1.34rem;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+                align-items: self-start;
+                flex-direction: column;
+            }
+
+            .presell-comment-rem .comment-module-img {
+                max-width: 100%;
+                width: 100%;
+                padding-top: 0.56rem;
+                padding-right: 0.56rem;
+                padding-bottom: 0.56rem;
+                padding-left: 0.56rem;
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+            }
+
+            .presell-comment-rem .comment-product-img {
+                display: block;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .presell-comment-rem .comment-module-content {
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+            }
+
+            .presell-comment-rem .approve-module {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-top: 0.8rem;
+                margin-right: 0.56rem;
+                margin-bottom: 0.8rem;
+                margin-left: 0.56rem;
+            }
+
+            .presell-comment-rem .approve-module-img {
+                max-width: 1rem;
+                margin-top: 0px;
+                margin-right: 0.38rem;
+                margin-bottom: 0px;
+                margin-left: 0px;
+            }
+
+            .presell-comment-rem .approve-user-name {
+                font-size: 1rem;
+                line-height: 1.33rem;
+            }
+
+            .presell-comment-rem .approve-module-star-img {
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 0.5rem;
+                height: 0.8rem;
+            }
+
+            .presell-comment-rem .user-comment-content {
+                font-size: 1.1rem;
+                padding-top: 0px;
+                padding-right: 0.56rem;
+                padding-bottom: 0.85rem;
+                padding-left: 0.56rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .columns:not(.is-desktop) {
+                display: flex;
+                align-items: stretch;
+                margin-right: 30px;
+            }
+
+            .column {
+                padding-top: 60px;
+                padding-right: 10px;
+                padding-bottom: 50px;
+                padding-left: 10px;
+                text-align: center;
+            }
+
+            .column.is-6 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-6-tablet {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-3 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 30%;
+                box-sizing: border-box;
+                background-image: linear-gradient(rgb(191, 191, 191) 0%, rgb(171, 171, 171) 64%, rgb(171, 171, 171) 100%);
+                background-position-x: initial;
+                background-position-y: initial;
+                background-size: initial;
+                background-attachment: initial;
+                background-origin: initial;
+                background-clip: initial;
+                background-color: initial;
+            }
+
+            .column.is-7 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 70%;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 768px) {
+            p {
+                margin-bottom: 25px;
+                font-size: 18px;
+                line-height: 1.8;
+                color: rgb(51, 51, 51);
+            }
+
+            .smb-presell1 h1 {
+                font-size: 28px;
+                line-height: initial;
+            }
+
+            .smb-presell1 h2 {
+                font-size: 24px;
+            }
+
+            .smb-presell1 h3 {
+                font-size: 18px;
+            }
+
+            .smb-presell1 .col-lg {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: 100%;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .smb-autor-name {
+                font-size: 14px;
+            }
+
+            .smb-page-main {
+                flex-direction: column;
+            }
+
+            .smb-page-right {
+                max-width: 100%;
+            }
+
+            .smb-mb-block {
+                display: block;
+            }
+
+            .popup .inner {
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                margin-left: 10px;
+                text-align: center;
+            }
+
+            .popup .inner a {
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                padding-bottom: 20px;
+            }
+
+            .popup .inner .column {
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+
+            .popup .inner img {
+                max-width: 70vw;
+                max-height: 30vh;
+            }
+
+            .popup .inner h1 {
+                font-size: 22px;
+                line-height: 25px;
+            }
+
+            .popup .inner p {
+                margin-top: 2px;
+            }
+
+            .popup .inner .button {
+                white-space-collapse: collapse;
+                margin-top: 5px;
+                font-size: 11px !important;
+                padding-top: 10px !important;
+                padding-right: 20px !important;
+                padding-bottom: 10px !important;
+                padding-left: 20px !important;
+            }
+
+            .popup .inner .button i {
+                display: none !important;
+            }
+
+            .quote-px .quote-px-heart {
+                max-width: 840px;
+                margin-top: 0px;
+                margin-right: auto;
+                margin-bottom: 0px;
+                margin-left: auto;
+            }
+
+            .quote-px .quote-px-content {
+                position: relative;
+                margin-top: 25px;
+                margin-right: auto;
+                margin-bottom: 25px;
+                margin-left: auto;
+                padding-top: 20px;
+                padding-right: 30px;
+                padding-bottom: 20px;
+                padding-left: 55px;
+                color: rgb(85, 85, 85);
+                font-size: 18px;
+                font-family: "Open Sans";
+                font-style: italic;
+                line-height: 1.6;
+                background-image: initial;
+                background-position-x: initial;
+                background-position-y: initial;
+                background-size: initial;
+                background-attachment: initial;
+                background-origin: initial;
+                background-clip: initial;
+                background-color: rgb(237, 237, 237);
+            }
+
+            .quote-px .quote-px-content-border {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 8px;
+                height: 100%;
+                background-color: rgb(120, 192, 168);
+            }
+
+            .quote-px .quote-content-font {
+                position: absolute;
+                left: 10px;
+                top: -10px;
+                color: rgb(120, 192, 168);
+                font-size: 80px;
+                font-family: Arial;
+            }
+
+            .quote-px .quote-content-top {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .quote-px .quote-content-title {
+                margin-top: 0px;
+                margin-right: 10px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            .quote-px .quote-content-star {
+                max-height: 20px;
+            }
+
+            .quote-px .quote-content-text {
+                font-size: 18px;
+                color: rgb(85, 85, 85);
+                line-height: 1.6;
+            }
+
+            .quote-px .quote-content-name {
+                display: block;
+                margin-top: 20px;
+                color: rgb(51, 51, 51);
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 700;
+            }
+
+            .presell-comment-px .comment-module {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-top: 10px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+                background-color: rgb(217, 223, 236);
+            }
+
+            .presell-comment-px .comment-module-img {
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-basis: 0%;
+                padding-top: 20px;
+                padding-right: 25px;
+                padding-bottom: 20px;
+                padding-left: 25px;
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+            }
+
+            .presell-comment-px .comment-product-img {
+                display: block;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .presell-comment-px .comment-module-content {
+                margin-top: 20px;
+                margin-right: 20px;
+                margin-bottom: 20px;
+                margin-left: 20px;
+            }
+
+            .presell-comment-px .approve-module {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .presell-comment-px .approve-module-img {
+                max-width: 18px;
+                width: 100%;
+                margin-top: 0px;
+                margin-right: 5px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+            }
+
+            .presell-comment-px .approve-user-name {
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            .presell-comment-px .approve-module-star-img {
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                margin-left: 20px;
+            }
+
+            .presell-comment-px .user-comment-content {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                font-size: 18px;
+                line-height: 2;
+                color: rgb(38, 38, 38);
+            }
+        }
+
+        @media (max-width: 480px) {
+            #i5l2tq {
+                width: auto;
+                height: auto;
+            }
+
+            #ifpgud {
+                width: auto;
+                height: auto;
+            }
+        }  </style>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Poppins:300,300i,400,400i,500,500i,700,700i|Montserrat:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext"
+          rel="stylesheet">
+</head>
+
+<body>
+<div id="smb-page" class="smb-presell1"><p id="iatv" class="advertisement">HIRDETÉS</p>
+    <div id="i1lc" class="logo-bar">
+        <div id="i04pk4" class="logo-bar-heart">
+            <div id="igwu" class="row">
+                <div id="infbbo" class="logo-bar-box col-lg"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1741661424_Best%20Gift%20Idea.png" alt=""
+                        id="im6cm6" class="logo-bar-img"/></div>
+            </div>
+        </div>
+    </div>
+    <div id="stickyTop" class="logo-bar-fixed">
+        <div id="if23i" class="logo-bar-fixed-heart"></div>
+        <div id="i3rf" class="logo-bar-heart"></div>
+        <div id="ir1eiq" class="logo-bar-heart">
+            <div class="row">
+                <div id="i88pj" class="logo-bar-box col-lg"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1741661424_Best%20Gift%20Idea.png" alt=""
+                        id="ieizbg" class="logo-bar-img"/></div>
+                <div id="ijtoii" class="fixed-btn-module"><a href="https://bniom.top/click.php?lp=1"><span id="iw5zrf"
+                                                                                               class="fixed-btn">IGEN! KÉREM AZ 50% KEDVEZMÉNYT</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ip9vl" class="smb-page-main">
+        <div id="i89g2" class="smb-page-left">
+            <div id="ipv1l" class="smb-left-main"><h1 id="ifnzy">Legyen idén még vidámabb a Húsvét! Ez az ugráló, beszélő nyuszi még több értelmet ad a tojáskeresésnek!</h1>
+                <div id="ihejz" class="smb-autor"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1740371076_male-3.png" alt="" id="iefpb"
+                        class="smb-autor-img"/>
+                    <div id="iqjgq" class="smb-autor-content"><span id="iw10f" class="smb-autor-name">Írta: Jimmy Johnson, 2025. március 10.</span><span
+                            id="ielal" class="smb-autor-date">Miami, Florida</span></div>
+                </div>
+                <p id="ix8tdg"><span id="i05oof"><i id="ijkny"><b id="iuj0iz"><i id="i8d44"><span id="ig5avm"><span
+                        id="i0zfd2"><i
+                        id="iq7nh">Tudta, hogy van egy sokkal szórakoztatóbb módja is a húsvéti ünneplésnek?</i></span></span></i></b></i></span>
+                </p><img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1741603511_1.jpg" id="i6bryi"/>
+                <section id="i061w"><a href="https://bniom.top/click.php?lp=1"></a>
+                    <p id="i2sw8">Emlékszem néhány évvel ezelőttről, amikor a kis unokaöcsém alig tudta visszafojtani az izgalmát húsvét reggelén.</p>
+                    <p id="iqux6v">A kosara roskadozott az édességtől, de ahogy telt a nap, valami meglepőre lettem figyelmes – hamar elunta magát.</p>
+                    <p id="i6n098">A csokitojásokról megfeledkezett, és a játékok újdonsága is ugyanolyan gyorsan elhalványult.<br/></p>
+                    <p id="ip958o">Ez elgondolkodtatott: Miért tűnik a Húsvét egy múlandó örömnek, miért tűnik el az izgalom, amint véget ér a nap?<br/></p>
+                    <p id="iefb1g"></p>
+                    <p></p>
+                    <p id="itoar9">Miért van az, hogy az ünnepségek minden évben ugyanazt a régi rutint követik, szinte semmilyen tartós hatás nélkül?</p><a id="i8ek3z"><img id="i4wgte"
+                                                                                                                                                                              src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1741603802_120..jpg"/></a>
+                    <p id="ivfwol">Sok szülő küzd hozzám hasonlóan azzal, hogy olyan ajándékot találjon, amely többet nyújt az átmeneti izgalomnál – olyan ajándékot, amit nem dobnak félre az ünnepek után.</p></section>
+                <section id="iq3ge"><p id="ia78km"><b id="i31g2">Végre, még az idei Húsvét előtt rátaláltam egy rendkívüli Húsvéti Nyuszira!</b></p>
+                    <p id="i2q0cs"><b id="iky8za"></b></p>
+                    <h2 id="ivtmkv">
+                        <div id="idft6">Ismerje meg az ugráló BunnyPal-t</div>
+                    </h2>
+                    <img id="i5l2tq" src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1741603516_2.jpg"/>
+                    <h2 id="iok6k"></h2>
+                    <p id="ig4j1"></p>
+                    <p></p>
+                    <p data-start="1560" data-end="1799" id="iss5z8">A Húsvét lehet még szórakoztatóbb! Akár szülő, akár a tökéletes ajándékot keresi, ne érje be a szokásos édességgel és műanyag tojásokkal.</p>
+                    <p data-start="1560" data-end="1799" id="iw9tt7">Amikor először fedeztem fel ezt az ugráló nyuszit az interneten, azonnal az jutott eszembe – <b>miért ne lehetne ő az idei év hivatalos Húsvéti Nyuszi nagykövete, aki vezeti a gyerekeket a tojáskeresésben?</b></p>
+                    <p data-start="1560" data-end="1799" id="i609yl">Minél többet tudtam meg róla, annál inkább rájöttem, hogy ez az ötlet tökéletes!</p>
+                    <p data-start="1560" data-end="1799" id="idvixl">A neve <a href="https://bniom.top/click.php?lp=1" id="iem5b5">BessPub™ BunnyPal</a>, és ez nem egy átlagos játéknyuszi, és nem is olyan, mint a hagyományos húsvéti nyulak.</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1741603601_1741159642_lQHPJxpyIIdm2gvNAljNA-iwhAmgTNKJtaoHquhhTmqVAA_1000_600.gif"
+                            id="ifpgud"/>
+                    <p data-start="1560" data-end="1799" id="iq9nsh"><b>Nézve, ahogy ugrál a szobában, rángatja a fülét és cincog minden mozdulatnál,</b> azonnal elvarázsolt! A gyerekek biztosan imádni fogják ezt a mókás játékot!</p>
+                    <p data-start="1560" data-end="1799" id="idn4q1">Visszagondolva az elmúlt évek megszokott, kicsit unalmas húsvéti ünnepeire, ez kétségtelenül a legjobb kiegészítő az idei ünnephez.</p>
+                    <p data-start="1560" data-end="1799" id="ib6zlo">Még nincs itt a Húsvét, de már el lehet képzelni: <b id="indbpo">a <a href="https://bniom.top/click.php?lp=1" id="ikpbsc">BunnyPal</a> segítségével nyomokat adhatunk a gyerekeknek, hagyva, hogy lépésről lépésre vezesse őket a húsvéti tojások keresésében.</b> Látva az arcukon az izgalmat és a mosolyt, mindenki számára örömet okoz majd, még a felnőtteknek is.</p>
+                    <p data-start="1560" data-end="1799" id="ibh3e6">A BunnyPal élettel telibb és szórakoztatóbb élményt nyújt a gyerekeknek a tojáskeresés során, miközben a Húsvét reményét és örömét hirdeti.</p>
+                    <p data-start="1560" data-end="1799" id="i5r0lx"><b id="iaz6q3">A <a href="https://bniom.top/click.php?lp=1" id="ixy33c">BunnyPal</a> hatása azonban ennél is tovább mutat.</b></p>
+                    <h2 id="ilr0cq">A BunnyPal segít a gyerekeknek elszakadni a képernyőktől<br/></h2><img id="ix6fnf"
+                                                                                                           src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1740373324_1.jpg"/>
+                    <p id="i9hubb"><b>Dr. Lucas Reed neves gyermekfejlesztési szakértő meglátásai alapján</b> a <a href="https://bniom.top/click.php?lp=1" id="i2t2oi">BessPub™ BunnyPal</a> több, mint egy aranyos húsvéti nyuszi – <b>segít a gyerekeknek elszakadni a képernyőktől, és interaktív játékon keresztül újra kapcsolódni a való világhoz.</b></p>
+                    <p id="it7kku"><i><b id="if684d">"Néha a gyerekek rajzfilmfüggősége egyszerűen azért van, mert a világukból hiányoznak a magukkal ragadó alternatívák."</b></i></p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1740373387_2.jpg" id="il6a4b"/>
+                    <p id="ii7cyo"><b>Miután az ünnepi izgalom alábbhagy, a legtöbb gyermek azonnal visszatér a digitális eszközeihez.</b> De a BunnyPal fenntartja a szórakozást!</p>
+                    <p id="izq3tf"><b>Ez az életerős kis nyuszi ugrál, imádnivaló cincogó hangokat ad ki, sőt, zajra reagálva még a fülét is mozgatja – olyan interaktív élményt nyújtva, amely leköti a gyerekek figyelmét.</b></p>
+                    <p id="ijic2d">Bár nem valódi kisállat, ugyanazt az örömöt és társaságot nyújtja! Ez a realisztikus érzékszervi játék nemcsak lefoglalja a gyerekeket, hanem segíti a szociális készségek, a kognitív képességek és az érzelmi fejlődést is.</p>
+                    <p id="iu17h9"><b>Minél valóságosabb, interaktívabb és magával ragadóbb egy játék, annál jobban támogatja a gyermek egészséges fejlődését.</b></p>
+                    <p id="iojmbg">A <a href="https://bniom.top/click.php?lp=1" id="iwdhbn">BunnyPal</a> biztonságos, nem mérgező anyagokból készült, amelyek puhák és megnyugtatóak, így a szülők nyugodtak lehetnek.</p>
+                    <p id="i5lmtb">Energiatakarékos kialakítása meghosszabbítja a játékidőt túlzott elemhasználat nélkül.</p>
+                    <div class="quote-px">
+                        <div class="quote-px-heart"></div>
+                    </div>
+                    <h2 id="i8j0fr">A legjobb ajándék gyermekeinek<br/></h2><a href="https://bniom.top/click.php?lp=1"></a><img
+                            id="iepzf6"
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1741603569_541%20%284%29.jpg"/>
+                    <div class="quote-px">
+                        <div class="quote-px-heart"></div>
+                    </div>
+                    <p id="irmb26">Egy szülő megosztotta tapasztalatait:<br/></p>
+                    <div class="quote-px">
+                        <div class="quote-px-heart">
+                            <div class="quote-px-content">
+                                <div class="quote-px-content-border"></div>
+                                <span class="quote-content-font">“</span>
+                                <div id="izuqci" class="quote-content-text">"A mindössze négyéves fiam annyira ragaszkodott a tabletjéhez, hogy nélküle vigasztalhatatlanul sírt. Miután látta a BunnyPal-t akcióban, azonnal lenyűgözte. Még sosem látott igazi nyuszit, de a mozgó és cincogó nyuszi felkeltette a kíváncsiságát. Idővel a képernyőfüggősége alábbhagyott, és most, amikor hazaér az óvodából, az az első dolga, hogy megnézze a BunnyPal-ját."</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quote-px">
+                        <div class="quote-px-heart"></div>
+                    </div>
+                    <a href="https://bniom.top/click.php?lp=1"></a></section>
+                <section id="idabg"><p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p><a href="https://bniom.top/click.php?lp=1"></a><a href="https://bniom.top/click.php?lp=1"></a></section>
+                <section id="iuhht5"></section>
+                <section id="ipetbf"><p id="irmqsa"><b>Túl sok időt tölt gyermeke a képernyő előtt?</b></p>
+                    <p id="i6bybi"><b>Szeretné különlegesebbé tenni ezt a Húsvétot egy olyan ajándékkal, amely aktívan leköti őket?</b></p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1741929976_lQHPKHXvzbCwGTvNAljNA-iw43AWY2VXpMcHtmM1CWYXAA_1000_600.gif"
+                            id="ifgflx"/>
+                    <p id="irnpdk">Pontosan ezért a <a href="https://bniom.top/click.php?lp=1" id="ifumal">BessPub™ BunnyPal</a> a tökéletes húsvéti meglepetés!</p>
+                    <p id="inpdrk">A sima plüssnyuszikkal ellentétben a BunnyPal tud ugrálni, mozgatja a fülét és imádnivaló hangokat ad ki – elhozva egy igazi húsvéti nyuszi örömét az otthonába.</p>
+                    <p id="i8gc42"></p>
+                    <p></p>
+                    <p id="i9gt2z"></p>
+                    <p data-start="557" data-end="731" id="imna5g"><b id="iw3n7f">Legyen szó születésnapról, ünnepről vagy egy kedves meglepetésről, ajándékként végtelen örömöt és tanulást visz gyermeke életébe.</b></p>
+                    <p id="iwr0hc">Mint a végső húsvéti nyuszi hírvivő, a BunnyPal még izgalmasabbá teszi a tojásvadászatot!</p>
+                    <p></p>
+                    <p id="ioz8yw"></p>
+                    <p></p>
+                    <p id="ie1dmk"></p>
+                    <p></p>
+                    <div class="quote-px">
+                        <div class="quote-px-heart"></div>
+                    </div>
+                    <p id="iwvsgi"></p>
+                    <p></p>
+                    <p id="ic8cmi"></p>
+                    <p data-start="2525" data-end="2743" id="ion231"></p>
+                    <p></p>
+                    <p></p>
+                    <h2 id="ixv82c">BessPub™ BunnyPal: A tökéletes interaktív nyuszi barát gyerekeknek!</h2><a
+                            id="irl7qr"><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1741929992_lQDPJwaWDRjz2tvNAljNA-iwByKcak4EIjkHtmCkmfqNAA_1000_600.jpg"
+                            id="ifvqsn"/></a>
+                    <p id="inf1zc">🐰 <b>Igazi Húsvéti Nyuszi élmény</b> – Tegye különlegessé a Húsvétot a BunnyPal-lal! Ugrál, cincog és mozgatja a fülét, életre keltve a Húsvéti Nyuszi varázsát.<br/><br/>🐰 <b>Felkelti a kíváncsiságot</b> – Több, mint egy játék: a BunnyPal arra ösztönzi a gyerekeket, hogy fedezzék fel a világot a képernyőkön túl.<br/><br/>🐰 <strong>Tanulás játékkal –</strong> Segít a szociális, érzelmi és kognitív készségek fejlesztésében, miközben a gyerekek jól szórakoznak új barátjukkal.<br/><br/>🐰 <strong>Biztonságos és tartós –</strong> Kiváló minőségű, gyerekbarát anyagokból készült, tartós és biztonságos használatot garantál.<br/><br/>🐰 <strong>Pofonegyszerű használat –</strong> Csak kapcsolja be, és már kész is az ugrálásra és szórakoztatásra! Egyszerű és nagyszerű minden korosztálynak.<br/><br/>🐰 <strong>A tökéletes ajándék –</strong> Születésnapra vagy ünnepre keres ajándékot? A BunnyPal garantáltan mosolyt csal az arcokra.</p>
+                    <h2 id="idi0pn">A BunnyPal szó szerint letarolta az internetet.</h2>
+                    <p id="i8sswg">Több mint 2786 ötcsillagos értékeléssel a <a href="https://bniom.top/click.php?lp=1" id="i9gyj2">BessPub™ BunnyPal</a> kétségkívül a gyerekek kedvence.</p>
+                    <div class="presell-comment-rem">
+                        <div class="comment-module">
+                            <div class="comment-module-img"><img
+                                    src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1740539749_02.jpg" alt=""
+                                    id="i4vyen" class="comment-product-img"/></div>
+                            <div class="comment-module-content">
+                                <div class="approve-module"><img src="/images/presell-comment/user_approve.png" alt=""
+                                                                 class="approve-module-img"/><span
+                                        class="approve-user-name">Hana Malik :</span><img
+                                        src="/images/presell-comment/user_star.png" alt=""
+                                        class="approve-module-star-img"/></div>
+                                <div class="user-comment-content"><span id="i5nv2y">"Eleinte szkeptikus voltam, de látva, ahogy a lányom játszik a BunnyPal-lal, teljesen meggyőzött! Imádja nézni, ahogy ugrál és cincog. Olyan, mint egy igazi nyuszi, de nem kell utána takarítani! Tökéletes módja, hogy elvegyem a tablet elől."</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="if82m6" class="comment-module">
+                            <div class="comment-module-img"><img
+                                    src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1740539753_01.jpg" alt=""
+                                    id="i9ue4j" class="comment-product-img"/></div>
+                            <div class="comment-module-content">
+                                <div class="approve-module"><img src="/images/presell-comment/user_approve.png" alt=""
+                                                                 class="approve-module-img"/><span id="iue0sr"
+                                                                                                   class="approve-user-name">Emily Thompson</span><img
+                                        src="/images/presell-comment/user_star.png" alt=""
+                                        class="approve-module-star-img"/></div>
+                                <div class="user-comment-content"><span id="i2kyrh">"Húsvétra szántam a fiamnak, de korábban megtalálta, és már most imádja! Nagyon élethű a mozgása és imádnivaló hangokat ad ki."</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-module">
+                            <div class="comment-module-img"><img
+                                    src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1740539756_03.jpg" alt=""
+                                    id="i4lk3n" class="comment-product-img"/></div>
+                            <div class="comment-module-content">
+                                <div class="approve-module"><img src="/images/presell-comment/user_approve.png" alt=""
+                                                                 class="approve-module-img"/><span id="ifwuvm"
+                                                                                                   class="approve-user-name">Sarah Williams</span><img
+                                        src="/images/presell-comment/user_star.png" alt=""
+                                        class="approve-module-star-img"/></div>
+                                <div class="user-comment-content"><span id="i51d0i">"Saját magamnak vettem, mert imádom a nyulakat. Még egy kis szoknyát is adtam rá! Nagyon érdekes, tud mozogni és a füle is jár, pont mint egy igazi nyuszinak!"</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="imi3og" class="presell-comment-px">
+                        <div class="quote-px">
+                            <div class="quote-px-heart"></div>
+                        </div>
+                        <div class="quote-px">
+                            <div class="quote-px-heart"></div>
+                        </div>
+                        <div class="quote-px">
+                            <div class="quote-px-heart"></div>
+                        </div>
+                    </div>
+                </section>
+                <section id="i6zn2o"><h2 id="i43dqj">Összegzés: Megéri?</h2>
+                    <p id="ilq4yk">A tökéletes húsvéti meglepetést keresi?<br/></p>
+                    <p id="ieo384">A <a href="https://bniom.top/click.php?lp=1" id="iqlvxk">BessPub™ BunnyPal</a> életre kelti a Húsvéti Nyuszit! Élethű ugrásaival és hangjaival felkelti a kíváncsiságot és a való világba hívja a gyerekeket – messze a képernyőktől.</p>
+                    <p id="ip13dk">Több, mint egy játék: a BunnyPal varázslatossá tesz minden pillanatot, kreativitásra és nevetésre ösztönözve.<br/></p>
+                    <p id="inpph6">Úgy hallottam, jelenleg egy promóció fut, ahol az első vásárlók hatalmas, <span id="i6j981"><b>50%-os</b></span> kedvezményt kapnak!<br/>
+                    </p><a id="i33rvh"><img id="ic3cbd"
+                                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1740381653_9.jpg"/></a>
+                    <p id="ilsz6p">Mindössze <span id="imx5cn"><b id="iemzy3">$34.99</b></span> árért azonnal megrendelheti! Ez sokkal olcsóbb, mint amit korábban fizettem! Ez egy ritka lehetőség, csak most elérhető!<br/></p>
+                    <p id="i0763m"><a href="https://bniom.top/click.php?lp=1" id="idcdb9">Kattintson ide a kedvezményes <u>BessPub™ BunnyPal</u> igényléséhez (ha még elérhető) >></a><br/></p></section>
+                <p id="iczozo">Tudja, egy ilyen kiváló minőségű <b>Nyuszi babáért</b> ez a promóciós ár abszolút lenyűgöző. Szerintem mindenképp szerezzen be egyet, mielőtt elfogy... nem is kérdés!<br/></p>
+                <section><h2 id="imv6i4">Hogyan szerezheti be saját BunnyPal-ját?</h2>
+                    <p id="ipa62s">Ha még van készleten, így juthat hozzá:<br/></p>
+                    <p id="ihjg11">1) Rendelje meg a <a href="https://bniom.top/click.php?lp=1" id="ibmmkf">BessPub™ BunnyPal</a>-t a hivatalos weboldalról.<br/>
+                    </p>
+                    <p id="isi7nf">2) Dobogtassa meg szerettei szívét a legkedvesebb ajándékkal, amit valaha kaptak!!<br/></p>
+                    <div class="smb-border-main"><p id="ixgwaz"><b id="i1mz2g">*2025. február 10-i frissítés:</b><br/></p>
+                        <p id="icrsha">Amióta a BessPub™ BunnyPal megjelent a nagyobb nemzetközi médiában, hihetetlen érdeklődés övezi. A népszerűségre és a pozitív visszajelzésekre való tekintettel a cég most egyszeri, 50%-os kedvezményt kínál az első vásárlóknak.<br/></p></div>
+                    <div class="smb-click-button"><a href="https://bniom.top/click.php?lp=1">KEDVEZMÉNYEK ÉS ELÉRHETŐSÉG ELLENŐRZÉSE →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div id="it386b" class="smb-page-right">
+            <div id="smb-fixed-flag"></div>
+            <div class="smb-right-main">
+                <div id="i5zj98" class="smb-right-product-text">BessPub™ BunnyPal</div>
+                <div class="smb-right-content"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1740392875_03.jpg" alt="" id="ism82h"
+                        class="smb-main-img"/>
+                    <div id="ixmk47" class="smb-content-text">
+                        <div id="itksn7" class="smb-right-slogan-text"><span id="ij24ml"><b id="idomxm"><div id="i7xq7h">Valódi szórakozás, valódi kapcsolat!</div></b></span><br/>
+                        </div>
+                        <div id="ict3a6" class="smb-right-button"><a href="https://bniom.top/click.php?lp=1" id="izgzkh">ELÉRHETŐSÉG ELLENŐRZÉSE →</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="smb-flag-none"></div>
+    <div id="ipdfs5" class="smb-button-bottom smb-mb-block">
+        <div class="smb-right-button"><a href="https://bniom.top/click.php?lp=1">ELÉRHETŐSÉG ELLENŐRZÉSE →</a></div>
+    </div>
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main"><p id="iypvam">Copyright © 2024</p>
+            <p>SZERZŐI JOGI NYILATKOZAT: EZ EGY HIRDETÉS, NEM TÉNYLEGES HÍRCIKK, BLOG VAGY FOGYASZTÓVÉDELMI FRISSÍTÉS. ÉRTÉKESÍTÉSI NYILATKOZAT: Ez a weboldal egy piactér. Tudnia kell, hogy a tulajdonos pénzügyi kapcsolatban áll az oldalon hirdetett termékekkel és szolgáltatásokkal.</p>
+            <p>EGÉSZSÉGÜGYI NYILATKOZAT: Az oldalon található információk nem helyettesítik a professzionális orvosi tanácsot, diagnózist vagy kezelést. Nem vállalunk felelősséget az oldalon található információk pontosságáért.</p>
+            <p>Soha ne változtasson a gyógyszerelésén, napi rutinján vagy étrendjén anélkül, hogy konzultálna orvosával. SOHA NE HAGYJA FIGYELMEN KÍVÜL A SZAKORVOSI TANÁCSOT AZ OLDALON OLVASOTTAK MIATT.</p>
+            <p><a rel="nofollow" href="#" target="_blank" id="imt482" class="privacy-link">Kapcsolat</a></p>
+            <p><a rel="nofollow" href="#" target="_blank" class="privacy-link">Adatvédelmi szabályzat</a></p>
+            <p><a rel="nofollow" href="#" target="_blank" class="privacy-link">Felhasználási feltételek</a></p></div>
+    </footer>
+</div>
+<div id="i9j9pn" class="popup">
+    <div id="iq28ev" class="overlay"></div>
+    <div id="it9qrf" class="inner">
+        <div id="ixubho" class="close hide-overlay"><i class="fa fa-times"></i></div>
+        <a href="https://bniom.top/click.php?lp=1" id="idohaj">
+            <div class="columns">
+                <div class="column is-3"><p><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1739790786_0.jpg" id="i5834f"/></p>
+                    <p id="ih8s4k">Legalacsonyabb ár: $34.99</p>
+                    <p id="ixxwal">Szerezze meg kedvezményét még ma!</p></div>
+                <div class="column is-7"><p id="ihcb4t">Igényelje kedvezményét még ma!</p>
+                    <p id="itfv84">Az akciós ár nem tart sokáig, és a termék elképesztő sebességgel fogy.</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1739790786_0.jpg" alt=""
+                            id="im7x9r"/>
+                    <button class="button has-tooltip-active has-tooltip-bottom">KATTINTSON IDE A MEGTAKARÍTÁSHOZ <i
+                            class="fa fa-arrow-right"></i></button>
+                    <p class="popup-bottom-p">Cselekedjen most, mielőtt a készlet kifogy!</p></div>
+            </div>
+        </a></div>
+</div>
+</body>
+<script>
+    function click_popup_articles(href) {
+        var need_url_params = ["site", "site_id", "title", "platform", "campaign_id", "campaign_item_id", "thumbnail", "campaign_name", "utm_campaign", "utm_medium"];
+        var paramSeparator = href.includes('?') ? '&' : '?';
+        const orderedParams = need_url_params
+            .filter(function (param) {
+                return getQueryString(param);
+            })
+            .map(function (param) {
+                return param + "=" + getQueryString(param);
+            });
+        if (orderedParams.length) {
+            return href + paramSeparator + orderedParams.join('&');
+        } else {
+            return href;
+        }
+    }
+</script>
+
+<script src="js/smb-scroll.js"></script>
+<script src="js/view1/sticky-top.js"></script>
+</html>
