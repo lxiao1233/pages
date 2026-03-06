@@ -1,0 +1,286 @@
+.glue_block_layer {
+    background-image: url("pattern.png");
+    opacity: 0.7;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.glue_popup {
+    height: 620px;
+    width: 780px;
+    box-shadow: 0px 0px 7px #4a4a4a;
+    -moz-box-shadow: 0px 0px 7px #4a4a4a;
+    -webkit-box-shadow: 0px 0px 7px #4a4a4a;
+    background: #f2f2f2;
+    -webkit-animation: zoomin 0.4s;
+    animation: zoomin 0.4s;
+    border-radius: 5px;
+}
+
+.glue_content {
+    padding: 20px;
+}
+
+.glue_close {
+    cursor: pointer;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    float: right;
+    font-family: Arial;
+    font-size: 17px;
+    background-color: #dfdfdf;
+    color: #4c4c4c;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    box-shadow: 0px 0px 3px #4d4d4d;
+    -moz-box-shadow: 0px 0px 3px #4d4d4d;
+    -webkit-box-shadow: 0px 0px 3px #4d4d4d;
+    border-radius: 0px 5px 0px 5px;
+}
+
+/* 
+CSS3 animation keyframes.
+*/
+
+@-webkit-keyframes zoomin {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+    40% {
+        -webkit-transform: scale(1.02);
+        transform: scale(1.02);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes zoomin {
+    0% {
+        -ms-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+    40% {
+        -ms-transform: scale(1.02);
+        transform: scale(1.02);
+        opacity: 1;
+    }
+    100% {
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomin {
+    0% {
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+    40% {
+        -webkit-transform: scale(1.02);
+        -ms-transform: scale(1.02);
+        transform: scale(1.02);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.glue_popup {
+    height: 620px;
+    width: 870px;
+}
+
+/*defines popup width*/
+
+.glue_content * {
+    padding: 0;
+    margin: 0;
+}
+
+.glue_content {
+    text-align: center;
+    overflow: hidden;
+}
+
+#beforeyougo {
+    border-radius: 20px;
+}
+
+.glue_content {
+    padding: 0;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.glue_box_left {
+    float: left;
+    width: 30%;
+    border-top-left-radius: 20px;
+    height: 100%;
+    border-bottom-left-radius: 20px;
+    padding: 60px 10px 50px 10px;
+    background: rgba(191, 191, 191, 1);
+    background: -moz-linear-gradient(top, rgba(191, 191, 191, 1) 0%, rgba(171, 171, 171, 1) 64%, rgba(171, 171, 171, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(191, 191, 191, 1)), color-stop(64%, rgba(171, 171, 171, 1)), color-stop(100%, rgba(171, 171, 171, 1)));
+    background: -webkit-linear-gradient(top, rgba(191, 191, 191, 1) 0%, rgba(171, 171, 171, 1) 64%, rgba(171, 171, 171, 1) 100%);
+    background: -o-linear-gradient(top, rgba(191, 191, 191, 1) 0%, rgba(171, 171, 171, 1) 64%, rgba(171, 171, 171, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(191, 191, 191, 1) 0%, rgba(171, 171, 171, 1) 64%, rgba(171, 171, 171, 1) 100%);
+    background: linear-gradient(to bottom, rgba(191, 191, 191, 1) 0%, rgba(171, 171, 171, 1) 64%, rgba(171, 171, 171, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d44a5c', endColorstr='#ba2737', GradientType=0);
+}
+
+.glue_box_right {
+    width: 66%;
+    float: left;
+}
+
+.glue_content h3 {
+    font-size: 20px;
+    color: #222;
+    margin-top: 60px;
+    line-height: 35px;
+}
+
+.glue_content h3 span {
+    font-size: 35px;
+    color: #222;
+    font-weight: bold;
+    display: block;
+}
+
+.hurray {
+    font-size: 18px;
+    color: #000;
+}
+
+h2.beforeyou {
+    font-size: 50px;
+    color: rgba(186, 39, 55, 1);
+    font-weight: bold;
+    font-family: verdana, helvetica, serif;
+    letter-spacing: -2px;
+    padding-top: 50px;
+}
+
+.glue_content p {
+    font-size: 18px;
+    color: #777;
+    font-weight: 600;
+    padding: 20px 45px;
+}
+
+.product {
+    overflow: hidden;
+}
+
+.product ul {
+    list-style: none;
+    padding: 20px 0;
+    margin-top: 0;
+}
+
+.product ul li {
+    list-style: none;
+    display: inline-table;
+    border-radius: 10px;
+    background: #fff;
+    padding: 0 10px;
+    margin: 0 10px;
+}
+
+.product ul li img {
+    max-width: 100%;
+}
+
+.btn-lg {
+    padding: 20px 30px;
+    font-size: 34px;
+    font-weight: 700;
+    font-family: verdana, helvetica, serif;
+    border: 3px #2d712d solid;
+    border-radius: 60px;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    color: #053e14 !important;
+    margin-bottom: 10px;
+}
+
+.btn-lg:hover {
+    color: #fff;
+}
+
+.content p {
+    font-family: Arial;
+    margin: 0 0 20px 0;
+    line-height: 26px;
+    font-size: 17px;
+    color: #222;
+}
+
+.content p.small-text {
+    font-size: 15px;
+    padding: 15px 5px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    line-height: 23px;
+}
+
+.content p.pink-text {
+    color: #0198bd;
+}
+
+.content p.update {
+    border: 1px dotted #000;
+    background: #EFFFF7;
+    padding: 4px 9px;
+}
+
+.content p.update .red-text {
+    color: #F00;
+}
+
+.content .revival-box {
+    margin-left: 0;
+    margin-right: 0;
+    border: 1px solid #ccc;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.content .revival-box2 {
+    margin-left: 0;
+    margin-right: 0;
+    border: 1px solid #ccc;
+    background: #f5f9fa;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 15px;
+}
+
+.content .revival-box .button {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+}
