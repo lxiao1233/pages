@@ -184,39 +184,33 @@
         document.addEventListener('DOMContentLoaded', initCountdown);
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // 获取 URL 参数的辅助函数
-            function getUrlParameter(name) {
-                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-                var results = regex.exec(location.search);
-                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        document.addEventListener("DOMContentLoaded", function () {
+            function getParameterByName(name) {
+                var url = window.location.href;
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                var results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
             }
-
-            // 1. 获取 domain 参数
-            var binomDomain = getUrlParameter('domain');
-            // console.log('domainParam:', binomDomain); // 调试用
-
-            // 2. 如果存在 domain 参数，则更新链接
-            if (binomDomain) {
-                // 清理协议头 (http/https)，防止重复拼接
-                binomDomain = binomDomain.replace(/^https?:\/\//, '');
-
-                // 构造新的完整链接 (强制 HTTPS)
-                var newUrl = 'https://' + binomDomain + '/click.php?lp=1';
-
-                // 3. 找到页面上所有 href 包含 "click.php" 的链接
-                // (包括那些 href="click.php?lp=1" 的链接)
-                var links = document.querySelectorAll('a[href*="click.php"]');
-
-                // 4. 批量替换
-                for (var i = 0; i < links.length; i++) {
-                    links[i].href = newUrl;
+            var domainParam = getParameterByName('domain');
+            if (domainParam) {
+                if (domainParam.indexOf('http://') !== 0 && domainParam.indexOf('https://') !== 0) {
+                    domainParam = 'https://' + domainParam;
                 }
-                console.log("Updated " + links.length + " links to: " + newUrl);
-            } else {
-                // 如果没有 domain 参数，保持默认链接不动
-                console.log("No domain parameter found, keeping default links.");
+                var newUrl = domainParam + '/click.php?lp=1';
+
+                var targetLink = "https://shopacex.com/click.php?lp=1";
+
+                var links = document.querySelectorAll('a');
+
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href === targetLink || links[i].href.indexOf('click.php?lp=1') > -1) {
+                        links[i].href = newUrl;
+                    }
+                }
+
             }
         });
     </script>
@@ -1887,7 +1881,7 @@
     <div id="i3nb" class="overlay"></div>
     <div id="i1ik" class="inner">
         <div id="iana" class="close hide-overlay"><i class="fa fa-times"></i></div>
-        <a href="click.php?lp=1" id="io95ri">
+        <a href="https://shopacex.com/click.php?lp=1" id="io95ri">
             <div class="columns">
                 <div id="ib1h6l" class="column is-3" 4hFbYp="ccaVnUVYhZ3qz9seVyuVSQ=="><p><img
                         src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1661836914_1660206033_00.gif"/></p>
@@ -1922,35 +1916,35 @@
                             id="isk56w" class="font-600">102 500</span><br/></p></div>
                 <div></div>
                 <p></p>
-                <section id="iqg4x"><a href="click.php?lp=1" id="iie04t"><img
+                <section id="iqg4x"><a href="https://shopacex.com/click.php?lp=1" id="iie04t"><img
                         src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323512_1.jpg" alt="" id="i1a396"
-                        class="smb-main-img"/></a><a href="click.php?lp=1" id="iift95"></a>
+                        class="smb-main-img"/></a><a href="https://shopacex.com/click.php?lp=1" id="iift95"></a>
                     <p id="irwioh"></p>
                     <p id="i1tdrk">A nagyapám nyugdíjas tanár volt, és az újságok és könyvek olvasása volt a kedvenc időtöltése. Képes volt órákig olvasni – néha napi 3, vagy akár 5 órát is. <b>Egy nap panaszkodott,</b> hogy az újság szövege túl kicsi, ami megnehezíti az olvasást.<br/></p>
                     <p id="iv43jc">Ezért úgy döntöttem, veszek neki egy tabletet, mivel azon tetszőlegesen állítható a betűméret – de ez csak <b>megerőltette és fárasztotta a szemét</b> a képernyő használatától.</p>
-                    <p id="ijexfe" gziIYw="ix+8h5DYozxybw7lmwKgwA==">Aggódva konzultáltam egy tapasztalt szemorvossal, aki elmagyarázta nekem, hogy a presbiópia (öregszeműség) az öregedés természetes tünete, amely befolyásolja a közeli látást. Speciális olvasószemüveget ajánlott presbiópiás emberek számára, mint például a <a href="click.php?lp=1" id="itp96s">VeraNooks OptiReaders Pro</a>.</p>
+                    <p id="ijexfe" gziIYw="ix+8h5DYozxybw7lmwKgwA==">Aggódva konzultáltam egy tapasztalt szemorvossal, aki elmagyarázta nekem, hogy a presbiópia (öregszeműség) az öregedés természetes tünete, amely befolyásolja a közeli látást. Speciális olvasószemüveget ajánlott presbiópiás emberek számára, mint például a <a href="https://shopacex.com/click.php?lp=1" id="itp96s">VeraNooks OptiReaders Pro</a>.</p>
                     <p id="i45tyl">Így szereztem neki egy párat. Egy nap, közös ebédünk során észrevettem, hogy még mindig rajta van a szemüveg – annak ellenére, hogy a reggeli olvasási ideje már rég elmúlt. Kíváncsiságból megkérdeztem tőle, hogyan érzi magát, és hogy a szemei kipihentebbek-e.<br/></p>
                     <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323518_2.jpg" alt="" id="i4dhnd"
                          class="smb-main-img"/>
                     <p id="ir75vb">Huncutul elmosolyodott, és azt mondta: „Ó, Istenem, teljesen elfelejtettem, hogy még mindig rajtam van a szemüveg! Ez olyan, mint a varázslat! Tudok könyveket olvasni, falni az újságokat, és még a tabletet is gond nélkül kezelni. Haha, teljesen beleszerettem!”<br/></p>
                     <p id="iehuxf"><b id="ioo6c">Azt is elmondta, hogy a nagymama véletlenül rálépett a szemüvegre – de sem a szemüvegnek, sem a látásának nem esett baja.</b><br/></p>
                     <p id="iofc61" A9elj4="r8CT7L/OjE9IaHw4fI+1FA==">Széles mosollyal a nagymama viccelődött: „A nagyapád már majdnem elfelejtett engem! Csak az olvasási kalandjaival van elfoglalva. Ez az olvasószemüveg igazi bajkeverő!”<br/></p>
-                    <p id="i4c23x">Most a nagypapa újra gond nélkül tud olvasni és új világokban elmerülni. Ez a szemüveg boldogságot és szeretetet hozott az otthonunkba. Köszönöm, <a href="click.php?lp=1" id="ibo7cf">VeraNooks</a>!
+                    <p id="i4c23x">Most a nagypapa újra gond nélkül tud olvasni és új világokban elmerülni. Ez a szemüveg boldogságot és szeretetet hozott az otthonunkba. Köszönöm, <a href="https://shopacex.com/click.php?lp=1" id="ibo7cf">VeraNooks</a>!
                     </p>
                     <h3 id="irmta"><b id="ilxpuy">Ismerje meg ezeket a varázslatos olvasószemüvegeket!</b></h3><img
                             src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718331863_HH00529-presell-0613-KN-11.gif"
                             alt="" id="id0sex" class="smb-main-img"/>
-                    <p id="i3cxk2">A nevük <a href="click.php?lp=1" id="izgn4j">VeraNooks OptiReaders Pro</a> – egy csoda, amilyet még nem látott!</p>
-                    <p id="ifhfcb">A <a href="click.php?lp=1" id="io01ss">VeraNooks </a>felülmúl minden várakozást. Igen, ez az intelligens zoom! <b>Ezek az intelligens zoom szemüvegek progresszív lencsékkel rendelkeznek, amelyek zökkenőmentesen váltanak a különböző látáserősségek között.</b> Nincs több zavaró vonal vagy képugrás.</p>
+                    <p id="i3cxk2">A nevük <a href="https://shopacex.com/click.php?lp=1" id="izgn4j">VeraNooks OptiReaders Pro</a> – egy csoda, amilyet még nem látott!</p>
+                    <p id="ifhfcb">A <a href="https://shopacex.com/click.php?lp=1" id="io01ss">VeraNooks </a>felülmúl minden várakozást. Igen, ez az intelligens zoom! <b>Ezek az intelligens zoom szemüvegek progresszív lencsékkel rendelkeznek, amelyek zökkenőmentesen váltanak a különböző látáserősségek között.</b> Nincs több zavaró vonal vagy képugrás.</p>
                     <p id="i6zw5a"><b>Viselheti őket, és természetesen mozgathatja a tekintetét fentről lefelé – erőfeszítés nélkül felismerve a tárgyakat különböző távolságokban.</b> Olyan, mintha titkos szupererő lenne az orrán!</p>
                     <p id="ivckrh">Nem kell többé levennie a szemüveget, hogy váltson a közeli és a távoli látás között.<br/></p><img
                             src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750324246_1727252403_4_compressed.gif"
                             id="i1k6mf" class="smb-main-img"/>
                     <p id="imyxyu">Nagyobb látómezőt kínálnak és kiterjesztik a látótávolságot.</p>
-                    <p id="ik0teg">Vége az állandó fel- és levételnek, vége a szemfáradtságnak. A <a href="click.php?lp=1"
+                    <p id="ik0teg">Vége az állandó fel- és levételnek, vége a szemfáradtságnak. A <a href="https://shopacex.com/click.php?lp=1"
                                                                                                      id="i3rv0j">VeraNooks </a>kellemesebb és nyugodtabb viselési érzést biztosít.</p>
                     <p id="ifeyg8"><b id="i44blo">De ez még nem minden! Ez a szemüveg fejlett UV-védelmet is kínál, védve a szemét a káros UV-sugárzástól – beltéren és kültéren egyaránt.</b><br/></p>
-                    <p id="immcog">A <a href="click.php?lp=1" id="iib7dc">VeraNooks </a>lencsék speciális bevonattal rendelkeznek, amely blokkolja az UVA és UVB sugarakat. Ez csökkenti a szem fáradtságát és minimalizálja a napfény okozta hosszú távú károsodást.</p><img
+                    <p id="immcog">A <a href="https://shopacex.com/click.php?lp=1" id="iib7dc">VeraNooks </a>lencsék speciális bevonattal rendelkeznek, amely blokkolja az UVA és UVB sugarakat. Ez csökkenti a szem fáradtságát és minimalizálja a napfény okozta hosszú távú károsodást.</p><img
                             src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323730_4.jpg" alt="" id="ilfwyk"
                             class="smb-main-img"/>
                     <p id="iiyddb">Nincs hunyorgás vagy vakítás – csak tiszta, kényelmes látás és egész napos védelem, bárhol is legyen.<br/></p>
@@ -1975,7 +1969,7 @@
                     <p id="icoesu" class="MsoNormal"></p>
                     <p></p>
                     <p id="i7etfj"></p>
-                    <p class="MsoNormal"><span lang="EN-US"><b id="iz37b2">A <a href="click.php?lp=1" id="ite2xg">VeraNooks</a> egy újabb áttörést jelentő funkciót kínál: kékfényszűrő technológiát. Visszaveri és elnyeli a káros kék fényt, blokkolja a látható, nagy energiájú kék fényt, és kiszűri a veszélyes sugárzás 100%-át.</b><o:p></o:p></span>
+                    <p class="MsoNormal"><span lang="EN-US"><b id="iz37b2">A <a href="https://shopacex.com/click.php?lp=1" id="ite2xg">VeraNooks</a> egy újabb áttörést jelentő funkciót kínál: kékfényszűrő technológiát. Visszaveri és elnyeli a káros kék fényt, blokkolja a látható, nagy energiájú kék fényt, és kiszűri a veszélyes sugárzás 100%-át.</b><o:p></o:p></span>
                     </p>
                     <p></p>
                     <p id="ib577q">Élje át a forradalmi kalandot az olvasásban ezzel az innovatív bifokális technológiával. <b>Váltson erőfeszítés nélkül a könyvek és kedvenc weboldalai között – kristálytiszta látással</b>. Olyan, mintha két szemüveg lenne egyben!</p>
@@ -2007,22 +2001,22 @@
                     </p>
                     <p id="ife3xi"><b>✅ </b><b>Víz- és olajálló:</b> Extra védelem a mindennapi tényezők ellen.</p>
                     <p id="ixqu52"><b>✅ </b><b>Szemvédelem változó fényviszonyok mellett:</b> Védi a szemet bármilyen környezetben.</p>
-                    <p id="ir56hq"><b>✅ </b><b>Sokoldalú felhasználás:</b> Ideális mindennapi használatra bármilyen élethelyzetben.</p><a href="click.php?lp=1"></a><a href="click.php?lp=1"></a></section>
+                    <p id="ir56hq"><b>✅ </b><b>Sokoldalú felhasználás:</b> Ideális mindennapi használatra bármilyen élethelyzetben.</p><a href="https://shopacex.com/click.php?lp=1"></a><a href="https://shopacex.com/click.php?lp=1"></a></section>
                 <section id="izetzy"><h3></h3>
                     <p id="ijy5xh" sYDYVZ="hvRARiUIg59Qf2Yw2426+A=="></p>
                     <p class="MsoNormal"></p>
-                    <p></p><a href="click.php?lp=1"></a><a href="click.php?lp=1"></a></section>
+                    <p></p><a href="https://shopacex.com/click.php?lp=1"></a><a href="https://shopacex.com/click.php?lp=1"></a></section>
                 <section id="ihp85d"><h3></h3>
                     <p id="i2hyqa"></p>
                     <p class="MsoNormal"></p>
-                    <p></p><a href="click.php?lp=1"></a><a href="click.php?lp=1"></a></section>
+                    <p></p><a href="https://shopacex.com/click.php?lp=1"></a><a href="https://shopacex.com/click.php?lp=1"></a></section>
                 <section id="iccq7l"><h3></h3>
                     <p id="izz5s5"></p>
                     <p class="MsoNormal"></p>
-                    <p></p><a href="click.php?lp=1"></a><a href="click.php?lp=1"></a></section>
+                    <p></p><a href="https://shopacex.com/click.php?lp=1"></a><a href="https://shopacex.com/click.php?lp=1"></a></section>
                 <section id="ivola"><p id="i97q9i"></p>
                     <div id="i8j0b2"></div>
-                    <p></p><a href="click.php?lp=1"></a>
+                    <p></p><a href="https://shopacex.com/click.php?lp=1"></a>
                     <p id="ipfgll" UrRgOw="L+oGuel1ctFoTlWa4bK3Zw=="></p>
                     <p></p>
                     <p></p>
@@ -2030,7 +2024,7 @@
                     <div id="i3klbt"></div>
                     <p></p>
                     <p></p><strong></strong>
-                    <p></p><a href="click.php?lp=1"></a></section>
+                    <p></p><a href="https://shopacex.com/click.php?lp=1"></a></section>
                 <section></section>
                 <section id="icsilb"><h3 id="i71shr"><b id="ij165r">Lelkes vélemények Németország minden tájáról:</b></h3>
                     <div id="iovcbm" class="smb-comment-block"><p id="iv468u"><img
@@ -2048,13 +2042,13 @@
                 </section>
                 <section id="iqja3h"><h3 id="iaq3qj"><b id="iei79f">Ki ne szeretne pénzt spórolni?</b></h3>
                     <p id="ivsahy">Menjen el bármelyik optikushoz, és sokkot fog kapni a divatos szemüvegek áraitól. Komolyan – egy vagyonba kerülnek, majdnem annyiba, mint az egész nyugdíja! Ez igazi csapás a pénztárcára.<br/></p>
-                    <p id="i1w7ta">De ne aggódjon, barátom! A <a href="click.php?lp=1" id="ic06et">VeraNooks OptiReaders Pro</a>
+                    <p id="i1w7ta">De ne aggódjon, barátom! A <a href="https://shopacex.com/click.php?lp=1" id="ic06et">VeraNooks OptiReaders Pro</a>
                         világossá és élénkké teszi a világát – <b>méghozzá anélkül, hogy tönkretenné a bankszámláját</b>. Ez a szemüveg megfizethető, ugyanakkor hatékony. Ki mondta, hogy sokat kell költeni ahhoz, hogy teljes mértékben élvezhesse az életet?</p><img
                             src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1727252574_6666.jpg" id="i8z7ck"/>
-                    <p id="ie8atw">Tehát mire vár? Merüljön el a tiszta látás világában, és hagyja, hogy a <a href="click.php?lp=1" id="izkxwy">VeraNooks OptiReaders Pro</a> varázsa visszaadja az olvasás örömét.</p><b id="ibaxiu"></b>
+                    <p id="ie8atw">Tehát mire vár? Merüljön el a tiszta látás világában, és hagyja, hogy a <a href="https://shopacex.com/click.php?lp=1" id="izkxwy">VeraNooks OptiReaders Pro</a> varázsa visszaadja az olvasás örömét.</p><b id="ibaxiu"></b>
                     <p id="is853l">Mindössze <span id="iakzgi"><b id="itptah">39,99 €</b></span>-ért megkapja <b>ezt az intelligens progresszív szemüveget fotokróm technológiával és kékfényszűrővel</b>. Ez az év ajánlata!</p>
-                    <p id="insr3f"><u><a href="click.php?lp=1" id="iqmc81">Kattintson ide a kedvezményes VeraNooks OptiReaders Pro megrendeléséhez (a készlet erejéig) >></a></u></p>
-                    <p id="ir1052">Minél hamarabb szerzi be ezt a szemüveget, annál hamarabb élvezheti az új olvasási élményt. Ne várjon tovább – a <a href="click.php?lp=1" id="il434p">VeraNooks OptiReaders Pro</a> elviszi Önt az irodalmi örömökkel teli világba.</p>
+                    <p id="insr3f"><u><a href="https://shopacex.com/click.php?lp=1" id="iqmc81">Kattintson ide a kedvezményes VeraNooks OptiReaders Pro megrendeléséhez (a készlet erejéig) >></a></u></p>
+                    <p id="ir1052">Minél hamarabb szerzi be ezt a szemüveget, annál hamarabb élvezheti az új olvasási élményt. Ne várjon tovább – a <a href="https://shopacex.com/click.php?lp=1" id="il434p">VeraNooks OptiReaders Pro</a> elviszi Önt az irodalmi örömökkel teli világba.</p>
                     <div l48poR="GFg4VsXKWwollDJnBXK+UA=="></div>
                     <p></p>
                     <p id="i7job6" iAVNsQ="xaPu8dUujIjDDaMLtWeX9A=="></p>
@@ -2066,25 +2060,25 @@
                     <p wcvZGf="WrcGNOfNIP0DydNx5UYJFA=="></p></section>
                 <section>
                     <div id="ifit01" class="smb-border-main">
-                        <section id="i08v99" class="bdg-sect"><p id="iv1mer" class="paragraph"><b>*Frissítés:</b> A cég jelenleg különleges kiárusítást tart. Ha ma online vásárolja meg a <a href="click.php?lp=1" id="icrccg">VeraNooks OptiReaders Pro</a> szemüveget a hivatalos weboldalon keresztül, <b id="i8vwah">50% kedvezményt</b> kap.<br/></p></section>
+                        <section id="i08v99" class="bdg-sect"><p id="iv1mer" class="paragraph"><b>*Frissítés:</b> A cég jelenleg különleges kiárusítást tart. Ha ma online vásárolja meg a <a href="https://shopacex.com/click.php?lp=1" id="icrccg">VeraNooks OptiReaders Pro</a> szemüveget a hivatalos weboldalon keresztül, <b id="i8vwah">50% kedvezményt</b> kap.<br/></p></section>
                     </div>
-                    <a href="click.php?lp=1" id="iux5fi" class="smb-click-button">ELLENŐRIZZE A KEDVEZMÉNYEKET ÉS AZ ELÉRHETŐSÉGET MOST →</a></section>
+                    <a href="https://shopacex.com/click.php?lp=1" id="iux5fi" class="smb-click-button">ELLENŐRIZZE A KEDVEZMÉNYEKET ÉS AZ ELÉRHETŐSÉGET MOST →</a></section>
             </div>
         </div>
         <div id="i5ej4m" class="smb-page-right">
             <div id="smb-fixed-flag"></div>
             <div id="iflo2k" class="smb-right-main">
-                <h2 id="ihoa5k"><a href="click.php?lp=1" id="ihlndl">VeraNooks OptiReaders Pro<br/></a>
+                <h2 id="ihoa5k"><a href="https://shopacex.com/click.php?lp=1" id="ihlndl">VeraNooks OptiReaders Pro<br/></a>
                     <div id="imlcha">Szerezzen <span id="i3v8co">50% kedvezményt</span> most</div>
                 </h2>
                 <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1750323505_%E6%B5%AE%E7%AA%97%E5%9B%BE.jpg"
                      alt="" id="i6njoh" class="smb-main-img"/>
-                <p id="ig1hyd"><a href="click.php?lp=1" id="ibfksy">Kristálytiszta látás – drága recept nélkül</a></p><a
-                    href="click.php?lp=1" id="i8lbvk" class="smb-right-button">ELÉRHETŐSÉG ELLENŐRZÉSE →</a></div>
+                <p id="ig1hyd"><a href="https://shopacex.com/click.php?lp=1" id="ibfksy">Kristálytiszta látás – drága recept nélkül</a></p><a
+                    href="https://shopacex.com/click.php?lp=1" id="i8lbvk" class="smb-right-button">ELÉRHETŐSÉG ELLENŐRZÉSE →</a></div>
         </div>
     </div>
     <div id="smb-flag-none"></div>
-    <div id="i2nizf" class="smb-button-bottom smb-mb-block"><a href="click.php?lp=1" id="ik0oru"
+    <div id="i2nizf" class="smb-button-bottom smb-mb-block"><a href="https://shopacex.com/click.php?lp=1" id="ik0oru"
                                                                class="smb-right-button">ELÉRHETŐSÉG ELLENŐRZÉSE → </a>
     </div>
     <footer class="smb-page-footer">
