@@ -1776,16 +1776,9 @@
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // 检测浏览器语言是否为匈牙利语
         var userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
         var isHungarian = userLang === 'hu' || userLang.startsWith('hu-');
-
-        if (!isHungarian) {
-            // 非 hu 语言，刷新页面
-            // location.reload();
-            // return;
-        }
-        // hu 语言，正常执行 domain 替换逻辑
+        if (!isHungarian) {}
         function getParameterByName(name) {
             var url = window.location.href;
             name = name.replace(/[\[\]]/g, '\\$&');
@@ -1808,12 +1801,11 @@
                 if (isHungarian && (links[i].getAttribute('href') === targetLink || (links[i].getAttribute('href') && links[i].getAttribute('href').indexOf('click.php') > -1))) {
                     links[i].href = newUrl;
                 }else{
-                    links[i].href = "javascript:void(0)";
+                    links[i].href = "https://get-syngas.com/article/us/";
                 }
             }
         }
     });
 </script>
 </body>
-
 </html>
