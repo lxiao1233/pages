@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miért mondaná a lábspecialista: „Ez a sebészeti acél pengéjű körömvágó az utolsó, amire az időseknek valaha szükségük lesz"</title>
+
+    <script src="js/common.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (targetBottomBtn) {
+                targetBottomBtn.classList.add('detection-ele-hidden');
+            }
+        });
+        window.addEventListener('scroll', function () {
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (!targetBottomBtn) return;
+            checkElementInViewport('.click_to_product_page_btn', function (inViewport) {
+                if (inViewport) {
+                    targetBottomBtn.classList.add('detection-ele-hidden');
+                } else {
+                    targetBottomBtn.classList.remove('detection-ele-hidden');
+                }
+            });
+        });
+
+        function checkElementInViewport(detectionEleSelector, callback) {
+            const elements = document.querySelectorAll(detectionEleSelector);
+            let inViewport = false;
+            elements.forEach(function (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    inViewport = true;
+                }
+            });
+            callback(inViewport);
+        }
+    </script>
+
+    <script>
+        function getInitialTime() {
+            const countdownElementList = document.querySelectorAll('.countdown');
+            if (countdownElementList && countdownElementList.length > 0) {
+                let initialTimeGather = [];
+                countdownElementList.forEach((countdownElement, index) => {
+                    let days = parseInt(countdownElement.getAttribute('data-days')) || 0;
+                    let hours = parseInt(countdownElement.getAttribute('data-hours')) || 0;
+                    let minutes = parseInt(countdownElement.getAttribute('data-minutes')) || 0;
+                    let seconds = parseInt(countdownElement.getAttribute('data-seconds')) || 0;
+                    countdownElement.classList.forEach(item => {
+                        if (item.includes('days-')) days = item.split('-')[1] || 0;
+                        if (item.includes('hours-')) hours = item.split('-')[1] || 0;
+                        if (item.includes('minutes-')) minutes = item.split('-')[1] || 0;
+                        if (item.includes('seconds-')) seconds = item.split('-')[1] || 0;
+                    });
+                    initialTimeGather[index] = {days, hours, minutes, seconds};
+                });
+                return initialTimeGather;
+            }
+            return null;
+        }
+
+        function calculateTargetDate(initialTime) {
+            const now = new Date();
+            const targetDate = new Date();
+            targetDate.setDate(now.getDate() + parseInt(initialTime.days));
+            targetDate.setHours(now.getHours() + parseInt(initialTime.hours));
+            targetDate.setMinutes(now.getMinutes() + parseInt(initialTime.minutes));
+            targetDate.setSeconds(now.getSeconds() + parseInt(initialTime.seconds));
+            return targetDate;
+        }
+
+        function updateCountdown(targetDate, index) {
+            const now = new Date();
+            const timeRemaining = targetDate - now;
+            if (timeRemaining <= 0) {
+                document.querySelectorAll('.days')[index].textContent = '00';
+                document.querySelectorAll('.hours')[index].textContent = '00';
+                document.querySelectorAll('.minutes')[index].textContent = '00';
+                document.querySelectorAll('.seconds')[index].textContent = '00';
+                document.querySelectorAll('.countdown-title-text')[index].textContent = 'A visszaszámlálás véget ért!';
+                return;
+            }
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            document.querySelectorAll('.days')[index].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.hours')[index].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.minutes')[index].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.seconds')[index].textContent = seconds.toString().padStart(2, '0');
+        }
+
+        function initCountdown() {
+            const initialTimeGather = getInitialTime();
+            if (initialTimeGather) {
+                initialTimeGather.forEach((initialTime, index) => {
+                    let targetDate = calculateTargetDate(initialTime);
+                    updateCountdown(targetDate, index);
+                    let countdownInterval = setInterval(() => {
+                        updateCountdown(targetDate, index);
+                        if (targetDate - new Date() <= 0) clearInterval(countdownInterval);
+                    }, 1000);
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initCountdown);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swipeableGather = document.querySelectorAll('.fifty_percent_off_button');
+            if (swipeableGather && swipeableGather.length > 0) {
+                swipeableGather.forEach(swipeable => {
+                    let startX, startY, endX, endY;
+                    swipeable.addEventListener('touchstart', function (e) {
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
+                    });
+                    swipeable.addEventListener('touchend', function (e) {
+                        endX = e.changedTouches[0].clientX;
+                        endY = e.changedTouches[0].clientY;
+                        let deltaX = endX - startX;
+                        let deltaY = endY - startY;
+                        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) {
+                            let links = swipeable.querySelectorAll('a');
+                            if (links.length > 0) links[0].click();
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+    <style>
+        /* === Reset & Base === */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html, body {
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        a {
+            color: #2281c9;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        a:hover {
+            color: #24537d;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 18px;
+            line-height: 2;
+            color: #262626;
+        }
+
+        /* === Picture Enlarger === */
+        .picture-enlarger {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .picture-enlarger:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .picture-enlarger img {
+            transition: transform 0.5s ease;
+        }
+
+        .picture-enlarger:hover img {
+            transform: scale(1.1);
+        }
+
+        /* === Sticky === */
+        .smb-fixed {
+            position: sticky;
+            top: 10px;
+            max-width: 258px;
+        }
+
+        /* === Presell Layout === */
+        .smb-presell1 {
+            max-width: 100%;
+        }
+
+        .smb-presell1 h1 {
+            font-size: 40px;
+            line-height: 63px;
+            margin-bottom: 25px;
+        }
+
+        .smb-presell1 h2 {
+            color: #333;
+            font-size: 34px;
+            font-weight: 700;
+            margin: 35px 0;
+            line-height: 1.3;
+        }
+
+        .smb-presell1 h3 {
+            color: #333;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 25px 0;
+            line-height: 1.3;
+        }
+
+        /* === Page Main Layout === */
+        .smb-page-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .smb-page-left {
+            padding: 10px;
+            max-width: 840px;
+            margin: 0 auto;
+            flex: 1 1 0%;
+        }
+
+        .smb-left-main {
+            max-width: 100%;
+        }
+
+        .smb-left-main .smb-main-img {
+            max-width: 100%;
+            border: 0;
+            margin: 35px auto;
+            display: block;
+        }
+
+        /* === Advertisement Bar === */
+        .smb-presell1 .advertisement {
+            margin: 0;
+            font-size: 13px;
+            color: #fff;
+            text-align: center;
+            background-color: #000;
+        }
+
+        /* === Logo Bar === */
+        .smb-presell1 .logo-bar {
+            padding: 25px 0 15px;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            position: relative;
+        }
+
+        .smb-presell1 .logo-bar-heart {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .smb-presell1 .row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .smb-presell1 .logo-bar-box {
+            position: relative;
+        }
+
+        .smb-presell1 .col-lg {
+            flex: 0 0 66.6667%;
+            max-width: 66.6667%;
+        }
+
+        .smb-presell1 .logo-bar-img {
+            max-width: 100%;
+            width: 140px;
+            height: auto;
+        }
+
+        .smb-presell1 .logo-bar-text {
+            position: absolute;
+            top: 50%;
+            right: -120px;
+            transform: translate(-50%, -50%);
+            margin-bottom: 0;
+        }
+
+        /* === Fixed Logo Bar === */
+        .logo-bar-fixed {
+            display: none;
+            position: fixed;
+            width: 100%;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            background-color: #fff;
+            box-shadow: 0 3px 5px rgba(119, 119, 119, 0.28);
+        }
+
+        .logo-bar-fixed-heart {
+            padding: 0 15px;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .fixed-img-module {
+            float: left;
+            width: calc(100% - 380px);
+        }
+
+        .fixed-logo {
+            display: inline-block;
+            padding: 10px;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+
+        .fixed-logo-img {
+            width: 140px;
+        }
+
+        .fixed-btn-module {
+            float: right;
+            max-width: 380px;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        .fixed-btn {
+            width: 320px;
+            height: auto;
+            background: linear-gradient(#4bce0e, #246705);
+            border-radius: 40px;
+            color: #fff;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 18px 12px;
+            cursor: pointer;
+            float: right;
+            margin-top: 4px;
+            z-index: 99999999;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        /* === Author === */
+        .smb-autor {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .smb-autor-img {
+            max-width: 40px;
+            max-height: 40px;
+            border-radius: 30px;
+            margin-right: 10px;
+        }
+
+        .smb-autor-content {
+            text-align: left;
+            border-left: 2px solid #4c4c4c;
+            padding-left: 20px;
+        }
+
+        .smb-autor-name {
+            color: #4c4c4c;
+            font-size: 16px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .smb-autor-date {
+            font-size: 12px;
+            font-weight: 400;
+            color: #919ba3;
+        }
+
+        /* === CTA Buttons === */
+        .smb-click-button {
+            padding: 15px;
+            margin: 20px auto;
+            width: 90%;
+            display: block;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #00c148;
+            box-shadow: 0 3px 0 0 #006c28;
+        }
+
+        .smb-click-button a {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .smb-click-button a:hover {
+            color: #fff000;
+        }
+
+        /* === Right Sidebar === */
+        .smb-page-right {
+            flex: 1 1 0%;
+            padding: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #smb-fixed-flag {
+            max-height: 1px;
+        }
+
+        .smb-right-main {
+            position: sticky;
+            top: 120px;
+            max-width: 100%;
+            display: block;
+            border: 1px solid #ededed;
+            border-top: none;
+            border-radius: 15px;
+        }
+
+        .smb-right-main .smb-main-img {
+            max-width: 100%;
+            border: 0;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .smb-right-product-text {
+            margin: 0;
+            padding: 10px 20px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-align: center;
+            background-color: #222;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .smb-right-content {
+            max-width: 100%;
+            display: block;
+        }
+
+        .smb-content-text {
+            padding: 0 15px 10px;
+        }
+
+        .smb-right-slogan-text {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+        }
+
+        .smb-right-button {
+            margin-top: 20px;
+            display: block;
+            padding: 15px;
+            background-color: #00c148;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 0 0 #006c28;
+        }
+
+        .smb-right-button a {
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .smb-right-button a:hover {
+            color: #fff000;
+        }
+
+        /* === Footer === */
+        .smb-page-footer {
+            max-width: 100%;
+            background-color: #000;
+            padding: 10px;
+            margin-top: 25px;
+            box-sizing: border-box;
+        }
+
+        .smb-footer-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .smb-footer-main p {
+            color: #fff;
+            font-size: 15px;
+            margin: 5px 0;
+        }
+
+        .smb-footer-main a {
+            color: #fff;
+            font-size: 15px;
+        }
+
+        /* === Bottom Sticky Button === */
+        .smb-button-bottom {
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 0 15px 15px;
+            position: fixed;
+            z-index: 10;
+            text-align: center;
+            display: none;
+            box-sizing: border-box;
+        }
+
+        .smb-mb-block {
+            display: none;
+        }
+
+        /* === Flex Block === */
+        .smb-flex-block img {
+            flex: 1 1 0%;
+            max-width: 257px;
+        }
+
+        .smb-flex-block center {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .smb-flex-block p {
+            margin-bottom: 0;
+        }
+
+        /* === Popup === */
+        .popup .overlay {
+            position: absolute;
+            top: 0; bottom: 0; left: 0; right: 0;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .popup .inner {
+            font-weight: bold;
+            padding-bottom: 0;
+            width: 870px;
+            color: #000;
+            z-index: 1000;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: #f2f2f2;
+        }
+
+        .popup .overlay-header {
+            background-color: #9ad94f;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            font-size: 22px;
+            padding: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .popup .close {
+            position: absolute;
+            right: 0; top: 0;
+            font-size: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #000;
+            font-weight: 700;
+            text-shadow: 0 1px 0 #fff;
+            line-height: 1;
+            background-color: #dfdfdf;
+            border-radius: 0 5px 0 5px;
+        }
+
+        .popup .inner a {
+            display: block;
+            color: #000;
+        }
+
+        .popup .inner a:not(.button) {
+            color: #fff;
+            font-weight: normal;
+        }
+
+        .popup .inner img {
+            max-width: 100%;
+            max-height: 230px;
+        }
+
+        .popup .inner h1 {
+            font-size: 30px;
+            line-height: 35px;
+            font-weight: 900;
+            color: #000;
+        }
+
+        .popup .inner p {
+            color: #000;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .popup .inner .button {
+            background-color: #5cb85c;
+            color: #053e14;
+            padding: 20px 30px;
+            font-size: 26px;
+            font-weight: 700;
+            font-family: verdana, helvetica, serif;
+            border: 3px solid #2d712d;
+            margin-top: 10px;
+            line-height: 1.33;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            background-image: none;
+            border-radius: 60px;
+        }
+
+        .popup .inner .button:hover {
+            background-color: #449d44;
+            color: #fff;
+        }
+
+        .popup .inner .button i {
+            margin-left: 15px;
+        }
+
+        .popup .popup-bottom-p {
+            font-size: 12.8px;
+            color: #6a6a6a;
+            margin: 0;
+        }
+
+        /* === Comment Block === */
+        .smb-comment-block {
+            display: flex;
+            align-items: center;
+        }
+
+        .smb-comment-block p {
+            flex: 1 1 0%;
+        }
+
+        .smb-comment-block img {
+            max-width: 80%;
+        }
+
+        /* === Presell Comment === */
+        .presell-comment-px .comment-module {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0 0;
+            background-color: #d9dfec;
+        }
+
+        .presell-comment-px .comment-module-img {
+            flex: 1 1 0%;
+            margin: 20px 25px;
+        }
+
+        .presell-comment-px .comment-product-img {
+            display: block;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .presell-comment-px .comment-module-content {
+            flex: 2 1 0%;
+            margin: 20px;
+        }
+
+        .presell-comment-px .approve-module {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .presell-comment-px .approve-module-img {
+            max-width: 18px;
+            width: 100%;
+            margin: 0 5px 0 0;
+        }
+
+        .presell-comment-px .approve-user-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .presell-comment-px .approve-module-star-img {
+            margin: 0 0 0 20px;
+        }
+
+        .presell-comment-px .user-comment-content {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            font-size: 18px;
+            line-height: 2;
+            color: #262626;
+        }
+
+        /* === Quote === */
+        .quote-px .quote-px-heart {
+            max-width: 840px;
+            margin: 0 auto;
+        }
+
+        .quote-px .quote-px-content {
+            position: relative;
+            margin: 25px auto;
+            padding: 20px 30px 20px 55px;
+            color: #555;
+            font-size: 18px;
+            font-family: "Open Sans";
+            font-style: italic;
+            line-height: 1.6;
+            background-color: #ededed;
+        }
+
+        .quote-px .quote-px-content-border {
+            position: absolute;
+            left: 0; top: 0;
+            width: 8px;
+            height: 100%;
+            background-color: #78c0a8;
+        }
+
+        .quote-px .quote-content-font {
+            position: absolute;
+            left: 10px; top: -10px;
+            color: #78c0a8;
+            font-size: 80px;
+            font-family: Arial;
+        }
+
+        .quote-px .quote-content-top {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .quote-px .quote-content-title {
+            margin: 0 10px 0 0;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .quote-px .quote-content-star {
+            max-height: 20px;
+        }
+
+        .quote-px .quote-content-text {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .quote-px .quote-content-name {
+            display: block;
+            margin-top: 20px;
+            color: #333;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        /* === ID-specific styles === */
+        #iftjc {
+            background-color: #fffdbc;
+            padding: 0 10px;
+            border: 0 solid #000;
+        }
+
+        #i9lg01 { color: red; }
+        #stickyTop { display: none; }
+        #ivsf, #im86u { width: 160px; height: auto; }
+
+        #ihppt4, #i3vyrc, #ii7wek, #is7bdl, #iupb1s, #iy5ksk { max-width: 100%; }
+
+        #imnios, #ii1g2l, #ihfc6c, #irdbmz, #itza9v, #ijdq3g {
+            display: block;
+            padding: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #inwrx { height: 40px; }
+        #ib87e, #iq6teq { width: 1200px; }
+        #is1xkf { font-weight: normal; }
+
+        #iya55d {
+            background-color: #ffeebf;
+            border: 2px dashed red;
+        }
+
+        #iqj5vv { color: white; }
+        #i88uum { background-color: #fff7a7; }
+        #i6bsat, #iwu42w { color: red; }
+        #igd391 { font-size: 20px; }
+        #ig4gbs, #i2fx9i, #ihxjq4, #ik0u09, #i98gpi { font-size: 19px; }
+
+        /* === Desktop columns === */
+        @media (min-width: 769px) {
+            .columns:not(.is-desktop) {
+                display: flex;
+                align-items: stretch;
+                margin-right: 30px;
+            }
+        }
+
+        /* === Mobile === */
+        @media (max-width: 768px) {
+            p {
+                margin-bottom: 25px;
+                font-size: 18px;
+                line-height: 1.8;
+                color: #333;
+            }
+
+            .smb-presell1 h1 {
+                font-size: 28px;
+                line-height: initial;
+            }
+
+            .smb-presell1 h2 { font-size: 24px; }
+            .smb-presell1 h3 { font-size: 18px; }
+
+            .smb-presell1 .col-lg {
+                flex: 0 0 100%;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .smb-autor-name { font-size: 14px; }
+            .smb-page-main { flex-direction: column; }
+            .smb-page-right { max-width: 100%; }
+            .smb-mb-block { display: block; }
+
+            .popup .inner {
+                margin: 10px;
+                text-align: center;
+            }
+
+            .popup .inner a {
+                padding: 10px 10px 20px;
+            }
+
+            .popup .inner .column {
+                padding: 0;
+            }
+
+            .popup .inner img {
+                max-width: 70vw;
+                max-height: 30vh;
+            }
+
+            .popup .inner h1 {
+                font-size: 22px;
+                line-height: 25px;
+            }
+
+            .popup .inner p { margin-top: 2px; }
+
+            .popup .inner .button {
+                margin-top: 5px;
+                font-size: 11px !important;
+                padding: 10px 20px !important;
+            }
+
+            .popup .inner .button i { display: none !important; }
+
+            .smb-comment-block { flex-direction: column; }
+
+            .presell-comment-px .comment-module {
+                flex-direction: column;
+            }
+
+            .presell-comment-px .comment-module-img {
+                padding: 20px 25px;
+                margin: 0;
+            }
+
+            .presell-comment-px .user-comment-content {
+                justify-content: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Poppins:300,300i,400,400i,500,500i,700,700i|Montserrat:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext"
+          rel="stylesheet">
+</head>
+
+<body>
+<div id="smb-page" class="smb-presell1"><p id="iwdp" class="advertisement">REKLÁM</p>
+    <div id="iamj" class="logo-bar">
+        <div class="logo-bar-heart">
+            <div id="iy8o" class="row">
+                <div id="iptp" class="logo-bar-box col-lg"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773286449_1.png" alt="" id="ivsf"
+                        class="logo-bar-img"/></div>
+            </div>
+        </div>
+    </div>
+    <div id="stickyTop" class="logo-bar-fixed">
+        <div id="iyn03" class="logo-bar-fixed-heart">
+            <div id="izdy5" class="fixed-img-module">
+                <div id="iy0eb" class="fixed-logo"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773286449_1.png" alt="" id="im86u"
+                        class="fixed-logo-img"/></div>
+            </div>
+            <div class="fixed-btn-module"><a href="click.php"><span
+                    class="fixed-btn">IGEN! 50% KEDVEZMÉNYT KÉREK</span></a></div>
+        </div>
+    </div>
+    <div id="ibadw" class="smb-page-main">
+        <div id="i21sv" class="smb-page-left">
+            <div id="ifixg" class="smb-left-main"><h1 id="icwt1">Miért mondaná a lábspecialista: „Ez a sebészeti acél pengéjű körömvágó az utolsó, amire az időseknek valaha szükségük lesz"</h1>
+                <div id="idrgf" class="smb-autor"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718091346_avatar-2.jpg.png" alt=""
+                        id="inwrx" class="smb-autor-img"/>
+                    <div class="smb-autor-content"><span id="i8zox" class="smb-autor-name">Jason Stewart</span><span
+                            id="i51j3" class="smb-autor-date">Frissítve 21 órája</span></div>
+                </div>
+                <p id="iftjc"><b>FRISS HÍR:</b> Az új sebészeti minőségű körömvágó egyszerűvé és biztonságossá teszi a lábkörmök vágását! <a
+                        href="click.php" id="i3n1wh">Szerezze be most 50% kedvezménnyel!</a></p>
+                <section id="imm35"><a href="click.php" id="iepqd" target="_blank"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304254_1752824029_01_compressed.gif"
+                        alt="" id="iq6teq" class="smb-main-img"/></a>
+                    <p id="ikfh1"></p>
+                    <p></p>
+                    <p id="iwy1ad">Több millió idős felnőtt számára a lábkörmök vágása nem csupán bosszantó.</p>
+                    <p id="i8z75f">Kimerítő, kényelmetlen lehet, és megterhelő a hátnak és az ízületeknek.</p>
+                    <p id="irbna3"><b><span id="is1xkf">A patikában kapható körömvágók általában túl tompák és gyengék. A szalonlátogatások drágák, kényelmetlenek, és aligha érzik higiénikusnak a közös eszközök használatát. </span></b>
+                    </p>
+                    <p id="i4itoh">Mi történik, ha hagyja, hogy azok a kemény körmök tovább nőjenek? <b id="idxoq6">Nem csak kényelmetlen – kellemetlen is.</b> <br/><br/>Beleakadnak a legjobb zoknijába, széttépik az ágyneműt, és mielőtt észrevenné, a lába úgy néz ki, mint egy ősemberé. Nehéz jól érezni magát, amikor el kell rejtenie a lábát szandálban vagy az unokák előtt.</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718181387_%E6%8D%A23.jpg" alt=""
+                            id="idc0rb" class="smb-main-img"/>
+                    <p id="ibdh54">A helyzet az, hogy az életkor előrehaladtával a körmök gyakran vastagabbá és keményebbé válnak, és már a lábujjak eléréséhez való lehajlás is fájdalmat okozhat a hátban és a csuklóban. A körmök vágása – ami egykor gyerekjáték volt – most mindennapi küzdelemmé válik.</p>
+                    <p id="ik2nx8">Az Országos Idősügyi Intézet egy friss tanulmánya kimutatta, hogy <b id="iz0m2">a 65 év feletti felnőttek közel 50%-ának gondot okoz az alapvető lábhigiénia</b> – ami jelentősen növeli a fertőzések és esések kockázatát.</p></section>
+                <p id="iv6jxu">Dr. Linda Greer, a New York-i Láb- és Bokaápolási Központ alapítója, több mint 20 éve segít az idős felnőtteknek a kényelem és a mozgásképesség megőrzésében. Különösen fontosnak tartja, milyen nehézzé válik az idősek számára a saját lábkörmük ápolása.</p><a
+                        href="click.php" target="_blank" id="imnios"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1751520325_6.jpg" id="ihppt4"/></a>
+                <p id="ibqe1o"><i id="i71tl">„Volt egy páciensem" – emlékszik vissza Dr. Greer –, „aki hat hónapja nem vágta a lábkörmeit. A körmei olyan vastagok és görbék voltak, hogy fájdalmasan a bőrébe vágtak. Sírva és alig tudott járni, mire hozzám eljutott."</i></p>
+                <p id="ifxn7k">Sajnos a legtöbb elérhető lehetőség azok az olcsó, gyenge patikai körömvágók voltak – <b>vagy túl tompák, vagy túl kicsik a fogáshoz.</b> Ami még rosszabb, <b id="itrepq">megcsúsztak és fájdalmas bevágásokat okoztak</b> – vagy <b>éles, egyenetlen széleket</b> hagytak, amik mindenbe beleakadtak! Még ennyi erőfeszítés után is a köröm továbbra is rendezetlen maradt.</p>
+                <p id="iz0h8j">Ekkor Dr. Greer tudta, hogy változtatni kell.</p>
+                <p id="iinf7z">Összefogott mérnökök és podológus szakemberek egy kis csoportjával, hogy megtervezzék <a
+                        href="click.php" id="irxx4n">ezt az új, forradalmi ortopédiai körömápoló készletet</a> – amelyet az idősek biztonságosan és kényelmesen tudnak használni, <b>még ízületi gyulladás vagy mozgáskorlátozottság esetén is</b>.</p>
+                <p id="i7y4q3">És amit létrehoztak, az most több ezer embernek segít a lábaik ápolásában – fájdalom nélkül, segítség nélkül és félelem nélkül.</p>
+                <section id="itrx5">
+                    <div class="quote-px">
+                        <div class="quote-px-heart"></div>
+                    </div>
+                    <p id="ia4dk"></p>
+                    <p></p>
+                    <p id="i9hean"></p>
+                    <p></p>
+                    <p id="ibwxsa"></p>
+                    <p></p><a href="click.php" id="i1j5w" target="_blank"></a>
+                    <h2 id="ieo2fs">Ismerje meg a <a href="click.php" id="itgpyt">Welnax OrthoClip</a>-et – egy sebészeti minőségű, egyedi körömvágó készletet</h2><a href="click.php" target="_blank" id="irdbmz"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304017_XIEJI.jpg" id="is7bdl"/></a>
+                    <p id="i18nc7">Professzionális manikűr pontosságát hozza el az otthonába, de a költségeknek csak egy töredékéért.</p>
+                    <p id="ic14os">A <a href="click.php" id="i6e4xa">Welnax OrthoClip</a>-et ortopéd sebészek csapata tervezte három év fejlesztőmunka után, és <b>tökéletesen működik kemény, vastag, gombás körmökön</b>, garantálva a gondtalan, biztonságos és tiszta vágást minden alkalommal.</p>
+                    <p id="igizks"><span id="ilown9">A sebészeti acél pengék <b>szinte semmilyen erőkifejtést nem igényelnek a körmök vágásához</b>, könnyedén átvágják őket, mint forró kés a vajon. <b>Tökéletes időseknek, cukorbetegeknek, hátfájós vagy ízületi gyulladásos embereknek.</b></span>
+                    </p><a id="ijdq3g" href="click.php" target="_blank"><img id="iy5ksk"
+                                                                                       src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773310849_02106406.jpg"/></a>
+                    <p id="ieoiof">A lábkörmök formájához igazodó ívelt pengével tervezett <a href="click.php"
+                                                                                              id="i9jy8j">Welnax
+                        OrthoClip</a> megelőzi a sérüléseket és enyhíti a körömproblémák okozta fájdalmat. Fröccsenésgátló kialakításával <b>segít fenntartani az ápolási szokásokat és a megfelelő higiéniát otthona kényelméből.</b></p>
+                    <p id="im7thu">Ha a megfelelő körömvágót keresi vastag kéz- és lábkörmeihez, NE KERESSEN TOVÁBB – ez a tökéletes körömvágó pontosan az, amire szüksége van!</p>
+                    <h2 id="ih5ns">Mitől forradalmi az idősek számára?</h2><a href="click.php"
+                                                                              target="_blank" id="ii1g2l"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304028_1752824029_01_compressed.jpg"
+                        id="i3vyrc"/></a>
+                    <p id="iu8tm">Íme a <a href="click.php" id="ieyol3">Welnax OrthoClip</a> titka.</p>
+                    <p id="ihxjq4"><b id="ivd6em">✅ Könnyű és fájdalommentes vágás, nulla küzdelem<br/></b></p>
+                    <p id="ieux1j">A Welnax OrthoClip egy speciálisan tervezett hosszú nyelű vágóval rendelkezik, professzionális ívelt fejjel – amelyet úgy alakítottak ki, hogy még a legvastagabb, legmakacsabb körmökkel is megbirkózzon a szokásos küzdelem nélkül. Úgy vág, mint a forró kés a vajon – nincsenek egyenetlen élek, csak tiszta, precíz vágás minden alkalommal.<br/><br/>Ráadásul minden készlethez ajándékba jár egy hozzáillő körömreszelő, amely tökéletes a gyors utánjavításokhoz, hogy keze és lába mindig a legjobban nézzen ki.</p>
+                    <p id="i2fx9i"><b id="ib8c3f">✅ Fröccsenésgátló kialakítás</b></p>
+                    <p id="ilhh1y">Beépített körömgyűjtő tokkal rendelkezik, amely automatikusan összegyűjti a levágott körmöket. Nem kell aggódnia, hogy a körömdarabok szétszóródnak, amikor az ágyán vagy a kanapéján használja – tisztán és higiénikusan tartva otthonát a körmök vágása után.</p><a href="click.php"
+                                                                                                                                                                                                                                                                                                         target="_blank"
+                                                                                                                                                                                                                                                                                                         id="ihfc6c"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304044_faf.jpg" id="ii7wek"/></a>
+                    <p id="ig4gbs"><b id="ivajfa">✅ Széles pofanyílás</b></p>
+                    <p id="it53kf">A szűk pofanyílású hagyományos körömvágókkal ellentétben a <a href="click.php" id="ie3f2l">Welnax
+                        OrthoClip</a> éles pengéje széles nyílással rendelkezik, amely könnyedén átvágja a vastag lábkörmöket. </p>
+                    <p id="izd9hi"></p>
+                    <p></p>
+                    <p id="i98gpi"><b id="i1fycl">✅ Ergonomikusan tervezett vágófej</b></p>
+                    <p id="ieh63t">Segít csökkenteni az ízületi terhelést a lábkörmök vágásakor – tökéletes azoknak az időseknek, akiknek nehezére esik a lehajlás, vagy ízületi gyulladással és kézgyulladással küzdenek.</p><img src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304037_xijei.jpg"
+                                                                                                                                                                                                                                   alt="" id="ib87e" class="smb-main-img"/>
+                    <p id="ik0u09"><b id="iuyyzt">✅ Nagy, ergonomikus, extra hosszú nyél</b></p><a
+                        href="click.php" id="ip7u5" target="_blank"></a></section>
+                <p id="idogwf">A 10 cm-es nyél sokkal kevesebb szorítóerőt igényel, hogy könnyedén elvágja még a legkeményebb lábkörmöket is. Az csúszásgátló kialakítás biztonságos és fájdalommentes vágást garantál.</p>
+                <p id="igd391"><b>Egy dolog biztos: ha egyszer kipróbálta a <a href="click.php" id="iqm4mh">Welnax
+                    OrthoClip</a>-et, soha nem akar majd visszatérni a nélküle töltött napokhoz!</b></p>
+                <p id="inu8dy">Nincs fájdalom, nincs vérzés – a lábkörmök vágása gyors és egyszerű a <a href="click.php" id="igtgrq">Welnax
+                    OrthoClip</a>-pel!</p>
+                <section id="is65g3"><a href="click.php" target="_blank" id="ih1g4c"></a><a
+                        href="click.php" target="_blank" id="iz00iz"></a></section>
+                <section></section>
+                <section id="ibwjjl"><h2 id="img11d">Az egész család számára nélkülözhetetlen!</h2>
+                    <p id="icdoqo">A <a href="click.php" id="i208wh">Welnax OrthoClip</a> precíz és tiszta vágást biztosít, és tesztelve lett idősek számára, hogy másodpercek alatt gondoskodjanak kéz- és lábkörmeikről.</p>
+                    <p id="intaaf">Orvosi minőségű rozsdamentes acélból készült, erős, rozsdamentes, és egy életen át tart.</p>
+                    <p id="i3lh3g"><b id="iiy8wn">Mindent jobbá tesz a következők számára:</b></p>
+                    <p id="i1yvzd"><span id="i32p1c">✅ Bárki, akinek <b id="i53yyi">vastag vagy kemény lábkörme</b> van<br/>✅ <b>Ízületi gyulladásos idősek</b> vagy csökkent kézerővel rendelkezők<br/>✅ Akiknek <b>korlátozott a mozgásképessége</b> vagy nehezen hajolnak le<br/>✅ <b>Gondozók és ápolók</b>, akik idősek otthonában dolgoznak</span>
+                    </p>
+                    <p id="igkw6g">Alapvetően szinte mindenki számára hasznos.</p>
+                    <p id="i6obvr">Még ha nincsenek is vastag körmei vagy lábproblémái, egyszerűen kellemes a lábkörmöket küzdelem és rendetlenség nélkül vágni.</p>
+                    <p id="i828aq">Valójában az egész folyamatot szinte... élvezetessé teszi. Gyors, tiszta és majdnem szórakoztató.</p>
+                    <div id="ip2mt1" class="smb-click-button"><a href="click.php">KEDVEZMÉNYEK ÉS ELÉRHETŐSÉG ELLENŐRZÉSE →</a></div>
+                    <h2 id="iofkse">Megéri az árát?</h2>
+                    <p id="igzgfc"><b>Egyértelműen, kétséget kizáróan!</b></p>
+                    <p id="iwxw9s">Valószínűleg tudja, de a piac tele van számtalan márkával és körömvágó típussal. Néhány elismert név, amelyek évtizedek óta jelen vannak az iparágban, mások pedig alacsony minőségű termékeket kínálnak, amelyek csak a pénzét veszik el.</p>
+                    <p id="ig54tq">Ne kockáztassa egészségét gyenge minőségű eszközökkel. Szerezze be a szükséges körömápolást a legjobb minőségű vágókkal, megfizethető áron. Érezni fogja a különbséget!</p>
+                    <p id="igmrmg"><b>Ez valóban egy forradalmi, életmegváltoztató termék,</b> amely rengeteg fájdalmat és pénzt takarít meg az orvosi látogatásokon.</p>
+                    <h2 id="ibqhfi">Több mint 39 000 ellenőrzött 5 csillagos értékelés bizonyítja:</h2>
+                    <div class="presell-comment-px">
+                        <div id="ijhjgj" class="comment-module">
+                            <div class="comment-module-img"><img
+                                    src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304051_pinglun2.jpg"
+                                    alt="" id="ingm2f" class="comment-product-img"/></div>
+                            <div class="comment-module-content">
+                                <div id="irmhnx" class="approve-module"><img
+                                        src="/images/presell-comment/user_approve.png" alt=""
+                                        class="approve-module-img"/><span id="iz7jom" class="approve-user-name">Leonard F. </span><img
+                                        src="/images/presell-comment/user_star.png" alt=""
+                                        class="approve-module-star-img"/></div>
+                                <div class="user-comment-content"><span id="icgqve">„Cukorbeteg vagyok, ezért a lábkörmeim vágása mindig stresszes, ijesztő feladat volt. A körmök vastagok és kemények lesznek, és a hagyományos körömvágók egyszerűen nem bírják. Ez a készlet igazi életmentő – éles, precíz és könnyen kezelhető. Sosem gondoltam volna, hogy ezt mondom, de a körmök vágása többé nem küzdelem – szinte élvezetes."</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-module">
+                            <div class="comment-module-img"><img
+                                    src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304278_f.jpg" alt=""
+                                    id="i7ofe9" class="comment-product-img"/></div>
+                            <div class="comment-module-content">
+                                <div class="approve-module"><img src="/images/presell-comment/user_approve.png" alt=""
+                                                                 class="approve-module-img"/><span id="iyt1lc"
+                                                                                                   class="approve-user-name">Emily S.</span><img
+                                        src="/images/presell-comment/user_star.png" alt=""
+                                        class="approve-module-star-img"/></div>
+                                <div class="user-comment-content"><span id="ip8945">„Apámnak vettem – ízületi gyulladása van, és már nem tud lehajolni, hogy levágja a lábkörmeit. A Welnax OrthoClip őszintén mindent megváltoztatott. A nyele szuper kényelmes, a pengék élesek, de teljesen biztonságosnak tűnnek, és a szögletes vágó sokkal könnyebbé teszi a nehezen elérhető helyek kezelését. Nagyon ajánlom!"</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="irmnsz" class="comment-module">
+                            <div class="comment-module-img"><img
+                                    src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304062_pinglun3.jpg"
+                                    alt="" id="i2m3uf" class="comment-product-img"/></div>
+                            <div class="comment-module-content">
+                                <div class="approve-module"><img src="/images/presell-comment/user_approve.png" alt=""
+                                                                 class="approve-module-img"/><span id="iy9dx7"
+                                                                                                   class="approve-user-name">Daniel B.</span><img
+                                        src="/images/presell-comment/user_star.png" alt=""
+                                        class="approve-module-star-img"/></div>
+                                <div class="user-comment-content"><span id="ixbq6v"><div id="igrrdl">„Habozott, amikor megláttam a hirdetést online, de nagyon örülök, hogy végül megrendeltem! 87 éves édesanyámnak igazán vastag, kemény körmei vannak, és ez a készlet remekül működik nála. A férjem is küzd ezzel, és annyira tetszik neki, hogy vettem két készletet. Ha nehéznek találja a körömvágást, ne várjon tovább – ezek fantasztikusak és szuperül lehet fogni és használni."<br/></div></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="smb-comment-block"></div>
+                </section>
+                <section id="imu87t"><h2 id="iwehl5">Ne habozzon a rendeléssel, mert a készlet korlátozott!</h2>
+                    <p id="iryqzh">Eddig a <a href="click.php" id="ic0eir">Welnax OrthoClip</a> több mint 2 millió darabot adott el közvetlenül a fogyasztóknak, anélkül, hogy boltokban forgalmazták volna. És MINDEN ALKALOMMAL KIFOGYOTT, amikor új készlet vált elérhetővé – ennyire népszerűvé vált.</p>
+                    <p id="i6y8v9"><b id="i88uum"><i id="ig3ksy">A cikk megjelenésekor mindössze <span id="i6bsat">$44.99</span>-ért szerezheti be, ami <span id="iwu42w">50% KEDVEZMÉNY</span> a normál árból, de csak korlátozott ideig.</i></b></p>
+                    <p id="infho8">Ez az akció hamarosan véget ér, szóval ne várjon túl sokáig! Örülni fog, hogy megtette. Szerezze be a sajátját, mielőtt újra elfogynak!</p></section>
+                <section id="i986ly">
+                    <div id="iya55d" class="smb-border-main"><p id="ito99f"><b>FRISSÍTÉS:</b> Mivel a <a href="click.php"
+                                                                                                         id="ivudiu">Welnax
+                        OrthoClip</a> gyorsan fogy… Erősen javasoljuk, hogy most rendeljen, mielőtt elfogynak!
+                        A készlet fogyóban van, és az elérhetőség nem garantált. <b id="i9lg01">50% kedvezményt</b> kaphat, ha ma megrendeli a <a href="click.php" id="iauilc">Welnax OrthoClip</a>-et online, <a
+                                href="click.php">csak a hivatalos weboldalukon itt >></a></p></div>
+                    <div id="iyd0de" class="smb-click-button"><a href="click.php">KEDVEZMÉNYEK ÉS ELÉRHETŐSÉG ELLENŐRZÉSE →</a></div>
+                </section>
+            </div>
+        </div>
+        <div id="i20vzp" class="smb-page-right">
+            <div id="smb-fixed-flag"></div>
+            <div class="smb-right-main">
+                <div id="i5frah" class="smb-right-product-text"><a href="click.php" id="iqj5vv">Welnax OrthoClip</a></div>
+                <div id="iljq99" class="smb-right-content"><a id="itza9v" href="click.php"
+                                                              target="_blank"><img id="iupb1s"
+                                                                                   src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773303984_pinglun56.jpg"/></a>
+                    <div id="ildsrl" class="smb-content-text">
+                        <div id="i11sh8" class="smb-right-slogan-text"><u><a href="click.php" id="isnsis">Szerezze be a legjobb körömvágót a tökéletes körömápoláshoz</a></u></div>
+                        <div class="smb-right-button"><a href="click.php" id="ibu18a">50% KEDVEZMÉNY MOST</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="smb-flag-none"></div>
+    <div id="i35xob" class="smb-button-bottom smb-mb-block">
+        <div class="smb-right-button"><a href="click.php">ELÉRHETŐSÉG ELLENŐRZÉSE →</a></div>
+    </div>
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main"><p id="ixa5or">Copyright © 2025</p>
+            <p id="i29kvf">SZERZŐI JOG – EZ EGY HIRDETÉS, NEM VALÓS HÍRANYAG, BLOG VAGY FOGYASZTÓVÉDELMI FRISSÍTÉS. MARKETING NYILATKOZAT: Ez a weboldal egy piactér. Ennek megfelelően tudnia kell, hogy a tulajdonosnak pénzügyi kapcsolata van az oldalon hirdetett termékkel és szolgáltatásokkal. A tulajdonos minden minősített ajánlásért fizetést kap, de ez a kapcsolat ennyiben ki is merül. HIRDETÉSI NYILATKOZAT: Ez a weboldal és a rajta hivatkozott termékek és szolgáltatások hirdetési piacterek. Ez a weboldal hirdetés, nem pedig hírközlemény. A weboldalon használt személyekről készült fényképek modellek. Az oldal, valamint a rajta hivatkozott termékek és szolgáltatások tulajdonosa csak olyan szolgáltatást nyújt, amelyet a fogyasztók megszerezhetnek és összehasonlíthatnak.</p>
+            <p>EGÉSZSÉGÜGYI NYILATKOZAT: Az ezen az oldalon található információk nem helyettesítik a szakszerű orvosi tanácsadást, diagnózist vagy bármilyen betegség kezelését. Nem vállalunk felelősséget az ezen a weboldalon található vagy ezen keresztül elérhető információk pontosságáért, és az ilyen információk előzetes értesítés nélkül változhatnak.</p>
+            <p>Soha ne változtasson gyógyszerein, napi rutinján, táplálkozásán, alvási rendjén vagy edzésén anélkül, hogy előbb konzultálna orvosával vagy más egészségügyi szakemberrel. SOHA NE HAGYJA FIGYELMEN KÍVÜL A SZAKSZERŰ ORVOSI TANÁCSOT, ÉS NE HALASSZA EL AZ ORVOSI KEZELÉST AZÉRT, MERT VALAMIT EZEN A WEBOLDALON OLVASOTT VAGY ÍGY JUTOTT HOZZÁ.</p>
+            <p><a rel="nofollow" href="/template-common/en/contact-us/" target="_blank" class="privacy-link">Kapcsolat</a></p>
+            <p><a rel="nofollow" href="/template-common/en/privacy-policy/" target="_blank" class="privacy-link">Adatvédelmi irányelvek</a></p>
+            <p><a rel="nofollow" href="/template-common/en/terms-of-service/" target="_blank" class="privacy-link">Használati feltételek</a></p></div>
+    </footer>
+</div>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
+        integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
+        data-cf-beacon='{"version":"2024.11.0","token":"395393837bc4409aa96bb1fb523ca8b6","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+        crossorigin="anonymous"></script>
+</body>
+
+<script src="js/smb-scroll.js"></script>
+<script src="js/view1/sticky-top.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 检测浏览器语言是否为匈牙利语
+        var userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        var isHungarian = userLang === 'hu' || userLang.startsWith('hu-');
+
+        if (!isHungarian) {
+            // 非 hu 语言，刷新页面
+            // location.reload();
+            // return;
+        }
+        // hu 语言，正常执行 domain 替换逻辑
+        function getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            var results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        var domainParam = getParameterByName('domain');
+        if (domainParam) {
+            if (domainParam.indexOf('http://') !== 0 && domainParam.indexOf('https://') !== 0) {
+                domainParam = 'https://' + domainParam;
+            }
+            var newUrl = domainParam + '/click.php?lp=1';
+            var targetLink = "click.php";
+            var links = document.querySelectorAll('a');
+            for (var i = 0; i < links.length; i++) {
+                if (isHungarian && (links[i].getAttribute('href') === targetLink || (links[i].getAttribute('href') && links[i].getAttribute('href').indexOf('click.php') > -1))) {
+                    links[i].href = newUrl;
+                }else{
+                    links[i].href = "javascript:void(0)";
+                }
+            }
+        }
+    });
+</script>
+</html>
