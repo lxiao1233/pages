@@ -1,0 +1,4740 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="js/common.js"></script>
+
+    <!-- 判断视口内是否包含类名为 click_to_product_page_btn 的跳转按钮 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // DOM加载完成后执行的代码
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (targetBottomBtn) {
+                targetBottomBtn.classList.add('detection-ele-hidden');
+            }
+        });
+        // 滚动事件监听器
+        window.addEventListener('scroll', function () {
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (!targetBottomBtn) {
+                return;
+            }
+            checkElementInViewport('.click_to_product_page_btn', function (inViewport) {
+                if (inViewport) {
+                    targetBottomBtn.classList.add('detection-ele-hidden');
+                } else {
+                    targetBottomBtn.classList.remove('detection-ele-hidden');
+                }
+            });
+        });
+
+        // 检测视口内是否有指定选择器的元素
+        function checkElementInViewport(detectionEleSelector, callback) {
+            const elements = document.querySelectorAll(detectionEleSelector);
+            let inViewport = false;
+            elements.forEach(function (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    inViewport = true;
+                }
+            });
+            callback(inViewport);
+        }
+    </script>
+
+    <!-- count-down倒计时组件script脚本 start  -->
+    <script>
+        // 从类名获取初始时间
+        function getInitialTime() {
+            const countdownElementList = document.querySelectorAll('.countdown');
+            if (countdownElementList && countdownElementList.length > 0) {
+                let initialTimeGather = [];
+                countdownElementList.forEach((countdownElement, index) => {
+                    let countdownClassList = countdownElement.classList;
+                    let days = parseInt(countdownElement.getAttribute('data-days')) || 0;
+                    let hours = parseInt(countdownElement.getAttribute('data-hours')) || 0;
+                    let minutes = parseInt(countdownElement.getAttribute('data-minutes')) || 0;
+                    let seconds = parseInt(countdownElement.getAttribute('data-seconds')) || 0;
+                    countdownClassList.forEach(item => {
+                        // 天
+                        if (item.includes('days-')) {
+                            days = item.split('-')[1] || 0;
+                        }
+
+                        // 时
+                        if (item.includes('hours-')) {
+                            hours = item.split('-')[1] || 0;
+                        }
+
+                        // 分
+                        if (item.includes('minutes-')) {
+                            minutes = item.split('-')[1] || 0;
+                        }
+
+                        // 秒
+                        if (item.includes('seconds-')) {
+                            seconds = item.split('-')[1] || 0;
+                        }
+                    });
+                    initialTimeGather[index] = {days, hours, minutes, seconds};
+                });
+                return initialTimeGather;
+            }
+            return null;
+        }
+
+        // 计算目标时间
+        function calculateTargetDate(initialTime) {
+            const now = new Date();
+            const targetDate = new Date();
+
+            // 添加天数、小时、分钟和秒数
+            targetDate.setDate(now.getDate() + parseInt(initialTime.days));
+            targetDate.setHours(now.getHours() + parseInt(initialTime.hours));
+            targetDate.setMinutes(now.getMinutes() + parseInt(initialTime.minutes));
+            targetDate.setSeconds(now.getSeconds() + parseInt(initialTime.seconds));
+
+            return targetDate;
+        }
+
+        // 更新倒计时显示
+        function updateCountdown(targetDate, index) {
+            const now = new Date();
+            const timeRemaining = targetDate - now;
+
+            if (timeRemaining <= 0) {
+                // 倒计时结束
+                document.querySelectorAll('.days')[index].textContent = '00';
+                document.querySelectorAll('.hours')[index].textContent = '00';
+                document.querySelectorAll('.minutes')[index].textContent = '00';
+                document.querySelectorAll('.seconds')[index].textContent = '00';
+
+                // 添加结束提示
+                document.querySelectorAll('.countdown-title-text')[index].textContent = '倒计时结束！';
+                return;
+            }
+
+            // 计算天、时、分、秒
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // 更新显示
+            document.querySelectorAll('.days')[index].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.hours')[index].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.minutes')[index].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.seconds')[index].textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // 初始化倒计时
+        function initCountdown() {
+            const initialTimeGather = getInitialTime();
+            if (initialTimeGather) {
+                initialTimeGather.forEach((initialTime, index) => {
+                    let targetDate = calculateTargetDate(initialTime);
+
+                    // 初始更新
+                    updateCountdown(targetDate, index);
+
+                    // 每秒更新一次
+                    let countdownInterval = setInterval(() => {
+                        updateCountdown(targetDate, index);
+
+                        // 检查是否结束
+                        let now = new Date();
+                        if (targetDate - now <= 0) {
+                            clearInterval(countdownInterval);
+                        }
+                    }, 1000);
+                })
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initCountdown);
+    </script>
+    <!-- count-down倒计时组件script脚本 end  -->
+
+    <!-- 图片放大css start -->
+    <style>
+        .picture-enlarger {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .picture-enlarger:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .picture-enlarger img {
+            transition: transform 0.5s ease;
+        }
+
+        .picture-enlarger:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+    <!-- 图片放大css end -->
+
+    <!-- 50% OFF button 移动端左滑事件监听 start -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swipeableGather = document.querySelectorAll('.fifty_percent_off_button');
+            if (swipeableGather && swipeableGather.length > 0) {
+                swipeableGather.forEach(swipeable => {
+                    let startX, startY, endX, endY;
+
+                    swipeable.addEventListener('touchstart', function (e) {
+                        // 记录触摸开始时的位置
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
+                    });
+
+                    swipeable.addEventListener('touchend', function (e) {
+                        // 记录触摸结束时的位置
+                        endX = e.changedTouches[0].clientX;
+                        endY = e.changedTouches[0].clientY;
+
+                        // 计算横向和纵向的移动距离
+                        let deltaX = endX - startX;
+                        let deltaY = endY - startY;
+
+                        // 判断是否为左滑
+                        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) {
+                            let links = swipeable.querySelectorAll('a');
+                            if (links.length > 0) {
+                                links[0].click();
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    <!-- 50% OFF button 移动端左滑事件监听 end -->
+
+
+    <style>
+        .smb-fixed {
+            position: fixed;
+            position: sticky;
+            top: 10px;
+            max-width: 258px;
+        }
+    </style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        * {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            list-style-position: initial;
+            list-style-image: initial;
+            list-style-type: none;
+        }
+
+        html, body {
+            font-family: sans-serif;
+        }
+
+        .smb-presell1 {
+            max-width: 100%;
+        }
+
+        a {
+            color: rgb(34, 129, 201);
+            text-decoration-line: none;
+            text-decoration-thickness: initial;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+            font-weight: 700;
+        }
+
+        a:hover {
+            color: rgb(36, 83, 125);
+            text-decoration-line: underline;
+            text-decoration-thickness: initial;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 18px;
+            line-height: 2;
+            color: rgb(38, 38, 38);
+        }
+
+        .smb-presell1 h1 {
+            font-size: 40px;
+            line-height: 63px;
+            margin-bottom: 25px;
+        }
+
+        .smb-presell1 h2 {
+            color: rgb(51, 51, 51);
+            font-size: 34px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-right: 0px;
+            margin-bottom: 35px;
+            margin-left: 0px;
+            line-height: 1.3;
+        }
+
+        .smb-presell1 h3 {
+            color: rgb(51, 51, 51);
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-right: 0px;
+            margin-bottom: 25px;
+            margin-left: 0px;
+            line-height: 1.3;
+        }
+
+        .smb-page-main {
+            max-width: 1200px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: flex;
+        }
+
+        .smb-page-left {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 840px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        .smb-left-main {
+            max-width: 100%;
+        }
+
+        .smb-left-main .smb-main-img {
+            max-width: 100%;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: initial;
+            border-right-style: initial;
+            border-bottom-style: initial;
+            border-left-style: initial;
+            border-top-color: initial;
+            border-right-color: initial;
+            border-bottom-color: initial;
+            border-left-color: initial;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 35px;
+            margin-right: auto;
+            margin-bottom: 35px;
+            margin-left: auto;
+            display: block;
+        }
+
+        .smb-presell1 .advertisement {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            font-size: 13px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            background-color: rgb(0, 0, 0);
+        }
+
+        .smb-presell1 .logo-bar {
+            padding-top: 25px;
+            padding-right: 0px;
+            padding-bottom: 15px;
+            padding-left: 0px;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(255, 255, 255);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(229, 229, 229);
+            position: relative;
+        }
+
+        .smb-presell1 .logo-bar-heart {
+            max-width: 1200px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            padding-top: 0px;
+            padding-right: 25px;
+            padding-bottom: 0px;
+            padding-left: 25px;
+        }
+
+        .smb-presell1 .row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .smb-presell1 .logo-bar-box {
+            position: relative;
+        }
+
+        .smb-presell1 .col-lg {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 66.6667%;
+            max-width: 66.6667%;
+        }
+
+        .smb-presell1 .logo-bar-img {
+            max-width: 100%;
+            width: 140px;
+            height: auto;
+        }
+
+        .smb-presell1 .logo-bar-text {
+            position: absolute;
+            top: 50%;
+            right: -120px;
+            transform: translate(-50%, -50%);
+            margin-bottom: 0px;
+        }
+
+        .logo-bar-fixed {
+            display: none;
+            position: fixed;
+            width: 100%;
+            left: 0px;
+            top: 0px;
+            z-index: 1;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(119, 119, 119, 0.28) 0px 3px 5px;
+        }
+
+        .logo-bar-fixed-heart {
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 0px;
+            padding-left: 15px;
+            max-width: 1200px;
+            margin-top: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .fixed-img-module {
+            float: left;
+            width: calc(100% - 380px);
+        }
+
+        .fixed-logo {
+            display: inline-block;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            margin-bottom: 0px;
+            vertical-align: middle;
+        }
+
+        .fixed-logo-img {
+            width: 140px;
+        }
+
+        .fixed-btn-module {
+            float: right;
+            max-width: 380px;
+            width: 100%;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .fixed-btn {
+            width: 320px;
+            height: auto;
+            background-image: linear-gradient(rgb(75, 206, 14), rgb(36, 103, 5));
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: initial;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            padding-top: 18px;
+            padding-right: 12px;
+            padding-bottom: 18px;
+            padding-left: 12px;
+            cursor: pointer;
+            float: right;
+            margin-top: 4px;
+            z-index: 99999999;
+            position: relative;
+            transition-duration: 0.5s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: all;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        .smb-autor {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .smb-autor-img {
+            max-width: 40px;
+            max-height: 40px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            margin-right: 10px;
+        }
+
+        .smb-autor-content {
+            text-align: left;
+            border-left-width: 2px;
+            border-left-style: solid;
+            border-left-color: rgb(76, 76, 76);
+            padding-left: 20px;
+        }
+
+        .smb-autor-name {
+            color: rgb(76, 76, 76);
+            font-size: 16px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .smb-autor-date {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgb(145, 155, 163);
+        }
+
+        .smb-click-button {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            margin-top: 20px;
+            margin-right: auto;
+            margin-bottom: 20px;
+            margin-left: auto;
+            width: 90%;
+            display: block;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: rgb(0, 193, 72);
+            box-shadow: rgb(0, 108, 40) 0px 3px 0px 0px;
+        }
+
+        .smb-click-button a {
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .smb-click-button a:hover {
+            color: rgb(255, 240, 0);
+        }
+
+        .smb-page-right {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            max-width: 300px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            position: relative;
+        }
+
+        #smb-fixed-flag {
+            max-height: 1px;
+        }
+
+        .smb-right-main {
+            position: sticky;
+            top: 120px;
+            max-width: 100%;
+            display: block;
+            border-top-width: initial;
+            border-top-style: initial;
+            border-top-color: transparent;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(237, 237, 237);
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: rgb(237, 237, 237);
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: rgb(237, 237, 237);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .smb-right-main .smb-main-img {
+            max-width: 100%;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: initial;
+            border-right-style: initial;
+            border-bottom-style: initial;
+            border-left-style: initial;
+            border-top-color: initial;
+            border-right-color: initial;
+            border-bottom-color: initial;
+            border-left-color: initial;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            display: block;
+        }
+
+        .smb-border-main {
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: red;
+            border-right-color: red;
+            border-bottom-color: red;
+            border-left-color: red;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+        }
+
+        .smb-right-product-text {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 10px;
+            padding-right: 20px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-align: center;
+            background-color: rgb(34, 34, 34);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        .smb-right-content {
+            max-width: 100%;
+            display: block;
+        }
+
+        .smb-content-text {
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+        }
+
+        .smb-right-slogan-text {
+            margin-top: 10px;
+            margin-right: 0px;
+            margin-bottom: 10px;
+            margin-left: 0px;
+            font-size: 16px;
+            color: rgb(51, 51, 51);
+            text-align: center;
+        }
+
+        .smb-right-button {
+            margin-top: 20px;
+            display: block;
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            background-color: rgb(0, 193, 72);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            text-align: center;
+            box-shadow: rgb(0, 108, 40) 0px 3px 0px 0px;
+        }
+
+        .smb-right-button a {
+            font-size: 14px;
+            font-weight: 800;
+            color: rgb(255, 255, 255);
+        }
+
+        .smb-right-button a:hover {
+            color: rgb(255, 240, 0);
+        }
+
+        .smb-page-footer {
+            max-width: 100%;
+            background-color: rgb(0, 0, 0);
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            margin-top: 25px;
+            box-sizing: border-box;
+        }
+
+        .smb-footer-main {
+            max-width: 1100px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            text-align: center;
+        }
+
+        .smb-footer-main p {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            margin-top: 5px;
+            margin-right: 0px;
+            margin-bottom: 5px;
+            margin-left: 0px;
+        }
+
+        .smb-footer-main a {
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+        }
+
+        .smb-button-bottom {
+            bottom: 0px;
+            width: 100%;
+            top: inherit;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding-top: 0px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            position: fixed;
+            z-index: 10;
+            text-align: center;
+            display: none;
+            box-sizing: border-box;
+        }
+
+        .smb-mb-block {
+            display: none;
+        }
+
+        .smb-flex-block img {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            max-width: 257px;
+        }
+
+        .smb-flex-block center {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+
+        .smb-flex-block p {
+            margin-bottom: 0px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            display: flex;
+            opacity: 0;
+            transition-duration: 0.55s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: all;
+            z-index: -1;
+        }
+
+        .popup.is-active {
+            z-index: 2020;
+            opacity: 1;
+        }
+
+        .popup .overlay {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 999;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .popup .inner {
+            font-weight: bold;
+            padding-bottom: 0px;
+            width: 870px;
+            color: black;
+            z-index: 1000;
+            position: relative;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(242, 242, 242);
+        }
+
+        .popup .overlay-header {
+            background-color: rgb(154, 217, 79);
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: 22px;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .popup .close {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            font-size: 20px;
+            padding-top: 5px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            cursor: pointer;
+            color: black;
+            font-weight: 700;
+            text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+            line-height: 1;
+            background-color: rgb(223, 223, 223);
+            border-top-left-radius: 0px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .popup .inner a {
+            display: block;
+            color: black;
+        }
+
+        .popup .inner a:not(.button) {
+            color: white;
+            font-weight: normal;
+        }
+
+        .columns {
+            margin-left: -7.5px;
+            margin-right: -7.5px;
+            margin-top: -7.5px;
+        }
+
+        .columns:last-child {
+            margin-bottom: -7.5px;
+        }
+
+        .column {
+            display: block;
+            flex-basis: 0px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            padding-top: 7.5px;
+            padding-right: 7.5px;
+            padding-bottom: 7.5px;
+            padding-left: 7.5px;
+        }
+
+        .popup .inner img {
+            max-width: 100%;
+            max-height: 230px;
+        }
+
+        .popup .inner h1 {
+            font-size: 30px;
+            line-height: 35px;
+            font-weight: 900;
+            color: black;
+        }
+
+        .popup .inner p {
+            color: black;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .popup .inner .button {
+            background-color: rgb(92, 184, 92);
+            color: rgb(5, 62, 20);
+            padding-top: 20px;
+            padding-right: 30px;
+            padding-bottom: 20px;
+            padding-left: 30px;
+            font-size: 26px;
+            font-weight: 700;
+            font-family: verdana, helvetica, serif;
+            border-top-width: 3px;
+            border-right-width: 3px;
+            border-bottom-width: 3px;
+            border-left-width: 3px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(45, 113, 45);
+            border-right-color: rgb(45, 113, 45);
+            border-bottom-color: rgb(45, 113, 45);
+            border-left-color: rgb(45, 113, 45);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            margin-top: 10px;
+            line-height: 1.33333;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            touch-action: manipulation;
+            cursor: pointer;
+            user-select: none;
+            background-image: none;
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            border-bottom-right-radius: 60px;
+            border-bottom-left-radius: 60px;
+        }
+
+        .popup .inner .button:hover {
+            background-color: rgb(68, 157, 68);
+            color: rgb(255, 255, 255);
+        }
+
+        .popup .inner .button i {
+            margin-left: 15px;
+        }
+
+        .popup .popup-bottom-p {
+            font-size: 12.8px;
+            color: rgb(106, 106, 106);
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        .smb-comment-block {
+            display: flex;
+            align-items: center;
+        }
+
+        .smb-comment-block p {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+        }
+
+        .comment-block-img {
+            width: 100%;
+            text-align: center;
+        }
+
+        .smb-comment-block img {
+            max-width: 80%;
+        }
+
+        #stickyTop {
+            display: none;
+        }
+
+        #idpeqb {
+            text-align: center;
+        }
+
+        #itueim {
+            text-align: center;
+        }
+
+        #iuwxr5 {
+            text-align: center;
+        }
+
+        #i5g5j4 {
+            display: block;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #iye57g {
+            max-width: 100%;
+        }
+
+        #ivsf {
+            height: auto;
+            width: 170px;
+        }
+
+        #ib87e {
+            width: 817px;
+            height: auto;
+        }
+
+        #i3umy3 {
+            max-width: 100%;
+        }
+
+        #ii4tqi {
+            background-color: rgb(195, 241, 255);
+        }
+
+        #ijzcq1 {
+            background-color: rgb(254, 255, 161);
+        }
+
+        #im86u {
+            width: 170px;
+            height: auto;
+        }
+
+        #i691rt {
+            color: red;
+        }
+
+        #ie2ncf {
+            color: red;
+        }
+
+        #i7pmkg {
+            max-width: 100%;
+        }
+
+        #ik63ud {
+            display: block;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #i7qwfh {
+            max-width: 100%;
+        }
+
+        #i0hnvi {
+            display: block;
+            padding-top: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #i7g3t7 {
+            max-width: 100%;
+        }
+
+        #iqohgl {
+            font-weight: 400;
+        }
+
+        #ii57b5 {
+            max-width: 100%;
+        }
+
+        #ifs2ey {
+            background-color: rgb(254, 255, 161);
+        }
+
+        #ioeh8f {
+            color: red;
+        }
+
+        #iiuchs {
+            color: red;
+        }
+
+        #i2yq4j {
+            font-weight: normal;
+        }
+
+        #ilqup8 {
+            font-weight: normal;
+        }
+
+        #ih5j7n {
+            font-weight: 400;
+        }
+
+        #i6ubrc {
+            font-weight: normal;
+        }
+
+        #ibldfl {
+            font-weight: normal;
+        }
+
+        #iz0qp3 {
+            font-weight: normal;
+        }
+
+        #i05ke8 {
+            max-width: 100%;
+        }
+
+        #iry2qg {
+            max-width: 100%;
+        }
+
+        @media (min-width: 769px) {
+            .columns:not(.is-desktop) {
+                display: flex;
+                align-items: stretch;
+                margin-right: 30px;
+            }
+
+            .column {
+                padding-top: 60px;
+                padding-right: 10px;
+                padding-bottom: 50px;
+                padding-left: 10px;
+                text-align: center;
+            }
+
+            .column.is-6 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-6-tablet {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .column.is-3 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 30%;
+                box-sizing: border-box;
+                background-image: linear-gradient(rgb(191, 191, 191) 0%, rgb(171, 171, 171) 64%, rgb(171, 171, 171) 100%);
+                background-position-x: initial;
+                background-position-y: initial;
+                background-size: initial;
+                background-attachment: initial;
+                background-origin: initial;
+                background-clip: initial;
+                background-color: initial;
+            }
+
+            .column.is-7 {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 70%;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 768px) {
+            p {
+                margin-bottom: 25px;
+                font-size: 18px;
+                line-height: 1.8;
+                color: rgb(51, 51, 51);
+            }
+
+            .smb-presell1 h1 {
+                font-size: 28px;
+                line-height: initial;
+            }
+
+            .smb-presell1 h2 {
+                font-size: 24px;
+            }
+
+            .smb-presell1 h3 {
+                font-size: 18px;
+            }
+
+            .smb-presell1 .col-lg {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: 100%;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .smb-autor-name {
+                font-size: 14px;
+            }
+
+            .smb-page-main {
+                flex-direction: column;
+            }
+
+            .smb-page-right {
+                max-width: 100%;
+            }
+
+            .smb-mb-block {
+                display: block;
+            }
+
+            .popup .inner {
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                margin-left: 10px;
+                text-align: center;
+            }
+
+            .popup .inner a {
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                padding-bottom: 20px;
+            }
+
+            .popup .inner .column {
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+
+            .popup .inner img {
+                max-width: 70vw;
+                max-height: 30vh;
+            }
+
+            .popup .inner h1 {
+                font-size: 22px;
+                line-height: 25px;
+            }
+
+            .popup .inner p {
+                margin-top: 2px;
+            }
+
+            .popup .inner .button {
+                margin-top: 5px;
+                font-size: 11px !important;
+                padding-top: 10px !important;
+                padding-right: 20px !important;
+                padding-bottom: 10px !important;
+                padding-left: 20px !important;
+            }
+
+            .popup .inner .button i {
+                display: none !important;
+            }
+
+            .smb-comment-block {
+                flex-direction: column;
+            }
+        }  </style>
+    <style>
+        html, body,
+        .smb-presell1 h1,
+        .smb-presell1 h2,
+        .smb-presell1 h3 {
+            font-family: Arial, "Roboto", "Noto Sans", "Segoe UI", sans-serif !important;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Poppins:300,300i,400,400i,500,500i,700,700i|Montserrat:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext"
+          rel="stylesheet">
+</head>
+<body>
+<div class="smb-presell1" id="smb-page">
+    <p class="advertisement">ADVERTISEMENT</p>
+    <div class="logo-bar" id="iamj">
+        <div class="logo-bar-heart" id="i5rj">
+            <div class="row" id="iy8o">
+                <div class="logo-bar-box" id="iptp">
+                    <img alt="" class="logo-bar-img" id="ivsf" src="../common/img/enlogo.avif"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="logo-bar-fixed" id="stickyTop">
+        <div class="logo-bar-fixed-heart" id="iyn03">
+            <div class="fixed-img-module" id="izdy5">
+                <div class="fixed-logo" id="iy0eb">
+                    <img alt="" class="fixed-logo-img" id="im86u" src="../common/img/enlogo.avif"/>
+                </div>
+            </div>
+            <div class="fixed-btn-module">
+                <a href="click.php"><span class="fixed-btn">YES! I WANT 50% OFF</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="smb-page-main" id="ibadw">
+        <div class="smb-page-left" id="i21sv">
+            <div class="smb-left-main" id="ifixg">
+                <h1 id="icwt1">Why are Americans replacing their air conditioners with this portable alternative to save hundreds on summer electricity bills?</h1>
+                <div class="smb-autor" id="ibr0g">
+                    <img alt="" class="smb-autor-img" id="inwrx" src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1716623467_%E5%A4%B4%E5%83%8F27.jpg"/>
+                    <div class="smb-autor-content">
+                        <span class="smb-autor-name" id="i8zox">Simon Reed</span>
+                        <span class="smb-autor-date" id="i51j3">March 27, 2026</span>
+                    </div>
+                </div>
+                <p id="ii4tqi"><b id="ifslxy"><span id="iqohgl"><b>SUMMARY:</b> Did you know there is a new portable cooling device that cools a room in MINUTES!? Comvella Cooling Ace has already helped thousands of people beat the heat while lowering their electricity bills. Now tens of thousands of units are being sold every week...</span></b></p>
+                <section id="i84pf">
+                    <a href="click.php" id="iepqd" target="_blank">
+                        <img alt="" class="smb-main-img" id="ib87e" src="img/img1.jpg"/>
+                    </a>
+                    <p id="idse86">FOR THE PAST SEVERAL YEARS, THE AIR CONDITIONING INDUSTRY HAS HAD ONLY 3 LARGE COMPANIES THAT COULD SET WHATEVER PRICES THEY WANTED AND CONTINUE OVERCHARGING CUSTOMERS.</p>
+                    <p id="idl78x">A brilliant startup is turning this greedy $145 billion energy industry upside down.</p>
+                    <p id="ivgh2y">This company found a way to offer a far better device that <b>outperforms outdated, energy-guzzling air conditioners</b> (even top technology experts agree).</p>
+                    <p id="ixqfbq">Cheaper, more energy-efficient, smaller, portable, and just as cooling — it has stunned the entire air-conditioning industry with this incredible portable cooling device!</p>
+                    <p id="iygpkn">With the American Meteorological Service reporting an EXTREMELY HOT SUMMER, one of the hottest in decades, <a href="click.php" id="ieppsh">Comvella Cooling Ace</a> is quickly becoming <b id="i383k">"the must-have of summer 2026"</b>.</p>
+                    <p id="ixu6lt"></p>
+                    <h2 id="ithla7">What is <a href="click.php" id="ixqf8k">Comvella Cooling Ace</a>?</h2>
+                    <img id="i3umy3" src="img/img2.jpg"/>
+                    <p id="iepxj3">A team of engineers from Silicon Valley invented this revolutionary cooling device that addresses both rising energy bills and declining efficiency.</p>
+                    <p id="i9xurz"><b id="i74oj">Compact, portable, and quiet</b>, you can take it with you <b>ANYWHERE</b> and enjoy the pleasant cooling and clean air it provides.</p>
+                    <p id="ib2inj">Imagine cool, fresh air <b id="i9cee">in the park, office, kitchen, or bedroom</b>, and everything is so quiet you will barely notice it is there.</p>
+                    <p id="irl71b">And the best part? It has <b id="iate4w">no installation or maintenance costs</b>, allowing you to save money while being more energy-efficient than other available products on the market.</p>
+                    <p id="iih52s">That means <b>an amazingly LOW electricity bill</b>, so you do not have to worry instead of stressing over trying to cool the whole house.</p>
+                    <p id="it7hkx"><a href="click.php" id="ihcpzi">Comvella Cooling Ace</a> has everything you need to quickly beat the summer heat!</p>
+                    <h2 id="i5i1dj">Futuristic cooling technology gives <a href="click.php" id="i2b73r">Comvella Cooling Ace</a> a huge advantage over the competition</h2>
+                    <p id="i9kcjb"><a href="click.php" id="i7e1dr">Comvella Cooling Ace</a> cools incoming air and then releases a freezing-cold stream on the other side.</p>
+                    <a href="click.php" id="i0hnvi" target="_blank">
+                        <img id="i7g3t7" src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1716807193_3.gif"/>
+                    </a>
+                    <p id="ioz42c"><b>You do not have to wait hours for the cool air to finally reach you while sweat runs down your face, as with traditional air conditioners.</b> <a href="click.php" id="ie73zf">Comvella Cooling Ace</a> lowers the temperature around you and blows icy-cold air toward your face — in SECONDS!</p>
+                    <p id="inzswl"><b>And it uses less electricity than a small fan!</b></p>
+                    <p id="ihn27k">This technology makes <a href="click.php" id="i9s17z">Comvella Cooling Ace</a> much more effective at cooling than similar devices.</p>
+                    <img id="i05ke8" src="img/img3.jpg"/>
+                    <p id="is8qqo"><b>You do not have to worry about noise.</b> The bladeless design and upgraded motor of <a href="click.php" id="iavtjg">Comvella Cooling Ace</a> ensure that its noise level is only 20 dB (for reference: quiet libraries are around 40 dB) and almost unnoticeable. It is ideal for light sleepers in the bedroom during those warm summer nights.</p>
+                    <p id="irh0js"><b id="i1cxmk">By filtering the air, it makes it healthier and easier to breathe.</b></p>
+                    <h2 id="i7lpor">How do you use it?</h2>
+                    <p id="i42t6h"><b id="ilqgkv"><a href="click.php" id="i65xhk">Comvella Cooling Ace</a> is simple for anyone to use!</b></p>
+                    <p id="i7jy8u">Place it on your desk (or mount it on the wall) and press the start button. That is all! You will enjoy the feeling of cool air blowing directly toward you.</p>
+                    <a href="click.php" id="ik63ud" target="_blank">
+                        <img id="i7qwfh" src="img/img4.jpg"/>
+                    </a>
+                    <p id="ifhrel">Press the button to set the modes as needed:</p>
+                    <p id="ifvowi"><b id="iot1vk">❄️1. Cooling mode - a pleasant cool breeze</b></p>
+                    <p id="if982i"><b id="i8xp3c">❄️2. Freezing mode - for when the heat is burning you up</b></p>
+                    <p id="iu1d8x"><b id="ixt9gh">❄️3. Ice mode - cool down instantly</b></p>
+                    <p id="irajhm">You will be able to easily and quickly lower the temperature around you in any space within minutes.</p>
+                    <h2 id="isid4u">What else can <a href="click.php" id="i2lc9x">Comvella Cooling Ace</a>?</h2>
+                    <img id="i7pmkg" src="img/img5.jpg"/>
+                    <p id="is752k">Everything you can imagine from a traditional appliance! And there is even more:</p>
+                    <p id="ixlgkf"><b id="i1cl7b">✅ Best air conditioner of 2026:<span id="iz0qp3"> Provides a unique cooling experience to beat the heat.</span></b></p>
+                    <p id="iiz0qh"><b id="ii7q8i">✅ Powerful and energy-saving: <span id="ibldfl">Provides a freezing stream of air while saving 40% more energy compared with other products on the market!</span><br/></b></p>
+                    <p id="ih6bvo"><b id="iomeng">✅ Versatile use: <span id="i6ubrc">You can place it horizontally/vertically on a table or hang it on the wall.</span><br/></b></p>
+                    <p id="iehg3h"><b id="i9x8jp">✅ Long-lasting battery: <span id="ih5j7n">Runs for hours on a single charge!</span></b></p>
+                    <img id="iry2qg" src="img/img6.jpg"/>
+                    <p id="i6ocqf"><b id="izwc7j">✅ Safe bladeless design:<span id="i2yq4j"> Comvella Cooling Ace is the ideal summer essential for households with children and pets, providing cooling and protection at the same time!</span></b></p>
+                    <p id="it805j"><b id="igo9ji">✅ Compact size:<span id="ilqup8"> With its compact size, this portable device is made for tight spaces such as nightstands and office desks.</span></b></p>
+                    <img id="ii57b5" src="img/img7.jpg"/>
+                </section>
+                <p id="iet037">Traditional air conditioners are bulky, noisy, and painfully expensive to run.</p>
+                <p id="i62d6i"><b>Unlike them, <a href="click.php" id="ize2ak">Comvella Cooling Ace</a> can go with you anywhere, providing a quiet and refreshing breeze whether you are working, studying, or sleeping.</b></p>
+                <p id="iio6b4">One thing is certain: once you try <a href="click.php" id="io49qf">Comvella Cooling Ace</a>, you will not want to live without it!</p>
+                <section id="itrx5">
+                    <p id="ia4dk"></p>
+                </section>
+                <section>
+                    <h2 id="img11d">98% of buyers recommend it to friends and family</h2>
+                    <div class="smb-comment-block">
+                        <p class="comment-block-img">
+                            <img id="iocsbk" src="img/img9.jpg" width="100%"/>
+                        </p>
+                        <p id="idpeqb">
+                            <span id="ib08dj">"Our new office does not have air conditioning, so I bought this device. It is a lifesaver in summer! It has 3 settings that you control with a button. Low, medium, and high. The price is unbeatable. It is incredibly energy-efficient and simply really COOL." <br/>- S. Baker<br/></span>
+                        </p>
+                    </div>
+                    <div class="smb-comment-block">
+                        <p class="comment-block-img">
+                            <img id="ic3bli" src="img/img8.jpg" width="100%"/>
+                        </p>
+                        <p id="itueim">
+                            <span id="iuca6g">"Comvella Cooling Ace is great for hot days at work. And it is fairly quiet. We have three units: one in the kitchen, one in the bathroom, and one to take with us when traveling. It cools rooms perfectly! We love them." <br/>- A. Horns<br/></span>
+                        </p>
+                    </div>
+                    <div class="smb-comment-block" id="ifcsvf">
+                        <p class="comment-block-img">
+                            <img id="i4h1mi" src="img/img10.jpg" width="100%"/>
+                        </p>
+                        <p id="iuwxr5">
+                            <span id="ijygsl">"I bought it just to try it because I cannot sleep with normal fans; they are too noisy. Comvella Cooling Ace is so quiet and powerful. I often leave it on all night and I have never slept better! I highly recommend it, and it is great for the price." <br/>- H. Carter<br/></span>
+                        </p>
+                    </div>
+                </section>
+                <section>
+                    <h2 id="i1us66">How much does it cost?</h2>
+                    <p id="iyyxvk">If you look at the features of <a href="click.php" id="ic6265">Comvella Cooling Ace</a>, it would not be surprising to see a price tag of up to $300. That would still be lower than most competitors (some cost over $500).</p>
+                    <p id="id1b5p"><span id="ifs2ey"><b id="iwff2l">That is why we were shocked when we learned that the company sells this cooling device for only <span id="ioeh8f">$49.98</span> (thanks to a limited-time offer of <span id="iiuchs">50% OFF</span>)!</b></span></p>
+                    <p id="iztnbq">That is a small price for a brand-new, ultra-efficient cooling device that keeps you COOL all summer long.</p>
+                    <h2 id="icqjvf">How can it be so affordable?</h2>
+                    <p id="i2gs2o">Big air-conditioning brands spend BILLIONS of dollars every year on advertising, marketing, and physical stores. And when you do the math — it is actually us, the consumers, who pay for it.</p>
+                    <p id="i5apn6"><a href="click.php" id="ijn69v">Comvella Cooling Ace</a> does not spend anything on any of that. They sell only online, do not advertise on TV, and do not have to pay commissions.</p>
+                    <p id="i2444k">They prefer to let their device and positive reviews sell themselves.</p>
+                    <h2 id="i5r675">Conclusion: Is it worth it?</h2>
+                    <p id="iryqzh"><b id="iw1hbo">Yes! Absolutely! It is an easy decision.</b></p>
+                    <p id="ienne4">Do you want to stay cool <b>WITHOUT</b> unbelievable electricity bills? Do you suffer from dusty air at home?</p>
+                    <p id="isgh8e"><a href="click.php" id="inadmh">Comvella Cooling Ace</a> is the newest, coolest gadget for summer heat, and it works. It is the best and most affordable way to stay cool and comfortable.</p>
+                    <p id="inyrxm">It is time to finally enjoy summer without sweating and stress under the pressure of heat!</p>
+                    <p id="iuwbmi">During this special offer, the more units you buy, the more you save! It is an incredible deal you should not miss.</p>
+                    <p id="i37rnj"><a href="click.php" id="iaozwv">Click here to claim the discounted Comvella Cooling Ace (while it is still available) &gt;&gt;</a></p>
+                </section>
+                <h2 id="iwehl5">How do you get it?</h2>
+                <p id="i3z9ij"><a href="click.php" id="i36ihl">Comvella Cooling Ace</a> is becoming more well-known and selling like crazy! It is currently sold only online with a <b>SIMPLER and FASTER</b> purchase process.</p>
+                <p id="iazcgk">Not familiar with online shopping? Do not worry — the ordering process is super simple!</p>
+                <p id="iet11i">If you want to make sure you get the original product at the lowest price, follow these steps:</p>
+                <p id="icsbfd">1. Visit the official website <a href="click.php" id="i1irwj">by clicking here</a></p>
+                <p id="i2ytt2">2. Get one (or more) for yourself or your family</p>
+                <p id="i17ilv">3. Enjoy a cool summer at home and in the office!</p>
+                <section>
+                    <div class="smb-border-main" id="ijzcq1">
+                        <p id="ito99f"><b>UPDATE:</b> The company is currently running a special sale. You get <b id="ie2ncf">50% OFF</b>, if you buy it today, only from the official website. Tick-tock, time is running out and the special sale is ending. Do not miss your chance to improve your life at an unbeatable price!</p>
+                    </div>
+                    <div class="smb-click-button">
+                        <a href="click.php">CHECK DISCOUNTS AND AVAILABILITY →</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="smb-page-right" id="iljsad">
+            <div id="smb-fixed-flag"></div>
+            <div class="smb-right-main">
+                <div class="smb-right-product-text" id="i5frah">Comvella Cooling Ace</div>
+                <a href="click.php" id="i5g5j4" target="_blank">
+                    <img id="iye57g" src="img/img11.jpg"/>
+                </a>
+                <div class="smb-right-content">
+                    <div class="smb-content-text">
+                        <div class="smb-right-slogan-text" id="i11sh8"><b id="ig7rsi">Stay cool this summer! Get <span id="i691rt">50% OFF</span> right now!</b></div>
+                        <div class="smb-right-button"><a href="click.php">CHECK AVAILABILITY →</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="smb-flag-none"></div>
+    <div class="smb-button-bottom smb-mb-block" id="i35xob">
+        <div class="smb-right-button">
+            <a href="click.php">CHECK AVAILABILITY →</a>
+        </div>
+    </div>
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main">
+            <p>Copyright © 2022</p>
+            <p id="i29kvf">COPYRIGHT THIS IS AN ADVERTISEMENT AND NOT AN ACTUAL NEWS ARTICLE, BLOG, OR CONSUMER PROTECTION UPDATE. MARKETING DISCLOSURE: This website is a marketplace. As such, you should know that the owner has a financial connection to the product and services advertised on the site. The owner receives payment whenever a qualified lead is referred, but that is the extent of it. ADVERTISING DISCLOSURE: This website and the products and services referenced on the site are an advertising marketplace. This website is an advertisement and not a news publication. All photos of people used on this site are of models. The owner of this site and the products and services referenced on this site provides only a service through which consumers can obtain and compare.</p>
+            <p>HEALTH DISCLOSURE: The information on this website is not intended to replace professional medical advice, diagnosis, or treatment of any disease or condition. We do not guarantee and assume no responsibility for the accuracy of the information contained on this website or available through this website, and such information may change without prior notice.</p>
+            <p>Never make any changes to medications, daily routine, nutrition, sleep schedule, or exercise without first consulting a doctor or other healthcare professional. NEVER IGNORE PROFESSIONAL MEDICAL ADVICE OR DELAY SEEKING MEDICAL CARE BECAUSE OF SOMETHING YOU READ OR OBTAINED THROUGH THIS WEBSITE.</p>
+            <p><a class="privacy-link" href="/template-common/en/contact-us/" rel="nofollow" target="_blank">Contact Us</a></p>
+            <p><a class="privacy-link" href="/template-common/en/privacy-policy/" rel="nofollow" target="_blank">Privacy Policy</a></p>
+            <p><a class="privacy-link" href="/template-common/en/terms-of-service/" rel="nofollow" target="_blank">Terms of Service</a></p>
+        </div>
+    </footer>
+</div>
+<div class="popup" id="i02o11">
+    <div class="overlay" id="ibu8e1"></div>
+    <div class="inner" id="ioxal1">
+        <div class="close hide-overlay"><i class="fa fa-times"></i></div>
+        <a href="click.php">
+            <div class="columns">
+                <div class="column">
+                    <p>
+                        <img id="igsy8f" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"/>
+                    </p>
+                    <p id="i8g0z8">Lowest price $59.90</p>
+                    <p id="idtjil">Get your discount today!</p>
+                </div>
+                <div class="column">
+                    <p id="ig4lqa">Claim your discount today!</p>
+                    <p id="iwr6i3">The sale price of $59.90 will not last long, and it is selling like crazy.</p>
+                    <img alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"/>
+                    <button class="button">CLICK NOW AND SAVE <i class="fa fa-arrow-right"></i></button>
+                    <p class="popup-bottom-p">Act now and get your air conditioner before it sells out!</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+</body>
+<script>
+    function click_popup_articles(href) {
+        var need_url_params = ["site", "site_id", "title", "platform", "campaign_id", "campaign_item_id", "thumbnail", "campaign_name", "utm_campaign", "utm_medium"];
+        var paramSeparator = href.includes('?') ? '&' : '?';
+        const orderedParams = need_url_params
+            .filter(function (param) {
+                return getQueryString(param);
+            })
+            .map(function (param) {
+                return param + "=" + getQueryString(param);
+            });
+        if (orderedParams.length) {
+            return href + paramSeparator + orderedParams.join('&');
+        } else {
+            return href;
+        }
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 检测浏览器语言是否为匈牙利语
+        var userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        var isHungarian = userLang === 'hu' || userLang.startsWith('hu-');
+
+        if (!isHungarian) {
+            // 非 hu 语言，刷新页面
+            // location.reload();
+            // return;
+        }
+        // hu 语言，正常执行 domain 替换逻辑
+        function getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            var results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        var domainParam = getParameterByName('domain');
+        if (domainParam) {
+            if (domainParam.indexOf('http://') !== 0 && domainParam.indexOf('https://') !== 0) {
+                domainParam = 'https://' + domainParam;
+            }
+            var newUrl = domainParam + '/click.php?lp=1';
+            var targetLink = "click.php";
+            var links = document.querySelectorAll('a');
+            for (var i = 0; i < links.length; i++) {
+                if (isHungarian && (links[i].getAttribute('href') === targetLink || (links[i].getAttribute('href') && links[i].getAttribute('href').indexOf('click.php') > -1))) {
+                    links[i].href = newUrl;
+                }else{
+                    links[i].href = "javascript:void(0)";
+                }
+            }
+        }
+    });
+</script>
+<script src="js/smb-scroll.js"></script>
+<script src="js/view1/sticky-top.js"></script>
+</html>
