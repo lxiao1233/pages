@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DANNYI hétköznapi cipő</title>
+    <!-- 8. verzió: a termékblokk szélességét a fő tartalomhoz igazítja, csökkenti a kép és a szöveg méretét. -->
+    <meta name="description" content="DANNYI szandálokra optimalizált statikus oldal: kényelem, ortopédiai támogatás és különleges ajánlat.">
+    <link rel="preconnect" href="https://cdn.shopify.com">
+    <style>
+        :root{--bg:#fff;--text:#1f2933;--muted:#667085;--line:#e6e8ec;--accent:#111;--accent2:#ba4444;--soft:#f7f3ed;--radius:18px;--max:860px}
+        *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65} img{max-width:100%;height:auto;display:block;border-radius:var(--radius)} a{color:inherit} .wrap{width:min(var(--max),calc(100% - 32px));margin:auto} .notice{background:#111;color:#fff;text-align:center;padding:8px 12px;font-size:14px} header{padding:36px 0 20px;text-align:center} .kicker{color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:.06em} h1{font-size:clamp(32px,5vw,56px);line-height:1.08;margin:14px 0} h2{font-size:clamp(24px,3vw,36px);line-height:1.18;margin:0 0 16px} h3{font-size:22px;line-height:1.3;margin:0 0 10px} .lead{font-size:20px;color:#344054;max-width:800px;margin:0 auto 12px} .byline,.muted{color:var(--muted)} .hero-img{margin:24px auto 0;box-shadow:0 18px 45px rgba(16,24,40,.12)} section{padding:42px 0;border-top:1px solid var(--line)} .grid{display:grid;grid-template-columns:1fr;gap:22px;align-items:start} .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 8px 30px rgba(16,24,40,.06)} .feature{display:grid;grid-template-columns:52px 1fr;gap:16px;margin:18px 0} .num{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#111;color:#fff;font-weight:700;font-size:22px} .btn{display:inline-block;margin-top:14px;background:var(--accent);color:#fff;text-decoration:none;padding:15px 24px;border-radius:999px;font-weight:700;box-shadow:0 8px 18px rgba(0,0,0,.18)} .btn:hover{transform:translateY(-1px)} .soft{background:var(--soft)} .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px} .quote p{margin:8px 0 0} .badges{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center} .badge{padding:16px;border:1px solid var(--line);border-radius:14px;background:#fff;font-weight:700} .product{display:grid;grid-template-columns:1fr;gap:22px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px} .price{display:flex;align-items:flex-end;gap:14px;margin:18px 0} .new{font-size:44px;font-weight:800;color:var(--accent2);line-height:1} .old{font-size:24px;color:var(--muted);text-decoration:line-through} .tag{background:var(--accent2);color:#fff;border-radius:999px;padding:5px 10px;font-weight:700} ul{padding-left:20px} .comments{display:grid;gap:14px} .comment{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff} .comment img{width:52px;height:52px;object-fit:cover;border-radius:50%} .comment p{margin:4px 0} .comment span{font-size:13px;color:var(--muted)} footer{padding:32px 0;color:var(--muted);font-size:13px;text-align:center;border-top:1px solid var(--line)} .sticky{position:sticky;bottom:0;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);padding:10px 16px;border-top:1px solid var(--line);text-align:center;z-index:10} .sticky .btn{margin:0;padding:12px 22px}
+        .sticky .btn{background:#e8300d;color:#fff!important;border-radius:9px;min-width:295px;box-shadow:none;font-size:18px;font-weight:800}.sticky .btn:hover{background:#cf290a}
+
+        .grid>img,.product>img{width:100%;margin:0 auto;object-fit:cover}
+        .image-text-card{display:flex;flex-direction:column;gap:16px}
+        /* Jobb oldali lebegő doboz: az eredeti hirdetéskártya hatásával újrakészítve, a törzsszöveg jobb oldalán rögzítve, nem vesz részt a fő szöveg elrendezésében */
+        .float-box{position:fixed;right:max(24px,calc((100vw - 1220px)/2));top:96px;width:250px;min-height:430px;background:#fff;border:1px solid #dedede;border-radius:14px;box-shadow:none;padding:26px 14px 20px;text-align:center;z-index:20}
+        .float-box img{width:190px;height:auto;border-radius:0;margin:0 auto 34px;object-fit:contain}
+        .float-box strong{display:block;color:#0098b3;font-size:22px;line-height:1.25;margin:0 auto 18px;font-weight:800;max-width:200px}
+        .float-box p{font-size:22px;line-height:1.2;margin:0 auto 28px;color:#222;max-width:210px}
+        /* Eredeti CTA gombhatás: nagy méret, türkizkék, két sorban középre igazítva, lekerekített sarkok, visszajelzés rámutatásra/kattintásra */
+        .sidebar-cta{display:flex;align-items:center;justify-content:center;width:100%;min-height:88px;margin:0;background:#16b8d7;color:#fff!important;border:0;border-radius:12px;padding:14px 18px;text-decoration:none;font-size:20px;line-height:1.35;font-weight:700;text-align:center;letter-spacing:.01em;box-shadow:0 10px 24px rgba(22,184,215,.22);transition:background-color .2s ease,transform .2s ease,box-shadow .2s ease}
+        .sidebar-cta:hover{background:#0fa8c7;transform:translateY(-2px);box-shadow:0 12px 28px rgba(15,168,199,.28)}
+        .sidebar-cta:active{transform:translateY(0);box-shadow:0 6px 16px rgba(15,168,199,.22)}
+        .float-box .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:88px;margin:0;background:#16b8d7;color:#fff!important;border-radius:12px;padding:14px 18px;font-size:20px;line-height:1.35;font-weight:700;text-align:center;box-shadow:0 10px 24px rgba(22,184,215,.22);transition:background-color .2s ease,transform .2s ease,box-shadow .2s ease}
+        .float-box .btn:hover{background:#0fa8c7;transform:translateY(-2px);box-shadow:0 12px 28px rgba(15,168,199,.28)}
+        .float-box .btn:active{transform:translateY(0);box-shadow:0 6px 16px rgba(15,168,199,.22)}
+        .float-box .float-price,.float-box .old{display:none}
+
+
+        /* v5: a képernyőkép alapján visszaállítja az alsó vásárlási részt és a piros CTA stílust */
+        .wide-cta-wrap{padding-top:8px;padding-bottom:50px;border-top:0;text-align:left}
+        .wide-cta-wrap h2{font-size:26px;font-weight:500;line-height:1.35;margin:0 0 28px;color:#111}
+        .cta-red{display:flex;align-items:center;justify-content:center;width:min(800px,100%);min-height:62px;margin:0 auto;background:#e8300d;color:#fff!important;border-radius:8px;text-decoration:none;font-size:24px;font-weight:800;line-height:1.2;text-align:center;box-shadow:none;transition:background-color .2s ease,transform .2s ease}
+        .cta-red:hover{background:#cf290a;transform:translateY(-1px)}
+        .cta-red:active{transform:translateY(0)}
+        /* Csak ez az alsó termékvásárlási rész rendeződjön bal-jobb elrendezésbe; a többi kép+szöveg modul megtartja az eredeti függőleges szerkezetet */
+        .product-offer{
+            display:grid;
+            grid-template-columns:minmax(0, 46%) minmax(0, 54%);
+            gap:18px;
+            align-items:stretch;
+            width:min(var(--max), calc(100% - 32px));
+            max-width:var(--max);
+            margin:0 auto 42px;
+            background:#f7f7f7;
+            border:1px solid #d9d9d9;
+            border-radius:16px;
+            padding:22px 16px;
+            overflow:hidden;
+        }
+        .product-offer .product-image-panel{
+            background:#fff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            min-height:330px;
+            padding:24px 18px;
+            border-radius:0;
+        }
+        .product-offer .product-image-panel img{
+            width:92%;
+            max-width:360px;
+            border-radius:0;
+            object-fit:contain;
+            margin:0 auto;
+        }
+        .product-offer .product-copy{
+            display:flex;
+            flex-direction:column;
+            justify-content:flex-start;
+            padding:0 2px;
+            color:#262b33;
+        }
+        .product-offer h2{font-size:24px;line-height:1.35;font-weight:800;color:#030303;margin:0 0 12px;letter-spacing:.01em}
+        .offer-list{list-style:none;padding:0;margin:0 0 12px;display:grid;gap:7px}
+        .offer-list li{position:relative;padding-left:28px;font-size:16px;line-height:1.42;color:#3d4654}
+        .offer-list li::before{content:'✓';position:absolute;left:0;top:2px;width:21px;height:21px;border-radius:50%;background:#0fb4d1;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900;line-height:1}
+        .product-offer .price{align-items:center;gap:9px;margin:12px 0 10px}
+        .product-offer .new{font-size:28px;color:#e8300d;font-weight:800;line-height:1}
+        .product-offer .old{font-size:16px;color:#9da3ac;text-decoration:line-through;line-height:1}
+        .product-offer .tag{background:#e8300d;color:#fff;border-radius:6px;padding:4px 7px;font-size:14px;font-weight:800;line-height:1.2}
+        .product-note{font-size:13px;line-height:1.4;color:#3d4654;margin:0 0 12px!important;font-weight:400!important}
+        .product-offer .buy-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:58px;margin:0;background:#e8300d;color:#fff!important;border-radius:9px;text-decoration:none;font-size:19px;font-weight:800;line-height:1.2;box-shadow:none;transition:background-color .2s ease,transform .2s ease}
+        .product-offer .buy-btn:hover{background:#cf290a;transform:translateY(-1px)}
+        .product-offer .buy-btn:active{transform:translateY(0)}
+        @media (max-width:920px){.product-offer{width:min(100% - 32px, 860px);grid-template-columns:1fr;padding:22px 18px}.product-offer .product-image-panel{min-height:auto}.product-offer .product-image-panel img{max-width:430px}.product-offer h2{font-size:24px;line-height:1.3}.offer-list li{font-size:17px}.cta-red{font-size:20px;min-height:58px;padding:0 18px}.wide-cta-wrap h2{font-size:23px}}
+
+        @media (min-width:1180px){.wrap{margin-left:max(24px,calc((100vw - 1220px)/2));margin-right:0}.product-offer{margin-left:max(24px,calc((100vw - 1220px)/2));margin-right:0}}
+
+        @media (min-width:1180px) and (max-width:1400px){.product-offer{width:min(var(--max), calc(100vw - 520px));grid-template-columns:45% 55%}.product-offer h2{font-size:23px}.offer-list li{font-size:15.5px}.product-offer .buy-btn{font-size:18px}.product-offer .product-image-panel img{max-width:340px}}
+        @media (max-width:1179px){.float-box{display:none}.wrap{margin-left:auto;margin-right:auto}.product-offer{width:min(100% - 32px, 860px);max-width:860px}}
+        @media (max-width:760px){.reviews,.badges{grid-template-columns:1fr} header{padding-top:28px} section{padding:32px 0} .lead{font-size:18px}}
+    </style>
+</head>
+<body>
+<div class="notice">Hirdetés</div>
+<header class="wrap">
+    <p class="kicker">Különleges ajánlat: csak 16000 Ft 30000 Ft helyett</p>
+    <h1>Egy svéd mestermű, amely újradefiniálja a szandálviselés élményét.</h1>
+    <p class="lead">Olyan kényelmes, mint egy prémium szandál, és olyan könnyű, mint egy sportcipő.</p>
+    <p class="byline">Lisa Hoffman, Consumer World | 2 nappal ezelőtt | 9:53</p>
+    <img class="hero-img" src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/A_2_df5ae95e-6c7a-4783-957f-dc3784cb97f5.png?v=1781749208&amp;width=2048" alt="DANNYI szandálok" loading="eager">
+</header>
+
+<main>
+    <section class="wrap grid image-text-card">
+        <div>
+            <h2>Láb- és lábfejproblémák, ízületi fájdalmak?</h2>
+            <p>Az európaiak több mint 60%-a küzd lábproblémákkal a mindennapokban, egész évben. Az új <strong>DANNYI</strong> szandál az orvosi ortopédiát kivételes kényelemmel ötvözi, ára pedig jelenleg csak töredéke a hasonló modellekének.</p>
+        </div>
+        <img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/2_1599e5e0-2d1a-4ea0-9a2f-68581d005a65.jpg?v=1781749213&amp;width=2048" alt="Kényelmes DANNYI szandálok" loading="lazy">
+    </section>
+
+    <section class="wrap">
+        <h2>Íme négy ok, amiért ez a lábbeli bestsellerré vált:</h2>
+        <div class="feature"><div class="num">1</div><div><h3>Az ortopéd talpbetét azonnali enyhülést nyújt a lábfájdalomra.</h3><p>A beépített memóriahabos talpbetét tökéletesen alkalmazkodik a láb formájához, és enyhíti a sarokra, a talpboltozatra és a lábujjakra nehezedő nyomást. Ideális saroksarkantyú, lúdtalp vagy artritisz esetén.</p><p><strong>✓ Ortopéd szakorvosokkal fejlesztve és Olaszországban tesztelve</strong></p></div></div>
+        <img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/ed0cc96e405272a0ba0c9955c03ceb5e_76f88608-2d35-4690-a744-d7945cfc2806.jpg?v=1781752762&amp;width=2048" alt="Olaszországi teszt" loading="lazy">
+        <div class="feature"><div class="num">2</div><div><h3>Egyenletes nyomáselosztás a fájdalommentes járásért</h3><p>A speciális, 3 zónás párnázás optimálisan osztja el a testsúlyt, és akár 40%-kal csökkenti a térdre, csípőre és hátra nehezedő terhelést. Ideális hosszú sétákhoz vagy mindennapi munkához.</p><a class="btn" href="click.php?lp=1">Használja ki most a korlátozott idejű ajánlatot!</a></div></div>
+    </section>
+
+    <section class="soft">
+        <div class="wrap">
+            <h2>Íme, mit mondanak ügyfeleink</h2>
+            <div class="reviews">
+                <article class="card quote"><strong>Sabine K., 62 éves, Hamburg</strong><p>"Évekig szenvedtem saroksarkantyútól. A DANNYI az első cipő, amelyet egész nap fájdalom nélkül tudok viselni. Ráadásul nagyon elegáns is!"</p></article>
+                <article class="card quote"><strong>Petra M., 58 éves, München</strong><p>"Végre találtam egy pár masszív és elegáns szandált. 8 órát álltam az üzletben, és semmilyen fájdalmat nem éreztem."</p></article>
+                <article class="card quote"><strong>Angelica R., 54 éves, Berlin</strong><p>"Ápolónő vagyok, és napi 12 órát állok. Ezek a cipők jelentősen csökkentették a térd- és hátfájásomat."</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap grid image-text-card">
+        <img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/A_1_c12bcba4-63fd-453d-9186-2198ce136855.png?v=1781749208&amp;width=2048" alt="Vízálló anyag" loading="lazy">
+        <div>
+            <div class="feature"><div class="num">3</div><div><h3>Vízálló és kényelmes: tökéletes minden évszakra</h3><p>A légáteresztő, hőszabályozó bélés kényelmet és száraz lábat biztosít. A vízálló külső réteg véd a nedvességtől, esőtől és szennyeződésektől. A csúszásmentes talp stabil tapadást nyújt különféle felületeken.</p><p><strong>✓ Vízlepergető bevonattal tesztelve</strong></p></div></div>
+        </div>
+    </section>
+
+    <section class="wrap grid image-text-card">
+        <div>
+            <div class="feature"><div class="num">4</div><div><h3>Elegáns dizájn, amely orvosi funkcionalitással párosul</h3><p>Senki sem fogja észrevenni, hogy ortopéd cipőt visel. A modern és elegáns dizájn tökéletesen illik farmerhez, ruhához vagy kabáthoz.</p></div></div>
+        </div>
+        <img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/A_3_4e03ab8d-b0ef-405f-9749-b36450c26e1c.png?v=1781749262&amp;width=2048" alt="Elegáns DANNYI dizájn" loading="lazy">
+    </section>
+
+    <section class="soft">
+        <div class="wrap">
+            <div class="badges">
+                <div class="badge">Ortopéd sebészekkel fejlesztve</div><div class="badge">Olaszországi teszt</div><div class="badge">Ingyenes szállítás</div><div class="badge">30 napos pénz-visszafizetési garancia</div>
+            </div>
+            <div class="card" style="margin-top:22px"><p>"Tízből nyolc vásárló néhány nap után jelentős fájdalomcsökkenésről számol be. Az ortopéd támogatás és az egész éves kényelem kombinációja a DANNYI-t az egyik legjobb befektetéssé teszi a lábak számára."</p><p class="muted">– „Fogyasztóvédelem” szerkesztősége</p></div>
+        </div>
+    </section>
+
+    <section class="wrap wide-cta-wrap">
+        <h2>Vásároljon most, és élvezze a kényelmes utakat egész évben!</h2>
+        <a class="cta-red" href="click.php?lp=1">Ellenőrizze az elérhetőséget és az aktuális különleges ajánlatokat.</a>
+    </section>
+
+    <section class="wrap product-offer">
+        <div class="product-image-panel">
+            <img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/O1CN01M36a8L20BUjgUVfQV__2916366811-0-cib_3e482847-9e79-4ffd-869d-575c96a49e37.jpg?v=1781749207&amp;width=2048" alt="DANNYI cipők minden évszakra" loading="lazy">
+        </div>
+        <div class="product-copy">
+            <h2>DANNYI cipők minden évszakra</h2>
+            <ul class="offer-list"><li>Ortopéd memóriahabos talpbetét</li><li>Azonnal enyhíti a lábfájdalmat</li><li>Vízálló anyag</li><li>Csúszásmentes talp</li><li>Elegáns dizájn minden alkalomra.</li></ul>
+            <div class="price"><span class="new">16000 Ft</span><span class="old">30000 Ft</span><span class="tag">-70%</span></div>
+            <p class="product-note">Exkluzív különleges ajánlat – a készlet erejéig</p>
+            <a class="buy-btn" href="click.php?lp=1">Vásárolja meg most</a>
+        </div>
+    </section>
+
+    <!--    <section class="wrap grid image-text-card">-->
+    <!--        <img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/O1CN01M36a8L20BUjgUVfQV__2916366811-0-cib_3e482847-9e79-4ffd-869d-575c96a49e37.jpg?v=1781749207&amp;width=2048" alt="Kényelmes DANNYI szandálok" loading="lazy">-->
+    <!--        <div><h2>Kényelmes DANNYI szandálok</h2><p>Mondjon búcsút a fájdalomnak, bizonytalanságnak és lábproblémáknak.</p><a class="btn" href="click.php?lp=1">Ellenőrizze az elérhetőséget →</a></div>-->
+    <!--    </section>-->
+
+    <section class="soft">
+        <div class="wrap">
+            <h2>Olvasói vélemények (47)</h2>
+            <div class="comments"><article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/imgi_7_logo.png?v=1772615760&amp;width=2048" alt="Stephanie K." loading="lazy"><div><strong>Stephanie K.</strong><p>Két hete van meg ez a csizma, és nagyon lelkes vagyok miatta! A saroksarkantyú okozta fájdalom szinte teljesen eltűnt. Vannak más modellek is, amelyek közül választhatok?</p><span>Tetszik · Válasz · 3 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-2195226220-1024x1024.jpg?v=1772616427&amp;width=2048" alt="Consumer World csapat" loading="lazy"><div><strong>Consumer World csapat</strong><p>Szia Stephanie, örülök, hogy a csizma hasznos volt számodra! Kedvenc modelljeidet az üzletben is megtalálod.</p><span>Tetszik · 2 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1996209299-1024x1024.jpg?v=1772616890&amp;width=2048" alt="Monica H." loading="lazy"><div><strong>Monica H.</strong><p>Pontosan ezt kerestem! Ortopéd, de közben modern is. A kollégáim megkérdezték, hol vettem 😊</p><span>Tetszik · 12 · Válaszok · 5 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1150816384-1024x1024.jpg?v=1772616990&amp;width=2048" alt="Tommaso R." loading="lazy"><div><strong>Tommaso R.</strong><p>Édesanyámnak rendeltem. 68 éves, és artritiszben szenved. Azt mondja, ezek a legkényelmesebb cipők, amelyek valaha voltak neki!</p><span>Tetszik · 8 · Válaszok · 6 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/claudia-Cqg-Xc7G-1.jpg?v=1772617037&amp;width=2048" alt="Julia W." loading="lazy"><div><strong>Julia W.</strong><p>Tényleg vízállók? Olyan cipőre van szükségem a kutyasétáltatáshoz, amely esőben és sárban is használható.</p><span>Tetszik · Válasz · 8 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1490793638-1024x1024.jpg?v=1772617083&amp;width=2048" alt="Consumer World csapat" loading="lazy"><div><strong>Consumer World csapat</strong><p>Igen, a külső réteg vízlepergető, és véd a nedvességtől. Rossz időben történő sétákhoz is ideális!</p><span>Tetszik · 2 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-2185791749-1024x1024.jpg?v=1772617152&amp;width=2048" alt="Laura M." loading="lazy"><div><strong>Laura M.</strong><p>@Julia W. Naponta kétszer használom kutyasétáltatáskor, és a lábam mindig száraz és kényelmes marad.</p><span>Tetszik · 3 · 6 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-2162937006-1024x1024.jpg?v=1772617174&amp;width=2048" alt="Bridget P." loading="lazy"><div><strong>Bridget P.</strong><p>A csizma mérethű? Én 39 és 40 közötti méretet hordok.</p><span>Tetszik · Válasz · 10 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1131120711-1024x1024_1a7eba8b-6549-401d-9b80-9779b227ca56.jpg?v=1772617199&amp;width=2048" alt="Consumer World csapat" loading="lazy"><div><strong>Consumer World csapat</strong><p>A csizma mérethű. Ha két méret között vagy, javasoljuk, hogy válassz egy számmal nagyobbat, különösen, ha vastagabb zoknit tervezel viselni.</p><span>Tetszik · 9 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1188966374-1024x1024.jpg?v=1772617686&amp;width=2048" alt="Claudia S." loading="lazy"><div><strong>Claudia S.</strong><p>Ez az ár fantasztikus! A férjem vett nekem egy párat az ünnepekre, de szerettem volna még egy párat, ezért vettem magamnak is. 😄</p><span>Tetszik · 15 · Válaszok · 12 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-638288002-1024x1024_9e954f21-1d46-48e2-88a4-3b7bb3620a42.jpg?v=1772617770&amp;width=2048" alt="Elisabetta K." loading="lazy"><div><strong>Elisabetta K.</strong><p>Ki lehet venni a talpbetéteket, és saját betéttel helyettesíteni?</p><span>Tetszik · Válasz · 14 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1145109341-1024x1024.jpg?v=1772617795&amp;width=2048" alt="Consumer World csapat" loading="lazy"><div><strong>Consumer World csapat</strong><p>Igen, a memóriahabos talpbetétek kivehetők. Saját ortopéd talpbetétedet is használhatod.</p><span>Tetszik · 13 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1465572672-1024x1024.jpg?v=1772617817&amp;width=2048" alt="Renate B." loading="lazy"><div><strong>Renate B.</strong><p>A lányom gyógytornászként dolgozik, és ő ajánlotta ezeket a csizmákat. Három nap viselés után csak azt tudom mondani: életem legjobb befektetése!</p><span>Tetszik · 19 · Válaszok · 1 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/imgi_7_logo.png?v=1772615760&amp;width=2048" alt="Helga G." loading="lazy"><div><strong>Helga G.</strong><p>Mennyi időt vesz igénybe a szállítás? A csizmára jövő hétre szükségem lenne.</p><span>Tetszik · Válasz · 1 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-2195226220-1024x1024.jpg?v=1772616427&amp;width=2048" alt="Consumer World csapat" loading="lazy"><div><strong>Consumer World csapat</strong><p>Az Olaszországba küldött rendelések általában 3–5 munkanapon belül megérkeznek. Ha ma leadod a rendelést, várhatóan a jövő hét elején megkapod a csizmáidat.</p><span>Tetszik · 1 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1996209299-1024x1024.jpg?v=1772616890&amp;width=2048" alt="Ingrid U." loading="lazy"><div><strong>Ingrid U.</strong><p>Nagyon ajánlom őket! Két hónapja minden nap hordom, és még mindig olyanok, mint az újak. Az árhoz képest a minőség valóban kiváló.</p><span>Tetszik · 11 · Válaszok · 1 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1150816384-1024x1024.jpg?v=1772616990&amp;width=2048" alt="Martina F." loading="lazy"><div><strong>Martina F.</strong><p>Feketében is kaphatók? Szeretnék venni egy második párat más színben.</p><span>Tetszik · Válasz · 2 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/claudia-Cqg-Xc7G-1.jpg?v=1772617037&amp;width=2048" alt="Consumer World csapat" loading="lazy"><div><strong>Consumer World csapat</strong><p>Ezek a cipők több színben is elérhetők. A kívánt színt az üzletben történő rendeléskor választhatod ki.</p><span>Tetszik · 2 órája</span></div></article>
+                <article class="comment"><img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/istockphoto-1490793638-1024x1024.jpg?v=1772617083&amp;width=2048" alt="Ursula S." loading="lazy"><div><strong>Ursula S.</strong><p>A leírás túl szépnek tűnik ahhoz, hogy igaz legyen. De miután ennyi pozitív véleményt olvastam, úgy döntöttem, kipróbálom!</p><span>Tetszik · 7 · Válaszok · 2 órája</span></div></article></div>
+        </div>
+    </section>
+</main>
+
+<footer class="wrap">
+    <p>Hirdetési tájékoztató: ez a weboldal, valamint az említett termékek és szolgáltatások hirdetési piacterek. Ez a weboldal hirdetés, nem híroldali kiadvány.</p>
+    <p>Copyright © 2026. Ez a bejegyzés hirdetés, nem marketingcikk, blogbejegyzés vagy hír.</p>
+    <p><a href="https://dannyi.com/pages/politica-sulla-riservatezza">Adatvédelmi irányelvek</a> · <a href="https://dannyi.com/pages/terms-and-conditions">Felhasználási feltételek</a></p>
+</footer>
+
+<aside class="float-box" aria-label="DANNYI ajánlat">
+    <img src="https://cdn.shopify.com/s/files/1/0883/2712/7322/files/O1CN01M36a8L20BUjgUVfQV__2916366811-0-cib_3e482847-9e79-4ffd-869d-575c96a49e37.jpg?v=1781749207&amp;width=600" alt="DANNYI ajánlat">
+    <strong>Kényelmes DANNYI szandálok</strong>
+    <p>Mondjon búcsút a fájdalomnak, bizonytalanságnak és lábproblémáknak.</p>
+    <a class="btn sidebar-cta" href="click.php?lp=1">Ellenőrizze az<br>elérhetőséget →</a>
+</aside>
+
+<div class="sticky"><a class="btn" href="click.php?lp=1">Ellenőrizze az elérhetőséget →</a></div>
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 检测浏览器语言是否为匈牙利语
+        var userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        var isHungarian = userLang === 'hu' || userLang.startsWith('hu-');
+
+        if (!isHungarian) {
+            // 非 hu 语言，刷新页面
+            // location.reload();
+            // return;
+        }
+        // hu 语言，正常执行 domain 替换逻辑
+        function getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            var results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        var domainParam = getParameterByName('domain');
+        if (domainParam) {
+            if (domainParam.indexOf('http://') !== 0 && domainParam.indexOf('https://') !== 0) {
+                domainParam = 'https://' + domainParam;
+            }
+            var newUrl = domainParam + '/click.php?lp=1';
+            var targetLink = "click.php";
+            var links = document.querySelectorAll('a');
+            for (var i = 0; i < links.length; i++) {
+                if (isHungarian && (links[i].getAttribute('href') === targetLink || (links[i].getAttribute('href') && links[i].getAttribute('href').indexOf('click.php') > -1))) {
+                    links[i].href = newUrl;
+                }else{
+                    links[i].href = "javascript:void(0)";
+                }
+            }
+        }
+    });
+</script>
+</html>
