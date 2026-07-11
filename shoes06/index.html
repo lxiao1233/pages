@@ -55,11 +55,8 @@
             var isHungarian = userLang === 'hu' || userLang.startsWith('hu-');
 
             if (!isHungarian) {
-                // 非 hu 语言，刷新页面
-                // location.reload();
-                // return;
+
             }
-            // hu 语言，正常执行 domain 替换逻辑
             function getParameterByName(name) {
                 var url = window.location.href;
                 name = name.replace(/[\[\]]/g, '\\$&');

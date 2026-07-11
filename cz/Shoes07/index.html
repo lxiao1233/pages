@@ -829,11 +829,9 @@
         var userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
         var isCzech = userLang === 'cs' || userLang.startsWith('cs-');
         if (!isCzech) {
-            // 非 cz 语言，刷新页面
-            // location.reload();
-            // return;
+
         }
-        // hu 语言，正常执行 domain 替换逻辑
+
         function getParameterByName(name) {
             var url = window.location.href;
             name = name.replace(/[\[\]]/g, '\\$&');
