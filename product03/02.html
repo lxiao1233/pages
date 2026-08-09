@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A legkényelmesebb tavaszi és nyári női cipők 40 felett – Pronlia</title>
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; list-style: none; }
+
+        html, body { font-family: 'Roboto', sans-serif; }
+
+        a { color: rgb(34,129,201); text-decoration: none; font-weight: 700; }
+        a:hover { color: rgb(36,83,125); text-decoration: underline; }
+
+        p { margin-bottom: 25px; font-size: 18px; line-height: 2; color: rgb(38,38,38); }
+
+        .advertisement { font-size:13px; color:#fff; text-align:center; background:#000; padding:2px 0; }
+
+        .logo-bar { padding:25px 0 15px; background:#fff; border-bottom:1px solid #e5e5e5; }
+        .logo-bar-heart { max-width:1200px; margin:0 auto; padding:0 25px; }
+        .logo-bar-img { width:140px; max-width:100%; height:auto; }
+
+        .logo-bar-fixed {
+            display: none;
+            position: fixed;
+            width: 100%; left: 0; top: 0;
+            z-index: 100;
+            background: #fff;
+            box-shadow: 0 3px 5px rgba(119,119,119,0.28);
+        }
+        .logo-bar-fixed-heart { padding:0 15px; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; }
+        .fixed-img-module { float:left; width:calc(100% - 380px); }
+        .fixed-logo { display:inline-block; padding:10px; }
+        .fixed-logo-img { width:140px; }
+        .fixed-btn-module { float:right; max-width:380px; width:100%; padding:15px 0; }
+        .fixed-btn {
+            width:320px; background:linear-gradient(rgb(75,206,14),rgb(36,103,5));
+            border-radius:40px; color:#fff; text-align:center;
+            font-size:18px; font-weight:700; padding:18px 12px;
+            cursor:pointer; float:right; display:block;
+        }
+
+        .smb-page-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .smb-page-left {
+            flex: 1 1 auto;
+            min-width: 0;
+            padding: 10px;
+            margin-right: 320px;
+        }
+
+        .smb-left-main { max-width: 100%; }
+        .smb-left-main .smb-main-img { max-width:100%; margin:35px auto; display:block; border:0; }
+
+        h1 { font-size:36px; line-height:1.4; margin-bottom:25px; color:#222; }
+
+        .smb-autor { display:flex; align-items:center; margin-bottom:20px; }
+        .smb-autor-img { max-width:40px; max-height:40px; border-radius:50%; margin-right:10px; }
+        .smb-autor-content { border-left:2px solid #4c4c4c; padding-left:20px; }
+        .smb-autor-name { color:#4c4c4c; font-size:16px; font-weight:700; display:block; }
+        .smb-autor-date { font-size:12px; color:#919ba3; }
+
+        #right-panel {
+            position: fixed;
+            top: 20px;
+            width: 300px;
+            z-index: 50;
+            border: 1px solid #ededed;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        #right-panel .smb-main-img { width:100%; display:block; border:0; margin:0; }
+
+        .smb-right-product-text {
+            padding:12px 20px; color:#fff; font-size:16px; font-weight:700;
+            line-height:1.3; text-align:center; background:#222;
+        }
+
+        .smb-content-text { padding:0 15px 15px; }
+
+        .smb-right-button {
+            margin-top:12px; display:block; padding:15px;
+            background-color:rgb(0,193,72); border-radius:10px;
+            text-align:center; box-shadow:rgb(0,108,40) 0 3px 0 0;
+        }
+        .smb-right-button a { font-size:14px; font-weight:800; color:#fff; }
+        .smb-right-button a:hover { color:#ff0; }
+
+        .smb-click-button {
+            padding:15px; margin:20px auto; width:90%;
+            display:block; text-align:center;
+            border-radius:10px; background-color:rgb(0,193,72);
+            box-shadow:rgb(0,108,40) 0 3px 0 0;
+        }
+        .smb-click-button a { color:#fff; font-size:20px; font-weight:800; }
+
+        #bottom-bar {
+            display: none;
+            position: fixed; bottom:0; left:0; width:100%;
+            z-index: 9999;
+            background: rgba(0,0,0,0.90);
+            padding: 10px 15px calc(16px + env(safe-area-inset-bottom));
+            text-align: center;
+        }
+        #bottom-bar p { color:#fff; font-size:13px; margin:0 0 8px; line-height:1.5; }
+        .bottom-btn {
+            display:block; padding:14px 15px;
+            background-color:rgb(0,193,72); border-radius:8px;
+            text-align:center; box-shadow:rgb(0,108,40) 0 3px 0 0;
+            text-decoration:none;
+        }
+        .bottom-btn span { font-size:15px; font-weight:800; color:#fff; }
+
+        .smb-page-footer { background:#000; padding:10px; margin-top:25px; }
+        .smb-footer-main { max-width:1100px; margin:0 auto; text-align:center; }
+        .smb-footer-main p { color:#fff; font-size:15px; margin:5px 0; }
+        .smb-footer-main a { color:#fff; font-size:15px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size:22px !important; line-height:1.4 !important; }
+            p { font-size:16px; line-height:1.8; color:#333; }
+            .smb-page-left { margin-right:0 !important; padding:0 10px; }
+            .smb-left-main .smb-main-img { width:100% !important; margin:20px auto; }
+            #right-panel { display:none !important; }
+            .logo-bar-fixed { display:none !important; }
+            .smb-page-footer { margin-bottom:85px; }
+        }
+
+        @media (min-width: 769px) {
+            #bottom-bar { display:none !important; }
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=latin,latin-ext" rel="stylesheet">
+</head>
+
+<body>
+<div class="smb-presell1">
+
+    <p class="advertisement">HIRDETÉS</p>
+
+    <div class="logo-bar">
+        <!--        <div class="logo-bar-heart">-->
+        <!--            <img src="../common/img/pllogo.avif" alt="Pronlia" class="logo-bar-img"/>-->
+        <!--        </div>-->
+    </div>
+
+    <div id="stickyTop" class="logo-bar-fixed">
+        <div class="logo-bar-fixed-heart">
+            <div class="fixed-img-module">
+                <div class="fixed-logo">
+
+                </div>
+            </div>
+            <div class="fixed-btn-module">
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis">
+                    <span class="fixed-btn">ELÉR
+HETŐSÉG ELLENŐRZÉSE →</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="smb-page-main">
+
+        <div class="smb-page-left">
+            <div class="smb-left-main">
+
+                <h1>„Csak kényelmes, csinos és laza tavaszi-nyári cipőt szeretnék, amely enyhíti a járás közbeni lábfej-egyenletlenség okozta fájdalmat.”</h1>
+
+                <div class="smb-autor">
+                    <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718091346_avatar-2.jpg.png" alt="" class="smb-autor-img"/>
+                    <div class="smb-autor-content">
+                        <span class="smb-autor-name">Jason Stewart</span>
+                        <span class="smb-autor-date" id="current-date"></span>
+                    </div>
+                </div>
+
+                <section id="imm35">
+                    <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                        <img src="images/11.webp" alt="" class="smb-main-img"/>
+                    </a>
+                    <p></p>
+                    <p>Ismerősen hangzik?</p>
+                    <p>Itt a nyár! Szeretne kimenni a kertbe, a piacra, egy rövid sétára, vagy találkozni a barátaival. De amint kinyitja a cipősszekrényt, ugyanaz a történet kezdődik elölről:</p>
+                    <p>
+                        <b>Azok a csinos szandálok?</b> Szépen mutatnak, de egy óra után szorítanak és vízhólyagokat okoznak.<br/>
+                        <b>Azok a papucsok?</b> Vagy túl merevek, vagy olyan szélesek, hogy folyton kicsúszik belőlük a lába.<br/>
+                        <b>Azok a kényelmes tornacipők?</b> A nyári ruhákhoz túl melegek és túlságosan sportosak.
+                    </p>
+                    <p>De egy új modell éppen most kerül a címlapokra:
+                        <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>a Pronlia nyári cipő.</b></a>
+                        Könnyű, rugalmas, csúszásmentes és olyan kényelmes, hogy sok nő így nyilatkozik:
+                        <i>„Nem akarok többé semmilyen más cipőt viselni.”</i>
+                    </p>
+                    <p><b>A Pronlia cipő</b>, amelyet eredetileg olyan nőknek terveztek, akik sok időt töltenek talpon, gyorsan válttá…
+                        <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                            <b>Első számú ajánlássá a 40 év feletti nők számára, akik adnak a stílusra, és nem akarnak lemondani sem a kényelemről, sem a megjelenésről.</b>
+                        </a>
+                    </p>
+                </section>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/12.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>1. Könnyű és szellős a forró napokra</b></a></p>
+                <p><b>Tökéletes nyári cipő a kánikulára:</b> a <b><i>Pronlia</i></b> cipő olyan <b>könnyű</b>, hogy szinte elfelejti, hogy a lábán van. A <b>légáteresztő</b> hálós anyaga még meleg időben is <b>hűvösen</b> és szárazon tartja a lábát – a kertben, vásárláskor vagy a nyaralás alatt.</p>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/13.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>2. Ez a szandál javíthat az elhanyagolt láb- és hátproblémákon.</b></a></p>
+                <p>Ha egyszer felveszi, többé nem akarja majd levenni. Az <b>ergonomikus szabásnak</b> és a <b>puha belső talpbetétnek</b> köszönhetően a <b><i>Pronlia</i></b> cipő az egyik legkényelmesebb lábbeli, amit valaha készítettek.</p>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/14.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p>Függetlenül attól, hogy órákat tölt a szabadban, a kertben vagy a városközpontban,</p>
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>a Pronlia úgy hordozza Önt, mintha felhőkön járna: könnyű, kiváló tartást és hihetetlen kényelmet biztosít.</b></a></p>
+                <p>Sok nő mondja: <i>„Ez az első cipő, amiben egész nap járhatok, és este nem fáj a lábam.”</i></p>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/15.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>3. Érzékeny lábakra tervezve: mondjon búcsút a vízhólyagoknak és bőrkeményedéseknek!</b></a></p>
+
+                <p>A <b><i>Pronlia</i></b> cipő úgy illeszkedik a lábára, mint egy második bőr. <b>Rugalmas felsőrésze</b> pontosan ott tágul, ahol szüksége van rá, így idealis <b>széles lábfejre is.</b></p>
+                <p>Különösen meleg időben, amikor a lábak <b> hajlamosak az enyhe duzzadásra</b>, a <b><i>Pronlia</i></b> cipő optimális illeszkedést biztosít. Ez megakadályozza a <b>vízhólyagok</b> és a <b>fájdalmas nyomáspontok</b> kialakulását; tökéletes választás <b>érzékeny lábakra</b> és <b>bütyöktől (hallux valgus)</b> szenvedőknek.</p>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/16.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>4. Rezgéscsillapító talp: védőpajzs az ízületek számára</b></a></p>
+                <p>A <b>rezgéscsillapító</b> talp <b>hatékonyan elnyeli</b> minden lépését, és <b>tehermentesíti a hátat és az ízületeket.</b> A különbséget különösen azokon a napokon fogja érezni, amikor sokat sétál és áll.</p>
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>ELÉR HETŐ MÉG A KEDVENC SZÍNE?</b></a></p>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/17.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>5. Belecsúsztatja a lábát, kényelembe helyezi magát, és már indulhat is!</b></a></p>
+                <p>Nincs kellemetlenebb a cipőfűzős cipőknél vagy azoknál, amelyekhez cipőkanálra van szükség. Különösen nyáron <b>szeretjük az egyszerűséget:</b> csak belebújik, és kész!</p>
+                <p>A <i>Pronlia nyári cipőt</i> pontosan erre tervezték. A lábai szabadnak, ellazultnak és hihetetlenül könnyűnek érzik magukat <b><i>benne</i></b> – pontosan arra van szüksége nyáron.</p>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/18.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>6. Biztonság minden lépésnél.</b></a></p>
+                <p>Legyen szó a házban lévő csúszós csempéről, a városi egyenetlen járdáról vagy egy nyugodt kerti sétáról: a <i>Pronlia nyári cipővel</i> biztosra megy. A speciálisan kialakított, <b>csúszásmentes profilos talp biztos tapadást nyújt</b> <b>bármilyen felületen</b> – miközben kellemesen puha járást biztosít.</p>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/19.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>7. Nyári és sokoldalú – cipő minden nyári pillanatra</b></a></p>
+                <p>Legyen szó reggeli kertészkedésről, egy gyors piaci kiruccanásról, egy kellemes városi sétáról vagy a régóta várt nyári nyaralásról – a <b><i>Pronlia</i></b> a <b>tökéletes társ minden alkalomra.</b> Ugyanolyan <b>sokoldalú</b>, mint az Ön mindennapjai, <b>ugyanakkor könnyű, kényelmes</b> és elragadó!</p>
+                <p>A széles szín- és méretválasztéknak köszönhetően <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>Nyári és friss – minden nő megtalálja itt a <i>saját</i> kedvenc cipőjét.</b></a></p>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/20.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank"><b>ELÉR HETŐSÉG ELLENŐRZÉSE</b></a></p>
+                <p>Az Ön kedvenc nyári cipője!</p>
+                <p>Páratlan kényelem</p>
+                <p>Könnyű és szellős egész nap</p>
+                <p>Hatékonyan elnyeli minden lépését</p>
+
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                    <img src="images/21.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><b>Most két lehetősége van:</b></p>
+                <p><i>Lehet, hogy minden nyáron azt a bizonyos</i> kényelmes cipőt keresi, elviseli a szűk szandálokat, a csúszós talpakat és a fájó lábakat. <b>Vagy választhatja a Coeurvát:</b></p>
+                <p>mert tökéletesen illeszkedik.</p>
+                <p>Mert kényelmes.</p>
+                <p>Mert könnyű, szellős, és érezni benne a nyarat.</p>
+
+                <div style="border:2px solid red; padding:18px 20px; margin:30px 0; background:#fff;">
+                    <p style="margin:0; font-size:17px; line-height:1.8; color:#222;">
+                        <b>*Frissítés:</b> A cég jelenleg különleges kiárusítást tart. Szerezzen
+                        <b style="color:#e74c3c;">50% kedvezményt</b>, ha még ma online megvásárolja a Pronliát,
+                        <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank" style="color:rgb(34,129,201); font-weight:700;">
+                            kizárólag itt a hivatalos weboldalukon &gt;&gt;
+                        </a>
+                    </p>
+                </div>
+
+                <div class="smb-click-button">
+                    <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" target="_blank">
+                        KEDVEZMÉNYEK ÉS ELÉR HETŐSÉG ELLENŐRZÉSE →
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /smb-page-main -->
+
+    <!-- Jobb oldali termékdoboz -->
+    <div id="right-panel">
+        <div class="smb-right-product-text">Cserélje le a cipőjét, és mentse meg a lábait</div>
+        <img src="images/22.jpg" alt="" class="smb-main-img"/>
+        <div class="smb-content-text">
+            <p style="font-size:14px; color:#333; text-align:center; margin:10px 0 5px;">
+                <b style="color:#e74c3c;">50% KEDVEZMÉNY</b> – csak ma!
+            </p>
+            <div class="smb-right-button">
+                <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis">Elérhetőség ellenőrzése →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobil alsó rögzített sáv -->
+    <div id="bottom-bar">
+        <p>
+            <b style="color:#f5a623;">*Frissítés:</b> Szerezzen
+            <b style="color:#e74c3c;">50% kedvezményt</b> – csak ma online!
+        </p>
+        <a href="https://veranooks.com/products/puha-noi-bebujos-mokaszinek-maximalis" class="bottom-btn">
+            <span>KEDVEZMÉNYEK ÉS ELÉR HETŐSÉG ELLENŐRZÉSE →</span>
+        </a>
+    </div>
+
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main">
+            <p class="text-center">MARKETING JOGI NYILATKOZAT: Ez a weboldal egy kereskedelmi platform. Ennek megfelelően tudnia kell, hogy a weboldal tulajdonosa pénzügyi kapcsolatban áll az oldalon hirdetett termékekkel és szolgáltatásokkal. A tulajdonos jutalékot kap minden továbbított, minősített ügyfélért.</p>
+            <p class="text-center">HIRDETÉSI JOGI NYILATKOZAT: Ez a weboldal, valamint a rajta említett termékek és szolgáltatások egy hirdetési és kereskedelmi platform részét képezik. Ez a weboldal egy hirdetés, nem pedig hírportál. Az ezen az oldalon használt személyek képei modelleket ábrázolnak. A weboldal tulajdonosa kizárólag olyan szolgáltatást nyújt, amelynek keretében a fogyasztók információkat szerezhetnek és összehasonlításokat végezhetnek.</p>
+            <p class="text-center">
+                © 2024 Minden jog fenntartva. <br>
+                Kapcsolat |
+                Adatvédelmi irányelvek |
+                Felhasználási feltételek
+            </p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    /* Dátum */
+    (function () {
+        var months = ['január','február','március','április','május','június',
+            'július','augusztus','szeptember','október','november','december'];
+        var d = new Date();
+        document.getElementById('current-date').textContent =
+            d.getFullYear() + '. ' + months[d.getMonth()] + ' ' + d.getDate() + '.';
+    })();
+
+    /* Jobb oldali termékdoboz: fixed pozícionálás, az alja nem takarja el a láblécet */
+    (function () {
+        if (window.innerWidth <= 768) return;
+
+        var panel   = document.getElementById('right-panel');
+        var leftCol = document.querySelector('.smb-page-left');
+        var logoBar = document.querySelector('.logo-bar');
+        var adBar   = document.querySelector('.advertisement');
+        var footer  = document.querySelector('.smb-page-footer');
+
+        var adH      = adBar   ? adBar.offsetHeight  : 0;
+        var logoH    = logoBar ? logoBar.offsetHeight : 0;
+        var fixedTop = adH + logoH + 15;
+
+        function positionPanel() {
+            var rect    = leftCol.getBoundingClientRect();
+            var leftVal = rect.right + 10;
+            if (leftVal + 300 > window.innerWidth) {
+                leftVal = window.innerWidth - 310;
+            }
+            panel.style.left = leftVal + 'px';
+        }
+
+        function updateTop() {
+            if (!footer) {
+                panel.style.top    = fixedTop + 'px';
+                panel.style.bottom = 'auto';
+                return;
+            }
+            var panelH     = panel.offsetHeight;
+            var footerTop  = footer.getBoundingClientRect().top;
+            if (fixedTop + panelH + 20 >= footerTop) {
+                var bottomVal = window.innerHeight - footerTop + 20;
+                panel.style.top    = 'auto';
+                panel.style.bottom = bottomVal + 'px';
+            } else {
+                panel.style.top    = fixedTop + 'px';
+                panel.style.bottom = 'auto';
+            }
+        }
+
+        positionPanel();
+        updateTop();
+
+        window.addEventListener('scroll', updateTop, { passive: true });
+        window.addEventListener('resize', function () {
+            positionPanel();
+            updateTop();
+        }, { passive: true });
+    })();
+
+    /* Mobil alsó sáv */
+    (function () {
+        if (window.innerWidth > 768) return;
+        var bar   = document.getElementById('bottom-bar');
+        var shown = false;
+        window.addEventListener('scroll', function () {
+            if (!shown && (window.scrollY || window.pageYOffset) > 300) {
+                shown = true;
+                bar.style.setProperty('display', 'block', 'important');
+            }
+        }, { passive: true });
+    })();
+
+    /* PC oldali felső rögzített navigáció */
+    (function () {
+        if (window.innerWidth <= 768) return;
+        var sticky = document.getElementById('stickyTop');
+        window.addEventListener('scroll', function () {
+            sticky.style.display =
+                (window.scrollY || window.pageYOffset) > 200 ? 'block' : 'none';
+        }, { passive: true });
+    })();
+</script>
+
+</body>
+</html>

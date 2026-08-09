@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nejpohodlnější jarní a letní boty pro ženy po čtyřicítce – Pronlia</title>
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; list-style: none; }
+
+        html, body { font-family: 'Roboto', sans-serif; }
+
+        a { color: rgb(34,129,201); text-decoration: none; font-weight: 700; }
+        a:hover { color: rgb(36,83,125); text-decoration: underline; }
+
+        p { margin-bottom: 25px; font-size: 18px; line-height: 2; color: rgb(38,38,38); }
+
+        .advertisement { font-size:13px; color:#fff; text-align:center; background:#000; padding:2px 0; }
+
+        .logo-bar { padding:25px 0 15px; background:#fff; border-bottom:1px solid #e5e5e5; }
+        .logo-bar-heart { max-width:1200px; margin:0 auto; padding:0 25px; }
+        .logo-bar-img { width:140px; max-width:100%; height:auto; }
+
+        .logo-bar-fixed {
+            display: none;
+            position: fixed;
+            width: 100%; left: 0; top: 0;
+            z-index: 100;
+            background: #fff;
+            box-shadow: 0 3px 5px rgba(119,119,119,0.28);
+        }
+        .logo-bar-fixed-heart { padding:0 15px; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; }
+        .fixed-img-module { float:left; width:calc(100% - 380px); }
+        .fixed-logo { display:inline-block; padding:10px; }
+        .fixed-logo-img { width:140px; }
+        .fixed-btn-module { float:right; max-width:380px; width:100%; padding:15px 0; }
+        .fixed-btn {
+            width:320px; background:linear-gradient(rgb(75,206,14),rgb(36,103,5));
+            border-radius:40px; color:#fff; text-align:center;
+            font-size:18px; font-weight:700; padding:18px 12px;
+            cursor:pointer; float:right; display:block;
+        }
+
+        .smb-page-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .smb-page-left {
+            flex: 1 1 auto;
+            min-width: 0;
+            padding: 10px;
+            margin-right: 320px;
+        }
+
+        .smb-left-main { max-width: 100%; }
+        .smb-left-main .smb-main-img { max-width:100%; margin:35px auto; display:block; border:0; }
+
+        h1 { font-size:36px; line-height:1.4; margin-bottom:25px; color:#222; }
+
+        .smb-autor { display:flex; align-items:center; margin-bottom:20px; }
+        .smb-autor-img { max-width:40px; max-height:40px; border-radius:50%; margin-right:10px; }
+        .smb-autor-content { border-left:2px solid #4c4c4c; padding-left:20px; }
+        .smb-autor-name { color:#4c4c4c; font-size:16px; font-weight:700; display:block; }
+        .smb-autor-date { font-size:12px; color:#919ba3; }
+
+        #right-panel {
+            position: fixed;
+            top: 20px;
+            width: 300px;
+            z-index: 50;
+            border: 1px solid #ededed;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        #right-panel .smb-main-img { width:100%; display:block; border:0; margin:0; }
+
+        .smb-right-product-text {
+            padding:12px 20px; color:#fff; font-size:16px; font-weight:700;
+            line-height:1.3; text-align:center; background:#222;
+        }
+
+        .smb-content-text { padding:0 15px 15px; }
+
+        .smb-right-button {
+            margin-top:12px; display:block; padding:15px;
+            background-color:rgb(0,193,72); border-radius:10px;
+            text-align:center; box-shadow:rgb(0,108,40) 0 3px 0 0;
+        }
+        .smb-right-button a { font-size:14px; font-weight:800; color:#fff; }
+        .smb-right-button a:hover { color:#ff0; }
+
+        .smb-click-button {
+            padding:15px; margin:20px auto; width:90%;
+            display:block; text-align:center;
+            border-radius:10px; background-color:rgb(0,193,72);
+            box-shadow:rgb(0,108,40) 0 3px 0 0;
+        }
+        .smb-click-button a { color:#fff; font-size:20px; font-weight:800; }
+
+        #bottom-bar {
+            display: none;
+            position: fixed; bottom:0; left:0; width:100%;
+            z-index: 9999;
+            background: rgba(0,0,0,0.90);
+            padding: 10px 15px calc(16px + env(safe-area-inset-bottom));
+            text-align: center;
+        }
+        #bottom-bar p { color:#fff; font-size:13px; margin:0 0 8px; line-height:1.5; }
+        .bottom-btn {
+            display:block; padding:14px 15px;
+            background-color:rgb(0,193,72); border-radius:8px;
+            text-align:center; box-shadow:rgb(0,108,40) 0 3px 0 0;
+            text-decoration:none;
+        }
+        .bottom-btn span { font-size:15px; font-weight:800; color:#fff; }
+
+        .smb-page-footer { background:#000; padding:10px; margin-top:25px; }
+        .smb-footer-main { max-width:1100px; margin:0 auto; text-align:center; }
+        .smb-footer-main p { color:#fff; font-size:15px; margin:5px 0; }
+        .smb-footer-main a { color:#fff; font-size:15px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size:22px !important; line-height:1.4 !important; }
+            p { font-size:16px; line-height:1.8; color:#333; }
+            .smb-page-left { margin-right:0 !important; padding:0 10px; }
+            .smb-left-main .smb-main-img { width:100% !important; margin:20px auto; }
+            #right-panel { display:none !important; }
+            .logo-bar-fixed { display:none !important; }
+            .smb-page-footer { margin-bottom:85px; }
+        }
+
+        @media (min-width: 769px) {
+            #bottom-bar { display:none !important; }
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=latin,latin-ext" rel="stylesheet">
+</head>
+
+<body>
+<div class="smb-presell1">
+
+    <p class="advertisement">REKLAMA</p>
+
+    <div class="logo-bar">
+        <!--        <div class="logo-bar-heart">-->
+        <!--            <img src="../common/img/pllogo.avif" alt="Pronlia" class="logo-bar-img"/>-->
+        <!--        </div>-->
+    </div>
+
+    <div id="stickyTop" class="logo-bar-fixed">
+        <div class="logo-bar-fixed-heart">
+            <div class="fixed-img-module">
+                <div class="fixed-logo">
+
+                </div>
+            </div>
+            <div class="fixed-btn-module">
+                <a href="#####">
+                    <span class="fixed-btn">OVĚŘIT DOSTUPNOST →</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="smb-page-main">
+
+        <div class="smb-page-left">
+            <div class="smb-left-main">
+
+                <h1>„Chci jen pohodlné, atraktivní a volné jarní a letní boty, které mi uleví od bolesti způsobené nesprávným došlapem při chůzi.“</h1>
+
+                <div class="smb-autor">
+                    <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718091346_avatar-2.jpg.png" alt="" class="smb-autor-img"/>
+                    <div class="smb-autor-content">
+                        <span class="smb-autor-name">Jason Stewart</span>
+                        <span class="smb-autor-date" id="current-date"></span>
+                    </div>
+                </div>
+
+                <section id="imm35">
+                    <a href="#####" target="_blank">
+                        <img src="images/11.webp" alt="" class="smb-main-img"/>
+                    </a>
+                    <p></p>
+                    <p>Zní vám to povědomě?</p>
+                    <p>Léto je tady! Chcete jít na zahradu, na trh, na krátkou procházku nebo se setkat s přáteli. Ale jakmile otevřete botník, začíná stejný příběh nanovo:</p>
+                    <p>
+                        <b>Ty roztomilé sandály?</b> Vypadají pěkně, ale po hodině tlačí a způsobují puchýře.<br/>
+                        <b>Ty žabky?</b> Buď jsou moc tuhé, nebo tak široké, že vám v nich noha pořád klouže.<br/>
+                        <b>Ty pohodlné tenisky?</b> K letním šatům jsou příliš horké a moc sportovní.
+                    </p>
+                    <p>Na první stránky novin se ale dostává nový model:
+                        <a href="#####" target="_blank"><b>letní bota Pronlia.</b></a>
+                        Lehké, flexibilní, protiskluzové a tak pohodlné, že mnoho žen říká:
+                        <i>„Už nechci nosit žádné jiné boty.“</i>
+                    </p>
+                    <p><b>Bota Pronlia</b>, původně navržená pro ženy, které tráví hodně času na nohách, se rychle stala…
+                        <a href="#####" target="_blank"><b>Doporučením č. 1 pro ženy po čtyřicítce, které dbají na styl a nechtějí slevovat z pohodlí ani z vzhledu.</b>
+                        </a>
+                    </p>
+                </section>
+
+                <a href="#####" target="_blank">
+                    <img src="images/12.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>1. Lehká a prodyšná pro horké dny</b></a></p>
+                <p><b>Ideální letní bota pro parné dny:</b> bota <b><i>Pronlia</i></b> je tak <b>lehká</b>, že téměř zapomenete, že ji máte na noze. Její <b>prodyšný</b> síťovaný materiál udrží vaše nohy <b>v chladu</b> a suchu i v teplém počasí – na zahradě, na nákupech i na dovolené.</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/13.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>2. Tyto sandály mohou pomoci vyřešit zanedbané problémy s chodidly a zády.</b></a></p>
+                <p>Jakmile si je jednou obujete, už je nebudete chtít sundat. Díky <b>ergonomickému střihu</b> a <b>měkké vnitřní stélce</b> patří bota <b><i>Pronlia</i></b> k nejpohodlnějším botám, jaké kdy byly vyrobeny.</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/14.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p>Ať už trávíte venku celé hodiny, na zahradě nebo v centru města,</p>
+                <p><a href="#####" target="_blank"><b>Pronlia vás ponese jako po mraku: je lehká, poskytuje vynikající oporu a neuvěřitelný komfort.</b></a></p>
+                <p>Mnoho žen říká: <i>„Je to první bota, ve které mohu chodit celý den a v noci mě nebolí nohy.“</i></p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/15.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>3. Navrženo pro citlivá chodidla: rozlučte se s puchýři a otlaky!</b></a></p>
+                <p>Bota <b><i>Pronlia</i></b> se přizpůsobí vaší noze jako druhá kůže. Její <b>pružný svršek</b> se roztáhne přesně tam, kde potřebujete, takže je ideální i pro <b>široká chodidla.</b></p>
+                <p>Zejména v teplém počasí, kdy mají nohy <b>tendenci mírně otékat</b>, bota <b><i>Pronlia</i></b> zajišťuje optimální přizpůsobení. Zabraňuje tak vzniku <b>puchýřů</b> a <b>bolestivých otlaků;</b> je to ideální volba pro <b>citlivá chodidla</b> a osoby trpící na <b>vbočené palce (haluxy).</b></p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/16.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>4. Podrážka tlumící nárazy: váš ochranný štít pro klouby</b></a></p>
+                <p><b>Odpružená</b> podrážka <b>efektivně pohlcuje</b> každý váš krok a <b>ulevuje zádům i kloubům.</b> Rozdíl pocítíte zejména v dnech, kdy hodně chodíte nebo stojíte.</p>
+                <p><a href="#####" target="_blank"><b>JE VAŠE OBLÍBENÁ BARVA JEŠTĚ DOSTUPNÁ?</b></a></p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/17.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>5. Vklouznete, cítíte se pohodlně a jde se!</b></a></p>
+                <p>Není nic nepohoodlnějšího než boty s tkaničkami nebo takové, ke kterým potřebujete lžíci na boty. Zejména v létě <b>milujeme jednoduchost:</b> vklouznete a je to!</p>
+                <p><i>Letní bota</i> Pronlia je vytvořena přesně pro to. Vaše nohy se v <b><i>ní</i></b> cítí svobodné, uvolněné a neuvěřitelně lehké – přesně to, co v létě potřebujete.</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/18.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>6. Bezpečnost na každém kroku.</b></a></p>
+                <p>Ať už na kluzké dlažbě doma, na nerovném chodníku ve městě, nebo při pohodové procházce po zahradě: s <i>letní botou <b>Pronlia</b> sázíte na jistotu</i>. Speciálně navržená <b>protiskluzová vzorovaná podrážka zajišťuje pevný úchop</b> na <b>jakémkoli povrchu</b> – a zároveň nabízí příjemně měkký došlap.</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/19.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>7. Letní a všestranná – bota pro každý letní okamžik</b></a></p>
+                <p>Ať už jde o ranní zahradničení, rychlý nákup na trhu, pohodovou procházku městem nebo dlouho očekávanou letní dovolenou – <b><i>Pronlia</i></b> je <b>ideálním společníkem pro každou příležitost.</b> Je stejně <b>všestranná</b> jako váš každodenní život, <b>a přitom lehká, pohodlná</b> a okouzlující!</p>
+                <p>Díky širokému výběru barev a velikostí <a href="#####" target="_blank"><b>Svěží a letní – každá žena si zde najde <i>svoji</i> oblíbenou botu.</b></a></p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/20.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>OVĚŘIT DOSTUPNOST</b></a></p>
+                <p>Vaše oblíbená letní bota!</p>
+                <p>Bezkonkurenční pohodlí</p>
+                <p>Lehká a prodyšná po celý den</p>
+                <p>Účinně tlumí každý krok</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/21.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><b>Nyní máte dvě možnosti:</b></p>
+                <p><i>Buď budete každé léto dál hledat tu</i> pohodlnou botu, snášet těsné sandály, kluzké podrážky a bolavé nohy. <b>Nebo si můžete vybrat Coeurvu:</b></p>
+                <p>protože sedí perfektně.</p>
+
+                <p>Protože je pohodlná.</p>
+                <p>Protože je lehká, prodyšná a je z ní cítit léto.</p>
+
+                <div style="border:2px solid red; padding:18px 20px; margin:30px 0; background:#fff;">
+                    <p style="margin:0; font-size:17px; line-height:1.8; color:#222;">
+                        <b>*Aktualizace:</b> Společnost právě pořádá speciální výprodej. Získejte
+                        <b style="color:#e74c3c;">50% slevu</b> při nákupu Pronlia dnes online,
+                        <a href="#####" target="_blank" style="color:rgb(34,129,201); font-weight:700;">
+                            pouze zde na jejich oficiálních stránkách &gt;&gt;
+                        </a>
+                    </p>
+                </div>
+
+                <div class="smb-click-button">
+                    <a href="#####" target="_blank">
+                        OVĚŘIT SLEVY A DOSTUPNOST →
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /smb-page-main -->
+
+    <!-- Pravý panel s produktem -->
+    <div id="right-panel">
+        <div class="smb-right-product-text">Vyměňte boty a zachraňte své nohy</div>
+        <img src="images/22.jpg" alt="" class="smb-main-img"/>
+        <div class="smb-content-text">
+            <p style="font-size:14px; color:#333; text-align:center; margin:10px 0 5px;">
+                <b style="color:#e74c3c;">SLEVA 50 %</b> – pouze dnes!
+            </p>
+            <div class="smb-right-button">
+                <a href="#####">Ověřit dostupnost →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobilní spodní lišta -->
+    <div id="bottom-bar">
+        <p>
+            <b style="color:#f5a623;">*Aktualizace:</b> Získejte
+            <b style="color:#e74c3c;">50% slevu</b> – pouze dnes online!
+        </p>
+        <a href="#####" class="bottom-btn">
+            <span>OVĚŘIT SLEVY A DOSTUPNOST →</span>
+        </a>
+    </div>
+
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main">
+            <p class="text-center">MARKETINGOVÉ PROHLÁŠENÍ: Tyto webové stránky jsou obchodní platformou. Jako takové byste měli vědět, že provozovatel stránek má finanční propojení s produkty a službami propagovanými na stránkách. Provozovatel získává odměnu za každého přivedeného kvalifikovaného zákazníka.</p>
+            <p class="text-center">REKLAMNÍ PROHLÁŠENÍ: Tyto webové stránky a produkty a služby na nich uvedené tvoří součást reklamní a obchodní platformy. Tyto webové stránky jsou reklamou, nikoli zpravodajským portálem. Fotografie osob použité na těchto stránkách zobrazují modely. Provozovatel těchto stránek poskytuje výhradně službu, v jejímž rámci mohou spotřebitelé získávat informace a provádět srovnání.</p>
+            <p class="text-center">
+                © 2024 Všechna práva vyhrazena. <br>
+                Kontakt |
+                Zásady ochrany osobních údajů |
+                Podmínky použití
+            </p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    /* Datum */
+    (function () {
+        var months = ['ledna','února','března','dubna','května','června',
+            'července','srpna','září','října','listopadu','prosince'];
+        var d = new Date();
+        document.getElementById('current-date').textContent =
+            d.getDate() + '. ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    })();
+
+    /* Pravý panel: fixed pozicování, dole nepřekrývá zápatí */
+    (function () {
+        if (window.innerWidth <= 768) return;
+
+        var panel   = document.getElementById('right-panel');
+        var leftCol = document.querySelector('.smb-page-left');
+        var logoBar = document.querySelector('.logo-bar');
+        var adBar   = document.querySelector('.advertisement');
+        var footer  = document.querySelector('.smb-page-footer');
+
+        var adH      = adBar   ? adBar.offsetHeight  : 0;
+        var logoH    = logoBar ? logoBar.offsetHeight : 0;
+        var fixedTop = adH + logoH + 15;
+
+        function positionPanel() {
+            var rect    = leftCol.getBoundingClientRect();
+            var leftVal = rect.right + 10;
+            if (leftVal + 300 > window.innerWidth) {
+                leftVal = window.innerWidth - 310;
+            }
+            panel.style.left = leftVal + 'px';
+        }
+
+        function updateTop() {
+            if (!footer) {
+                panel.style.top    = fixedTop + 'px';
+                panel.style.bottom = 'auto';
+                return;
+            }
+            var panelH     = panel.offsetHeight;
+            var footerTop  = footer.getBoundingClientRect().top;
+            if (fixedTop + panelH + 20 >= footerTop) {
+                var bottomVal = window.innerHeight - footerTop + 20;
+                panel.style.top    = 'auto';
+                panel.style.bottom = bottomVal + 'px';
+            } else {
+                panel.style.top    = fixedTop + 'px';
+                panel.style.bottom = 'auto';
+            }
+        }
+
+        positionPanel();
+        updateTop();
+
+        window.addEventListener('scroll', updateTop, { passive: true });
+        window.addEventListener('resize', function () {
+            positionPanel();
+            updateTop();
+        }, { passive: true });
+    })();
+
+    /* Mobilní spodní lišta */
+    (function () {
+        if (window.innerWidth > 768) return;
+        var bar   = document.getElementById('bottom-bar');
+        var shown = false;
+        window.addEventListener('scroll', function () {
+            if (!shown && (window.scrollY || window.pageYOffset) > 300) {
+                shown = true;
+                bar.style.setProperty('display', 'block', 'important');
+            }
+        }, { passive: true });
+    })();
+
+    /* PC horní fixní navigace */
+    (function () {
+        if (window.innerWidth <= 768) return;
+        var sticky = document.getElementById('stickyTop');
+        window.addEventListener('scroll', function () {
+            sticky.style.display =
+                (window.scrollY || window.pageYOffset) > 200 ? 'block' : 'none';
+        }, { passive: true });
+    })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Najwygodniejsze wiosenne i letnie buty dla kobiet po 40. – Pronlia</title>
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; list-style: none; }
+
+        html, body { font-family: 'Roboto', sans-serif; }
+
+        a { color: rgb(34,129,201); text-decoration: none; font-weight: 700; }
+        a:hover { color: rgb(36,83,125); text-decoration: underline; }
+
+        p { margin-bottom: 25px; font-size: 18px; line-height: 2; color: rgb(38,38,38); }
+
+        .advertisement { font-size:13px; color:#fff; text-align:center; background:#000; padding:2px 0; }
+
+        .logo-bar { padding:25px 0 15px; background:#fff; border-bottom:1px solid #e5e5e5; }
+        .logo-bar-heart { max-width:1200px; margin:0 auto; padding:0 25px; }
+        .logo-bar-img { width:140px; max-width:100%; height:auto; }
+
+        .logo-bar-fixed {
+            display: none;
+            position: fixed;
+            width: 100%; left: 0; top: 0;
+            z-index: 100;
+            background: #fff;
+            box-shadow: 0 3px 5px rgba(119,119,119,0.28);
+        }
+        .logo-bar-fixed-heart { padding:0 15px; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; }
+        .fixed-img-module { float:left; width:calc(100% - 380px); }
+        .fixed-logo { display:inline-block; padding:10px; }
+        .fixed-logo-img { width:140px; }
+        .fixed-btn-module { float:right; max-width:380px; width:100%; padding:15px 0; }
+        .fixed-btn {
+            width:320px; background:linear-gradient(rgb(75,206,14),rgb(36,103,5));
+            border-radius:40px; color:#fff; text-align:center;
+            font-size:18px; font-weight:700; padding:18px 12px;
+            cursor:pointer; float:right; display:block;
+        }
+
+        .smb-page-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .smb-page-left {
+            flex: 1 1 auto;
+            min-width: 0;
+            padding: 10px;
+            margin-right: 320px;
+        }
+
+        .smb-left-main { max-width: 100%; }
+        .smb-left-main .smb-main-img { max-width:100%; margin:35px auto; display:block; border:0; }
+
+        h1 { font-size:36px; line-height:1.4; margin-bottom:25px; color:#222; }
+
+        .smb-autor { display:flex; align-items:center; margin-bottom:20px; }
+        .smb-autor-img { max-width:40px; max-height:40px; border-radius:50%; margin-right:10px; }
+        .smb-autor-content { border-left:2px solid #4c4c4c; padding-left:20px; }
+        .smb-autor-name { color:#4c4c4c; font-size:16px; font-weight:700; display:block; }
+        .smb-autor-date { font-size:12px; color:#919ba3; }
+
+        #right-panel {
+            position: fixed;
+            top: 20px;
+            width: 300px;
+            z-index: 50;
+            border: 1px solid #ededed;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        #right-panel .smb-main-img { width:100%; display:block; border:0; margin:0; }
+
+        .smb-right-product-text {
+            padding:12px 20px; color:#fff; font-size:16px; font-weight:700;
+            line-height:1.3; text-align:center; background:#222;
+        }
+
+        .smb-content-text { padding:0 15px 15px; }
+
+        .smb-right-button {
+            margin-top:12px; display:block; padding:15px;
+            background-color:rgb(0,193,72); border-radius:10px;
+            text-align:center; box-shadow:rgb(0,108,40) 0 3px 0 0;
+        }
+        .smb-right-button a { font-size:14px; font-weight:800; color:#fff; }
+        .smb-right-button a:hover { color:#ff0; }
+
+        .smb-click-button {
+            padding:15px; margin:20px auto; width:90%;
+            display:block; text-align:center;
+            border-radius:10px; background-color:rgb(0,193,72);
+            box-shadow:rgb(0,108,40) 0 3px 0 0;
+        }
+        .smb-click-button a { color:#fff; font-size:20px; font-weight:800; }
+
+        #bottom-bar {
+            display: none;
+            position: fixed; bottom:0; left:0; width:100%;
+            z-index: 9999;
+            background: rgba(0,0,0,0.90);
+            padding: 10px 15px calc(16px + env(safe-area-inset-bottom));
+            text-align: center;
+        }
+        #bottom-bar p { color:#fff; font-size:13px; margin:0 0 8px; line-height:1.5; }
+        .bottom-btn {
+            display:block; padding:14px 15px;
+            background-color:rgb(0,193,72); border-radius:8px;
+            text-align:center; box-shadow:rgb(0,108,40) 0 3px 0 0;
+            text-decoration:none;
+        }
+        .bottom-btn span { font-size:15px; font-weight:800; color:#fff; }
+
+        .smb-page-footer { background:#000; padding:10px; margin-top:25px; }
+        .smb-footer-main { max-width:1100px; margin:0 auto; text-align:center; }
+        .smb-footer-main p { color:#fff; font-size:15px; margin:5px 0; }
+        .smb-footer-main a { color:#fff; font-size:15px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size:22px !important; line-height:1.4 !important; }
+            p { font-size:16px; line-height:1.8; color:#333; }
+            .smb-page-left { margin-right:0 !important; padding:0 10px; }
+            .smb-left-main .smb-main-img { width:100% !important; margin:20px auto; }
+            #right-panel { display:none !important; }
+            .logo-bar-fixed { display:none !important; }
+            .smb-page-footer { margin-bottom:85px; }
+        }
+
+        @media (min-width: 769px) {
+            #bottom-bar { display:none !important; }
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=latin,latin-ext" rel="stylesheet">
+</head>
+
+<body>
+<div class="smb-presell1">
+
+    <p class="advertisement">REKLAMA</p>
+
+    <div class="logo-bar">
+<!--        <div class="logo-bar-heart">-->
+<!--            <img src="../common/img/pllogo.avif" alt="Pronlia" class="logo-bar-img"/>-->
+<!--        </div>-->
+    </div>
+
+    <div id="stickyTop" class="logo-bar-fixed">
+        <div class="logo-bar-fixed-heart">
+            <div class="fixed-img-module">
+                <div class="fixed-logo">
+
+                </div>
+            </div>
+            <div class="fixed-btn-module">
+                <a href="#####">
+                    <span class="fixed-btn">SPRAWDŹ DOSTĘPNOŚĆ →</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="smb-page-main">
+
+        <div class="smb-page-left">
+            <div class="smb-left-main">
+
+                <h1>„Chcę tylko wygodnych, atrakcyjnych i luźnych wiosenno-letnich butów, które ulżą mi w bólu spowodowanym nierównowagą stóp podczas chodzenia."</h1>
+
+                <div class="smb-autor">
+                    <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718091346_avatar-2.jpg.png" alt="" class="smb-autor-img"/>
+                    <div class="smb-autor-content">
+                        <span class="smb-autor-name">Jason Stewart</span>
+                        <span class="smb-autor-date" id="current-date"></span>
+                    </div>
+                </div>
+
+                <section id="imm35">
+                    <a href="#####" target="_blank">
+                        <img src="images/11.webp" alt="" class="smb-main-img"/>
+                    </a>
+                    <p></p>
+                    <p>Brzmi znajomo?</p>
+                    <p>Lato nadeszło! Chcesz wyjść do ogrodu, na targ, na krótki spacer lub spotkać się z przyjaciółmi. Ale gdy tylko otwierasz szafę z butami, ta sama historia zaczyna się od nowa:</p>
+                    <p>
+                        <b>Te urocze sandały?</b> Wyglądają ładnie, ale po godzinie uciskają i powodują pęcherze.<br/>
+                        <b>Te klapki?</b> Albo za sztywne, albo tak szerokie, że ciągle się w nich ślizgasz.<br/>
+                        <b>Te wygodne tenisówki?</b> Do letnich sukienek są za gorące i zbyt sportowe.
+                    </p>
+                    <p>Ale nowy model właśnie trafia na pierwsze strony gazet:
+                        <a href="#####" target="_blank"><b>letni but Pronlia.</b></a>
+                        Lekkie, elastyczne, antypoślizgowe i tak wygodne, że wiele kobiet mówi:
+                        <i>„Nie chcę już nosić żadnych innych butów."</i>
+                    </p>
+                    <p><b>But Pronlia</b>, pierwotnie zaprojektowany dla kobiet spędzających dużo czasu na nogach, szybko stał się…
+                        <a href="#####" target="_blank">
+                            <b>Rekomendacją nr 1 dla kobiet po 40. roku życia, które dbają o styl i nie chcą rezygnować z wygody ani wyglądu.</b>
+                        </a>
+                    </p>
+                </section>
+
+                <a href="#####" target="_blank">
+                    <img src="images/12.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>1. Lekkie i przewiewne na gorące dni</b></a></p>
+                <p><b>Idealny letni but na upalne dni:</b> but <b><i>Pronlia</i></b> jest tak <b>lekki</b>, że prawie zapomnisz, że go masz na nodze. Jej <b>oddychający</b> siatkowy materiał utrzyma Twoje stopy <b>w chłodzie</b> i suchości, nawet w ciepłą pogodę – w ogrodzie, na zakupach czy na wakacjach.</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/13.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>2. Te sandały mogą poprawić zaniedbane problemy ze stopami i plecami.</b></a></p>
+                <p>Gdy raz je założysz, nie będziesz chciała ich już zdejmować. Dzięki <b>ergonomicznemu krojowi</b> i <b>miękkiej wkładce wewnętrznej</b> but <b><i>Pronlia</i></b> należy do najwygodniejszych butów, jakie kiedykolwiek powstały.</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/14.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p>Niezależnie od tego, czy spędzasz na zewnątrz całe godziny, w ogrodzie czy w centrum miasta,</p>
+                <p><a href="#####" target="_blank"><b>Pronlia przeniesie Cię jak po chmurach: lekka, zapewnia doskonałe podparcie i niesamowity komfort.</b></a></p>
+                <p>Wiele kobiet mówi: <i>„To pierwszy but, w którym mogę chodzić cały dzień i nie boleć mnie nogi w nocy."</i></p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/15.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>3. Zaprojektowany dla wrażliwych stóp: pożegnaj się z pęcherzami i odciskami!</b></a></p>
+                <p>But <b><i>Pronlia</i></b> dopasowuje się do Twojej stopy jak druga skóra. Jej <b>elastyczna cholewka</b> rozciąga się dokładnie tam, gdzie potrzebujesz, dzięki czemu jest idealny dla <b>szerokich stóp.</b></p>
+                <p>Szczególnie w ciepłą pogodę, gdy stopy <b>mają tendencję do lekkich obrzęków</b>, but <b><i>Pronlia</i></b> zapewnia optymalne dopasowanie. Zapobiega to powstawaniu <b>pęcherzy</b> i <b>bolesnych punktów ucisku;</b> idealny wybór dla <b>wrażliwych stóp</b> i osób cierpiących na <b>haluksy.</b></p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/16.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>4. Amortyzująca podeszwa: Twoja tarcza ochronna dla stawów</b></a></p>
+                <p><b>Amortyzująca</b> podeszwa <b>skutecznie pochłania</b> każdy Twój krok i <b>odciąża plecy i stawy.</b> Różnicę poczujesz szczególnie w dni, gdy dużo chodzisz i stoisz.</p>
+                <p><a href="#####" target="_blank"><b>CZY TWÓJ ULUBIONY KOLOR JEST JESZCZE DOSTĘPNY?</b></a></p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/17.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>5. Wsuwasz, czujesz się komfortowo, idziemy!</b></a></p>
+                <p>Nie ma nic bardziej niekomfortowego niż buty ze sznurowadłami lub takie, do których potrzeba łyżki. Szczególnie latem <b>kochamy prostotę:</b> wsuwasz i gotowe!</p>
+                <p><i>Letni but</i> Pronlia jest właśnie do tego stworzony. Twoje stopy czują się w <b><i>nim</i></b> wolne, zrelaksowane i niesamowicie lekkie – dokładnie to, czego potrzebujesz latem.</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/18.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>6. Bezpieczeństwo na każdym kroku.</b></a></p>
+                <p>Czy to na śliskich kafelkach w domu, na nierównym chodniku w mieście, czy podczas spokojnego spaceru w ogrodzie: z <i>letnim butem <b>Pronlia</b> grasz</i> bezpiecznie. Specjalnie zaprojektowana, <b>antypoślizgowa profilowana podeszwa zapewnia pewny chwyt</b> na <b>każdej powierzchni</b> – przy jednoczesnym przyjemnie miękkim chodzie.</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/19.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>7. Letni i wszechstronny – but na każdą letnią chwilę</b></a></p>
+                <p>Czy to poranne ogrodnictwo, szybka wycieczka na targ, spokojny spacer po mieście czy długo wyczekiwane letnie wakacje – <b><i>Pronlia</i></b> jest <b>idealnym towarzyszem na każdą okazję.</b> Jest równie <b>wszechstronny</b> jak Twoje codzienne życie <b>a jednocześnie lekki, wygodny</b> i urzekający!</p>
+                <p>Dzięki szerokiemu wyborowi kolorów i rozmiarów <a href="#####" target="_blank"><b>Letni i świeży – każda kobieta znajdzie tu <i>swój</i> ulubiony but.</b></a></p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/20.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="#####" target="_blank"><b>SPRAWDŹ DOSTĘPNOŚĆ</b></a></p>
+                <p>Twój ulubiony letni but!</p>
+                <p>Niezrównany komfort</p>
+                <p>Lekkie i przewiewne przez cały dzień</p>
+                <p>Skutecznie amortyzuje każdy krok</p>
+
+                <a href="#####" target="_blank">
+                    <img src="images/21.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><b>Teraz masz dwie możliwości:</b></p>
+                <p><i>Może co lato szukasz tego</i> wygodnego buta, znosisz ciasne sandały, śliskie podeszwy i bolące nogi. <b>Albo możesz wybrać Coeurvę:</b></p>
+                <p>bo pasuje idealnie.</p>
+                <p>Bo jest wygodna.</p>
+                <p>Bo jest lekka, przewiewna i czuć w niej lato.</p>
+
+                <div style="border:2px solid red; padding:18px 20px; margin:30px 0; background:#fff;">
+                    <p style="margin:0; font-size:17px; line-height:1.8; color:#222;">
+                        <b>*Aktualizacja:</b> Firma właśnie organizuje specjalną wyprzedaż. Uzyskaj
+                        <b style="color:#e74c3c;">50% zniżki</b>, kupując Pronlia dzisiaj online,
+                        <a href="#####" target="_blank" style="color:rgb(34,129,201); font-weight:700;">
+                            tylko tutaj na ich oficjalnej stronie &gt;&gt;
+                        </a>
+                    </p>
+                </div>
+
+                <div class="smb-click-button">
+                    <a href="#####" target="_blank">
+                        SPRAWDŹ ZNIŻKI I DOSTĘPNOŚĆ →
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /smb-page-main -->
+
+    <!-- 右侧产品框 -->
+    <div id="right-panel">
+        <div class="smb-right-product-text">Wymień buty i ocal swoje nogi</div>
+        <img src="images/22.jpg" alt="" class="smb-main-img"/>
+        <div class="smb-content-text">
+            <p style="font-size:14px; color:#333; text-align:center; margin:10px 0 5px;">
+                <b style="color:#e74c3c;">50% ZNIŻKI</b> – tylko dziś!
+            </p>
+            <div class="smb-right-button">
+                <a href="#####">Sprawdź dostępność →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 移动端底部固定栏 -->
+    <div id="bottom-bar">
+        <p>
+            <b style="color:#f5a623;">*Aktualizacja:</b> Uzyskaj
+            <b style="color:#e74c3c;">50% zniżki</b> – tylko dziś online!
+        </p>
+        <a href="#####" class="bottom-btn">
+            <span>SPRAWDŹ ZNIŻKI I DOSTĘPNOŚĆ →</span>
+        </a>
+    </div>
+
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main">
+            <p class="text-center">OŚWIADCZENIE MARKETINGOWE: Ta strona internetowa jest platformą handlową. Jako taka, powinieneś wiedzieć, że właściciel strony ma powiązania finansowe z produktami i usługami reklamowanymi na stronie. Właściciel otrzymuje wynagrodzenie za każdego przekazanego kwalifikowanego klienta.</p>
+            <p class="text-center">OŚWIADCZENIE REKLAMOWE: Ta strona internetowa oraz wymienione na niej produkty i usługi stanowią część platformy reklamowo-handlowej. Ta strona internetowa jest reklamą, a nie serwisem informacyjnym. Zdjęcia osób użyte na tej stronie przedstawiają modeli. Właściciel tej strony świadczy wyłącznie usługę, w ramach której konsumenci mogą uzyskać informacje i dokonywać porównań.</p>
+            <p class="text-center">
+                © 2024 Wszelkie prawa zastrzeżone. <br>
+                Kontakt |
+                Polityka prywatności |
+                Warunki użytkowania
+            </p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    /* 日期 */
+    (function () {
+        var months = ['stycznia','lutego','marca','kwietnia','maja','czerwca',
+            'lipca','sierpnia','września','października','listopada','grudnia'];
+        var d = new Date();
+        document.getElementById('current-date').textContent =
+            d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    })();
+
+    /* 右侧产品框：fixed定位，底部不遮页脚 */
+    (function () {
+        if (window.innerWidth <= 768) return;
+
+        var panel   = document.getElementById('right-panel');
+        var leftCol = document.querySelector('.smb-page-left');
+        var logoBar = document.querySelector('.logo-bar');
+        var adBar   = document.querySelector('.advertisement');
+        var footer  = document.querySelector('.smb-page-footer');
+
+        var adH      = adBar   ? adBar.offsetHeight  : 0;
+        var logoH    = logoBar ? logoBar.offsetHeight : 0;
+        var fixedTop = adH + logoH + 15;
+
+        function positionPanel() {
+            var rect    = leftCol.getBoundingClientRect();
+            var leftVal = rect.right + 10;
+            if (leftVal + 300 > window.innerWidth) {
+                leftVal = window.innerWidth - 310;
+            }
+            panel.style.left = leftVal + 'px';
+        }
+
+        function updateTop() {
+            if (!footer) {
+                panel.style.top    = fixedTop + 'px';
+                panel.style.bottom = 'auto';
+                return;
+            }
+            var panelH     = panel.offsetHeight;
+            var footerTop  = footer.getBoundingClientRect().top;
+            if (fixedTop + panelH + 20 >= footerTop) {
+                var bottomVal = window.innerHeight - footerTop + 20;
+                panel.style.top    = 'auto';
+                panel.style.bottom = bottomVal + 'px';
+            } else {
+                panel.style.top    = fixedTop + 'px';
+                panel.style.bottom = 'auto';
+            }
+        }
+
+        positionPanel();
+        updateTop();
+
+        window.addEventListener('scroll', updateTop, { passive: true });
+        window.addEventListener('resize', function () {
+            positionPanel();
+            updateTop();
+        }, { passive: true });
+    })();
+
+    /* 移动端底部栏 */
+    (function () {
+        if (window.innerWidth > 768) return;
+        var bar   = document.getElementById('bottom-bar');
+        var shown = false;
+        window.addEventListener('scroll', function () {
+            if (!shown && (window.scrollY || window.pageYOffset) > 300) {
+                shown = true;
+                bar.style.setProperty('display', 'block', 'important');
+            }
+        }, { passive: true });
+    })();
+
+    /* PC端顶部固定导航 */
+    (function () {
+        if (window.innerWidth <= 768) return;
+        var sticky = document.getElementById('stickyTop');
+        window.addEventListener('scroll', function () {
+            sticky.style.display =
+                (window.scrollY || window.pageYOffset) > 200 ? 'block' : 'none';
+        }, { passive: true });
+    })();
+</script>
+
+</body>
+</html>
