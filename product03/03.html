@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Najpohodlnejšie jarné a letné topánky pre ženy po štyridsiatke – Courvea</title>
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; list-style: none; }
+
+        html, body { font-family: 'Roboto', sans-serif; }
+
+        a { color: rgb(34,129,201); text-decoration: none; font-weight: 700; }
+        a:hover { color: rgb(36,83,125); text-decoration: underline; }
+
+        p { margin-bottom: 25px; font-size: 18px; line-height: 2; color: rgb(38,38,38); }
+
+        .advertisement { font-size:13px; color:#fff; text-align:center; background:#000; padding:2px 0; }
+
+        .logo-bar { padding:25px 0 15px; background:#fff; border-bottom:1px solid #e5e5e5; }
+        .logo-bar-heart { max-width:1200px; margin:0 auto; padding:0 25px; }
+        .logo-bar-img { width:140px; max-width:100%; height:auto; }
+
+        .logo-bar-fixed {
+            display: none;
+            position: fixed;
+            width: 100%; left: 0; top: 0;
+            z-index: 100;
+            background: #fff;
+            box-shadow: 0 3px 5px rgba(119,119,119,0.28);
+        }
+        .logo-bar-fixed-heart { padding:0 15px; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; }
+        .fixed-img-module { float:left; width:calc(100% - 380px); }
+        .fixed-logo { display:inline-block; padding:10px; }
+        .fixed-logo-img { width:140px; }
+        .fixed-btn-module { float:right; max-width:380px; width:100%; padding:15px 0; }
+        .fixed-btn {
+            width:320px; background:linear-gradient(rgb(75,206,14),rgb(36,103,5));
+            border-radius:40px; color:#fff; text-align:center;
+            font-size:18px; font-weight:700; padding:18px 12px;
+            cursor:pointer; float:right; display:block;
+        }
+
+        .smb-page-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .smb-page-left {
+            flex: 1 1 auto;
+            min-width: 0;
+            padding: 10px;
+            margin-right: 320px;
+        }
+
+        .smb-left-main { max-width: 100%; }
+        .smb-left-main .smb-main-img { max-width:100%; margin:35px auto; display:block; border:0; }
+
+        h1 { font-size:36px; line-height:1.4; margin-bottom:25px; color:#222; }
+
+        .smb-autor { display:flex; align-items:center; margin-bottom:20px; }
+        .smb-autor-img { max-width:40px; max-height:40px; border-radius:50%; margin-right:10px; }
+        .smb-autor-content { border-left:2px solid #4c4c4c; padding-left:20px; }
+        .smb-autor-name { color:#4c4c4c; font-size:16px; font-weight:700; display:block; }
+        .smb-autor-date { font-size:12px; color:#919ba3; }
+
+        #right-panel {
+            position: fixed;
+            top: 20px;
+            width: 300px;
+            z-index: 50;
+            border: 1px solid #ededed;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        #right-panel .smb-main-img { width:100%; display:block; border:0; margin:0; }
+
+        .smb-right-product-text {
+            padding:12px 20px; color:#fff; font-size:16px; font-weight:700;
+            line-height:1.3; text-align:center; background:#222;
+        }
+
+        .smb-content-text { padding:0 15px 15px; }
+
+        .smb-right-button {
+            margin-top:12px; display:block; padding:15px;
+            background-color:rgb(0,193,72); border-radius:10px;
+            text-align:center; box-shadow:rgb(0,108,40) 0 3px 0 0;
+        }
+        .smb-right-button a { font-size:14px; font-weight:800; color:#fff; }
+        .smb-right-button a:hover { color:#ff0; }
+
+        .smb-click-button {
+            padding:15px; margin:20px auto; width:90%;
+            display:block; text-align:center;
+            border-radius:10px; background-color:rgb(0,193,72);
+            box-shadow:rgb(0,108,40) 0 3px 0 0;
+        }
+        .smb-click-button a { color:#fff; font-size:20px; font-weight:800; }
+
+        #bottom-bar {
+            display: none;
+            position: fixed; bottom:0; left:0; width:100%;
+            z-index: 9999;
+            background: rgba(0,0,0,0.90);
+            padding: 10px 15px calc(16px + env(safe-area-inset-bottom));
+            text-align: center;
+        }
+        #bottom-bar p { color:#fff; font-size:13px; margin:0 0 8px; line-height:1.5; }
+        .bottom-btn {
+            display:block; padding:14px 15px;
+            background-color:rgb(0,193,72); border-radius:8px;
+            text-align:center; box-shadow:rgb(0,108,40) 0 3px 0 0;
+            text-decoration:none;
+        }
+        .bottom-btn span { font-size:15px; font-weight:800; color:#fff; }
+
+        .smb-page-footer { background:#000; padding:10px; margin-top:25px; }
+        .smb-footer-main { max-width:1100px; margin:0 auto; text-align:center; }
+        .smb-footer-main p { color:#fff; font-size:15px; margin:5px 0; }
+        .smb-footer-main a { color:#fff; font-size:15px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size:22px !important; line-height:1.4 !important; }
+            p { font-size:16px; line-height:1.8; color:#333; }
+            .smb-page-left { margin-right:0 !important; padding:0 10px; }
+            .smb-left-main .smb-main-img { width:100% !important; margin:20px auto; }
+            #right-panel { display:none !important; }
+            .logo-bar-fixed { display:none !important; }
+            .smb-page-footer { margin-bottom:85px; }
+        }
+
+        @media (min-width: 769px) {
+            #bottom-bar { display:none !important; }
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=latin,latin-ext" rel="stylesheet">
+</head>
+
+<body>
+<div class="smb-presell1">
+
+    <p class="advertisement">REKLAMA</p>
+
+    <div class="logo-bar">
+        <!--        <div class="logo-bar-heart">-->
+        <!--            <img src="../common/img/pllogo.avif" alt="Courvea" class="logo-bar-img"/>-->
+        <!--        </div>-->
+    </div>
+
+    <div id="stickyTop" class="logo-bar-fixed">
+        <div class="logo-bar-fixed-heart">
+            <div class="fixed-img-module">
+                <div class="fixed-logo">
+
+                </div>
+            </div>
+            <div class="fixed-btn-module">
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne">
+                    <span class="fixed-btn">OVERIŤ DOSTUPNOSŤ →</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="smb-page-main">
+
+        <div class="smb-page-left">
+            <div class="smb-left-main">
+
+                <h1>„Chcem len pohodlné, atraktívne a voľné jarné a letné topánky, ktoré mi uľavia od bolesti spôsobenej nesprávnym došľapom pri chôdzi.“</h1>
+
+                <div class="smb-autor">
+                    <img src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718091346_avatar-2.jpg.png" alt="" class="smb-autor-img"/>
+                    <div class="smb-autor-content">
+                        <span class="smb-autor-name">Jason Stewart</span>
+                        <span class="smb-autor-date" id="current-date"></span>
+                    </div>
+                </div>
+
+                <section id="imm35">
+                    <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                        <img src="images/11.webp" alt="" class="smb-main-img"/>
+                    </a>
+                    <p></p>
+                    <p>Znie vám to povedome?</p>
+                    <p>Leto je tu! Chcete ísť na záhradu, na trh, na krátku prechádzku alebo sa stretnúť s priateľmi. Ale akonáhle otvoríte botník, začína rovnaký príbeh znova:</p>
+                    <p>
+                        <b>Tieto roztomilé sandále?</b> Vypadajú pekne, ale po hodine tlačia a spôsobujú pľuzgiere.<br/>
+                        <b>Tieto šľapky?</b> Buď sú príliš tuhé, alebo tak široké, že vám v nich noha stále kĺže.<br/>
+                        <b>Tieto pohodlné tenisky?</b> K letným šatám sú príliš horúce a moc športové.
+                    </p>
+                    <p>Na prvé stránky novín sa však dostáva nový model:
+                        <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>letná topánka Courvea.</b></a>
+                        Ľahké, flexibilné, protišmykové a tak pohodlné, že mnohé ženy hovoria:
+                        <i>„Už nechcem nosiť žiadne iné topánky.“</i>
+                    </p>
+                    <p><b>Topánka Courvea</b>, pôvodne navrhnutá pre ženy, ktoré trávia veľa času na nohách, sa rýchlo stala…
+                        <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>Odporúčaním č. 1 pre ženy po štyridsiatke, ktoré dbajú na štýl a nechcú zľavovať z pohodlia ani z výzoru.</b>
+                        </a>
+                    </p>
+                </section>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/12.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>1. Ľahká a priedušná pre horúce dni</b></a></p>
+                <p><b>Ideálna letná topánka pre horúce dni:</b> topánka <b><i>Courvea</i></b> je tak <b>ľahká</b>, že takmer zabudnete, že ju máte na nohe. Jej <b>priedušný</b> sieťovaný materiál udrží vaše nohy <b>v chlade</b> a suchu aj v teplom počasí – na záhrade, pri nákupoch aj na dovolenke.</p>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/13.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>2. Tieto sandále môžu pomôcť vyriešiť zanedbané problémy s chodidlami a chrbtom.</b></a></p>
+                <p>Akonáhle si ich raz obujete, už ich nebudete chcieť vyzuť. Vďaka <b>ergonomickému strihu</b> a <b>mäkkej vnútornej stielke</b> patrí topánka <b><i>Courvea</i></b> k najpohodlnejším topánkam, aké kedy boli vyrobené.</p>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/14.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p>Či už trávite vonku celé hodiny, na záhrade alebo v centre mesta,</p>
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>Courvea vás ponesie ako po oblaku: je ľahká, poskytuje vynikajúcu oporu a neuvěřiteľný komfort.</b></a></p>
+                <p>Mnoho žien hovorí: <i>„Je to prvá topánka, v ktorej môžem chodiť celý deň a v noci ma nebolia nohy.“</i></p>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/15.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>3. Navrhnuté pre citlivé chodidlá: rozlúčte sa s pľuzgiermi a otlakmi!</b></a></p>
+                <p>Topánka <b><i>Courvea</i></b> sa prispôsobí vašej nohe ako druhá koža. Jej <b>pružný zvršok</b> sa roziahne presne tam, kde potrebujete, takže je ideálna aj pre <b>široké chodidlá.</b></p>
+                <p>Zmätené najmä v teplom počasí, kedy majú nohy <b>tendenciu mierne opúchať</b>, topánka <b><i>Courvea</i></b> zaisťuje optimálne prispôsobenie. Zabraňuje tak vzniku <b>pľuzgierov</b> a <b>bolestivých otlakov;</b> je to ideálna voľba pre <b>citlivé chodidlá</b> a osoby trpiace na <b>vybočené palce (haluxy).</b></p>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/16.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>4. Podrážka tlmiaca nárazy: váš ochranný štít pre kĺby</b></a></p>
+                <p><b>Odpružená</b> podrážka <b>efektívne pohlcuje</b> každý váš krok a <b>uľavuje chrbtu aj kĺbom.</b> Rozdiel pocítite najmä v dňoch, keď veľa chodíte alebo stojíte.</p>
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>JE VAŠA OBĽÚBENÁ FARBA EŠTE DOSTUPNÁ?</b></a></p>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/17.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>5. Vkĺznete, cítite sa pohodlne a ide sa!</b></a></p>
+                <p>Nie je nič nepohodlnejšie ako topánky s šnúrkami alebo také, ku ktorým potrebujete obuvák. Najmä v lete <b>milujeme jednoduchosť:</b> vkĺznete a je to!</p>
+                <p><i>Letná topánka</i> Courvea je vytvorená presne pre to. Vaše nohy sa v <b><i>nej</i></b> cítia slobodné, uvoľnené a neobyčajne ľahké – presne to, čo v lete potrebujete.</p>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/18.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>6. Bezpečnosť na každom kroku.</b></a></p>
+                <p>Či už na kĺzavej dlažbe doma, na nerovnom chodníku v meste, alebo pri pohodovej prechádzke po záhrade: s <i>letnou topánkou <b>Courvea</b> staviate na istotu</i>. Špeciálne navrhnutá <b>protišmyková vzorovaná podrážka zaisťuje pevný úchop</b> na <b>akomkoľvek povrchu</b> – a zároveň ponúka príjemne mäkký došľap.</p>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/19.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>7. Letná a všestranná – topánka pre každý letný okamih</b></a></p>
+                <p>Či už ide o ranné záhradkárčenie, rýchly nákup na trhu, pohodovú prechádzku mestom alebo dlho očakávanú letnú dovolenku – <b><i>Courvea</i></b> je <b>ideálnym spoločníkom pre každú príležitosť.</b> Je rovnako <b>všestranná</b> ako váš každodenný život, <b>a pritom ľahká, pohodlná</b> a očarujúca!</p>
+                <p>Vďaka širokému výberu farieb a veľkostí <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>Svieža a letná – každá žena si tu nájde <i>svoju</i> obľúbenú topánku.</b></a></p>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/20.jpg" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank"><b>OVERIŤ DOSTUPNOSŤ</b></a></p>
+                <p>Vaša obľúbená letná topánka!</p>
+                <p>Bezkonkurenčné pohodlie</p>
+                <p>Ľahká a priedušná po celý deň</p>
+                <p>Účinne tlmiaca každý krok</p>
+
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                    <img src="images/21.webp" alt="" class="smb-main-img" style="width:100%;"/>
+                </a>
+
+                <p><b>Teraz máte dve možnosti:</b></p>
+                <p><i>Buď budete každé leto ďalej hľadať tú</i> pohodlnú topánku, znášať tesné sandále, kĺzavé podrážky a boľavé nohy. <b>Alebo si môžete vybrať Coeurvu:</b></p>
+                <p>pretože sedí perfektne.</p>
+
+                <p>Pretože je pohodlná.</p>
+                <p>Pretože je ľahká, priedušná a je z nej cítiť leto.</p>
+
+                <div style="border:2px solid red; padding:18px 20px; margin:30px 0; background:#fff;">
+                    <p style="margin:0; font-size:17px; line-height:1.8; color:#222;">
+                        <b>*Aktualizácia:</b> Spoločnosť práve riadi špeciálny výpredaj. Získajte
+                        <b style="color:#e74c3c;">50% zľavu</b> pri nákupe Courvea dnes online,
+                        <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank" style="color:rgb(34,129,201); font-weight:700;">
+                            iba tu na ich oficiálnych stránkach &gt;&gt;
+                        </a>
+                    </p>
+                </div>
+
+                <div class="smb-click-button">
+                    <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" target="_blank">
+                        OVERIŤ ZĽAVY A DOSTUPNOSŤ →
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /smb-page-main -->
+
+    <!-- Pravý panel s produktom -->
+    <div id="right-panel">
+        <div class="smb-right-product-text">Vymeňte topánky a zachráňte svoje nohy</div>
+        <img src="images/22.jpg" alt="" class="smb-main-img"/>
+        <div class="smb-content-text">
+            <p style="font-size:14px; color:#333; text-align:center; margin:10px 0 5px;">
+                <b style="color:#e74c3c;">ZĽAVA 50 %</b> – iba dnes!
+            </p>
+            <div class="smb-right-button">
+                <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne">Overiť dostupnosť →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobilná spodná lišta -->
+    <div id="bottom-bar">
+        <p>
+            <b style="color:#f5a623;">*Aktualizácia:</b> Získajte
+            <b style="color:#e74c3c;">50% zľavu</b> – iba dnes online!
+        </p>
+        <a href="https://courvea.com/products/premiove-damske-nazuvacie-mokasiny-maximalne" class="bottom-btn">
+            <span>OVERIŤ ZĽAVY A DOSTUPNOSŤ →</span>
+        </a>
+    </div>
+
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main">
+            <p class="text-center">MARKETINGOVÉ VYHLÁSENIE: Tieto webové stránky sú obchodnou platformou. Ako takí by ste mali vedieť, že prevádzkovateľ stránok má finančné prepojenie s produktmi a službami propagovanými na stránkach. Prevádzkovateľ získava odmenu za každého privedeného kvalifikovaného zákazníka.</p>
+            <p class="text-center">REKLAMNÉ VYHLÁSENIE: Tieto webové stránky a produkty a služby na nich uvedené tvoria súčasť reklamnej a obchodnej platformy. Tieto webové stránky sú reklamou, nie spravodajským portálom. Fotografie osôb použité na týchto stránkach zobrazujú modelov. Prevádzkovateľ týchto stránok poskytuje výhradne službu, v ktorej rámci môžu spotrebitelia získavať informácie a vykonávať porovnania.</p>
+            <p class="text-center">
+                © 2024 Všetky práva vyhradené. <br>
+                Kontakt |
+                Zásady ochrany osobných údajov |
+                Podmienky používania
+            </p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    /* Dátum */
+    (function () {
+        var months = ['januára','februára','marca','apríla','mája','júna',
+            'júla','augusta','septembra','októbra','novembra','decembra'];
+        var d = new Date();
+        document.getElementById('current-date').textContent =
+            d.getDate() + '. ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    })();
+
+    /* Pravý panel: fixed pozicovanie, dole neprekrýva pätku */
+    (function () {
+        if (window.innerWidth <= 768) return;
+
+        var panel   = document.getElementById('right-panel');
+        var leftCol = document.querySelector('.smb-page-left');
+        var logoBar = document.querySelector('.logo-bar');
+        var adBar   = document.querySelector('.advertisement');
+        var footer  = document.querySelector('.smb-page-footer');
+
+        var adH      = adBar   ? adBar.offsetHeight  : 0;
+        var logoH    = logoBar ? logoBar.offsetHeight : 0;
+        var fixedTop = adH + logoH + 15;
+
+        function positionPanel() {
+            var rect    = leftCol.getBoundingClientRect();
+            var leftVal = rect.right + 10;
+            if (leftVal + 300 > window.innerWidth) {
+                leftVal = window.innerWidth - 310;
+            }
+            panel.style.left = leftVal + 'px';
+        }
+
+        function updateTop() {
+            if (!footer) {
+                panel.style.top    = fixedTop + 'px';
+                panel.style.bottom = 'auto';
+                return;
+            }
+            var panelH     = panel.offsetHeight;
+            var footerTop  = footer.getBoundingClientRect().top;
+            if (fixedTop + panelH + 20 >= footerTop) {
+                var bottomVal = window.innerHeight - footerTop + 20;
+                panel.style.top    = 'auto';
+                panel.style.bottom = bottomVal + 'px';
+            } else {
+                panel.style.top    = fixedTop + 'px';
+                panel.style.bottom = 'auto';
+            }
+        }
+
+        positionPanel();
+        updateTop();
+
+        window.addEventListener('scroll', updateTop, { passive: true });
+        window.addEventListener('resize', function () {
+            positionPanel();
+            updateTop();
+        }, { passive: true });
+    })();
+
+    /* Mobilná spodná lišta */
+    (function () {
+        if (window.innerWidth > 768) return;
+        var bar   = document.getElementById('bottom-bar');
+        var shown = false;
+        window.addEventListener('scroll', function () {
+            if (!shown && (window.scrollY || window.pageYOffset) > 300) {
+                shown = true;
+                bar.style.setProperty('display', 'block', 'important');
+            }
+        }, { passive: true });
+    })();
+
+    /* PC horná fixná navigácia */
+    (function () {
+        if (window.innerWidth <= 768) return;
+        var sticky = document.getElementById('stickyTop');
+        window.addEventListener('scroll', function () {
+            sticky.style.display =
+                (window.scrollY || window.pageYOffset) > 200 ? 'block' : 'none';
+        }, { passive: true });
+    })();
+</script>
+
+</body>
+</html>
