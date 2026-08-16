@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proč podiatr tvrdí: „Tyto kleštičky na nehty s chirurgickou čepelí jsou to poslední, co budou senioři kdy potřebovat“</title>
+
+    <script src="js/common.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (targetBottomBtn) {
+                targetBottomBtn.classList.add('detection-ele-hidden');
+            }
+        });
+        window.addEventListener('scroll', function () {
+            const targetBottomBtn = document.getElementById('bottom-fifty-persent-off-btn');
+            if (!targetBottomBtn) return;
+            checkElementInViewport('.click_to_product_page_btn', function (inViewport) {
+                if (inViewport) {
+                    targetBottomBtn.classList.add('detection-ele-hidden');
+                } else {
+                    targetBottomBtn.classList.remove('detection-ele-hidden');
+                }
+            });
+        });
+
+        function checkElementInViewport(detectionEleSelector, callback) {
+            const elements = document.querySelectorAll(detectionEleSelector);
+            let inViewport = false;
+            elements.forEach(function (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    inViewport = true;
+                }
+            });
+            callback(inViewport);
+        }
+    </script>
+
+    <script>
+        function getInitialTime() {
+            const countdownElementList = document.querySelectorAll('.countdown');
+            if (countdownElementList && countdownElementList.length > 0) {
+                let initialTimeGather = [];
+                countdownElementList.forEach((countdownElement, index) => {
+                    let days = parseInt(countdownElement.getAttribute('data-days')) || 0;
+                    let hours = parseInt(countdownElement.getAttribute('data-hours')) || 0;
+                    let minutes = parseInt(countdownElement.getAttribute('data-minutes')) || 0;
+                    let seconds = parseInt(countdownElement.getAttribute('data-seconds')) || 0;
+                    countdownElement.classList.forEach(item => {
+                        if (item.includes('days-')) days = item.split('-')[1] || 0;
+                        if (item.includes('hours-')) hours = item.split('-')[1] || 0;
+                        if (item.includes('minutes-')) minutes = item.split('-')[1] || 0;
+                        if (item.includes('seconds-')) seconds = item.split('-')[1] || 0;
+                    });
+                    initialTimeGather[index] = {days, hours, minutes, seconds};
+                });
+                return initialTimeGather;
+            }
+            return null;
+        }
+
+        function calculateTargetDate(initialTime) {
+            const now = new Date();
+            const targetDate = new Date();
+            targetDate.setDate(now.getDate() + parseInt(initialTime.days));
+            targetDate.setHours(now.getHours() + parseInt(initialTime.hours));
+            targetDate.setMinutes(now.getMinutes() + parseInt(initialTime.minutes));
+            targetDate.setSeconds(now.getSeconds() + parseInt(initialTime.seconds));
+            return targetDate;
+        }
+
+        function updateCountdown(targetDate, index) {
+            const now = new Date();
+            const timeRemaining = targetDate - now;
+            if (timeRemaining <= 0) {
+                document.querySelectorAll('.days')[index].textContent = '00';
+                document.querySelectorAll('.hours')[index].textContent = '00';
+                document.querySelectorAll('.minutes')[index].textContent = '00';
+                document.querySelectorAll('.seconds')[index].textContent = '00';
+                document.querySelectorAll('.countdown-title-text')[index].textContent = 'Odpočet skončil!';
+                return;
+            }
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            document.querySelectorAll('.days')[index].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.hours')[index].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.minutes')[index].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.seconds')[index].textContent = seconds.toString().padStart(2, '0');
+        }
+
+        function initCountdown() {
+            const initialTimeGather = getInitialTime();
+            if (initialTimeGather) {
+                initialTimeGather.forEach((initialTime, index) => {
+                    let targetDate = calculateTargetDate(initialTime);
+                    updateCountdown(targetDate, index);
+                    let countdownInterval = setInterval(() => {
+                        updateCountdown(targetDate, index);
+                        if (targetDate - new Date() <= 0) clearInterval(countdownInterval);
+                    }, 1000);
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initCountdown);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const swipeableGather = document.querySelectorAll('.fifty_percent_off_button');
+            if (swipeableGather && swipeableGather.length > 0) {
+                swipeableGather.forEach(swipeable => {
+                    let startX, startY, endX, endY;
+                    swipeable.addEventListener('touchstart', function (e) {
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
+                    });
+                    swipeable.addEventListener('touchend', function (e) {
+                        endX = e.changedTouches[0].clientX;
+                        endY = e.changedTouches[0].clientY;
+                        let deltaX = endX - startX;
+                        let deltaY = endY - startY;
+                        if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) {
+                            let links = swipeable.querySelectorAll('a');
+                            if (links.length > 0) links[0].click();
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+    <style>
+        /* === Reset & Base === */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: #2281c9;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        a:hover {
+            color: #24537d;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 18px;
+            line-height: 2;
+            color: #262626;
+        }
+
+        /* === Picture Enlarger === */
+        .picture-enlarger {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .picture-enlarger:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .picture-enlarger img {
+            transition: transform 0.5s ease;
+        }
+
+        .picture-enlarger:hover img {
+            transform: scale(1.1);
+        }
+
+        /* === Sticky === */
+        .smb-fixed {
+            position: sticky;
+            top: 10px;
+            max-width: 258px;
+        }
+
+        /* === Presell Layout === */
+        .smb-presell1 {
+            max-width: 100%;
+        }
+
+        .smb-presell1 h1 {
+            font-size: 40px;
+            line-height: 1.4;
+            margin-bottom: 25px;
+            font-family: inherit;
+        }
+
+        .smb-presell1 h2 {
+            color: #333;
+            font-size: 34px;
+            font-weight: 700;
+            margin: 35px 0;
+            line-height: 1.3;
+        }
+
+        .smb-presell1 h3 {
+            color: #333;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 25px 0;
+            line-height: 1.3;
+        }
+
+        /* === Page Main Layout === */
+        .smb-page-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .smb-page-left {
+            padding: 10px;
+            max-width: 840px;
+            margin: 0 auto;
+            flex: 1 1 0%;
+        }
+
+        .smb-left-main {
+            max-width: 100%;
+        }
+
+        .smb-left-main .smb-main-img {
+            max-width: 100%;
+            border: 0;
+            margin: 35px auto;
+            display: block;
+        }
+
+        /* === Advertisement Bar === */
+        .smb-presell1 .advertisement {
+            margin: 0;
+            font-size: 13px;
+            color: #fff;
+            text-align: center;
+            background-color: #000;
+        }
+
+        /* === Logo Bar === */
+        .smb-presell1 .logo-bar {
+            padding: 25px 0 15px;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            position: relative;
+        }
+
+        .smb-presell1 .logo-bar-heart {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .smb-presell1 .row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .smb-presell1 .logo-bar-box {
+            position: relative;
+        }
+
+        .smb-presell1 .col-lg {
+            flex: 0 0 66.6667%;
+            max-width: 66.6667%;
+        }
+
+        .smb-presell1 .logo-bar-img {
+            max-width: 100%;
+            width: 140px;
+            height: auto;
+        }
+
+        .smb-presell1 .logo-bar-text {
+            position: absolute;
+            top: 40%;
+            right: -120px;
+            transform: translate(-40%, -40%);
+            margin-bottom: 0;
+        }
+
+        /* === Fixed Logo Bar === */
+        .logo-bar-fixed {
+            display: none;
+            position: fixed;
+            width: 100%;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            background-color: #fff;
+            box-shadow: 0 3px 5px rgba(119, 119, 119, 0.28);
+        }
+
+        .logo-bar-fixed-heart {
+            padding: 0 15px;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .fixed-img-module {
+            float: left;
+            width: calc(100% - 380px);
+        }
+
+        .fixed-logo {
+            display: inline-block;
+            padding: 10px;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+
+        .fixed-logo-img {
+            width: 140px;
+        }
+
+        .fixed-btn-module {
+            float: right;
+            max-width: 380px;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        .fixed-btn {
+            width: 320px;
+            height: auto;
+            background: linear-gradient(#4bce0e, #246705);
+            border-radius: 40px;
+            color: #fff;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 18px 12px;
+            cursor: pointer;
+            float: right;
+            margin-top: 4px;
+            z-index: 99999999;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        /* === Author === */
+        .smb-autor {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .smb-autor-img {
+            max-width: 40px;
+            max-height: 40px;
+            border-radius: 30px;
+            margin-right: 10px;
+        }
+
+        .smb-autor-content {
+            text-align: left;
+            border-left: 2px solid #4c4c4c;
+            padding-left: 20px;
+        }
+
+        .smb-autor-name {
+            color: #4c4c4c;
+            font-size: 16px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .smb-autor-date {
+            font-size: 12px;
+            font-weight: 400;
+            color: #919ba3;
+        }
+
+        /* === CTA Buttons === */
+        .smb-click-button {
+            padding: 15px;
+            margin: 20px auto;
+            width: 90%;
+            display: block;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #00c148;
+            box-shadow: 0 3px 0 0 #006c28;
+        }
+
+        .smb-click-button a {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .smb-click-button a:hover {
+            color: #fff000;
+        }
+
+        /* === Right Sidebar === */
+        .smb-page-right {
+            flex: 1 1 0%;
+            padding: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #smb-fixed-flag {
+            max-height: 1px;
+        }
+
+        .smb-right-main {
+            position: sticky;
+            top: 120px;
+            max-width: 100%;
+            display: block;
+            border: 1px solid #ededed;
+            border-top: none;
+            border-radius: 15px;
+        }
+
+        .smb-right-main .smb-main-img {
+            max-width: 100%;
+            border: 0;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .smb-right-product-text {
+            margin: 0;
+            padding: 10px 20px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-align: center;
+            background-color: #222;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .smb-right-content {
+            max-width: 100%;
+            display: block;
+        }
+
+        .smb-content-text {
+            padding: 0 15px 10px;
+        }
+
+        .smb-right-slogan-text {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+        }
+
+        .smb-right-button {
+            margin-top: 20px;
+            display: block;
+            padding: 15px;
+            background-color: #00c148;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 0 0 #006c28;
+        }
+
+        .smb-right-button a {
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .smb-right-button a:hover {
+            color: #fff000;
+        }
+
+        /* === Footer === */
+        .smb-page-footer {
+            max-width: 100%;
+            background-color: #000;
+            padding: 10px;
+            margin-top: 25px;
+            box-sizing: border-box;
+        }
+
+        .smb-footer-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .smb-footer-main p {
+            color: #fff;
+            font-size: 15px;
+            margin: 5px 0;
+        }
+
+        .smb-footer-main a {
+            color: #fff;
+            font-size: 15px;
+        }
+
+        /* === Bottom Sticky Button === */
+        .smb-button-bottom {
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 0 15px 15px;
+            position: fixed;
+            z-index: 10;
+            text-align: center;
+            display: none;
+            box-sizing: border-box;
+        }
+
+        .smb-mb-block {
+            display: none;
+        }
+
+        /* === Flex Block === */
+        .smb-flex-block img {
+            flex: 1 1 0%;
+            max-width: 257px;
+        }
+
+        .smb-flex-block center {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .smb-flex-block p {
+            margin-bottom: 0;
+        }
+
+        /* === Popup === */
+        .popup .overlay {
+            position: absolute;
+            top: 0; bottom: 0; left: 0; right: 0;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .popup .inner {
+            font-weight: bold;
+            padding-bottom: 0;
+            width: 870px;
+            color: #000;
+            z-index: 1000;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: #f2f2f2;
+        }
+
+        .popup .overlay-header {
+            background-color: #9ad94f;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            font-size: 22px;
+            padding: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .popup .close {
+            position: absolute;
+            right: 0; top: 0;
+            font-size: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #000;
+            font-weight: 700;
+            text-shadow: 0 1px 0 #fff;
+            line-height: 1;
+            background-color: #dfdfdf;
+            border-radius: 0 5px 0 5px;
+        }
+
+        .popup .inner a {
+            display: block;
+            color: #000;
+        }
+
+        .popup .inner a:not(.button) {
+            color: #fff;
+            font-weight: normal;
+        }
+
+        .popup .inner img {
+            max-width: 100%;
+            max-height: 230px;
+        }
+
+        .popup .inner h1 {
+            font-size: 30px;
+            line-height: 35px;
+            font-weight: 900;
+            color: #000;
+        }
+
+        .popup .inner p {
+            color: #000;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .popup .inner .button {
+            background-color: #5cb85c;
+            color: #053e14;
+            padding: 20px 30px;
+            font-size: 26px;
+            font-weight: 700;
+            font-family: inherit;
+            border: 3px solid #2d712d;
+            margin-top: 10px;
+            line-height: 1.33;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            background-image: none;
+            border-radius: 60px;
+        }
+
+        .popup .inner .button:hover {
+            background-color: #449d44;
+            color: #fff;
+        }
+
+        .popup .inner .button i {
+            margin-left: 15px;
+        }
+
+        .popup .popup-bottom-p {
+            font-size: 12.8px;
+            color: #6a6a6a;
+            margin: 0;
+        }
+
+        /* === Comment Block === */
+        .smb-comment-block {
+            display: flex;
+            align-items: center;
+        }
+
+        .smb-comment-block p {
+            flex: 1 1 0%;
+        }
+
+        .smb-comment-block img {
+            max-width: 80%;
+        }
+
+        /* === Presell Comment === */
+        .presell-comment-px .comment-module {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0 0;
+            background-color: #d9dfec;
+        }
+
+        .presell-comment-px .comment-module-img {
+            flex: 1 1 0%;
+            margin: 20px 25px;
+        }
+
+        .presell-comment-px .comment-product-img {
+            display: block;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .presell-comment-px .comment-module-content {
+            flex: 2 1 0%;
+            margin: 20px;
+        }
+
+        .presell-comment-px .approve-module {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .presell-comment-px .approve-module-img {
+            max-width: 18px;
+            width: 100%;
+            margin: 0 5px 0 0;
+        }
+
+        .presell-comment-px .approve-user-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .presell-comment-px .approve-module-star-img {
+            margin: 0 0 0 20px;
+        }
+
+        .presell-comment-px .user-comment-content {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            font-size: 18px;
+            line-height: 2;
+            color: #262626;
+        }
+
+        /* === Quote === */
+        .quote-px .quote-px-heart {
+            max-width: 840px;
+            margin: 0 auto;
+        }
+
+        .quote-px .quote-px-content {
+            position: relative;
+            margin: 25px auto;
+            padding: 20px 30px 20px 55px;
+            color: #555;
+            font-size: 18px;
+            font-style: italic;
+            line-height: 1.6;
+            background-color: #ededed;
+        }
+
+        .quote-px .quote-px-content-border {
+            position: absolute;
+            left: 0; top: 0;
+            width: 8px;
+            height: 100%;
+            background-color: #78c0a8;
+        }
+
+        .quote-px .quote-content-font {
+            position: absolute;
+            left: 10px; top: -10px;
+            color: #78c0a8;
+            font-size: 80px;
+        }
+
+        .quote-px .quote-content-top {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .quote-px .quote-content-title {
+            margin: 0 10px 0 0;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .quote-px .quote-content-star {
+            max-height: 20px;
+        }
+
+        .quote-px .quote-content-text {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .quote-px .quote-content-name {
+            display: block;
+            margin-top: 20px;
+            color: #333;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        /* === ID-specific styles === */
+        #iftjc {
+            background-color: #fffdbc;
+            padding: 0 10px;
+            border: 0 solid #000;
+        }
+
+        #i9lg01 { color: red; }
+        #stickyTop { display: none; }
+        #ivsf, #im86u { width: 160px; height: auto; }
+
+        #ihppt4, #i3vyrc, #ii7wek, #is7bdl, #iupb1s, #iy5ksk { max-width: 100%; }
+
+        #imnios, #ii1g2l, #ihfc6c, #irdbmz, #itza9v, #ijdq3g {
+            display: block;
+            padding: 5px;
+            min-height: 50px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        #inwrx { height: 40px; }
+        #ib87e, #iq6teq { width: 1200px; }
+        #is1xkf { font-weight: normal; }
+
+        #iya55d {
+            background-color: #ffeebf;
+            border: 2px dashed red;
+        }
+
+        #iqj5vv { color: white; }
+        #i88uum { background-color: #fff7a7; }
+        #i6bsat, #iwu42w { color: red; }
+        #igd391 { font-size: 20px; }
+        #ig4gbs, #i2fx9i, #ihxjq4, #ik0u09, #i98gpi { font-size: 19px; }
+
+        /* === Desktop columns === */
+        @media (min-width: 769px) {
+            .columns:not(.is-desktop) {
+                display: flex;
+                align-items: stretch;
+                margin-right: 30px;
+            }
+        }
+
+        /* === Mobile === */
+        @media (max-width: 768px) {
+            p {
+                margin-bottom: 25px;
+                font-size: 18px;
+                line-height: 1.8;
+                color: #333;
+            }
+
+            .smb-presell1 h1 {
+                font-size: 28px;
+                line-height: 1.3;
+            }
+
+            .smb-presell1 h2 { font-size: 24px; }
+            .smb-presell1 h3 { font-size: 18px; }
+
+            .smb-presell1 .col-lg {
+                flex: 0 0 100%;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .smb-autor-name { font-size: 14px; }
+            .smb-page-main { flex-direction: column; }
+            .smb-page-right { max-width: 100%; }
+            .smb-mb-block { display: block; }
+
+            .popup .inner {
+                margin: 10px;
+                text-align: center;
+            }
+
+            .popup .inner a {
+                padding: 10px 10px 20px;
+            }
+
+            .popup .inner .column {
+                padding: 0;
+            }
+
+            .popup .inner img {
+                max-width: 70vw;
+                max-height: 30vh;
+            }
+
+            .popup .inner h1 {
+                font-size: 22px;
+                line-height: 25px;
+            }
+
+            .popup .inner p { margin-top: 2px; }
+
+            .popup .inner .button {
+                margin-top: 5px;
+                font-size: 11px !important;
+                padding: 10px 20px !important;
+            }
+
+            .popup .inner .button i { display: none !important; }
+
+            .smb-comment-block { flex-direction: column; }
+
+            .presell-comment-px .comment-module {
+                flex-direction: column;
+            }
+
+            .presell-comment-px .comment-module-img {
+                padding: 20px 25px;
+                margin: 0;
+            }
+
+            .presell-comment-px .user-comment-content {
+                justify-content: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&subset=latin,latin-ext&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+<div id="smb-page" class="smb-presell1"><p id="iwdp" class="advertisement">REKLAMA</p>
+    <div id="iamj" class="logo-bar">
+        <div class="logo-bar-heart">
+            <div id="iy8o" class="row">
+<!--                <div id="iptp" class="logo-bar-box col-lg"><img-->
+<!--                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773286449_1.png" alt="" id="ivsf"-->
+<!--                        class="logo-bar-img"/></div>-->
+            </div>
+        </div>
+    </div>
+    <div id="stickyTop" class="logo-bar-fixed">
+        <div id="iyn03" class="logo-bar-fixed-heart">
+            <div id="izdy5" class="fixed-img-module">
+<!--                <div id="iy0eb" class="fixed-logo"><img-->
+<!--                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773286449_1.png" alt="" id="im86u"-->
+<!--                        class="fixed-logo-img"/></div>-->
+            </div>
+            <div class="fixed-btn-module"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty"><span
+                    class="fixed-btn">ANO! CHCI SLEVU 40 %</span></a></div>
+        </div>
+    </div>
+    <div id="ibadw" class="smb-page-main">
+        <div id="i21sv" class="smb-page-left">
+            <div id="ifixg" class="smb-left-main"><h1 id="icwt1">Proč podiatr tvrdí: „Tyto kleštičky na nehty s chirurgickou čepelí jsou to poslední, co budou senioři kdy potřebovat“</h1>
+                <div id="idrgf" class="smb-autor"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718091346_avatar-2.jpg.png" alt=""
+                        id="inwrx" class="smb-autor-img"/>
+                    <div class="smb-autor-content"><span id="i8zox" class="smb-autor-name">Jason Stewart</span><span
+                            id="i51j3" class="smb-autor-date">Aktualizováno před 21 hodinami</span></div>
+                </div>
+                <p id="iftjc"><b>MIMOŘÁDNÁ ZPRÁVA:</b> Nové kleštičky chirurgické kvality umožňují snadné a bezpečné stříhání nehtů na nohou! <a
+                        href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="i3n1wh">Získejte je nyní se slevou 40 %!</a></p>
+                <section id="imm35"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="iepqd" target="_blank"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304254_1752824029_01_compressed.gif"
+                        alt="" id="iq6teq" class="smb-main-img"/></a>
+                    <p id="ikfh1"></p>
+                    <p></p>
+                    <p id="iwy1ad">Pro miliony seniorů není stříhání nehtů na nohou pouze nepříjemnou povinností.</p>
+                    <p id="i8z75f">Může být vyčerpávající, nepohodlné a představuje obrovskou zátěž pro záda a klouby.</p>
+                    <p id="irbna3"><b><span id="is1xkf">Běžné kleštičky a nůžky z lékárny bývají příliš tupé a slabé. Návštěvy pedikúry jsou drahé, zdlouhavé a málokdo se cítí příjemně při používání sdílených nástrojů.</span></b>
+                    </p>
+                    <p id="i4itoh">Co se stane, když necháte tvrdé nehty dále nekontrolovaně růst? <b id="idxoq6">Není to jen nepohodlné – je to i velmi nepříjemné.</b> <br/><br/>Zadrhávají se o oblíbené ponožky, trhají ložní prádlo a než se nadějete, vaše nohy vypadají zcela zanedbaně. Je těžké cítit se sebevědomě, když musíte své nohy schovávat v sandálech nebo před vnoučaty.</p><img
+                            src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1718181387_%E6%8D%A23.jpg" alt=""
+                            id="idc0rb" class="smb-main-img"/>
+                    <p id="ibdh54">Skutečností je, že s přibývajícím věkem nehty často zesilují a tvrdnou, přičemž pouhé ohnutí k prstům u nohou může vyvolat ostrou bolest v zádech a zápěstích. Zkracování nehtů – které bývalo hračkou – se mění v každodenní boj.</p>
+                    <p id="ik2nx8">Nedávná studie Národního institutu pro stárnutí ukázala, že <b id="iz0m2">téměř 40 % dospělých nad 65 let má potíže se základní péčí o nohy</b> – což výrazně zvyšuje riziko infekcí a pádů.</p></section>
+                <p id="iv6jxu">Dr. Linda Greer, zakladatelka Newyorského centra péče o nohy a kotníky, pomáhá seniorům udržovat pohodlí a pohyblivost již více než 20 let. Zvláštní důraz klade na to, jak náročná se pro starší lidi stává péče o vlastní nehty na nohou.</p><a
+                        href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" target="_blank" id="imnios"><img
+                        src="https://d1y4tm6t3pzfj.cloudfront.net/other/images/1751520325_6.jpg" id="ihppt4"/></a>
+                <p id="ibqe1o"><i id="i71tl">„Měla jsem pacientku,“ vzpomíná Dr. Greer, „která si nestříhala nehty na nohou šest měsíců. Nehty měla tak tlusté a zkroucené, že se jí bolestivě zařezávaly do kůže. Než se ke mně dostala, sotva chodila a měla slzy v očích.“</i></p>
+                <p id="ifxn7k">Bohužel většina dostupných možností byly jen levné, slabé kleštičky z drogerie – <b>buď příliš tupé, nebo příliš malé na pevný úchop.</b> Co je ještě horší, <b id="itrepq">snadno sklouzávaly a způsobovaly bolestivá poranění</b> – nebo zanechávaly <b>ostré, roztřepené hrany</b>, které se o všechno zachytávaly! I po veškerém úsilí zůstávaly nehty neupravené.</p>
+                <p id="iz0h8j">V tu chvíli Dr. Greer věděla, že je potřeba zásadní změna.</p>
+                <p id="iinf7z">Spojila se s týmem inženýrů a podologických specialistů, aby vyvinuli <a
+                        href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="irxx4n">tuto novou, revoluční ortopedickou sadu na péči o nehty</a> – kterou mohou senioři bezpečně a pohodlně používat <b>i při artritidě nebo omezené hybnosti</b>.</p>
+                <p id="i7y4q3">Výsledkem je nástroj, který dnes pomáhá tisícům lidí pečovat o nohy – bez bolesti, bez cizí pomoci a bez obav.</p>
+                <section id="itrx5">
+                    <div class="quote-px">
+                        <div class="quote-px-heart"></div>
+                    </div>
+                    <p id="ia4dk"></p>
+                    <p></p>
+                    <p id="i9hean"></p>
+                    <p></p>
+                    <p id="ibwxsa"></p>
+                    <p></p><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="i1j5w" target="_blank"></a>
+                    <h2 id="ieo2fs">Představujeme <a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="itgpyt">Corvolla OrthoClip</a> – precizní sadu kleštiček z chirurgické oceli</h2><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" target="_blank" id="irdbmz"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304017_XIEJI.jpg" id="is7bdl"/></a>
+                    <p id="i18nc7">Přináší přesnost a kvalitu profesionální pedikúry přímo do vašeho domova, a to za zlomek běžné ceny.</p>
+                    <p id="ic14os"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="i6e4xa">Corvolla OrthoClip</a> byl navržen týmem ortopedických chirurgů po třech letech intenzivního vývoje. <b>Funguje naprosto spolehlivě na tvrdých, silných i plísní zasažených nehtech</b> a pokaždé zaručuje bezstarostné, bezpečné a čisté zastřižení.</p>
+                    <p id="igizks"><span id="ilown9">Čepele z chirurgické oceli <b>nevyžadují téměř žádnou sílu při stříhání</b> – projdou nehtem hladce jako horký nůž máslem. <b>Ideální pro seniory, diabetiky i pro ty, kteří trpí bolestmi zad či artritidou.</b></span>
+                    </p><a id="ijdq3g" href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" target="_blank"><img id="iy5ksk"
+                                                                                                                          src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773310849_02106406.jpg"/></a>
+                    <p id="ieoiof">Díky zahnuté čepeli tvarované podle anatomie nehtů předchází <a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty"
+                                                                                                   id="i9jy8j">Corvolla
+                        OrthoClip</a> poraněním a zarůstání. Provedení s ochranou proti odletování <b>vám umožní udržovat dokonalou hygienu v naprostém pohodlí domova.</b></p>
+                    <p id="im7thu">Pokud hledáte spolehlivý nástroj na silné nehty na rukou i nohou, UŽ NEHLEDEJTE DÁLE – tyto dokonalé kleštičky jsou přesně to, co potřebujete!</p>
+                    <h2 id="ih5ns">V čem jsou pro seniory tak přelomové?</h2><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty"
+                                                                                target="_blank" id="ii1g2l"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304028_1752824029_01_compressed.jpg"
+                        id="i3vyrc"/></a>
+                    <p id="iu8tm">Zde je tajemství úspěchu <a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="ieyol3">Corvolla OrthoClip</a>:</p>
+                    <p id="ihxjq4"><b id="ivd6em">✅ Snadné a bezbolestné stříhání bez námahy<br/></b></p>
+                    <p id="ieux1j">Corvolla OrthoClip je vybaven speciálně navrženou prodlouženou rukojetí a profesionální zahnutou hlavou – přizpůsobenou tak, aby si poradila i s těmi nejtvrdšími a nejodolnějšími nehty. Stříhá hladce a přesně – žádné roztřepené okraje, pouze dokonalý a čistý řez při každém použití.<br/><br/>Navíc ke každé sadě obdržíte zdarma pilník na nehty, který je ideální pro rychlou úpravu a perfektní vyhlazení nehtů.</p>
+                    <p id="i2fx9i"><b id="ib8c3f">✅ Konstrukce proti odletování nehtů</b></p>
+                    <p id="ilhh1y">Disponuje integrovaným zásobníkem, který automaticky zachycuje odstřižené nehty. Nemusíte se obávat nepořádku na posteli nebo pohovce – váš domov zůstane po úpravě nehtů čistý a uklizený.</p><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty"
+                                                                                                                                                                                                                                     target="_blank"
+                                                                                                                                                                                                                                     id="ihfc6c"><img
+                        src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304044_faf.jpg" id="ii7wek"/></a>
+                    <p id="ig4gbs"><b id="ivajfa">✅ Extra široké rozevření čelistí</b></p>
+                    <p id="it53kf">Na rozdíl od běžných kleštiček s úzkým rozevřením má ostrá čepel <a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="ie3f2l">Corvolla
+                        OrthoClip</a> široké rozpětí, které bez obtíží pojme i silně ztluštělé nehty na nohou.</p>
+                    <p id="izd9hi"></p>
+                    <p></p>
+                    <p id="i98gpi"><b id="i1fycl">✅ Ergonomicky tvarovaná hlava</b></p>
+                    <p id="ieh63t">Pomáhá výrazně snížit zátěž kloubů při stříhání nehtů – ideální pro seniory, pro které je obtížné se ohýbat, nebo pro osoby s artritidou a slabším úchopem.</p><img src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773304037_xijei.jpg"
+                                                                                                                                                                                                       alt="" id="ib87e" class="smb-main-img"/>
+                    <p id="ik0u09"><b id="iuyyzt">✅ Velká, ergonomická a extra dlouhá rukojeť</b></p><a
+                        href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="ip7u5" target="_blank"></a></section>
+                <p id="idogwf">Deseticentimetrová rukojeť využívá efektivní pákový mechanismus, takže k přestřižení i těch nejtvrdších nehtů stačí minimální tlak. Protiskluzový povrch zajišťuje pevný, bezpečný a bezbolestný úchop.</p>
+                <p id="igd391"><b>Jedno je jisté: jakmile jednou vyzkoušíte <a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="iqm4mh">Corvolla
+                    OrthoClip</a>, k běžným kleštičkám se už nikdy nevrátíte!</b></p>
+                <p id="inu8dy">Žádná bolest, žádné poranění – stříhání nehtů na nohou je s <a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="igtgrq">Corvolla
+                    OrthoClip</a> rychlé a jednoduché!</p>
+                <section id="is65g3"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" target="_blank" id="ih1g4c"></a><a
+                        href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" target="_blank" id="iz00iz"></a></section>
+                <section></section>
+                <section id="ibwjjl"><h2 id="img11d">Nepostradatelný pomocník pro celou rodinu!</h2>
+                    <p id="icdoqo"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="i208wh">Corvolla OrthoClip</a> poskytuje přesný a čistý střih a byl důkladně testován tak, aby seniorům umožnil upravit nehty během několika sekund.</p>
+                    <p id="intaaf">Je vyroben z lékařské nerezové oceli, je vysoce odolný, nerezaví a vydrží vám po celý život.</p>
+                    <p id="i3lh3g"><b id="iiy8wn">Usnadňuje život především:</b></p>
+                    <p id="i1yvzd"><span id="i32p1c">✅ Každému, kdo má <b id="i53yyi">silné nebo tvrdé nehty na nohou</b><br/>✅ <b>Seniorům s artritidou</b> nebo oslabenou silou v rukou<br/>✅ Lidem s <b>omezenou pohyblivostí</b> nebo potížemi při předklánění<br/>✅ <b>Pečovatelům a zdravotníkům</b> pracujícím v domovech pro seniory</span>
+                    </p>
+                    <p id="igkw6g">Ve zkratce je přínosem prakticky pro každého.</p>
+                    <p id="i6obvr">I když netrpíte ztluštělými nehty, možnost ostříhat si nehty bez námahy a nepořádku je nesmírně příjemná.</p>
+                    <p id="i828aq">Celý proces se stává rychlým, čistým a naprosto bezproblémovým rituálem.</p>
+                    <div id="ip2mt1" class="smb-click-button"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty">OVĚŘIT SLEVY A DOSTUPNOST →</a></div>
+                    <h2 id="iofkse">Vyplatí se koupě?</h2>
+                    <p id="igzgfc"><b>Jednoznačně a bez pochybností!</b></p>
+                    <p id="iwxw9s">Trh je plný nejrůznějších značek a typů kleštiček. Mnohé nekvalitní výrobky se však rychle otupí, zničí a představují jen vyhozené peníze.</p>
+                    <p id="ig54tq">Neriskujte své zdraví s nekvalitními nástroji. Dopřejte si profesionální péči s prvotřídními kleštičkami za dostupnou cenu. Rozdíl poznáte okamžitě!</p>
+                    <p id="igmrmg"><b>Jde o skutečně praktický produkt, který mění kvalitu života</b> a ušetří vám spoustu bolesti i výdajů za návštěvy ordinací a salónů.</p>
+
+                </section>
+                <section id="imu87t"><h2 id="iwehl5">Neodkládejte objednávku – zásoby jsou omezené!</h2>
+                    <p id="iryqzh">Dosud se přímo zákazníkům prodalo více než 2 miliony kusů <a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="ic0eir">Corvolla OrthoClip</a>, aniž by byly k dostání v běžných kamenných obchodech. A při každém naskladnění se bleskově vyprodaly – tak obrovský je o ně zájem.</p>
+                    <p id="i6y8v9"><b id="i88uum"><i id="ig3ksy">V době zveřejnění tohoto článku je můžete získat za pouhých <span id="i6bsat">44,99 $</span>, což představuje <span id="iwu42w">SLEVU 40 %</span> z běžné ceny, nabídka je však časově omezená.</i></b></p>
+                    <p id="infho8">Tato akce brzy skončí, proto neváhejte! Objednejte si svůj kus dříve, než se sklad opět zcela vyprázdní.</p></section>
+                <section id="i986ly">
+                    <div id="iya55d" class="smb-border-main"><p id="ito99f"><b>AKTUALIZACE:</b> Vzhledem k tomu, že <a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty"
+                                                                                                                       id="ivudiu">Corvolla
+                        OrthoClip</a> mizí z pultů velmi rychle… Důrazně doporučujeme objednat ihned, dokud jsou kusy skladem!
+                        Zásoby se tenčí a dostupnost nelze garantovat. <b id="i9lg01">Slevu 40 %</b> získáte, pokud si objednáte <a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="iauilc">Corvolla OrthoClip</a> online ještě dnes <a
+                                href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty">přímo na jejich oficiálních stránkách zde >></a></p></div>
+                    <div id="iyd0de" class="smb-click-button"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty">OVĚŘIT SLEVY A DOSTUPNOST →</a></div>
+                </section>
+            </div>
+        </div>
+        <div id="i20vzp" class="smb-page-right">
+            <div id="smb-fixed-flag"></div>
+            <div class="smb-right-main">
+                <div id="i5frah" class="smb-right-product-text"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="iqj5vv">Corvolla OrthoClip</a></div>
+                <div id="iljq99" class="smb-right-content"><a id="itza9v" href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty"
+                                                              target="_blank"><img id="iupb1s"
+                                                                                   src="https://d1o9n6s6wa24ow.cloudfront.net/other/images/1773303984_pinglun56.jpg"/></a>
+                    <div id="ildsrl" class="smb-content-text">
+                        <div id="i11sh8" class="smb-right-slogan-text"><u><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="isnsis">Získejte špičkové kleštičky pro dokonalou péči o nehty</a></u></div>
+                        <div class="smb-right-button"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty" id="ibu18a">SLEVA 40 % NYNÍ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="smb-flag-none"></div>
+    <div id="i35xob" class="smb-button-bottom smb-mb-block">
+        <div class="smb-right-button"><a href="https://corvolla.com/products/lekarsky-navrzene-klesticky-na-nehty">OVĚŘIT DOSTUPNOST →</a></div>
+    </div>
+    <footer class="smb-page-footer">
+        <div class="smb-footer-main"><p id="ixa5or">Copyright © 2025</p>
+            <p id="i29kvf">AUTORSKÁ PRÁVA – TOTO JE REKLAMNÍ SDĚLENÍ, NIKOLI SKUTEČNÝ ZPRAVODAJ SKÝ ČLÁNEK, BLOG ČI SPOTŘEBITELSKÉ VAROVÁNÍ. MARKETINGOVÉ PROHLÁŠENÍ: Tyto webové stránky fungují jako online tržiště. Majitel stránek má finanční vazby na produkty a služby propagované na tomto webu. Provozovatel může obdržet provizi za zprostředkované nákupy. REKLAMNÍ PROHLÁŠENÍ: Tyto stránky a na nich zmiňované produkty jsou prezentovány za účelem reklamy. Web má propagační charakter, nikoli zpravodajský. Fotografie osob použité na stránkách zobrazují modely. Vlastník stránek poskytuje prostor, kde se mohou spotřebitelé seznámit s produkty a porovnat je.</p>
+            <p>ZDRAVOTNÍ UPOZORNĚNÍ: Informace obsažené na těchto stránkách nenahrazují odborné lékařské poradenství, stanovení diagnózy ani léčbu jakýchkoli onemocnění. Neneseme odpovědnost za přesnost informací uvedených na tomto webu a tyto informace mohou být bez předchozího upozornění změněny.</p>
+            <p>Nikdy neměňte užívání předepsaných léků, denní režim, stravovací návyky ani cvičení bez předchozí konzultace se svým ošetřujícím lékařem či jiným zdravotnickým odborníkem. NIKDY NEIGNORUJTE ODBORNOU LÉKAŘSKOU PÉČI ANI NEODKLÁDEJTE NÁVŠTĚVU LÉKAŘE NA ZÁKLADĚ INFORMACÍ ZÍSKANÝCH NA TĚCHTO STRÁNKÁCH.</p>
+            <p><a rel="nofollow" href="/template-common/en/contact-us/" target="_blank" class="privacy-link">Kontakt</a></p>
+            <p><a rel="nofollow" href="/template-common/en/privacy-policy/" target="_blank" class="privacy-link">Zásady ochrany osobních údajů</a></p>
+            <p><a rel="nofollow" href="/template-common/en/terms-of-service/" target="_blank" class="privacy-link">Obchodní podmínky</a></p></div>
+    </footer>
+</div>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
+        integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
+        data-cf-beacon='{"version":"2024.11.0","token":"395393837bc4409aa96bb1fb523ca8b6","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+        crossorigin="anonymous"></script>
+</body>
+
+<script src="js/smb-scroll.js"></script>
+<script src="js/view1/sticky-top.js"></script>
+
+</html>
